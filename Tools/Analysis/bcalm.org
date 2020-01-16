@@ -1,0 +1,29 @@
+#+TITLE: bcalm
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil
+
+[[https://github.com/GATB/bcalm][bcalm]] is a de Bruijn graph compaction in low memory 
+
+* Installation
+To compile follow the [[https://github.com/GATB/bcalm#installation][instructions in the README]]
+
+In my case: guix and zlib weren't playing well so I [[https://anaconda.org/bioconda/bcalm][installed bcalm using conda]].
+
+#+BEGIN_SRC
+conda install -c bioconda bcalm
+#+END_SRC
+
+* Usage
+bcalm takes a single interleaved fastq file
+If data is in seperate files interleave it with: [[https://github.com/ekg/interleave-fastq][iterleave-fastq]]
+
+#+BEGIN_SRC
+bcalm -in ~/projects/Martha/HRV/data/81/clean/HRV_interleaved.fastq -kmer-size 31 -abundance-min 10
+#+END_SRC
+
+Convert to gfa using 
+
+#+BEGIN_SRC
+~/Software/bcalm/scripts/convertToGFA.py HRV_interleaved.unitigs.fa HRV_31_20.gfa 31
+#+END_SRC

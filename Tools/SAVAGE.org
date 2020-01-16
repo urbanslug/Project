@@ -1,0 +1,68 @@
+#+TITLE: SAVAGE setup
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil
+
+Setup instructions for [[https://bitbucket.org/jbaaijens/savage][SAVAGE]] using bioconda.
+You can also get SAVAGE from github under [[https://github.com/HaploConduct/HaploConduct][HaploConduct]].
+
+Note that SAVAGE development has moved from [[https://bitbucket.org/jbaaijens/savage/src/master/][here on bitbucket]] to the [[https://github.com/HaploConduct/HaploConduct][HaploConduct repo on github]].
+
+#+TOC: headlines 10
+
+
+We'll use bioconda.
+
+From the SAVAGE Readme: /'Please note that SAVAGE is built for linux-based systems only.'/
+
+
+* Bioconda
+Install miniconda for *Python 2.7* https://docs.conda.io/en/latest/miniconda.html#linux-installers
+
+Download the install script
+#+BEGIN_SRC bash
+$ curl -O https://repo.anaconda.com/miniconda/Miniconda2-latest-Linux-x86_64.sh
+#+END_SRC
+
+Run the install script
+#+BEGIN_SRC bash
+$ sh Miniconda2-latest-Linux-x86_64.sh
+#+END_SRC
+
+Run through the installation process.
+
+
+Start base environment
+#+BEGIN_SRC bash
+$ source ~/miniconda2/bin/activate
+#+END_SRC
+
+
+* SAVAGE
+Install [[https://bitbucket.org/jbaaijens/savage/src/master/][SAVAGE]]
+
+Set up bioconda
+
+#+BEGIN_SRC bash
+$ conda config --add channels r
+$ conda config --add channels defaults
+$ conda config --add channels conda-forge
+$ conda config --add channels bioconda
+#+END_SRC
+
+Install [[https://bitbucket.org/jbaaijens/savage][SAVAGE]]
+
+#+BEGIN_SRC bash
+$ conda install savage
+#+END_SRC
+
+
+** Running SAVAGE examples
+
+
+* Pear
+/"Currently, SAVAGE is designed for Illumina MiSeq sequencing reads that have
+been pre-processed  by [[http://sco.h-its.org/exelixis/web/software/pear/][PEAR]] (for merging self-overlapping pairs)."/
+
+To install it you have to request for a binary or a license from their website.
+

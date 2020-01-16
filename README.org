@@ -1,0 +1,8 @@
+#+TITLE: README
+#+SUBTITLE: My notes on genome graphs and my projects
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil
+
+
+Notes on my understanding on genome graphs, how to use genome graph tools etc.

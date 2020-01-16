@@ -1,0 +1,8 @@
+#+TITLE: SPAdes
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil
+
+#+BEGIN_SRC
+spades.py --isolate -1 ~/projects/Martha/HRV/data/81/clean/HRV_r1_hostremoved.fastq -2 ~/projects/Martha/HRV/data/81/clean/HRV_r2_hostremoved.fastq -o $HOME/projects/Martha/HRV/results/spades
+#+END_SRC

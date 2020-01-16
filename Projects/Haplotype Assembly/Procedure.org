@@ -1,0 +1,618 @@
+#+TITLE: Haplotype assembly with [[https://cme.h-its.org/exelixis/web/software/pear/][PEAR]], [[https://bitbucket.org/jbaaijens/savage][SAVAGE]] & [[https://bitbucket.org/jbaaijens/vg-flow][vg-flow]]
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil
+
+
+**Objective:** To reproduce HCV work in [[https://www.biorxiv.org/content/10.1101/645721v2][Strain-aware assembly of genomes from mixed samples using variation graphs]].
+
+In this post I plan to assemble haplotypes and generate abundance estimates.
+
+
+#+TOC: headlines 10
+
+* Download reads
+
+Download the reads in **fastq** from [[https://trace.ncbi.nlm.nih.gov/Traces/sra/?view=search_seq_name&exp=SRX1976452&run=&m=search&s=seq][SRA]].
+
+Reads should be
+ - Paired end
+ - Illimuna MiSeq
+
+ *Assumption:* This single fastq contains both forward and reverse reads which we must later split into two files.
+
+* Extract
+#+BEGIN_SRC bash
+$ gzip -d sra_data.fastq.gz
+#+END_SRC
+
+* Split reads
+Split the reads into forward and reverse reads.
+
+I used awk regex from http://seqanswers.com/forums/showthread.php?t=13776
+
+** Split forward reads
+#+BEGIN_SRC bash
+$ awk '0 == ((NR+4) % 8)*((NR+5) % 8)*((NR+6) % 8)*((NR+7) %8)' sra_data.fastq > sra_data1.fastq
+#+END_SRC
+
+This has the problem of adding an extra line to the newline to ~sra_data1.fastq~
+
+** Split reverse reads
+#+BEGIN_SRC bash
+$ awk '0 == (NR % 8)*((NR+1) % 8)*((NR+2) % 8)*((NR+3) %8)' sra_data.fastq > sra_data2.fastq
+#+END_SRC
+
+* Run PEAR
+/Set phred score threshold of 35/
+
+** Entry is missing
+#+BEGIN_SRC bash
+$ pear -q 35 -f sra_data1.fastq -r sra_data2.fastq -o hcv_out
+ ____  _____    _    ____
+|  _ \| ____|  / \  |  _ \
+| |_) |  _|   / _ \ | |_) |
+|  __/| |___ / ___ \|  _ <
+|_|   |_____/_/   \_\_| \_\
+
+PEAR v0.9.11 [Nov 5, 2017]
+
+Citation - PEAR: a fast and accurate Illumina Paired-End reAd mergeR
+Zhang et al (2014) Bioinformatics 30(5): 614-620 | doi:10.1093/bioinformatics/btt593
+
+Forward reads file.................: sra_data1.fastq
+Reverse reads file.................: sra_data2.fastq
+PHRED..............................: 33
+Using empirical frequencies........: YES
+Statistical method.................: OES
+Maximum assembly length............: 999999
+Minimum assembly length............: 50
+p-value............................: 0.010000
+Quality score threshold (trimming).: 35
+Minimum read size after trimming...: 1
+Maximal ratio of uncalled bases....: 1.000000
+Minimum overlap....................: 10
+Scoring method.....................: Scaled score
+Threads............................: 1
+
+Allocating memory..................: 200,000,000 bytes
+Computing empirical frequencies....: Entry is missing
+[1]    7044 abort (core dumped)  pear -q 35 -f sra_data1.fastq -r sra_data2.fastq -o hcv_out
+#+END_SRC
+
+*** Cause
+Extra newline in ~sra_data1.fastq~
+
+*** Solution
+According to [[https://groups.google.com/forum/#!topic/pear-users/cJgZyIsqsHI][this mailing list post]], remove newline at the end of ~sra_data1.fastq~.
+
+
+** Runs without an error
+
+#+BEGIN_SRC bash
+$ pear -q 35 -f sra_data1.fastq -r sra_data2.fastq -o hcv_out
+ ____  _____    _    ____
+|  _ \| ____|  / \  |  _ \
+| |_) |  _|   / _ \ | |_) |
+|  __/| |___ / ___ \|  _ <
+|_|   |_____/_/   \_\_| \_\
+
+PEAR v0.9.11 [Nov 5, 2017]
+
+Citation - PEAR: a fast and accurate Illumina Paired-End reAd mergeR
+Zhang et al (2014) Bioinformatics 30(5): 614-620 | doi:10.1093/bioinformatics/btt593
+
+Forward reads file.................: sra_data1.fastq
+Reverse reads file.................: sra_data2.fastq
+PHRED..............................: 33
+Using empirical frequencies........: YES
+Statistical method.................: OES
+Maximum assembly length............: 999999
+Minimum assembly length............: 50
+p-value............................: 0.010000
+Quality score threshold (trimming).: 35
+Minimum read size after trimming...: 1
+Maximal ratio of uncalled bases....: 1.000000
+Minimum overlap....................: 10
+Scoring method.....................: Scaled score
+Threads............................: 1
+
+Allocating memory..................: 200,000,000 bytes
+Computing empirical frequencies....: DONE
+  A: 0.198583
+  C: 0.299158
+  G: 0.294341
+  T: 0.207918
+  8645 uncalled bases
+Assemblying reads: 100%
+
+Assembled reads ...................: 184,337 / 332,187 (55.492%)
+Discarded reads ...................: 125 / 332,187 (0.038%)
+Not assembled reads ...............: 147,725 / 332,187 (44.470%)
+Assembled reads file...............: hcv_out.assembled.fastq
+Discarded reads file...............: hcv_out.discarded.fastq
+Unassembled forward reads file.....: hcv_out.unassembled.forward.fastq
+Unassembled reverse reads file.....: hcv_out.unassembled.reverse.fastq
+#+END_SRC
+
+HCV dir now looks like:
+
+#+BEGIN_SRC bash
+.
+├── hcv_out.assembled.fastq
+├── hcv_out.discarded.fastq
+├── hcv_out.unassembled.forward.fastq
+├── hcv_out.unassembled.reverse.fastq
+├── sra_data1.fastq
+├── sra_data2.fastq
+└── sra_data.fastq
+#+END_SRC
+
+* Determine --split
+Use to determine the coverage.
+I used [[https://www.ncbi.nlm.nih.gov/nuccore/NC_004102.1?report=fasta][NC_004102.1]] as the reference and determined the coverage using [[https://github.com/raymondkiu/fastq-info][fastqinfo]]
+fastq_info_3.sh sra_data1.fastq sra_data2.fastq ~/Data/references/HCV/ref_1.fasta
+
+#+BEGIN_SRC bash
+sh ~/src/sh/fastq-info/fastq_info_3.sh sra_data1.fastq sra_data2.fastq ~/Data/references/HCV/ref_1.fasta
+#+END_SRC
+
+500 < coverage/20 < 1000 checks out
+
+* Run SAVAGE
+** Unsupported operand type(s) for +: 'NoneType' and 'str'
+
+
+#+BEGIN_SRC bash
+$ savage -s hcv_out.assembled.fastq \
+         -p1 hcv_out.unassembled.forward.fastq \
+         -p2 hcv_out.unassembled.reverse.fasts \
+         --split 1000
+
+-------------------------------------------
+SAVAGE - Strain Aware VirAl GEnome assembly
+-------------------------------------------
+Version: 0.4.1
+Author: Jasmijn Baaijens
+
+Command used:
+/home/njagi/miniconda2/opt/savage-0.4.1/savage.py -s hcv_out.assembled.fastq -p1 hcv_out.unassembled.forward.fastq -p2 hcv_out.unassembled.reverse.fastq --split 1000
+
+Parameter values:
+filtering = True
+reference = None
+merge_contigs = 0.0
+remove_branches = True
+contig_len_stage_c = 100
+split_num = 1000
+use_subreads = True
+no_assembly = False
+diploid_contig_len = 200
+overlap_stage_c = 100
+input_p2 = hcv_out.unassembled.reverse.fastq
+input_p1 = hcv_out.unassembled.forward.fastq
+count_strains = False
+min_clique_size = 4
+diploid_overlap_len = 30
+compute_overlaps = True
+preprocessing = True
+threads = 1
+stage_a = True
+stage_b = True
+stage_c = True
+max_tip_len = None
+min_overlap_len = None
+outdir = None
+average_read_len = None
+sfo_mm = 50
+revcomp = False
+input_s = hcv_out.assembled.fastq
+diploid = False
+
+Input fastq stats:
+Number of single-end reads = 184337
+Number of paired-end reads = 295450
+Total number of bases = 57667100
+Average sequence length = 120.2
+
+Using max_tip_len = 120
+Using min_overlap_len = 72
+
+----------------------------------------------------------------
+WARNING: min_overlap_len = 72
+For more accurate error correction, increase the minimal overlap length using --min_overlap_len
+----------------------------------------------------------------
+*******************
+Preprocessing input
+Traceback (most recent call last):
+  File "/home/njagi/miniconda2/opt/savage-0.4.1/savage.py", line 816, in <module>
+    sys.exit(main())
+  File "/home/njagi/miniconda2/opt/savage-0.4.1/savage.py", line 287, in main
+    overwrite_dir(args.outdir + '/stage_a')
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+#+END_SRC
+
+*** Cause
+Failure to specify output dir
+
+*** Solution
+For the current version of SAVAGE(0.4.1) add a ~-o~  e.g ~-o .~ so that SAVAGE gets an output directory.
+
+** Can't find matching identifier for read pair
+
+#+BEGIN_SRC bash
+$ savage -s hcv_out.assembled.fastq \
+         -p1 hcv_out.unassembled.forward.fastq \
+         -p2 hcv_out.unassembled.reverse.fasts \
+         --split 1000
+         -o .
+-------------------------------------------
+SAVAGE - Strain Aware VirAl GEnome assembly
+-------------------------------------------
+Version: 0.4.1
+Author: Jasmijn Baaijens
+
+Command used:
+/home/njagi/miniconda2/opt/savage-0.4.1/savage.py -s hcv_out.assembled.fastq -p1 hcv_out.unassembled.forward.fastq -p2 hcv_out.unassembled.reverse.fastq --split 1000 --min_overlap_len 100 -o .
+
+Parameter values:
+filtering = True
+reference = None
+merge_contigs = 0.0
+remove_branches = True
+contig_len_stage_c = 100
+split_num = 1000
+use_subreads = True
+no_assembly = False
+diploid_contig_len = 200
+overlap_stage_c = 100
+input_p2 = hcv_out.unassembled.reverse.fastq
+input_p1 = hcv_out.unassembled.forward.fastq
+count_strains = False
+min_clique_size = 4
+diploid_overlap_len = 30
+compute_overlaps = True
+preprocessing = True
+threads = 1
+stage_a = True
+stage_b = True
+stage_c = True
+max_tip_len = None
+min_overlap_len = 100
+outdir = .
+average_read_len = None
+sfo_mm = 50
+revcomp = False
+input_s = hcv_out.assembled.fastq
+diploid = False
+
+Input fastq stats:
+Number of single-end reads = 184337
+Number of paired-end reads = 295450
+Total number of bases = 57667100
+Average sequence length = 120.2
+
+Using max_tip_len = 120
+*******************
+Preprocessing input
+ERROR: can't find matching identifier for read pair
+@SRR3951347.1.2
+@SRR3951347.1.2
+Traceback (most recent call last):
+  File "/home/njagi/miniconda2/opt/savage-0.4.1/savage.py", line 816, in <module>
+    sys.exit(main())
+  File "/home/njagi/miniconda2/opt/savage-0.4.1/savage.py", line 292, in main
+    subprocess.check_call("%s/scripts/random_split_fastq.py --input %s --input2 %s --output %s/stage_a/paired --split_num %s" % (base_path, args.input_p1, args.input_p2, args.outdir, args.split_num), shell=True)
+  File "/home/njagi/miniconda2/lib/python2.7/subprocess.py", line 190, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '/home/njagi/miniconda2/opt/savage-0.4.1/scripts/random_split_fastq.py --input hcv_out.unassembled.forward.fastq --input2 hcv_out.unassembled.reverse.fastq --output ./stage_a/paired --split_num 1000' returned non-zero exit status 1
+#+END_SRC
+
+*** Data
+Assuming the identifiers for the forward reads ends in 1 and the identifiers for the reverse reads ends in 2.
+Shouldn't they be matching?
+
+Here's a snippet of the data to demonstrate that
+**** Snippet forward
+#+BEGIN_SRC bash
+$ head -n 10 hcv_out.unassembled.forward.fastq
+@SRR3951347.1.1 1 length=251
+TGTTAGGCTGGTGATTATACATCCCAAGAGGCCCCTTTTCTGCTTTTCATACTCCTTTTTTTTCGCCTTCTTCCTCCTCCCCCTTTTTTCCTTTCCTTCTTCTTTTCCGTTCTTTTTCTCCTTTCCCCTTCTTTCTTTTTCTTTCTTTCCGTTTTTTTTTTCTCCTCTCTCTTCTCTCTCTTTCCCCCTCTTTTTTTGTTTTTTCTCCTTTCTTTTTTTTTCTTCTTTCTCTTCTTCCTCTGCTTTTTCTT
++
+11>AAFFFFFAFGGGGGGGGGGHA01000000A0ABF1BAD21D11122D211111B21B///0/////11121B10000///>0111/011BB111B1112B11>21/110/1B1B0>21<121110<001112211110111221121/@?0/</-<-</0000/0/0000000:0:0:00000/.-./0009---;99/.-/;0///://////----////////9/9///////////////9/9/
+@SRR3951347.2.1 2 length=251
+TATCATCAGCGGCTTGCCCGTCTCCGCCCGTAGGGGCCGGGAGATATTTCTCGGTCCAGCCGTCGGAATGGTCTCCCAGTTGTTGTGGTTGCTGGCTCCCTTCACGTCGTTTTCCCTGCTGTCTATGTTCCTCTTTTGTTGTTTTTTCTCCTGCCTATCTTGCCTGTTCTGTTACCTTTCCGTGTGCGTGTTCCTTTTTTTTTCTACTTCTTCTCTTTCTTTCCTTGCTTCTTCTTTCTCTTTTTCTCTTT
++
+>>AABFFFFFBBGGGGGGGGGGC2A22AA2E2221100000001B5DF55D51111>3331/1/////?33B4B??B03343B/00//B?/0B11/0?//0?011/0//</?/11111/111111111111>1=>1110<.<.</.</0000//.:000:000/0000:0000000000;0.0...0....9000009;-9-9////9/9;//9/////99B////////////9/;/://9/9/////9/
+@SRR3951347.4.1 4 length=251
+TGTCTCACTCATATAGATGCCCACTTCCTATCCCAGACAAAGCAGAGTGGGGTGAACTTTCCTTACCTGGTAGCGTACCTTTCCTCCTTGTGCGCTATGGCTCAAGCCCCTCCCCCGTCGTGTGTCCTGTTGTTGTTTTGTTTTTCCCTCCTCTTACCTTCCCCTTTCTCTTTTTCTCATCTCCGTTCCCTCGTGTCCTCTCTTCTTCTCTTTTTCTGTCTTCTTCTTTTTTTTTCTTTTTTTTTTTTTTT
+#+END_SRC
+
+**** Snippet reverse
+#+BEGIN_SRC bash
+$ head -n 10 hcv_out.unassembled.reverse.fastq
+@SRR3951347.1.2 1 length=250
+GACGGAAAGAAAAGAGAGGAGAAAGGAAAAAAAAAGAGAGAAGAAGAAAGGAAAAACAGAAACGGAAAGAAAAAGAAGGCAGAAGAGAGAAAAGAAAAGAAGGGGAGTGAGAAGGAAAAAAAAAAAGGAAAAAGAAAGAGAAAAAAACAAGAAAAAAGAAAAAAGAAAGAAAAGGAAAAAGGAAAACAAAAGAGAAAGAGAGAAGAACAGGAGAAGGAAAAGAAAGAGAAAAAAGAAGGGAAAAAAGAGA
++
+-/-////////////-9/////////----0;000000;00900000000/./00;0://00.0000:/:0000000000000000000111<111110<<..01<111<1?110//</<<<122B101111B212B210///00B@1110>11@1B0/1B11221A121BA110112211200B01112222212A121221D2B11111A1AB1211122AD33100B1BAB11B1111@13311>11
+@SRR3951347.2.2 2 length=251
+AAAGAAAAAAAGAAACAGAAAAAAAAGAGGCAAGCAAGAAACAGCAGGAAGAGGCAGGAAGAAAGAAAACGGACAAGCCGAAGGAAAGGACAACAAGGGGTGGAGGAAGAAGGAGAAAAAAACGGCGAAAGAAAAGAAGAAAAGGGGAAACAAGGGAAGAAAAAAAACAAGCAAAAAAGGAAGGGACAGAAAAAAAGAAGAGGGAGAGGAAAAGAAAGAAAAAAAAGCTGAAAAAACAAACCAGGCAACAA
++
+////--////////:///---////////-////////9/////////0/00./0000009;000./0..009--9-..00000;:000/.00/..-.<///0<<0000001110--/?0/<////21@12111@>1>211BB0122011011012B10/>/?B01B11B1//1B@210011112D2D0EAB11BD1100BA0011B12111B2D110/A01BA111330011BBB1111111111A>1>1
+@SRR3951347.4.2 4 length=249
+AAAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAGAAAAAAAAAAAAAAAAAAAAAGAAGGGAAGGGAAGAAAGAAAAAAAGAAAAAGAGAAAAAAAAAAAAAGAAAGAAAAAAAAAAAAAAAGAAAAAGAAGAGGGGGAAAAAAAAAAAAAAAAAGGAAAAAAAAAAAAAAAAAGAGAGAAAAAGGGAAAAAAAAAAAAACAAAAAGAGGAAAAAGAAGAAAAAGAAAAAAAAAAGAAAAAAAACAAAAA
+#+END_SRC
+
+*** Cause
+SAVAGE assumes that forward and reverse reads are named identically
+
+*** Solution
+#+BEGIN_SRC bash
+$ sed 's/\.2 /\.1 /' hcv_out.unassembled.reverse.fastq > hcv_out_preprocessed.unassembled.reverse.fastq
+#+END_SRC
+
+** Successful haplotype assembly
+
+#+BEGIN_SRC bash
+$ savage -s hcv_out.assembled.fastq \
+         -p1 hcv_out.unassembled.forward.fastq  \
+         -p2 hcv_out_preprocessed.unassembled.reverse.fastq \
+         --split 20 \
+         -o .
+-------------------------------------------
+SAVAGE - Strain Aware VirAl GEnome assembly
+-------------------------------------------
+Version: 0.4.1
+Author: Jasmijn Baaijens
+
+Command used:
+/home/local/KWTRP/mmwaniki/miniconda2/opt/savage-0.4.1/savage.py -s hcv_out.assembled.fastq -p1 hcv_out.unassembled.forward.fastq -p2 hcv_out_preprocessed.unassembled.reverse.fastq --split 20 -o .
+
+Parameter values:
+filtering = True
+reference = None
+merge_contigs = 0.0
+remove_branches = True
+contig_len_stage_c = 100
+split_num = 20
+use_subreads = True
+no_assembly = False
+diploid_contig_len = 200
+overlap_stage_c = 100
+input_p2 = hcv_out_preprocessed.unassembled.reverse.fastq
+input_p1 = hcv_out.unassembled.forward.fastq
+count_strains = False
+min_clique_size = 4
+diploid_overlap_len = 30
+compute_overlaps = True
+preprocessing = True
+threads = 1
+stage_a = True
+stage_b = True
+stage_c = True
+max_tip_len = None
+min_overlap_len = None
+outdir = .
+average_read_len = None
+sfo_mm = 50
+revcomp = False
+input_s = hcv_out.assembled.fastq
+diploid = False
+
+Input fastq stats:
+Number of single-end reads = 194908
+Number of paired-end reads = 314710
+Total number of bases = 61064416
+Average sequence length = 119.8
+
+Using max_tip_len = 120
+Using min_overlap_len = 72
+
+----------------------------------------------------------------
+WARNING: min_overlap_len = 72
+For more accurate error correction, increase the minimal overlap length using --min_overlap_len
+----------------------------------------------------------------
+*******************
+Preprocessing input
+Done!
+********************
+Overlap computations
+Done!                                                            t
+**************
+SAVAGE Stage a
+pipeline_per_stage.py
+Stage a done in 5 iterations
+Maximum read length per iteration:      [399, 416, 445, 445, 445]
+Number of contigs per iteration:        [6706, 538, 468, 459, 459]
+Number of overlaps per iteration:       [2015652, 74328, 353, 88, 77, 77]
+pipeline_per_stage.py
+Stage a done in 5 iterations
+Maximum read length per iteration:      [424, 453, 491, 491, 491]
+Number of contigs per iteration:        [7089, 519, 444, 432, 431]
+Number of overlaps per iteration:       [2015381, 85419, 357, 82, 60, 59]
+pipeline_per_stage.py
+Stage a done in 5 iterations
+Maximum read length per iteration:      [410, 438, 441, 441, 441]
+Number of contigs per iteration:        [7321, 547, 459, 444, 444]
+Number of overlaps per iteration:       [1942945, 100005, 385, 100, 77, 77]
+pipeline_per_stage.py
+Stage a done in 5 iterations
+Maximum read length per iteration:      [418, 420, 434, 459, 459]
+Number of contigs per iteration:        [6848, 514, 442, 429, 429]
+Number of overlaps per iteration:       [2027529, 86558, 372, 86, 69, 69]
+pipeline_per_stage.py
+Stage a done in 6 iterations
+Maximum read length per iteration:      [419, 426, 524, 538, 538, 538]
+Number of contigs per iteration:        [7400, 541, 460, 453, 451, 451]
+Number of overlaps per iteration:       [1913786, 105443, 394, 96, 85, 83, 83]
+pipeline_per_stage.py
+Stage a done in 6 iterations
+Maximum read length per iteration:      [423, 423, 440, 461, 467, 467]
+Number of contigs per iteration:        [6912, 514, 455, 450, 448, 448]
+Number of overlaps per iteration:       [1994447, 87089, 355, 81, 71, 69, 69]
+pipeline_per_stage.py
+Stage a done in 5 iterations
+Maximum read length per iteration:      [427, 451, 451, 458, 458]
+Number of contigs per iteration:        [7090, 537, 463, 453, 453]
+Number of overlaps per iteration:       [1992402, 92832, 368, 95, 77, 77]
+pipeline_per_stage.py
+Stage a done in 6 iterations
+Maximum read length per iteration:      [383, 427, 427, 436, 436, 436]
+Number of contigs per iteration:        [6912, 509, 437, 424, 423, 423]
+Number of overlaps per iteration:       [2017716, 85686, 387, 88, 73, 72, 72]
+pipeline_per_stage.py
+Stage a done in 5 iterations
+Maximum read length per iteration:      [409, 417, 479, 479, 479]
+Number of contigs per iteration:        [7114, 512, 442, 427, 427]
+Number of overlaps per iteration:       [1919737, 99411, 375, 94, 71, 69]
+pipeline_per_stage.py
+Stage a done in 6 iterations
+Maximum read length per iteration:      [422, 422, 429, 438, 438, 438]
+Number of contigs per iteration:        [7087, 516, 448, 430, 429, 429]
+Number of overlaps per iteration:       [1930607, 90658, 392, 96, 75, 73, 73]
+pipeline_per_stage.py
+Stage a done in 6 iterations
+Maximum read length per iteration:      [416, 417, 426, 498, 498, 498]
+Number of contigs per iteration:        [6844, 535, 455, 446, 444, 444]
+Number of overlaps per iteration:       [1933403, 87197, 395, 81, 69, 65, 65]
+pipeline_per_stage.py
+Stage a done in 5 iterations
+Maximum read length per iteration:      [391, 398, 551, 551, 551]
+Number of contigs per iteration:        [6995, 515, 437, 430, 430]
+Number of overlaps per iteration:       [1941426, 94037, 366, 74, 59, 59]
+pipeline_per_stage.py
+Stage a done in 6 iterations
+Maximum read length per iteration:      [413, 426, 426, 495, 495, 495]
+Number of contigs per iteration:        [7302, 532, 468, 458, 457, 457]
+Number of overlaps per iteration:       [1903131, 97967, 410, 105, 89, 87, 87]
+pipeline_per_stage.py
+Stage a done in 6 iterations
+Maximum read length per iteration:      [424, 424, 443, 474, 474, 474]
+Number of contigs per iteration:        [7244, 496, 429, 423, 422, 422]
+Number of overlaps per iteration:       [1904936, 103682, 312, 78, 69, 67, 67]
+pipeline_per_stage.py
+Stage a done in 5 iterations
+pipeline_per_stage.py
+Stage a done in 5 iterations
+Maximum read length per iteration:      [413, 415, 465, 465, 465]
+Number of contigs per iteration:        [6898, 548, 478, 465, 465]
+Number of overlaps per iteration:       [1936499, 83091, 393, 102, 86, 86]
+pipeline_per_stage.py
+Stage a done in 6 iterations
+Maximum read length per iteration:      [399, 410, 451, 518, 578, 578]
+Number of contigs per iteration:        [7377, 544, 457, 439, 437, 437]
+Number of overlaps per iteration:       [1963039, 98665, 424, 86, 60, 58, 58]
+pipeline_per_stage.py
+Stage a done in 5 iterations
+Maximum read length per iteration:      [422, 432, 459, 499, 499]
+Number of contigs per iteration:        [6687, 509, 433, 417, 417]
+Number of overlaps per iteration:       [1975852, 74276, 334, 87, 69, 69]
+pipeline_per_stage.py
+Stage a done in 5 iterations
+Maximum read length per iteration:      [401, 442, 447, 447, 447]
+Number of contigs per iteration:        [7088, 509, 433, 424, 424]
+Number of overlaps per iteration:       [1961802, 90114, 381, 76, 63, 62]
+pipeline_per_stage.py
+Stage a done in 6 iterations
+Maximum read length per iteration:      [414, 437, 437, 437, 437, 437]
+Number of contigs per iteration:        [7206, 525, 465, 457, 456, 456]
+Number of overlaps per iteration:       [2016773, 100406, 361, 77, 66, 64, 64]
+pipeline_per_stage.py
+Stage a done in 6 iterations
+Maximum read length per iteration:      [406, 419, 592, 592, 592, 592]
+Number of contigs per iteration:        [7104, 509, 445, 440, 439, 439]
+Number of overlaps per iteration:       [1948938, 92151, 324, 70, 62, 60, 60]
+combine_contigs.py
+Done!
+**************
+SAVAGE Stage b
+pipeline_per_stage.py
+Stage b done in 5 iterations
+Maximum read length per iteration:      [798, 798, 798, 798, 798]
+Number of contigs per iteration:        [854, 703, 676, 674, 674]
+Number of overlaps per iteration:       [633959, 139430, 2803, 2578, 2541, 2536]
+Done!
+
+--- Filtering contigs ---
+Kallisto index construction...
+Kallisto abundance quantification...
+Filtered contigs_stage_b.fasta down to 572 contigs.
+
+**************
+SAVAGE Stage c
+pipeline_per_stage.py
+Stage c done in 4 iterations
+Maximum read length per iteration:      [798, 841, 841, 841]
+Number of contigs per iteration:        [483, 468, 467, 467]
+Number of overlaps per iteration:       [7576, 2191, 2074, 2054, 2053]
+Done!
+
+--- Filtering contigs ---
+Kallisto index construction...
+Kallisto abundance quantification...
+Filtered contigs_stage_c.fasta down to 466 contigs.
+
+**************
+SAVAGE assembly has been completed, the final contig set was written to:
+
+        contigs_stage_c.fasta
+
+Optionally, you can now apply frequency estimation using freq-est.py. Please see
+the manual page for more information: https://bitbucket.org/jbaaijens/savage.
+
+Thank you for using SAVAGE!
+#+END_SRC
+
+* Frequency estimation
+After assembling haplotypes we may want to get [[https://github.com/HaploConduct/HaploConduct/tree/master/savage#frequency-estimation][frequency estimates]].
+
+For the minimum length parameter, ~--min_len~, only contigs of at least this length will be considered during frequency estimation.
+
+Despite  the README not mentioning it I had to specify ~-l~, fragment size, and ~-d~, standard deviation, parameters.
+
+Since I didn't have this info I guessed something that I thought made sense for illumina to see what the results look like.
+
+#+BEGIN_SRC bash
+$ python  freq_est.py --kallisto \
+         -f sra_data1.fastq \
+         -r sra_data2_preprocessed.fastq \
+         --contigs contigs_stage_c.fasta \
+         --min_len 1000 \
+         -l 200 \
+         -d 10
+
+ *** Running Kallisto index construction ***
+
+ [build] loading fasta file contigs_stage_c.fasta
+ [build] k-mer length: 31
+ [build] warning: replaced 13 non-ACGUT characters in the input sequence
+         with pseudorandom nucleotides
+ [build] counting k-mers ... done.
+ [build] building target de Bruijn graph ...  done
+ [build] creating equivalence classes ...  done
+ [build] target de Bruijn graph has 1320 contigs and contains 12638 k-mers
+
+ *** Running Kallisto abundance quantification ***
+
+ [quant] fragment length distribution is truncated gaussian with mean = 200, sd = 10
+ [~warn] you specified using a gaussian but have paired end data
+ [~warn] we suggest omitting these parameters and let us estimate the distribution from data
+ [index] k-mer length: 31
+ [index] number of targets: 466
+ [index] number of k-mers: 12,638
+ [index] number of equivalence classes: 1,643
+ [quant] running in paired-end mode
+ [quant] will process pair 1: sra_data1.fastq
+                             sra_data2_preprocessed.fastq
+ [quant] finding pseudoalignments for the reads ... done
+ [quant] processed 352,392 reads, 87,534 reads pseudoaligned
+ [   em] quantifying the abundances ... done
+ [   em] the Expectation-Maximization algorithm ran for 108 rounds
+ [bstrp] running EM for the bootstrap: 100
+
+ *** Processing Kallisto output ***
+
+ id      length  frequency
+ *** Done ***
+
+#+END_SRC

@@ -1,0 +1,31 @@
+#+TITLE: SRA Toolkit
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil
+
+SRA (Sequence Read Archive) NCBI (National Center for Biotechnology Information) is a source of open sequence data.
+
+SRA Toolkit is a tool used to download data from them in case one isn't using a browser
+
+* Download 
+To find the right download link for your installation use [[https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software][NCBI SRA Toolkit download link]]
+* install 
+Unzip and copy the binaries to your preferred location or use them from the bin/ directory.
+
+* Usage 
+** fasq-dump
+In my case what I care about is the fastq-dump: Convert SRA data into fastq format 
+whose documentation can be found [[https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=toolkit_doc&f=fastq-dump][fastq-dump]].
+
+To download data paired end Illumina data I use:
+
+To download interleaved reads
+#+BEGIN_SRC
+fastq-dump <accession number>
+#+END_SRC
+
+To download forward and reverse reads into separate files
+#+BEGIN_SRC
+fastq-dump --split-files <accession number>
+#+END_SRC
+

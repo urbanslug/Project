@@ -1,0 +1,4 @@
+#+TITLE: Bandage
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil

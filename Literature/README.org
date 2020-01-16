@@ -1,0 +1,7 @@
+#+TITLE: Literature
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil
+
+
+A collection of literature regarding to genome graphs and notes on them

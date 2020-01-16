@@ -1,0 +1,4 @@
+#+TITLE: cmake
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil

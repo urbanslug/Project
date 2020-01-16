@@ -1,0 +1,54 @@
+#+TITLE: Conda
+#+SUBTITLE: conda install and usage
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil
+
+We want to use [[https://docs.conda.io/en/latest/miniconda.html][miniconda]]
+
+* Download
+Download miniconda from script for [[https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh][Python 3 and 64 bit Linux]]
+#+BEGIN_SRC
+mkdir ~/Software
+cd ~/Software
+#+END_SRC
+
+Download with insecure to get around guix not loading root certificates
+#+BEGIN_SRC
+curl --insecure -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+#+END_SRC
+
+* Setup 
+#+BEGIN_SRC
+sh Miniconda3-latest-Linux-x86_64.sh
+#+END_SRC
+
+* Add to my zsh load 
+Initialize conda for zshrc
+This may go out of date but I have
+#+BEGIN_SRC
+$ ~/.oh-my-zsh/custom/conda.zsh
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/njagi/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/njagi/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/njagi/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/njagi/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+#+END_SRC
+
+* Start conda
+#+BEGIN_SRC
+# Load the config
+exec $SHELL
+
+# Start conda
+conda activate
+#+END_SRC

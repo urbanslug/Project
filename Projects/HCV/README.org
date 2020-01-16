@@ -1,0 +1,7 @@
+#+TITLE: Hepatitis C Virus
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil
+
+
+My experiments using data from the Heptitis C virus

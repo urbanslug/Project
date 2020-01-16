@@ -1,0 +1,5 @@
+#+TITLE: Guix
+#+SUBTITLE: Guix usage
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil

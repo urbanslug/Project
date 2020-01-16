@@ -1,0 +1,9 @@
+#+TITLE: README for Haplotype Assembly
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil
+
+How to assemble haplotypes
+
+Software used is SAVAGE whose set up using bioconda is described [[../Tools/SAVAGE.org][here]].
+

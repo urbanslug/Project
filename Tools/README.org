@@ -1,0 +1,8 @@
+Notes on tooling installation, usage and understanding.
+
+| Directory | Purpose                           |
+|-----------+-----------------------------------|
+| [[./Analysis][Analysis]]  | Tools used to analyse data        |
+| [[./Data][Data]]      | Tools used to organize/fetch data |
+| [[./Build][Build]]     | Software build tools              |
+
