@@ -7,12 +7,24 @@ SRA (Sequence Read Archive) NCBI (National Center for Biotechnology Information)
 
 SRA Toolkit is a tool used to download data from them in case one isn't using a browser
 
-* Download 
+* Install
+** From source
+*** Download 
 To find the right download link for your installation use [[https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software][NCBI SRA Toolkit download link]]
-* install 
-Unzip and copy the binaries to your preferred location or use them from the bin/ directory.
+
+*** Install 
+Unzip and copy the binaries to your preferred location, such as ~/.local/bin/, or use them from the bin/ directory.
+
+
+** Guix
+#+BEGIN_SRC
+guix package -s sra-tools
+#+END_SRC
+
 
 * Usage 
+The docs for each of the subtools is here: https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=toolkit_doc
+What I care about most is fastq-dump
 ** fasq-dump
 In my case what I care about is the fastq-dump: Convert SRA data into fastq format 
 whose documentation can be found [[https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=toolkit_doc&f=fastq-dump][fastq-dump]].

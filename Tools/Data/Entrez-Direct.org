@@ -1,0 +1,117 @@
+#+TITLE: Entrez Direct
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil
+
+Entrez Direct (EDirect) provides access to the NCBI's suite of interconnected databases
+(publication, sequence, structure, gene, variation, expression, etc.) from a UNIX terminal window.
+
+* Install
+
+** From source
+Following the instructions [[https://www.ncbi.nlm.nih.gov/books/NBK179288/][here]] under *Installation*
+
+*** Download the installer from
+#+BEGIN_SRC
+curl --insecure -LO https://www.ncbi.nlm.nih.gov/books/NBK179288/bin/install-edirect.sh
+./install-edirect.sh
+#+END_SRC
+
+#+BEGIN_SRC
+sh -c "$(curl -fsSL ftp://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh)"
+
+sh -c "$(wget -q ftp://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh -O -)"
+#+END_SRC
+
+Which runs
+
+#+BEGIN_SRC
+  cd ~
+  /bin/bash
+  perl -MNet::FTP -e \
+    '$ftp = new Net::FTP("ftp.ncbi.nlm.nih.gov", Passive => 1);
+     $ftp->login; $ftp->binary;
+     $ftp->get("/entrez/entrezdirect/edirect.tar.gz");'
+  gunzip -c edirect.tar.gz | tar xf -
+  rm edirect.tar.gz
+  builtin exit
+  export PATH=${PATH}:$HOME/edirect >& /dev/null || setenv PATH "${PATH}:$HOME/edirect"
+  ./edirect/setup.sh
+#+END_SRC
+
+This installs edirect into ~${HOME}/edirect~
+
+Make sure to add ~${HOME}/edirect~ to your PATH
+
+#+BEGIN_SRC
+echo "export PATH=\${PATH}:\${HOME}/edirect" >> $HOME/.oh-my-zsh/custom/path.zsh
+#+END_SRC
+
+
+** Guix
+For some unknown reason this didn't work for me.
+#+BEGIN_SRC
+guix package -i edirect
+#+END_SRC
+
+* Usage
+** Documentation
+Copied and pasted this from [[https://www.ncbi.nlm.nih.gov/books/NBK179288/][Entrez Direct Functions 17 Jan 2020]]
+
+*** Navigation
+Navigation functions support exploration within the Entrez databases:
+
+    - esearch :: performs a new Entrez search using terms in indexed fields.
+    - elink :: looks up neighbors (within a database) or links (between databases).
+    - efilter :: filters or restricts the results of a previous query.
+
+
+*** Retreival
+Records can be retrieved in specified formats or as document summaries:
+
+    - efetch :: downloads records or reports in a designated format.
+
+*** XML 
+Desired fields from XML results can be extracted without writing a program:
+
+    - xtract :: converts EDirect XML output into a table of data values.
+
+*** Other
+Several additional functions are also provided:
+
+    - einfo :: obtains information on indexed fields in an Entrez database.
+    - epost :: uploads unique identifiers (UIDs) or sequence accession numbers.
+    - nquire :: sends a URL request to a web page or CGI service.
+
+** Examples
+*** Search
+
+To get all runs from PRJNA257197
+Combine search and fetch
+#+BEGIN_SRC
+esearch -db sra -query PRJNA257197 | efetch -format runinfo > runinfo.csv
+#+END_SRC
+
+Pick a run from this file, say SRR1972739, and we’ll only subset the data to 10K reads to
+get through quickly:
+
+We covered [[./SRA-Toolkit.org#fasq-dump][fastq-dump]] under [[./SRA-Toolkit.org][SRA-Toolkit]].
+
+#+BEGIN_SRC
+fastq-dump -X 10000 --split-files SRR1972739
+#+END_SRC
+
+*** Fetch
+To fetch thehuman Rhivovirus genotype A101 from https://picornaviridae.com/enterovirus/rv-a/rv-a_seqs.htm with ID GQ415051.1
+
+#+BEGIN_SRC
+export REFS=~/refs
+export ID=GQ415051.1
+efetch -db=nuccore -format=fasta -id=$ID > $REFS/$ID.fa
+#+END_SRC
+
+cleanup
+
+#+BEGIN_SRC
+unset REFS ID
+#+END_SRC
