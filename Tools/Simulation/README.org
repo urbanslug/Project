@@ -1,0 +1,59 @@
+#+TITLE: Simulation
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+
+
+* Overview
+
+We can simulate reads from a reference genome using:
+ - [[https://github.com/nh13/DWGSIM][DWGSIM]]
+ - [[https://github.com/lh3/wgsim][wgsim]]
+
+/'wgsim is easier to install but it only produces the mutations in text format that is harder to visualize.
+dwgsim on the other hand will produce VCF files in addition to the text file.'/
+
+I chose to use dwgsim.
+Install with
+
+* Install
+
+** dwgsim
+#+BEGIN_SRC
+conda install -c bioconda dwgsim
+#+END_SRC
+
+** wgsim
+#+BEGIN_SRC
+conda install -c bioconda wgsim
+#+END_SRC
+
+* Usage
+From the Biostar Handbook
+
+Download the reference
+#+BEGIN_SRC
+efetch -db=nuccore -format=fasta -id=AF086833 > genome.fa
+#+END_SRC
+
+~sim~ is short for simulated
+
+** wgsim
+#+BEGIN_SRC
+wgsim -N 1000 genome.fa sim1.fq sim2.fq > mutations.txt
+#+END_SRC
+
+The commands above will create the following files:
+ - First in pair: sim1.fq
+ - Second in pair: sim2.fq
+ - Mutations as a text file: mutations.txt
+
+** dwgsim
+#+BEGIN_SRC
+dwgsim -N 1000 genome.fa sim
+#+END_SRC
+
+This creates:
+ - First in pair: sim.bwa.read1.fastq
+ - Second in pair: sim.bwa.read2.fastq
+ - Mutations as text file: sim.mutations.txt
+ - Mutations as a VCF file: sim.mutations.vcf
