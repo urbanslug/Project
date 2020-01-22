@@ -3,9 +3,13 @@
 #+OPTIONS: date:nil
 #+OPTIONS: toc:nil
 
+* bwa
+BWA represents the more traditional aligner or alignment methods
+
+** Mixed
 #+CAPTION: Mixed perfect, realistic and deletion coverage in igv
 #+NAME:   img:mixed_coverage
-[[../../Images/simulation/coverage/igv_all.png]]
+[[../../Images/simulation/coverage/bwa/igv_all.png]]
 
 
 This is how well the reads from sequencing cover the genome
@@ -24,9 +28,7 @@ bwa index refs/reference.fa
 export MAIN_REF=<path/to/ref>
 #+END_SRC
 
-
-
-* Perfect data
+** Perfect data
 
 There is no consensus on perfect data but let's go with what the Biostar handbook provides.
 After all our aim is to compare these tools with graph tools.
@@ -52,9 +54,9 @@ Open perfect.bam in igv to get
 
 #+CAPTION: Perfect coverage
 #+NAME:   img:perfect_coverage
-[[../../Images/simulation/coverage/igv_perfect.png]]
+[[../../Images/simulation/coverage/bwa/igv_perfect.png]]
 
-* Realistic data
+** Realistic data
 For realistic data we shall simulate reads and some mutations in the reference using  [[../..//Tools/Simulation/README.org][wgsim]]
 
 #+BEGIN_SRC
@@ -81,10 +83,9 @@ Open realistic.bam in igv to get
 
 #+CAPTION: Realistic data
 #+NAME:   img:perfect_coverage
-[[../../Images/simulation/coverage/igv_realistic.png]]
+[[../../Images/simulation/coverage/bwa/igv_realistic.png]]
 
-
-* Deletion
+** Deletion
 In this case we make a deletion in the reference from which we will generate our reads
 Get [[https://replikation.github.io/bioinformatics_side/tools/emboss/][seqret from eboss]]  described under [[../../Tools/Data/Emboss.org][Emboss]] to delete part of the genome or delete a chunk manually.
 
@@ -102,11 +103,31 @@ wgsim -N 10000 genome.fa r1.fq r2.fq
 bwa mem $REF r1.fq r2.fq | samtools sort > deletion.bam
 
 samtools index deletion.bam
-
 #+END_SRC
 
 Open deletion.bam in igv to get
 
 #+CAPTION: Coverage of a deletion in the reference
 #+NAME:   img:deletion
-[[../../Images/simulation/coverage/igv_deletion.png]]
+[[../../Images/simulation/coverage/bwa/igv_deletion.png]]
+
+* bcalm
+** Perfect data
+bcalm gives a single node graph for perfect data despite the kmer size and abundance estimates
+
+#+CAPTION: bcalm gfa with kmer size of 31 and minimum kmer abundance of 20
+#+NAME:   img:mixed_coverage
+[[../../Images/simulation/coverage/bcalm/perfect_coverage_k31_a20.png]]
+
+** Realistic data
+
+Low minimum abundance of 2
+[[../../Images/simulation/coverage/bcalm/realistic_k31_a2.png]]
+
+Higher minimum abundance of 10
+
+[[../../Images/simulation/coverage/bcalm/realistic_k31_a10.png]]
+
+Higher minimum abundance of 20
+
+[[../../Images/simulation/coverage/bcalm/realistic_k31_a20.png]]

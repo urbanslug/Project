@@ -18,6 +18,13 @@ conda install -c bioconda bcalm
 bcalm takes a single interleaved fastq file
 If data is in seperate files interleave it with: [[https://github.com/ekg/interleave-fastq][iterleave-fastq]]
 
+To use interleave-fastq
+
+#+BEGIN_SRC
+interleave-fastq R1.fq R2.fq > interleaved.fq
+#+END_SRC
+
+
 #+BEGIN_SRC
 bcalm -in ~/projects/Martha/HRV/data/81/clean/HRV_interleaved.fastq -kmer-size 31 -abundance-min 10
 #+END_SRC
@@ -26,4 +33,15 @@ Convert to gfa using
 
 #+BEGIN_SRC
 ~/Software/bcalm/scripts/convertToGFA.py HRV_interleaved.unitigs.fa HRV_31_20.gfa 31
+#+END_SRC
+
+* Results
+Gives a ~.h5~, ~.unitigs.fa~, ~.unitigs.fa.glue~ and ~.unitigs.fa.glue.<number>~
+
+bcalm provides [[https://github.com/GATB/bcalm/blob/master/scripts/convertToGFA.py][scripts/convertToGFA.py]] to convert unitigs.fa to .gfa
+
+
+#+BEGIN_SRC
+# 31 is the kmer size and the output is ~perfect_coverage.gfa~
+~/Software/bcalm/scripts/convertToGFA.py perfect_coverage_interleaved.unitigs.fa perfect_coverage.gfa 31
 #+END_SRC
