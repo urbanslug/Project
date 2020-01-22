@@ -1,0 +1,14 @@
+#+TITLE: Emboss
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+
+
+* Overview
+
+* Installation
+
+Install via conda https://anaconda.org/bioconda/emboss
+
+#+BEGIN_SRC
+conda install -c bioconda emboss
+#+END_SRC
