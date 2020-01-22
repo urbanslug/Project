@@ -1,0 +1,112 @@
+#+TITLE: Coverage
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil
+
+#+CAPTION: Mixed perfect, realistic and deletion coverage in igv
+#+NAME:   img:mixed_coverage
+[[../../Images/simulation/coverage/igv_all.png]]
+
+
+This is how well the reads from sequencing cover the genome
+Most of this follows The Biostar Handbook
+
+We shall use the ebola genome.
+Assuming you have efetch from [[../../Tools/Data/Entrez-Direct.org#fetch][Entrez-Direct under fetch]
+#+BEGIN_SRC
+mkdir -p refs
+efetch -db=nuccore -format=fasta -id=AF086833 > refs/reference.fa 
+
+# index the reference for alignment
+bwa index refs/reference.fa
+
+# make it easy to find the ref
+export MAIN_REF=<path/to/ref>
+#+END_SRC
+
+
+
+* Perfect data
+
+There is no consensus on perfect data but let's go with what the Biostar handbook provides.
+After all our aim is to compare these tools with graph tools.
+
+#+BEGIN_SRC
+mkdir perfect_coverage
+cd perfect_coverage
+
+# Get the script used in the biostar handbook
+curl -O http://data.biostarhandbook.com/align/perfect_coverage.py
+
+# Generate perfect data.
+cat $MAIN_REF | python perfect_coverage.py
+
+# Generate an alignment
+bwa mem $MAIN_REF R1.fq R2.fq | samtools sort > perfect.bam 
+
+# Index the alignment
+samtools index perfect.bam
+#+END_SRC
+
+Open perfect.bam in igv to get
+
+#+CAPTION: Perfect coverage
+#+NAME:   img:perfect_coverage
+[[../../Images/simulation/coverage/igv_perfect.png]]
+
+* Realistic data
+For realistic data we shall simulate reads and some mutations in the reference using  [[../..//Tools/Simulation/README.org][wgsim]]
+
+#+BEGIN_SRC
+# We will make a copy of our reference file. We will call this the genome.fa
+# and we will use it as the source of our simulations.
+# We will modify our genome file, 
+
+mkdir realistic_coverage
+cd realistic_coverage
+
+cp $MAIN_REF genome.fa
+
+# generate reads from it
+wgsim -N 10000 genome.fa r1.fq r2.fq
+
+# Compare it to the original reference
+bwa mem $MAIN_REF r1.fq r2.fq | samtools sort > realistic.bam 
+
+# Index the alignment
+samtools index realistic.bam
+#+END_SRC
+
+Open realistic.bam in igv to get
+
+#+CAPTION: Realistic data
+#+NAME:   img:perfect_coverage
+[[../../Images/simulation/coverage/igv_realistic.png]]
+
+
+* Deletion
+In this case we make a deletion in the reference from which we will generate our reads
+Get [[https://replikation.github.io/bioinformatics_side/tools/emboss/][seqret from eboss]]  described under [[../../Tools/Data/Emboss.org][Emboss]] to delete part of the genome or delete a chunk manually.
+
+#+BEGIN_SRC
+mkdir deletion
+cd deletion
+
+# Create a reference with a deletion
+cat $REF | seqret --filter -sbegin 1 -send 2000 > part1
+cat $REF | seqret --filter -sbegin 3000 > part2
+cat part1 part2 | union -filter > genome.fa
+
+wgsim -N 10000 genome.fa r1.fq r2.fq
+
+bwa mem $REF r1.fq r2.fq | samtools sort > deletion.bam
+
+samtools index deletion.bam
+
+#+END_SRC
+
+Open deletion.bam in igv to get
+
+#+CAPTION: Coverage of a deletion in the reference
+#+NAME:   img:deletion
+[[../../Images/simulation/coverage/igv_deletion.png]]

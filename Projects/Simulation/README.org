@@ -1,0 +1,8 @@
+#+TITLE: README for Simulation
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil
+
+It's important to simulate variation so that we can tell whether our graph tools are generating the right graphs.
+
+When something is viewed from 2 different angles it's likely to be true
