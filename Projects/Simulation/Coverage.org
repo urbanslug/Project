@@ -122,6 +122,7 @@ bcalm gives a single node graph for perfect data despite the kmer size and abund
 ** Realistic data
 
 Low minimum abundance of 2
+
 [[../../Images/simulation/coverage/bcalm/realistic_k31_a2.png]]
 
 Higher minimum abundance of 10
