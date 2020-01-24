@@ -38,9 +38,19 @@ Convert to gfa using
 * Results
 Gives a ~.h5~, ~.unitigs.fa~, ~.unitigs.fa.glue~ and ~.unitigs.fa.glue.<number>~
 
-bcalm provides [[https://github.com/GATB/bcalm/blob/master/scripts/convertToGFA.py][scripts/convertToGFA.py]] to convert unitigs.fa to .gfa
+From [[https://github.com/GATB/bcalm#intermediate-files][bcalm docs intermediate files]]
+
+"/BCALM 2 produces some intermediate files: a .h5 file (or a _gatb/ folder),/
+/which contain the k-mer counts. The "*glue*" files contain compacted sequences/
+/that needs to be glued together (see BCALM 2 paper). Those files can be safely/
+/deleted after an execution, as the actual output is just the FASTA file/
+/containing the unitigs./"
 
 
+Given the actual output is the ~.unitigs.fa~, bcalm provides
+[[https://github.com/GATB/bcalm/blob/master/scripts/convertToGFA.py][scripts/convertToGFA.py]] to convert unitigs.fa to .gfa
+
+For example:
 #+BEGIN_SRC
 # 31 is the kmer size and the output is ~perfect_coverage.gfa~
 ~/Software/bcalm/scripts/convertToGFA.py perfect_coverage_interleaved.unitigs.fa perfect_coverage.gfa 31

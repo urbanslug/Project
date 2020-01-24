@@ -121,14 +121,19 @@ bcalm gives a single node graph for perfect data despite the kmer size and abund
 
 ** Realistic data
 
+Here we have increasing minimum abundance but a constant kmer size of 31
+
 Low minimum abundance of 2
+This yields a more linear graph that is in line with what we expected
 
 [[../../Images/simulation/coverage/bcalm/realistic_k31_a2.png]]
 
 Higher minimum abundance of 10
+Some unitigs align but others don't
 
 [[../../Images/simulation/coverage/bcalm/realistic_k31_a10.png]]
 
 Higher minimum abundance of 20
+With a higher min abundance we get unitigs that don't align
 
 [[../../Images/simulation/coverage/bcalm/realistic_k31_a20.png]]
