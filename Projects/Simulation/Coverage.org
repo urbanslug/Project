@@ -69,7 +69,7 @@ cd realistic_coverage
 
 cp $MAIN_REF genome.fa
 
-# generate reads from it
+# Generate 10,000 reads from it
 wgsim -N 10000 genome.fa r1.fq r2.fq
 
 # Compare it to the original reference
@@ -98,6 +98,7 @@ cat $REF | seqret --filter -sbegin 1 -send 2000 > part1
 cat $REF | seqret --filter -sbegin 3000 > part2
 cat part1 part2 | union -filter > genome.fa
 
+# Generate 10,000 reads from it
 wgsim -N 10000 genome.fa r1.fq r2.fq
 
 bwa mem $REF r1.fq r2.fq | samtools sort > deletion.bam
