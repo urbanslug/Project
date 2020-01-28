@@ -13,6 +13,9 @@
 
 ** vg
 
+* Agnostic
+** astarix
+
 * Coverage
 Given the alignments from above measure the coverage using ~vg pack~
 

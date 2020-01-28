@@ -5,11 +5,14 @@
 
 
 
-Render each (bio)sample as a coverage vector across a reference pangenome graph
+Render each (bio)sample as a coverage vector across a reference pangenome graph.
+
 Procedure:
- 1. Build a reference pangenome graph
- 2. Map a read set into the reference graph
- 3. Get the fraction of the graph that the read set covers
+ 1. Get two sets of reads from the same genotype/species
+ 2. Using one set: build a reference pangenome graph
+ 3. Using the other set: map it into the reference graph
+ 4. Get the fraction of the graph that the read set covers
+ 5. Comapere with a set from a completely different species
 
 Biological questions answerable
  1. Given a sample (reads in fastq), how well does it align to the graph?

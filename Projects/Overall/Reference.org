@@ -7,13 +7,18 @@ Generate a sufficiently simple (de Bruijn) graph using an assembler suited to th
 Let's use the simulated data from [[./Data.org][the previous data step]].
 
 * Pangenome graph generation
-
-Tools that can build a d Bruijn graph from the reads
+Tools that can build a de Bruijn graph from reads
 
 
 ** spades
 *** Output
 A graph in gfa1 and fastg
+
+The graph from spades doesn't render continously in gfa and seems to be made up of different non connected graphs
+as seen below but runs through astarix successfully
+
+[[../../Images/Overall/Reference/spades_realistic_simulation.png]]
+
 
 
 ** minia3
@@ -24,6 +29,8 @@ A graph in gfa1 and fastg
 
 * Parameters
 ** kmer size
+Picking a kmer size is...
+
 ** minimum abundance
 
 * Bluntify the reference genome graph
