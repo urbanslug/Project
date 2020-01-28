@@ -1,0 +1,19 @@
+#+TITLE: Read mapping
+#+SUBTITLE: We want to map reads to the reference pangenome graph
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+
+
+
+* Long reads
+
+** GraphAligner
+
+* Short reads
+
+** vg
+
+* Coverage
+Given the alignments from above measure the coverage using ~vg pack~
+
+Get a coverage matrix from ~vg pack~

@@ -16,7 +16,7 @@ This is how well the reads from sequencing cover the genome
 Most of this follows The Biostar Handbook
 
 We shall use the ebola genome.
-Assuming you have efetch from [[../../Tools/Data/Entrez-Direct.org#fetch][Entrez-Direct under fetch]
+Assuming you have efetch from [[../../Tools/Data/Entrez-Direct.org#fetch][Entrez-Direct under fetch]]
 #+BEGIN_SRC
 mkdir -p refs
 efetch -db=nuccore -format=fasta -id=AF086833 > refs/reference.fa 
@@ -57,7 +57,7 @@ Open perfect.bam in igv to get
 [[../../Images/simulation/coverage/bwa/igv_perfect.png]]
 
 ** Realistic data
-For realistic data we shall simulate reads and some mutations in the reference using  [[../..//Tools/Simulation/README.org][wgsim]]
+For realistic data we shall simulate reads and some mutations in the reference using  [[../../Tools/Simulation/README.org][wgsim]].
 
 #+BEGIN_SRC
 # We will make a copy of our reference file. We will call this the genome.fa

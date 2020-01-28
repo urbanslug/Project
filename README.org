@@ -6,3 +6,5 @@
 
 
 Notes on my understanding on genome graphs, how to use genome graph tools etc.
+
+A logical place to start would be [[./Projects/Overall/README.org][the overall project]].

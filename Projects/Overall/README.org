@@ -4,102 +4,19 @@
 #+OPTIONS: date:nil
 
 
-This document is still incomplete
 
-A * indicates doubt/not being sure about something
+Render each (bio)sample as a coverage vector across a reference pangenome graph
+Procedure:
+ 1. Build a reference pangenome graph
+ 2. Map a read set into the reference graph
+ 3. Get the fraction of the graph that the read set covers
 
-Method
- 1. Build a reference graph out of reads
- 2. Map reads to the reference graph
- 3. Be able to update the reference graph*
+Biological questions answerable
+ 1. Given a sample (reads in fastq), how well does it align to the graph?
 
-Biological questions answerable via the graph
- 1. Given reads in a fast(a/q) file which genome/path/haplotype is the closest to the reads in our fast(a/q)?
+Best way to go through this document is
+ 1. [[./Data.org][Data]]
+ 2. [[./Reference.org][Reference]]
+ 3. [[./Mapping.org][Mapping]]
 
-#+TOC: headlines 5
-
-* Building a graph out of reads
-** Rationale
-Come up with a graph representation of the reads
-
-** Tasks
-Build a sufficiently simple (de Bruijn) graph using an assembler suited to the data
-
-Assemblers
- - already tested (recommended for small, virus and bacterial, genomes)
-   * [[https://github.com/ablab/spades][SPAdes]] gives us a graph in gfa1 and fastg
-
- - Other de Bruijn graph assemblers that may be more suited but haven't tried them out yet
-   * [[https://github.com/GATB/minia][minia3]]
-   * [[https://github.com/GATB/bcalm][bcalm2]]
-   * [[https://github.com/pmelsted/bifrost][bifrost]]
-
-** Expected output
-A reference graph in gfa/fastg
-
-* Generate a reference graph
-** Rationale
-This graph can be used to map reads or determine closest genome to a set of reads
- 
-** Tasks
-"bluntify" the graph: the graph we come up with will now be a reference graph
-Tools for this:
- - [[https://github.com/ekg/gimbricate][gimbricate]]
- - [[https://github.com/ekg/seqwish][seqwish]]
-
-*** Sort the graph
-Organize the graph using [[https://github.com/vgteam/odgi][odgi]] sort
-
-** Ascertain
-What does it mean to "bluntify" a graph?
-Simplify it by removing nodes leading to nowhere?
-
-What is a coverage vector and why do we need it?
-To know how deeply a position was sequenced
-
-
-** Expected output
- - A reference graph in gfa/fastg
-   * A variation graph*
-   * A graph with some kind some sort of coordinate system from the sorting
-
-* Graph update
-** Rationale
-We want to keep updating the graph we have with new reads.
-This is like collapsing multiple reference genomes into one.
-
-** Tasks 
-
-** Ascertain
-- How easy is it to update a graph with new read data?
-   * Which are the best tools?
-
-Does the abundance threshold matter here?
- - The number of times that we need to see a kmer to include it in the graph
-   * decrease noise
-   * could eventually reduce information about actual variation that we find
-
-
-** Expected output
-
-* Aligning to a reference graph
-** Rationale
-An alignment tells us where if at all a read or set of reads lie in a graph
-
-** Tasks
-*** Read mapping
-  - [[https://github.com/vgteam/vg][vg]] short reads
-  - [[https://github.com/maickrau/GraphAligner][GraphAligner]] long reads
-
- The above will output alignments. Using these alignments we want to count read coverage using vg pack.
- Why do we need to calculate coverage?
- The output is a coverage vector.
-
- This matrix can be operated in R to perform:
-  - PCA
-  - phylogenetic analysis
-  - evidence of quasispecies states
-
- What about using SPAligner from spades to align reads to a graph in spades?
-
-** Expected output
+The analysis section is coming

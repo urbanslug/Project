@@ -1,0 +1,44 @@
+#+TITLE: Data
+#+SUBTITLE: Getting the data we need
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+
+
+
+We will simulate reads using [[./Tools/Simulation/README.org][wgsim]] from the [[https://www.ncbi.nlm.nih.gov/nuccore/AF086833][Ebola genome AF086833]].
+
+* Fetch the genome
+#+BEGIN_SRC
+efetch -db=nuccore -format=fasta -id=AF086833 > genome.fa
+#+END_SRC
+
+
+* Simulate reads for the reference pangenome graph
+We will simulate 10,000 reads from it which we shall use to build a reference pangenome graph
+
+#+BEGIN_SRC
+wgsim -N 10000 genome.fa r1.fq r2.fq
+#+END_SRC
+
+* Simulate confirmation reads
+We will simulate another 10,000 reads from the same reference.
+We shall map these reads to our reference pangenome and see the kind of result we get
+
+** Reads from the same reference
+#+BEGIN_SRC
+wgsim -N 10000 genome.fa r1_confirm.fq r2_confirm.fq
+#+END_SRC
+
+** Reads from a different genome
+We shall simulate a different set of reads from [[https://www.ncbi.nlm.nih.gov/nuccore/AF009606.1][Hepatitis C virus subytpe 1a AF009606.1]]
+
+
+#+BEGIN_SRC
+# Fetch the genome
+efetch -db=nuccore -format=fasta -id=AF009606.1 > HCV.fa
+
+# Simulate 10,000 reads
+wgsim -N 10000 HCV.fa r1_HCV.fq r2_HCV.fq
+#+END_SRC
+
+

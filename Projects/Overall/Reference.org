@@ -1,0 +1,34 @@
+#+TITLE: Reference pangenome graph
+#+SUBTITLE: How to build the reference pangenome graph
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+
+Generate a sufficiently simple (de Bruijn) graph using an assembler suited to the data
+Let's use the simulated data from [[./Data.org][the previous data step]].
+
+* Pangenome graph generation
+
+Tools that can build a d Bruijn graph from the reads
+
+
+** spades
+*** Output
+A graph in gfa1 and fastg
+
+
+** minia3
+
+** bifrost
+
+** bcalm2
+
+* Parameters
+** kmer size
+** minimum abundance
+
+* Bluntify the reference genome graph
+
+* Organize the graph
+
+
+** odgi sort
