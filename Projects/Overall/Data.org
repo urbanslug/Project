@@ -5,11 +5,11 @@
 
 
 
-We will simulate reads using [[./Tools/Simulation/README.org][wgsim]] from the [[https://www.ncbi.nlm.nih.gov/nuccore/AF086833][Ebola genome AF086833]].
+We will simulate reads using [[./Tools/Simulation/README.org][wgsim]] from the [[https://www.ncbi.nlm.nih.gov/nuccore/MN988669.1?report=fasta][Wuhan Corona Virus MN988669.1]]
 
 * Fetch the genome
 #+BEGIN_SRC
-efetch -db=nuccore -format=fasta -id=AF086833 > genome.fa
+efetch -db=nuccore -format=fasta -id=MN988669.1 > genome.fa
 #+END_SRC
 
 

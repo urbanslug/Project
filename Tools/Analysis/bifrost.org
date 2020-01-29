@@ -1,0 +1,12 @@
+#+TITLE: bifrost
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil
+
+bifrost requires a (or a set of references) and reads it can also take a reference on it's own or references and build a compacted de bruijn graph
+
+* Install
+Couldn't find it on [[https://anaconda.org/search?q=bifrost][anaconda cloud]].
+
+** Manual install
+Follow the [[https://github.com/pmelsted/bifrost#compilation-and-installation][compilation and installation instructions in the README]].
