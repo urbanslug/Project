@@ -6,10 +6,8 @@
 Generate a sufficiently simple (de Bruijn) graph using an assembler suited to
 the data. Let's use the simulated data from [[./Data.org][the previous data step]].
 
-* Pangenome graph generation
+* de Bruijn Graph
 Tools that can build a de Bruijn graph from reads
-
-
 ** spades
 Spades has output in ~gfa1~ and ~fastg~.
  
@@ -23,7 +21,6 @@ spades.py --isolate -k 31 \
 When the gfa is visualized it's linear as below and as expected:
 
 [[../../Images/Overall/Reference/spades_realistic_simulation.png]]
-
 
 ** minia3
 
@@ -75,6 +72,68 @@ Bifrost build \
 
 [[../../Images/Overall/Reference/bcalm_realistic_simulation.png]]
 
+* Pangenome graph generation
+** gimbricate and seqwish
+Which graph do we use for pangenome construction?
+The one from bifrost and spades look best however I prefer the spades one because
+it's more collapsed and spades doesn't require a reference.
+
+We want to construct a pangenome reference graph from the spades gfa.
+gimbricate has a section for [[https://github.com/ekg/gimbricate#pangenome-construction][pangenome construction]]
+
+However the graph from spades fails
+#+BEGIN_SRC
+gimbricate \
+ -g ../spades/assembly_graph_with_scaffolds.gfa \
+ -p spades_WHUCoV.paf \
+ -f spades_WHUCoV.fasta \
+ > spades_WHUCoV.gimbry.gfa
+
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+[1]    56651 abort      gimbricate -d -g ../spades/assembly_graph_with_scaffolds.gfa -p  -f  >
+#+END_SRC
+
+The closest other graph I like is from bcalm which seems to succeed
+#+BEGIN_SRC
+# When we run
+gimbricate -d  \
+  -g ../bcalm/WHUCoV.gfa \
+  -p spades_WHUCoV.paf \
+  -f spades_WHUCoV.fasta \
+  > spades_CoV.gimbry.gfa
+
+# We get 
+tree $(pwd)
+/home/njagi/projects/Masters/results/gimbricate
+├── bcalm_WHUCoV.fasta
+├── bcalm_WHUCoV.gimbry.gfa
+└── bcalm_WHUCoV.paf
+#+END_SRC
+
+Parameters to gimbricate:
+#+BEGIN_SRC
+      -g[FILE], --gfa-in=[FILE]         use this GFA FILE as input
+      -f[FILE], --fasta-out=[FILE]      write renamed sequences to FASTA FILE
+      -p[FILE], --paf-out=[FILE]        write GFA overlap alignments to this PAF
+                                        FILE
+      -d, --debug                       enable debugging
+#+END_SRC
+
+*** Seqwish
+There was a build failure but it didn't seem crucial so I went ahead to sort the
+graph with odgi sort
+
+** odgi 
+Why are we topologically sorting the graph again?
+To make search faster?
+
+We want to build a succint graph and sort it
+
+#+BEGIN_SRC
+odgi build  -s -g ../gimbricate/bcalm_WHUCoV.gimbry.gfa -o WHUCoV.vg
+#+END_SRC
+
 * Parameters
 ** kmer size
 Picking a kmer size is...
@@ -97,10 +156,15 @@ I chose a kmer size of 31 because I figured it was a good kmer size from
 /present in the genome, and this is sufficient to reconstruct the genome./
 
 
-
 ** minimum abundance
 
 * Bluntify the reference genome graph
+Why do we need to bluntify the graph yet gimbricate README says:
+/The major exception to this are De Bruijn assemblers, which have fixed length 
+overlaps that are correct by definition/
+
+** gimbricate
+** seqwish
 
 * Organize the graph
 

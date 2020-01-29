@@ -13,8 +13,24 @@
 
 ** vg
 
+Using the graph we got from odgi
+#+BEGIN_SRC
+vg index \
+ -x WHUCoV.xg \
+ -g WHUCoV.gcsa \
+ -k 16 \
+ ../odgi/WHUCoV.vg
+
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  [stream::MessageIterator::get_next] tag of 3413024384 bytes is too long
+ERROR: Signal 6 occurred. VG has crashed. Run 'vg bugs --new' to report a bug.
+Stack trace path: /tmp/vg_crash_6nmwqu/stacktrace.txt
+#+END_SRC
+
+
 * Agnostic
 ** astarix
+
 
 * Coverage
 Given the alignments from above measure the coverage using ~vg pack~
