@@ -39,7 +39,7 @@ vg map \
 However we want to see this against a linear reference so we can generate a bam from it
 
 #+BEGIN_SRC
-vg surject -x WHUCoV.xg -b WHUCoV.gam > WHUCoV.bam
+vg surject -N MN988669.1 -x WHUCoV.xg -b WHUCoV.gam > WHUCoV.bam
 #+END_SRC
 
 Let's do the same for simulated reads from ebola virus
@@ -51,19 +51,64 @@ vg map \
   -g WHUCoV.gcsa \
   > ebola.gam
 
-vg surject -x WHUCoV.xg -b ebola.gam > ebola.bam
+vg surject -N MN988669.1 -x WHUCoV.xg -b ebola.gam > ebola.bam
 #+END_SRC
+
+
+Now I see that we could've done this in one command.
 
 
 *** Visualize in igv
 Index the bam files using samtools
 
 #+BEGIN_SRC
-samtools index ebola.bam
-[E::hts_idx_push] NO_COOR reads not in a single block at the end 2215 -1
-samtools index: failed to create index for "ebola.bam": No such file or directory
+# Sort
+samtools sort -o WHUCoV_sorted.bam WHUCoV.bam
+samtools sort -o ebola_sorted.bam ebola.bam
+
+# Index
+samtools index WHUCoV_sorted.bam
+vg samtools index ebola_sorted.bam
 #+END_SRC
 
+
+Loading it into igv fails with
+
+#+BEGIN_SRC
+File: /Users/mmwaniki/projects/simulated/vg/WHUCoV_sorted.bam does not contain any sequence names which match the current genome.
+File:      1, 10, 100, 1000, ... Genome: MN988669.1,
+#+END_SRC
+
+# Looking at the bam
+
+#+BEGIN_SRC
+@HD     VN:1.5  SO:unknown
+@SQ     SN:1    LN:31
+@SQ     SN:10   LN:45
+@SQ     SN:100  LN:37
+@SQ     SN:1000 LN:32
+@SQ     SN:1001 LN:34
+@SQ     SN:1002 LN:33
+@SQ     SN:1003 LN:37
+@SQ     SN:1004 LN:35
+@SQ     SN:1005 LN:32
+@SQ     SN:1006 LN:31
+@SQ     SN:1007 LN:40
+@SQ     SN:1008 LN:38
+@SQ     SN:1009 LN:34
+@SQ     SN:101  LN:36
+
+ ...
+
+@RG     ID:MN988669.1   SM:MN988669.1
+@PG     ID:0    PN:vg
+MN988669.1_19215_19739_2:0:0_1:0:0_1570/1       0       1752    13      60      70M     *       0       0       CCTGCTAATTCCATTGTTTGTAGATTTGACACTAGAGTGCAATGTAACCTTAACTTGCCTGGTTGTGATG  2222222222222222222222222222222222222222222222222222222222222222222222
+MN988669.1_19215_19739_2:0:0_1:0:0_1570/2       16      2178    3       60      68M2S   *       0       0       ACTACAGGGTGAAGTACCAGTTTCTATCATTAATAACACTGTTTACACAAAAGTTGATGGTGTTGATGTA  2222222222222222222222222222222222222222222222222222222222222222222222
+MN988669.1_10592_11095_3:0:0_1:0:0_1571/1       16      2695    2       60      46M24S  *       0       0       TTAACTGTAATAGTTGTGTCCGTACCAGATGCTTGTGCGGTTTGCCTGTCAACAAAAGGTCCATTAAAGT  2222222222222222222222222222222222222222222222222222222222222222222222
+MN988669.1_10592_11095_3:0:0_1:0:0_1571/2       0       1326    1       60      21S49M  *       0       0       AGGCATTTTCATACAAAAACAAGAACAAAGACCATTGAGTACTCTGGACTAAAACTAAAAGTGAAGTCAA  2222222222222222222222222222222222222222222222222222222222222222222222
+MN988669.1_7993_8485_2:0:0_4:0:0_1572/1 16      2906    3       60      58M12S  *       0       0       TTCATGTAATTGTCTGAAAAAATACGAAAACAAATACGTAGTGCTGCTAAAAAGAATAACTTACCTTTGA  2222222222222222222222222222222222222222222222222222222222222222222222
+MN988669.1_7993_8485_2:0:0_4:0:0_1572/2 16      2348    1       60      56M14S  *       0       0       ATGAAAACCTATTAACGTATGCATCAAACATTTTAACTGCAACTTCCGCACTATCACCAACATCAGACAC  2222222222222222222222222222222222222222222222222222222222222222222222
+#+END_SRC
 
 * Agnostic
 ** astarix
