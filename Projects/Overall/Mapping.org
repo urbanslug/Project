@@ -13,18 +13,55 @@
 
 ** vg
 
-Using the graph we got from odgi
+*** vg view
 #+BEGIN_SRC
-vg index \
- -x WHUCoV.xg \
- -g WHUCoV.gcsa \
- -k 16 \
- ../odgi/WHUCoV.vg
+vg view -Fv ../odgi/WHUCoV_odgi.gfa  > WHUCoV.vg
+#+END_SRC
 
-terminate called after throwing an instance of 'std::runtime_error'
-  what():  [stream::MessageIterator::get_next] tag of 3413024384 bytes is too long
-ERROR: Signal 6 occurred. VG has crashed. Run 'vg bugs --new' to report a bug.
-Stack trace path: /tmp/vg_crash_6nmwqu/stacktrace.txt
+*** vg index
+#+BEGIN_SRC
+# store the graph in the xg/gcsa index pair
+# gcsa index is the reason we ran chop
+vg index -x WHUCoV.xg -g WHUCoV.gcsa -k 16 WHUCoV.vg
+#+END_SRC
+
+
+*** vg map
+
+#+BEGIN_SRC
+vg map \
+  -f ../../data/simulated_reads_same_ref/interleaved.fq \
+  -x WHUCoV.xg \
+  -g WHUCoV.gcsa \
+  > WHUCoV.gam
+#+END_SRC
+
+However we want to see this against a linear reference so we can generate a bam from it
+
+#+BEGIN_SRC
+vg surject -x WHUCoV.xg -b WHUCoV.gam > WHUCoV.bam
+#+END_SRC
+
+Let's do the same for simulated reads from ebola virus
+
+#+BEGIN_SRC
+vg map \
+  -f ../../data/simulated_reads_different_ref/ebola_interleaved.fq \
+  -x WHUCoV.xg \
+  -g WHUCoV.gcsa \
+  > ebola.gam
+
+vg surject -x WHUCoV.xg -b ebola.gam > ebola.bam
+#+END_SRC
+
+
+*** Visualize in igv
+Index the bam files using samtools
+
+#+BEGIN_SRC
+samtools index ebola.bam
+[E::hts_idx_push] NO_COOR reads not in a single block at the end 2215 -1
+samtools index: failed to create index for "ebola.bam": No such file or directory
 #+END_SRC
 
 

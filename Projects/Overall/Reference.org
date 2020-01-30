@@ -10,7 +10,7 @@ the data. Let's use the simulated data from [[./Data.org][the previous data step
 Tools that can build a de Bruijn graph from reads
 ** spades
 Spades has output in ~gfa1~ and ~fastg~.
- 
+
 #+BEGIN_SRC
 spades.py --isolate -k 31 \
   -1 ~/projects/Masters/data/refs/r1.fq \
@@ -34,10 +34,10 @@ I had to install pysam via conda
   --kmer-sizes 31 \
   -1 ~/projects/Masters/data/refs/r1.fq \
   -2 ~/projects/Masters/data/refs/r2.fq \
-  -o WHUCoV 
+  -o WHUCoV
 #+END_SRC
 
-I had problems installing pysam to I used 
+I had problems installing pysam to I used
 
 #+BEGIN_SRC
 ~/Software/bcalm/scripts/convertToGFA.py WHUCoV_k31.contigs.fa WHUCoV_k31.contigs.gfa  31
@@ -51,7 +51,7 @@ Bifrost build \
  -k 31 \
   -s ~/projects/Masters/data/refs/interleaved.fq \
   -r ~/projects/Masters/data/refs/WHUCoV.fa \
-  -o WHUCoV 
+  -o WHUCoV
 #+END_SRC
 
 The graph looks similar to what we'd expect
@@ -73,7 +73,8 @@ Bifrost build \
 [[../../Images/Overall/Reference/bcalm_realistic_simulation.png]]
 
 * Pangenome graph generation
-** gimbricate and seqwish
+** gimbricate
+*** Selecting a graph
 Which graph do we use for pangenome construction?
 The one from bifrost and spades look best however I prefer the spades one because
 it's more collapsed and spades doesn't require a reference.
@@ -94,16 +95,20 @@ terminate called after throwing an instance of 'std::bad_alloc'
 [1]    56651 abort      gimbricate -d -g ../spades/assembly_graph_with_scaffolds.gfa -p  -f  >
 #+END_SRC
 
+
+*** Bluntification
+
 The closest other graph I like is from bcalm which seems to succeed
+
 #+BEGIN_SRC
 # When we run
 gimbricate -d  \
   -g ../bcalm/WHUCoV.gfa \
-  -p spades_WHUCoV.paf \
-  -f spades_WHUCoV.fasta \
-  > spades_CoV.gimbry.gfa
+  -p bcalm_WHUCoV.paf \
+  -f bcalm_WHUCoV.fasta \
+  > bcalm_CoV.gimbry.gfa
 
-# We get 
+# We get
 tree $(pwd)
 /home/njagi/projects/Masters/results/gimbricate
 ├── bcalm_WHUCoV.fasta
@@ -120,19 +125,91 @@ Parameters to gimbricate:
       -d, --debug                       enable debugging
 #+END_SRC
 
-*** Seqwish
+** Seqwish
 There was a build failure but it didn't seem crucial so I went ahead to sort the
 graph with odgi sort
 
-** odgi 
-Why are we topologically sorting the graph again?
-To make search faster?
+#+BEGIN_SRC
+seqwish \
+  -s ../gimbricate/bcalm_WHUCoV.fasta \
+  -p ../gimbricate/bcalm_WHUCoV.paf \
+  -g bcalm_WHUCoV.seqwish.gfa
+#+END_SRC
 
-We want to build a succint graph and sort it
+Parameters to seqwish
+#+BEGIN_SRC
+      -p[FILE], --paf-alns=[FILE]       Induce the graph from these PAF
+                                        formatted alignments. Optionally, a list
+                                        of filenames and minimum match lengths:
+                                        [file_1]:[min_match_length_1],... This
+                                        allows the differential filtering of
+                                        short matches from some but not all
+                                        inputs, in effect allowing `-k` to be
+                                        specified differently for each input.
+      -s[FILE], --seqs=[FILE]           The sequences used to generate the
+                                        alignments (FASTA, FASTQ, .seq)
+      -g[FILE], --gfa=[FILE]            Write the graph in GFA to FILE
+#+END_SRC
+
+** odgi
+We need odgi to chop long nodes into short ones while preserving topology
+/chop nodes so that they're shorter than 1024bp.
+This is required by the GCSA2 indexer and mapper./
+
+
+*** odgi build
+First build the graph because odgi chop expects a serialzied graph based on the
+error below
+#+BEGIN_SRC
+odgi chop \
+  -i ../seqwish/bcalm_WHUCoV.seqwish.gfa \
+  -c 1024
+
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  error: Serialized handle graph does not match deserialzation type.
+[1]    12064 abort      odgi chop -i ../../seqwish/bcalm_WHUCoV.seqwish.gfa -c 1024
+#+END_SRC
 
 #+BEGIN_SRC
-odgi build  -s -g ../gimbricate/bcalm_WHUCoV.gimbry.gfa -o WHUCoV.vg
+# -s sorts the graph
+odgi build \
+  -s \
+  -g ../seqwish/bcalm_WHUCoV.seqwish.gfa \
+  -o WHUCoV_odgi_graph.vg
 #+END_SRC
+
+*** odgi chop
+chop long nodes into short ones while preserving topology
+/chop nodes so that they're shorter than 1024bp.
+This is required by the GCSA2 indexer and mapper./
+
+#+BEGIN_SRC
+odgi chop \
+  -i WHUCoV_odgi_graph.vg \
+  -c 1024 \
+  -o WHUCoV_odgi_chopped.vg
+
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  error: Serialized handle graph does not match deserialzation type.
+[1]    12064 abort      odgi chop -i ../../seqwish/bcalm_WHUCoV.seqwish.gfa -c 1024
+#+END_SRC
+
+How come both WHUCoV_odgi_chopped.vg  WHUCoV_odgi_graph.vg are the same size?
+
+*** odgi sort
+topologically order the graph
+
+#+BEGIN_SRC
+odgi sort -i WHUCoV_odgi_chopped.vg -o WHUCoV_odgi_sorted.vg
+#+END_SRC
+
+*** odgi view -g
+projection of graphs into other formats, in this case gfa
+
+#+BEGIN_SRC
+odgi view -i WHUCoV_odgi_sorted.vg -g > WHUCoV_odgi.gfa
+#+END_SRC
+
 
 * Parameters
 ** kmer size
@@ -160,7 +237,7 @@ I chose a kmer size of 31 because I figured it was a good kmer size from
 
 * Bluntify the reference genome graph
 Why do we need to bluntify the graph yet gimbricate README says:
-/The major exception to this are De Bruijn assemblers, which have fixed length 
+/The major exception to this are De Bruijn assemblers, which have fixed length
 overlaps that are correct by definition/
 
 ** gimbricate
