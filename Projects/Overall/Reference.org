@@ -151,6 +151,8 @@ Parameters to seqwish
       -g[FILE], --gfa=[FILE]            Write the graph in GFA to FILE
 #+END_SRC
 
+[[../../Images/Overall/Reference/seqwish_realistic_simulation.png]]
+
 ** odgi
 We need odgi to chop long nodes into short ones while preserving topology
 /chop nodes so that they're shorter than 1024bp.

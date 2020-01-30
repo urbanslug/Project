@@ -110,11 +110,20 @@ MN988669.1_7993_8485_2:0:0_4:0:0_1572/1 16      2906    3       60      58M12S  
 MN988669.1_7993_8485_2:0:0_4:0:0_1572/2 16      2348    1       60      56M14S  *       0       0       ATGAAAACCTATTAACGTATGCATCAAACATTTTAACTGCAACTTCCGCACTATCACCAACATCAGACAC  2222222222222222222222222222222222222222222222222222222222222222222222
 #+END_SRC
 
+To be continued
+
 * Agnostic
 ** astarix
 
 
-* Coverage
+* Coverage across the graph
 Given the alignments from above measure the coverage using ~vg pack~
 
 Get a coverage matrix from ~vg pack~
+
+#+BEGIN_SRC
+# table for WHUCoV
+vg pack -x WHUCoV.xg -g WHUCoV.gam -d > WHUCoV.pack.table
+# table for ebola
+vg pack -x WHUCoV.xg -g ebola.gam -d > ebola.pack.table
+#+END_SRC
