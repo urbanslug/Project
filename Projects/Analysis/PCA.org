@@ -1,0 +1,12 @@
+#+TITLE: Principal Component Analysis
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+
+* Requirements
+
+Standard data: 
+ - All the attributes are centered around 0
+ - Have a standard deviation of 1
+
+
+

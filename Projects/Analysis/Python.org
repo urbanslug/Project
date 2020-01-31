@@ -1,0 +1,21 @@
+#+TITLE: Data Analysis in Python
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+
+* Setup
+
+** Resources
+
+[[https://jakevdp.github.io/PythonDataScienceHandbook/][Python Data Science Handbook]]
+
+** Packages
+
+Use a virtual environment to avoid potential conflicts with other packages 
+
+#+BEGIN_SRC
+python3 -m venv machine-learning
+source machine-learning/bin/activate
+
+pip install -U numpy pandas matplotlib seaborn jupyter scikit-learn
+#+END_SRC
+
