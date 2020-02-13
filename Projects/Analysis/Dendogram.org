@@ -1,0 +1,9 @@
+#+TITLE: Dendrogram
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+
+
+TODO: read more on:
+ - https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.dendrogram.html
+ - https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.pdist.html#scipy-spatial-distance-pdist
+ - https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.linkage.html
