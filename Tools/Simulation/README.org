@@ -8,7 +8,7 @@
 We can simulate reads from a reference genome using:
  - [[https://github.com/nh13/DWGSIM][DWGSIM]]
  - [[https://github.com/lh3/wgsim][wgsim]]
-
+ - [[https://github.com/jstjohn/SimSeq][SimSeq]] used in [[http://dx.doi.org/10.1101/645721][Strain-aware assembly of genomes from mixed samples using variation graphs]]
 /'wgsim is easier to install but it only produces the mutations in text format that is harder to visualize.
 dwgsim on the other hand will produce VCF files in addition to the text file.'/
 
