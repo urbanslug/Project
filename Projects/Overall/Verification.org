@@ -1,0 +1,11 @@
+#+TITLE: Verification
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+
+
+Fetch latest, as of Jan 17 2020 COVID-19, [[https://www.ncbi.nlm.nih.gov/nuccore/1798174254][reference]].
+
+#+BEGIN_SRC
+efetch -db=nuccore -format=fasta -id=NC_045512.2 > verify/data/refs/COVID-19.fa
+#+END_SRC
+

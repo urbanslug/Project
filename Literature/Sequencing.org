@@ -1,0 +1,54 @@
+#+TITLE: Sequencing
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+
+* Sequencing fragment image
+[[../Images/Sequencing/sequencing_fragment.jpg]]
+
+
+* History
+** <date> First generation sequencing
+Sanger Sequencing or chain termination or 
+Used for human genome project
+
+** 2007 Second Generation around 
+Sequencing by synthesis
+Next Generation sequencing
+Massively parallel sequencing
+
+Increased speed, increased accuracy and reduced cost
+
+Sequencers read lots of short stretches of DNA
+
+Randomly selected substrings.
+These snippets are called sequencing reads which are very very short compared to the input DNA strand
+
+But we have redundant parts of these strings/overlaps
+
+ 
+Sequencing cycle: One round of adding terminate bases and cleaving the terminators off.
+Terminators are speed bumps keeping everything in sync and letting us snap photos in time.
+
+In amplification, the many copies/clones are clustered around a strand
+This is to inc flourescence/light just a single one may be too small to read
+
+*** Base calling & sequencing errors
+Sometimes terminators may not work and some clones lose sync
+As we inc cycles the number of strands falling out of sync continues to grow
+
+Base caller analyses the images and tries to figure out which base is where
+It has to deal with ambiguity
+
+The base caller attaches a base quality to each base
+This is called the base quality. This is the base callers best estimate of the probability that a base was called incorrectly
+
+
+
+\begin{equation*}
+
+Q = -10 \cdot \log_{10} p \\
+Q: \text{base quality} \\
+P: \text{probability that a base was called incorrectly}
+\end{equation*}
+
+

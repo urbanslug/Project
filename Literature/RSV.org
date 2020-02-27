@@ -4,7 +4,172 @@
 #+OPTIONS: toc:nil
 
 * Genetic makeup of RSV
-** Mutations in RSV
+** My summary
+
+
+
+** Cane 2001 
+RSV has 10 genes which code for 11 proteins
+There are 3 surface glycoproteins:
+ - the small hydrophobic (SH) protein which may be nonstructural, 
+ - the fusion (F) protein 
+ - the attachment (G) glycoprotein
+
+
+Only antibodies directed against the G and F proteins have been shown 
+to be neutralising in vitro or protective in vivo.
+
+RSV has:
+Surface glycoproteins
+Nucleocapsid-associated proteins
+Matrix protein
+Nonstructural proteins
+
+
+It has been shown that the majority of nucleotide changes
+ observed in the G gene result in amino acid changes,
+ indicating that there is a positive selective pressure on this protein [49,50,64]
+
+Studies of variability of both group A and B isolates from
+ Uruguay have also demonstrated that there appears to be 
+selective pressure for change in the G protein of RSV with time.
+
+natural infection does not induce an immune response of sufficient e
+ffectiveness to prevent reinfection
+
+** Collins 1991 https://link.springer.com/chapter/10.1007/978-1-4615-3790-8_4
+https://doi.org/10.1007/978-1-4615-3790-8_4
+
+Cite as Collins P.L. (1991) The Molecular Biology of Human Respiratory Syncytial Virus (RSV) of the Genus Pneumovirus. In: Kingsbury D.W. (eds) The Paramyxoviruses. The Viruses. Springer, Boston, MA
+
+
+
+The genus Pneumovirus of the family Paramyxoviridae contains pneumonia virus of mice 
+(PVM), turkey rhinotracheitis virus (TRT), and the respiratory syncytial viruses of
+ humans (RSV), cattle (BRSV), goats, and sheep 
+(Kingsbury et al., 1978; McIntosh and Chanock, 1985; Stott and Taylor, 1985; Spraker et al., 1986; Collins and Gough, 1988). 
+
+
+The nucleocapsid contains the single strand of negative-sense genomic vRNA (Huang and Wertz, 1982). 
+Look at table 1
+
+22k or M2 protein
+
+*** Sequence Diversity between Subgroups A and B
+The most highly conserved protein of the genes sequenced to date, the N protein, had only 16 amino acid
+ differences (91% identity), while at the other extreme the most divergent protein, G, had 135 changes
+ (53% identity). Thus, the different genes appear to have different rates of change.
+ Comparisons of individual protein sequences are described in later sections.
+
+** Collins 1995 https://www.pnas.org/content/92/25/11563
+Research on RSV is impeded by its poor growth in tissue culture, the instability of the virion, and
+the lack of a highly permissive experimental animal other than the chimpanzee.
+
+Serious disease is limited to the first or second infection in childhood
+
+Molecular stuff in intro
+
+Transcription begins at 3' extragenic leader region and proceeds along the entire length by a 
+sequential stop-start mechanism guided by shirt template signals flanking the genes.
+
+Yields 10 major species of mRNA and encode for 10 major proteins
+
+RNA replication occurs by a switch to the synthesis of a full-length postive sense antigenome that
+ is also tightly encapsidatd and
+serves as a the template for the synthesis of progeny genome
+
+* Eshaghi 2012
+Type: 
+Title:
+Citation:
+
+Enveloped virus
+Two groups, RSV-A and RSV-B, have been described on the basis of reactions with
+monoclonal antibodies against the G and F glycoproteins [4,5] and molecular
+differences of several genes [3].
+
+RSV-A and RSV-B evolved separately at different time periods [5]
+
+They co-circulate and both are responsible for epidemics, which are more commonly caused by RSV-A [9]
+
+Ten RSV-A genotypes have been reported from different geographical regions, and designated as GA1 to GA7 [10,11], SAA1 
+(South Africa, A1) [12] and most recently, NA1 and NA2 [13].
+RSV-B genotypes include GB1 to GB4 [10], SAB1 to SAB3 [12], and BA1 to BA6 (Buenos Aires) [14]
+
+The mature G glycoprotein consists of three unique regions consisting of the
+ cytoplasmic tail (amino acids [AAs] 1–38), transmembrane domain (AA 38–66), and the ectodomain (AA 66– 298).
+ The C-terminal ectodomain of G protein is comprised of 2 variable regions flanking the putative receptor
+ binding site, a conserved region of 13 AAs (AA 164–176) situated between them.
+ Although the G protein is highly glycosylated with N- and O- linked sugars, these positions are poorly
+ conserved [18]. The two variable regions of the ectodomain contain high serine and threonine residues,
+ which are potential acceptor sites for O-linked sugars. These N-and O-linked oligosaccharides
+ contribute to the antigenic structure of the G protein as well as impacting on virus infectivity [19,20].
+
+
+
 
 * Epidemeology of RSV
+** Al Toum 2006 https://academic.oup.com/tropej/article/52/4/282/1621755
+RSV has seasonal periodicity
+winter in temperate climates and the rainy season in tropical climates
+
+RSV circulates in the coldest months: (Al Toum 2016, )
+Dec to Feb with peaks in Jan and Feeb
+Significant negative correlation (r = −0.66) with temperature, and significant (P<0.05)
+ positive correlation with relative humidity (RH) (r = 0.66) and rainfall (Al toum 2016)
+
+rainy season in tropical climates
+& religious festivals (Cane 2001)
+
+
+** Aamir 2013 https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0074018#B11
+Great intro
+
+The two most immunogenic RSV proteins are the Fusion (F) and Glycoprotein (G)
+ that are expressed on the virion surface, responsible for
+ inducing production of neutralizing antibodies [1,7,16-18].
+
+Both within and between the major RSV subgroups, the G protein
+ is the most variable viral protein with a minimally conserved 
+ectodomain that contains 2 hypervariable regions (HVRs)
+
+The subgroups have been further subdivided into various genotypes. 
+To date (as of 2013) , 11 RSV-A (ON1, GA1–GA7, SAA1, NA1, and NA2) and 17
+ RSV-B (GB1–GB4, SAB1-SAB3, and BA1–BA10) genotypes have been identified [12]/([[Eshaghi 2012]])
+
+** Agoti 2015
+
+** My summary
+
+
+RSV produces an annual epidemic that is highly seasonal(Al Toum 2006, Amir 2013) and occurs during the coldest months
+therefore having a significant negative correlation with temperature  and significant positive correlation with relative humidity and rainfall (Al toum 2016).
+As expected with its correlation with temperature, the epidemics arise differently depending on latitude.
+In temperate climates RSV epidemics occur in the winter between Dec and Feb with peaking in Jan and Deb (Al Toum 2006)
+whereas in tropical climates they occur during the rainly season(Al Toum, Aamir) 
+and are also associated with religious festivals(canes 2001)
+
+In older children and healthy adults; serious disease is limited to the primary, first or second, infections in
+childhood(Collins 1995, Canes 2001) and later produces an annual epidemic of predominantly upper respiratory tract infections[42]
+with reinfections occurring throughout life, even in the presence of pre-existing antibodies[30]. 
+
+
+In children and normal adults experiencing a secondary infection it presetns as an epidemic od redominantly upper respiratory 
+tract infections[42] throughout life  even in the presence of pre-existing antibodies[30]
+with serious disease limited to the primary infection(s) first or second infections in childhood(Collins 1995, Canes 2001).
+
+annual epidemic of predominantly upper respiratory 
+tract infections[42] with reinfections occurring throughout life, even in the presence of pre-existing antibodies[30]
+with serious disease limited to the primary infection(s) first or second infections in childhood(Collins 1995, Canes 2001).
+
+occuring in the winter in temperate climtes and in tropical climtes and rainy season and & religious festivals in tropical climates 
+
+ that occurs differently depending on latitude.
+In temperate climates, it occurs in the winter 
+There  is a significant negative correlation with temperature 
+and significant positive correlation with relative humidity and rainfall (Al toum 2016).
+
+RSV infections are highly seasonal, occurring as annual epidemics that occur in winter in temperate
+ climates and rainy season and & religious festivals in tropical climates 
+(Agoti 2015, Al Toum 2006, ,Aamir 2013, Cane 2001). 
 
