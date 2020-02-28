@@ -32,6 +32,7 @@ Terminators are speed bumps keeping everything in sync and letting us snap photo
 In amplification, the many copies/clones are clustered around a strand
 This is to inc flourescence/light just a single one may be too small to read
 
+* Other
 *** Base calling & sequencing errors
 Sometimes terminators may not work and some clones lose sync
 As we inc cycles the number of strands falling out of sync continues to grow
@@ -45,10 +46,36 @@ This is called the base quality. This is the base callers best estimate of the p
 
 
 \begin{equation*}
-
 Q = -10 \cdot \log_{10} p \\
 Q: \text{base quality} \\
 P: \text{probability that a base was called incorrectly}
 \end{equation*}
+
+
+Why this expression though? 
+The log transformation helps with interpreatation
+
+Q10 = 1 in 10 chance
+Q20 = 1 in 100 chance
+Q30 = 1 in 1000 chance
+
+** FASTQ
+
+A read in fastq is 4 lines
+
+1. Name of the read: sequencing platform, experiment etc
+2. Sequence of bases as reported by basecaller
+3. + placeholder line
+4. Sequence of base qualities
+
+Characters on line 2 and 4 match up.
+Each char is ascii encoding of Q above
+
+We are using a char to encode and integer
+
+Convert Q to ASCII using phred 33:
+ - Round Q to nearest integer
+ - Add 33 to it
+ - Look up the ASCII char for it
 
 
