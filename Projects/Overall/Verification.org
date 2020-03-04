@@ -2,10 +2,62 @@
 #+AUTHOR: Njagi Mwaniki
 #+OPTIONS: date:nil
 
+Here we aim at verifying our 
 
+* Fetch the reads
 Fetch latest, as of Jan 17 2020 COVID-19, [[https://www.ncbi.nlm.nih.gov/nuccore/1798174254][reference]].
-
 #+BEGIN_SRC
-efetch -db=nuccore -format=fasta -id=NC_045512.2 > verify/data/refs/COVID-19.fa
+efetch -db=nuccore -format=fasta -id=NC_045512.2 > ~/projects/Masters/verify/data/refs/COVID_19.fa
 #+END_SRC
 
+* Simulate reads
+Simulate 3 sets of reads. 2 that aren't distantly related to the reference and 1 that is.
+
+To do this we shall vary the mutation rate ~-r~, default 0.0010, but keep the mutation frequency ~-F~ at a default, 0.5000.
+We want 1000 read pairs
+
+[[https://www.sciencedirect.com/science/article/abs/pii/0165116195900705][Suggestions concerning the relationship between mutant frequency and mutation rate at the hprt locus in human peripheral T-lymphocytes]]
+
+For 2 of them we shall use the same mutation rate but for one increase it.
+
+Set ref as a var
+#+BEGIN_SRC
+export REF=~/projects/Masters/verify/data/refs/COVID_19.fa
+#+END_SRC
+
+#+BEGIN_SRC
+dwgsim -N 1000 $REF covid_19_sim_1
+dwgsim -N 1000 $REF covid_19_sim_2
+
+Increase the mutation rate from the default 0.0010 to 0.0100
+
+dwgsim -N 1000 -r 0.0100 $REF covid_19_sim_3
+#+END_SRC
+
+* Assemble a de Bruijn  graph
+Assemble a coloured de Bruijn graph using Bifrost
+
+What's a coloured graph?
+The  colored  de  Bruijn  graph  is  a  variant  of  the  de  Bruijn graph which keeps track of the source of each vertex in the graph (Iqbal et al., 2012)
+
+Prepare a sequences.txt file
+#+BEGIN_SRC
+~/projects/Masters/verify/data/reads/simulated/COVID_19/1/covid_19_sim_1_interleaved.fastq
+~/projects/Masters/verify/data/reads/simulated/COVID_19/2/covid_19_sim_2_interleaved.fastq
+~/projects/Masters/verify/data/reads/simulated/COVID_19/3/covid_19_sim_3_interleaved.fastq
+#+END_SRC
+
+#+BEGIN_SRC
+Bifrost build \
+  -c \
+  -k 31 \
+  -s sequences.txt \
+  -o SARS-CoV-2
+#+END_SRC
+
+We get a DBG that looks like below:
+[[../../Images/Overall/Verify/SARS-CoV-19-bifrost-DBG.png]]
+ 
+* Induce a variation graph with gimbricate & seqwish 
+"bluntify" the GFA graph produced by a DBG assembler using gimbricate and seqwish,
+Bluntify means reducing overlaps on edges into nodes and edges in the graph itself. 
