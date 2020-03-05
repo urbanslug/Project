@@ -158,19 +158,43 @@ We need odgi to chop long nodes into short ones while preserving topology
 /chop nodes so that they're shorter than 1024bp.
 This is required by the GCSA2 indexer and mapper./
 
+odgi docs
+#+BEGIN_SRC
+odgi build
+  odgi build {OPTIONS}
+
+    construct a dynamic succinct variation graph
+
+  OPTIONS:
+
+      -h, --help                        display this help summary
+      -g[FILE], --gfa=[FILE]            construct the graph from this GFA input
+                                        file
+      -o[FILE], --out=[FILE]            store the graph self index in this file
+      -G, --to-gfa                      write the graph to stdout in GFA format
+      -s, --sort                        apply generalized topological sort to
+                                        the graph and set node ids to order
+      -d, --debug                       enable debugging
+      -p, --progress                    show progress updates
+
+odgi chop -h
+  odgi chop {OPTIONS}
+
+    divide nodes into smaller pieces
+
+  OPTIONS:
+
+      -h, --help                        display this help summary
+      -i[FILE], --idx=[FILE]            load the graph from this file
+      -o[FILE], --out=[FILE]            store the graph self index in this file
+      -c[N], --chop-to=[N]              divide nodes to be shorter than this
+                                        length
+      -d, --debug                       print information about the components
+#+END_SRC
 
 *** odgi build
 First build the graph because odgi chop expects a serialzied graph based on the
 error below
-#+BEGIN_SRC
-odgi chop \
-  -i ../seqwish/bcalm_WHUCoV.seqwish.gfa \
-  -c 1024
-
-terminate called after throwing an instance of 'std::runtime_error'
-  what():  error: Serialized handle graph does not match deserialzation type.
-[1]    12064 abort      odgi chop -i ../../seqwish/bcalm_WHUCoV.seqwish.gfa -c 1024
-#+END_SRC
 
 #+BEGIN_SRC
 # -s sorts the graph
