@@ -1,0 +1,52 @@
+#+TITLE: Household cohort
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+
+
+* Data
+** Overall
+A prospective study of 47 households (493 individuals) in rural Kenya,
+followed through a 6-month period of an RSV seasonal outbreak.
+
+Deep nasopharyngeal swabs were collected twice each week from all
+household members, irrespective of symptoms, and tested for RSV by multiplex PCR.
+
+The RSV G gene was sequenced. 
+
+A total of 205 RSV infection episodes were detected in 179 individuals from 40 different households.
+
+[[../../Images/Overall/Household/Agoti_2017_HH_study.png]]
+
+*** Results
+The infection data were interval censored and assuming a random event time between observations,
+the average duration of virus shedding was 11·2 (95% confidence interval 10·1–12·3) days. 
+The shedding durations were longer than previous estimates (3·9–7·4 days)
+based on immunofluorescence antigen detection or
+viral culture, and were shown to be strongly associated with age, 
+severity of infection, and revealed potential interaction with other respiratory viruses.
+
+We then focus on household 5
+
+[[../../Images/Overall/Household/Agoti_2017_HH5_annotated.png]]
+
+[[../../Images/Overall/Household/Agoti_2017_HH_5_table.png]]
+
+
+* Household 5
+Viruses from households 5, 31 and 40 formed individual distinct 
+household-specific clusters that included all virus genomes
+obtained from these households.
+
+In contrast, households 26, 38 and 57 had genomes from 2 or more
+ separate branches, suggesting multiple virus introductions into
+each of these three households.
+
+[[../../Images/Overall/Household/HH_5_ML_phylogenetic_tree.png]]
+
+[[../../Images/Overall/Household/HH_5_temporal_distribution.png]]
+
+* Terms
+ - prospective cohort study :: is a longitudinal cohort study that follows over
+time a group of similar individuals (cohorts) who differ with respect
+to certain factors under study, to determine how these factors
+affect rates of a certain outcome.
