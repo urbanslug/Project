@@ -29,6 +29,8 @@ We then focus on household 5
 
 [[../../Images/Overall/Household/Agoti_2017_HH5_annotated.png]]
 
+
+Table for Household 5
 [[../../Images/Overall/Household/Agoti_2017_HH_5_table.png]]
 
 
@@ -40,6 +42,7 @@ obtained from these households.
 In contrast, households 26, 38 and 57 had genomes from 2 or more
  separate branches, suggesting multiple virus introductions into
 each of these three households.
+
 
 [[../../Images/Overall/Household/HH_5_ML_phylogenetic_tree.png]]
 
