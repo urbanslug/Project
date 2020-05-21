@@ -4,3 +4,18 @@
 #+OPTIONS: toc:nil
 
 These are scripts used for...
+
+mapper.sh
+
+#+BEGIN_SRC sh
+mapper.sh < find $(pwd)/data -d -name '*interleave*fq'
+#+END_SRC
+
+coverage.sh
+
+#+BEGIN_SRC sh
+coverage.sh < find $(pwd)/gams -d -name '*.gam'
+#+END_SRC
+
+
+Bash guide http://folk.ntnu.no/geirha/bashguide.pdf

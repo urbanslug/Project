@@ -108,6 +108,7 @@ To fetch thehuman Rhivovirus genotype A101 from https://picornaviridae.com/enter
 export REFS=~/refs
 export ID=GQ415051.1
 efetch -db=nuccore -format=fasta -id=$ID > $REFS/$ID.fa
+
 #+END_SRC
 
 cleanup

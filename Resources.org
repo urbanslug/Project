@@ -1,0 +1,33 @@
+#+TITLE: Resources
+#+SUBTITLE: Stuff to read
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+
+
+* Personal experiments
+
+[[https://gist.github.com/urbanslug/914eaffbd48a5595c3b7b76bea62e73f][Haplotype assembly]]
+
+** My gists
+[[https://gist.github.com/urbanslug/eabd7368f9cc4a5c2674df3a5c732d72][Core structure of a variation graph]]
+
+[[https://gist.github.com/urbanslug/17bbc5abed76368bcd732c8b03097a60][vg]]
+
+* Documentation
+
+** Theory
+
+** Tools
+
+[[https://pangenome.github.io/odgi/odgi_docs.html#_bugs][Reference Documentation for ODGI]]
+
+[[https://pangenome.github.io/][Practical Graphical Pangenomics: tools and workflows based on genome variation graphs]]
+
+[[https://pangenome.github.io/odgi/index.html][odgi: Optimized Dynamic (genome) Graph Interface]]
+
+[[https://odgi.readthedocs.io/en/latest/rst/tutorial.html][odgi tutorial]]
+
+
+** File formats
+
+[[https://github.com/lh3/gfatools#getting-started][Tools for manipulating sequence graphs in the GFA and rGFA formats]]

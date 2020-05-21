@@ -1,0 +1,47 @@
+#+TITLE: Results
+#+SUBTITLE: Results from objective 2 my research
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+
+* The dataset
+
+51 samples
+Each fastq is about 400-500M in size
+This means that in order to get a graph that we expect we need a high minimum abundance.
+
+* Workflow
+** Build the dBG
+*** minia
+
+#+BEGIN_SRC sh
+minia -in ../sequence_paths.txt \
+  -kmer-size 31 \
+  -abundance-min 1000 \
+  -nb-cores 8
+#+END_SRC
+
+The assembly graph from minia is about 20x the genome size. 
+
+If we use a min abundance of 1000 we get a GFA of 10x the genome size but we 
+lose one of the "variable regions".
+
+** Bluntification
+
+
+** Indexing
+vg index
+
+We want to prune the graph before indexing
+https://github.com/vgteam/vg/wiki/Index-Construction#without-a-reference-or-haplotypes
+Index with xg
+vg index -x RSV.xg RSV-vg.vg
+
+Failed here. Took up too much memory.
+Prune the graph
+vg prune -r RSV-vg.vg > RSV.pruned.vg
+
+Build gcsa index out of the pruned graph
+vg index -g RSV.gcsa RSV.pruned.vg
+
+Remove the pruned graph (optional)
+rm -f graph.pruned.vg

@@ -2,8 +2,6 @@ import os
 import os.path as p
 
 
-BIFROST_OUTPUT = ""
-
 # Build DBG
 # ---------
 def build_dbg(interleaved):
@@ -27,6 +25,7 @@ def build_dbg(interleaved):
     -s {0} \
     -o {1}".format(input_filename, output_filename)
     os.system(bifrost_str)
+    return output_filename
 
 
 # Induce vg
@@ -65,7 +64,7 @@ def run_odgi():
 # --
 def run_vg():
     vg_view_str = "vg view -Fv SARS-CoV-2-odgi.gfa > SARS-CoV-2-vg.vg"
-    
+
     vg_index_str = "vg index -x SARS-CoV-2.xg -g SARS-CoV-2.gcsa SARS-CoV-2-vg.vg"
 
     # Map multiple samples against each other
@@ -87,7 +86,7 @@ def run_vg():
 
 
 # Bluntify
-# --------
+ # --------
 
 def bluntify():
     gimbricate_str = "gimbricate -d  \

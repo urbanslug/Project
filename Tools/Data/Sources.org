@@ -1,0 +1,15 @@
+#+TITLE: Data sources
+#+SUBTITLE: Exloring viral sequence diversity using variation graphs
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: date:nil
+
+
+*SRA vs GenBank vs Refseq*
+
+| Database | Description                                                                                                   |
+|----------+--------------------------------------------------------------------------------------------------------------|
+| GenBank  | assembled sequence data                                                                                      |
+| RefSeq   | assembled and annotated DNA.                                                                                 |
+| SRA      | unprocessed raw sequencing data (reads) from the sequencer in form of .sra and then dump it to .fastq format |
+|          |                                                                                                              |
+
