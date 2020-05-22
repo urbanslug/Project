@@ -27,7 +27,13 @@
 
 [[https://odgi.readthedocs.io/en/latest/rst/tutorial.html][odgi tutorial]]
 
-
 ** File formats
 
 [[https://github.com/lh3/gfatools#getting-started][Tools for manipulating sequence graphs in the GFA and rGFA formats]]
+
+* Writing
+** LaTeX
+*** [[https://github.com/kourgeorge/arxiv-style/][kourgeorge/arxiv-style]]
+** Emacs
+*** Org mode using [[https://github.com/jkitchin/org-ref][org ref]]
+*** [[https://jonathanabennett.github.io/blog/2019/05/29/writing-academic-papers-with-org-mode/][Jonathan Bennett's Blog Writing Academic Papers with Org-mode]]

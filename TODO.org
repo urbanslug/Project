@@ -1,10 +1,11 @@
 * Project management
 ** TODO Clean up notes
 ** TODO Version control the notes
-
+** TODO Open source this project
 * Objectives
-** Review
+** Review of genome graph notes
 *** 
-
-** Experiment
-*** 
+** Experiments
+*** TODO Have vg pack output a binary matrix
+* Paper writing
+** Figure out what to use and how to write the paper
