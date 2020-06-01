@@ -6,6 +6,6 @@
 ** Review of genome graph notes
 *** 
 ** Experiments
-*** TODO Have vg pack output a binary matrix
+*** TODO Repeat but aggregate per node
 * Paper writing
 ** Figure out what to use and how to write the paper
