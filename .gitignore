@@ -4,3 +4,4 @@
 *.lof
 *.out
 *.xml
+.RData*

@@ -1,0 +1,1194 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Baaijens%
+, Stougie%
+\BCBL {}\ \BBA {} Sch{\"o}nhuth%
+}{%
+Baaijens%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2020}}%
+}]{%
+baaijensStrainawareAssemblyGenomes2020}
+\APACinsertmetastar {%
+baaijensStrainawareAssemblyGenomes2020}%
+\begin{APACrefauthors}%
+Baaijens, J\BPBI A.%
+, Stougie, L.%
+\BCBL {}\ \BBA {} Sch{\"o}nhuth, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{{\APACmonth{02}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Strain-Aware Assembly of Genomes from Mixed Samples
+  Using Flow Variation Graphs} {Strain-aware assembly of genomes from mixed
+  samples using flow variation graphs}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{bioRxiv}{}{}{645721}.
+\newblock
+\begin{APACrefDOI} \doi{10.1101/645721} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Beyer%
+\ \protect \BOthers {.}}{%
+Beyer%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+beyerSequenceTubeMaps2019}
+\APACinsertmetastar {%
+beyerSequenceTubeMaps2019}%
+\begin{APACrefauthors}%
+Beyer, W.%
+, Novak, A\BPBI M.%
+, Hickey, G.%
+, Chan, J.%
+, Tan, V.%
+, Paten, B.%
+\BCBL {}\ \BBA {} Zerbino, D\BPBI R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{{\APACmonth{12}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Sequence Tube Maps: Making Graph Genomes Intuitive to
+  Commuters} {Sequence tube maps: Making graph genomes intuitive to
+  commuters}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Bioinformatics}{35}{24}{5318--5320}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/bioinformatics/btz597} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Burrows%
+\ \BBA {} Wheeler%
+}{%
+Burrows%
+\ \BBA {} Wheeler%
+}{%
+{\protect \APACyear {1994}}%
+}]{%
+burrowsBlocksortingLosslessData1994}
+\APACinsertmetastar {%
+burrowsBlocksortingLosslessData1994}%
+\begin{APACrefauthors}%
+Burrows, M.%
+\BCBT {}\ \BBA {} Wheeler, D\BPBI J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1994}{{\APACmonth{05}}}{}.
+\newblock
+\APACrefbtitle {A {{Block}}-Sorting {{Lossless Data Compression Algorithm}}} {A
+  {{Block}}-sorting {{Lossless Data Compression Algorithm}}}\ \APACbVolEdTR
+  {}{Technical}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Cartwright~AM%
+}{%
+Cartwright~AM%
+}{%
+{\protect \APACyear {2012}}%
+}]{%
+cartwrightamBeckRepresentationLondon2012}
+\APACinsertmetastar {%
+cartwrightamBeckRepresentationLondon2012}%
+\begin{APACrefauthors}%
+Cartwright~AM, W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2012}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Beck's Representation of {{London}}'s Underground
+  System: Map or Diagram?} {Beck's representation of {{London}}'s underground
+  system: Map or diagram?}{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {{{GSR}}\_2} {{{GSR}}\_2}\ (\BPGS\ 1--14).
+\newblock
+\APACaddressPublisher{}{{RMIT University}}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Chikhi%
+, Limasset%
+\BCBL {}\ \BBA {} Medvedev%
+}{%
+Chikhi%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2016}}%
+}]{%
+chikhiCompactingBruijnGraphs2016}
+\APACinsertmetastar {%
+chikhiCompactingBruijnGraphs2016}%
+\begin{APACrefauthors}%
+Chikhi, R.%
+, Limasset, A.%
+\BCBL {}\ \BBA {} Medvedev, P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{{\APACmonth{06}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Compacting de {{Bruijn}} Graphs from Sequencing Data
+  Quickly and in Low Memory} {Compacting de {{Bruijn}} graphs from sequencing
+  data quickly and in low memory}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Bioinformatics}{32}{12}{i201-i208}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/bioinformatics/btw279} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Chikhi%
+\ \BBA {} Rizk%
+}{%
+Chikhi%
+\ \BBA {} Rizk%
+}{%
+{\protect \APACyear {2013}}%
+}]{%
+chikhiSpaceefficientExactBruijn2013}
+\APACinsertmetastar {%
+chikhiSpaceefficientExactBruijn2013}%
+\begin{APACrefauthors}%
+Chikhi, R.%
+\BCBT {}\ \BBA {} Rizk, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{{\APACmonth{09}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Space-Efficient and Exact de {{Bruijn}} Graph
+  Representation Based on a {{Bloom}} Filter} {Space-efficient and exact de
+  {{Bruijn}} graph representation based on a {{Bloom}} filter}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Algorithms for Molecular Biology}{8}{1}{22}.
+\newblock
+\begin{APACrefDOI} \doi{10.1186/1748-7188-8-22} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Durbin%
+}{%
+Durbin%
+}{%
+{\protect \APACyear {2014}}%
+}]{%
+durbinEfficientHaplotypeMatching2014}
+\APACinsertmetastar {%
+durbinEfficientHaplotypeMatching2014}%
+\begin{APACrefauthors}%
+Durbin, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{{\APACmonth{05}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Efficient Haplotype Matching and Storage Using the
+  Positional {{Burrows}}-{{Wheeler}} Transform ({{PBWT}})} {Efficient haplotype
+  matching and storage using the positional {{Burrows}}-{{Wheeler}} transform
+  ({{PBWT}})}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Bioinformatics}{30}{9}{1266--1272}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/bioinformatics/btu014} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Ellson%
+, Gansner%
+, Koutsofios%
+, North%
+\BCBL {}\ \BBA {} Woodhull%
+}{%
+Ellson%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2004}}%
+}]{%
+ellsonGraphvizDynagraphStatic2004}
+\APACinsertmetastar {%
+ellsonGraphvizDynagraphStatic2004}%
+\begin{APACrefauthors}%
+Ellson, J.%
+, Gansner, E\BPBI R.%
+, Koutsofios, E.%
+, North, S\BPBI C.%
+\BCBL {}\ \BBA {} Woodhull, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2004}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Graphviz and {{Dynagraph}} \textemdash{} {{Static}} and
+  {{Dynamic Graph Drawing Tools}}} {Graphviz and {{Dynagraph}} \textemdash{}
+  {{Static}} and {{Dynamic Graph Drawing Tools}}}.{\BBCQ}
+\newblock
+\BIn{} M.~J{\"u}nger\ \BBA {} P.~Mutzel\ (\BEDS), \APACrefbtitle {Graph
+  {{Drawing Software}}} {Graph {{Drawing Software}}}\ (\BPGS\ 127--148).
+\newblock
+\APACaddressPublisher{{Berlin, Heidelberg}}{{Springer}}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/978-3-642-18638-7_6} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Ferragina%
+\ \BBA {} Manzini%
+}{%
+Ferragina%
+\ \BBA {} Manzini%
+}{%
+{\protect \APACyear {2000}}%
+}]{%
+ferraginaOpportunisticDataStructures2000}
+\APACinsertmetastar {%
+ferraginaOpportunisticDataStructures2000}%
+\begin{APACrefauthors}%
+Ferragina, P.%
+\BCBT {}\ \BBA {} Manzini, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2000}{{\APACmonth{11}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Opportunistic Data Structures with Applications}
+  {Opportunistic data structures with applications}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Proceedings 41st {{Annual Symposium}} on {{Foundations}}
+  of {{Computer Science}}} {Proceedings 41st {{Annual Symposium}} on
+  {{Foundations}} of {{Computer Science}}}\ (\BPGS\ 390--398).
+\newblock
+\begin{APACrefDOI} \doi{10.1109/SFCS.2000.892127} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Flicek%
+\ \BBA {} Birney%
+}{%
+Flicek%
+\ \BBA {} Birney%
+}{%
+{\protect \APACyear {2009}}%
+}]{%
+flicekSenseSequenceReads2009}
+\APACinsertmetastar {%
+flicekSenseSequenceReads2009}%
+\begin{APACrefauthors}%
+Flicek, P.%
+\BCBT {}\ \BBA {} Birney, E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{{\APACmonth{11}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Sense from Sequence Reads: Methods for Alignment and
+  Assembly} {Sense from sequence reads: Methods for alignment and
+  assembly}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Nature Methods}{6}{11}{S6-S12}.
+\newblock
+\begin{APACrefDOI} \doi{10.1038/nmeth.1376} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Garg%
+\ \protect \BOthers {.}}{%
+Garg%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+gargGraphbasedApproachDiploid2018}
+\APACinsertmetastar {%
+gargGraphbasedApproachDiploid2018}%
+\begin{APACrefauthors}%
+Garg, S.%
+, Rautiainen, M.%
+, Novak, A\BPBI M.%
+, Garrison, E.%
+, Durbin, R.%
+\BCBL {}\ \BBA {} Marschall, T.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{{\APACmonth{07}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A Graph-Based Approach to Diploid Genome Assembly} {A
+  graph-based approach to diploid genome assembly}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Bioinformatics}{34}{13}{i105-i114}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/bioinformatics/bty279} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Garrison%
+}{%
+Garrison%
+}{%
+{\protect \APACyear {2019}}%
+}]{%
+garrisonGraphicalPangenomics2019}
+\APACinsertmetastar {%
+garrisonGraphicalPangenomics2019}%
+\begin{APACrefauthors}%
+Garrison, E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2019}.
+\unskip\
+\newblock
+\APACrefbtitle {Graphical Pangenomics} {Graphical pangenomics}\
+  \APACtypeAddressSchool {Thesis}{}{University of Cambridge}.
+\unskip\
+\newblock
+\begin{APACrefDOI} \doi{10.17863/CAM.41621} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Garrison%
+\ \protect \BOthers {.}}{%
+Garrison%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+garrisonVariationGraphToolkit2018}
+\APACinsertmetastar {%
+garrisonVariationGraphToolkit2018}%
+\begin{APACrefauthors}%
+Garrison, E.%
+, Sir{\'e}n, J.%
+, Novak, A\BPBI M.%
+, Hickey, G.%
+, Eizenga, J\BPBI M.%
+, Dawson, E\BPBI T.%
+\BDBL {}Durbin, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{{\APACmonth{10}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Variation Graph Toolkit Improves Read Mapping by
+  Representing Genetic Variation in the Reference} {Variation graph toolkit
+  improves read mapping by representing genetic variation in the
+  reference}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Nature Biotechnology}{36}{9}{875--879}.
+\newblock
+\begin{APACrefDOI} \doi{10.1038/nbt.4227} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Grabowski%
+, Deorowicz%
+\BCBL {}\ \BBA {} Roguski%
+}{%
+Grabowski%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+grabowskiDiskbasedCompressionData2015}
+\APACinsertmetastar {%
+grabowskiDiskbasedCompressionData2015}%
+\begin{APACrefauthors}%
+Grabowski, S.%
+, Deorowicz, S.%
+\BCBL {}\ \BBA {} Roguski, L\BPBI u.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{{\APACmonth{05}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Disk-Based Compression of Data from Genome Sequencing}
+  {Disk-based compression of data from genome sequencing}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Bioinformatics}{31}{9}{1389--1395}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/bioinformatics/btu844} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Holley%
+\ \BBA {} Melsted%
+}{%
+Holley%
+\ \BBA {} Melsted%
+}{%
+{\protect \APACyear {2019}}%
+}]{%
+holleyBifrostHighlyParallel2019}
+\APACinsertmetastar {%
+holleyBifrostHighlyParallel2019}%
+\begin{APACrefauthors}%
+Holley, G.%
+\BCBT {}\ \BBA {} Melsted, P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{{\APACmonth{08}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Bifrost \textendash{} {{Highly}} Parallel Construction
+  and Indexing of Colored and Compacted de {{Bruijn}} Graphs} {Bifrost
+  \textendash{} {{Highly}} parallel construction and indexing of colored and
+  compacted de {{Bruijn}} graphs}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{bioRxiv}{}{}{695338}.
+\newblock
+\begin{APACrefDOI} \doi{10.1101/695338} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Idury%
+\ \BBA {} Waterman%
+}{%
+Idury%
+\ \BBA {} Waterman%
+}{%
+{\protect \APACyear {1995}}%
+}]{%
+iduryNewAlgorithmDNA1995}
+\APACinsertmetastar {%
+iduryNewAlgorithmDNA1995}%
+\begin{APACrefauthors}%
+Idury, R\BPBI M.%
+\BCBT {}\ \BBA {} Waterman, M\BPBI S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1995}{{\APACmonth{01}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A {{New Algorithm}} for {{DNA Sequence Assembly}}} {A
+  {{New Algorithm}} for {{DNA Sequence Assembly}}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Computational Biology}{2}{2}{291--306}.
+\newblock
+\begin{APACrefDOI} \doi{10.1089/cmb.1995.2.291} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Langmead%
+, Trapnell%
+, Pop%
+\BCBL {}\ \BBA {} Salzberg%
+}{%
+Langmead%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2009}}%
+}]{%
+langmeadUltrafastMemoryefficientAlignment2009}
+\APACinsertmetastar {%
+langmeadUltrafastMemoryefficientAlignment2009}%
+\begin{APACrefauthors}%
+Langmead, B.%
+, Trapnell, C.%
+, Pop, M.%
+\BCBL {}\ \BBA {} Salzberg, S\BPBI L.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{{\APACmonth{03}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Ultrafast and Memory-Efficient Alignment of Short
+  {{DNA}} Sequences to the Human Genome} {Ultrafast and memory-efficient
+  alignment of short {{DNA}} sequences to the human genome}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Genome Biology}{10}{3}{R25}.
+\newblock
+\begin{APACrefDOI} \doi{10.1186/gb-2009-10-3-r25} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Levenshtein%
+}{%
+Levenshtein%
+}{%
+{\protect \APACyear {1966}}%
+}]{%
+levenshteinBinaryCodesCapable1966a}
+\APACinsertmetastar {%
+levenshteinBinaryCodesCapable1966a}%
+\begin{APACrefauthors}%
+Levenshtein, V\BPBI I.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1966}{{\APACmonth{02}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Binary Codes Capable of Correcting Deletions, Insertions
+  and Reversals.} {Binary codes capable of correcting deletions, insertions and
+  reversals.}{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Soviet Physics Doklady}{10}{8}{707--710}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+H.~Li%
+}{%
+H.~Li%
+}{%
+{\protect \APACyear {2016}}%
+}]{%
+liMinimapMiniasmFast2016}
+\APACinsertmetastar {%
+liMinimapMiniasmFast2016}%
+\begin{APACrefauthors}%
+Li, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{{\APACmonth{07}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Minimap and Miniasm: Fast Mapping and de Novo Assembly
+  for Noisy Long Sequences} {Minimap and miniasm: Fast mapping and de novo
+  assembly for noisy long sequences}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Bioinformatics}{32}{14}{2103--2110}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/bioinformatics/btw152} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+H.~Li%
+\ \BBA {} Durbin%
+}{%
+H.~Li%
+\ \BBA {} Durbin%
+}{%
+{\protect \APACyear {2009}}%
+}]{%
+liFastAccurateShort2009}
+\APACinsertmetastar {%
+liFastAccurateShort2009}%
+\begin{APACrefauthors}%
+Li, H.%
+\BCBT {}\ \BBA {} Durbin, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{{\APACmonth{07}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Fast and Accurate Short Read Alignment with
+  {{Burrows}}\textendash{{Wheeler}} Transform} {Fast and accurate short read
+  alignment with {{Burrows}}\textendash{{Wheeler}} transform}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Bioinformatics}{25}{14}{1754--1760}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/bioinformatics/btp324} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+H.~Li%
+, Feng%
+\BCBL {}\ \BBA {} Chu%
+}{%
+H.~Li%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2020}}%
+}]{%
+liDesignConstructionReference2020}
+\APACinsertmetastar {%
+liDesignConstructionReference2020}%
+\begin{APACrefauthors}%
+Li, H.%
+, Feng, X.%
+\BCBL {}\ \BBA {} Chu, C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{{\APACmonth{03}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The Design and Construction of Reference Pangenome
+  Graphs} {The design and construction of reference pangenome graphs}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{arXiv:2003.06079 [q-bio]}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+R.~Li%
+\ \protect \BOthers {.}}{%
+R.~Li%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2009}}%
+}]{%
+liSOAP2ImprovedUltrafast2009}
+\APACinsertmetastar {%
+liSOAP2ImprovedUltrafast2009}%
+\begin{APACrefauthors}%
+Li, R.%
+, Yu, C.%
+, Li, Y.%
+, Lam, T\BHBI W.%
+, Yiu, S\BHBI M.%
+, Kristiansen, K.%
+\BCBL {}\ \BBA {} Wang, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{{\APACmonth{08}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {{{SOAP2}}: An Improved Ultrafast Tool for Short Read
+  Alignment} {{{SOAP2}}: An improved ultrafast tool for short read
+  alignment}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Bioinformatics}{25}{15}{1966--1967}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/bioinformatics/btp336} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Z.~Li%
+\ \protect \BOthers {.}}{%
+Z.~Li%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2012}}%
+}]{%
+liComparisonTwoMajor2012}
+\APACinsertmetastar {%
+liComparisonTwoMajor2012}%
+\begin{APACrefauthors}%
+Li, Z.%
+, Chen, Y.%
+, Mu, D.%
+, Yuan, J.%
+, Shi, Y.%
+, Zhang, H.%
+\BDBL {}Fan, W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2012}{{\APACmonth{01}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Comparison of the Two Major Classes of Assembly
+  Algorithms: Overlap\textendash Layout\textendash Consensus and
+  de-Bruijn-Graph} {Comparison of the two major classes of assembly algorithms:
+  Overlap\textendash layout\textendash consensus and de-bruijn-graph}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Briefings in Functional Genomics}{11}{1}{25--37}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/bfgp/elr035} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Limasset%
+, Rizk%
+, Chikhi%
+\BCBL {}\ \BBA {} Peterlongo%
+}{%
+Limasset%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+limassetFastScalableMinimal2017}
+\APACinsertmetastar {%
+limassetFastScalableMinimal2017}%
+\begin{APACrefauthors}%
+Limasset, A.%
+, Rizk, G.%
+, Chikhi, R.%
+\BCBL {}\ \BBA {} Peterlongo, P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{{\APACmonth{02}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Fast and Scalable Minimal Perfect Hashing for Massive
+  Key Sets} {Fast and scalable minimal perfect hashing for massive key
+  sets}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{arXiv:1702.03154 [cs]}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Manber%
+\ \BBA {} Myers%
+}{%
+Manber%
+\ \BBA {} Myers%
+}{%
+{\protect \APACyear {1990}}%
+}]{%
+manberSuffixArraysNew1990}
+\APACinsertmetastar {%
+manberSuffixArraysNew1990}%
+\begin{APACrefauthors}%
+Manber, U.%
+\BCBT {}\ \BBA {} Myers, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1990}{{\APACmonth{01}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Suffix Arrays: A New Method for on-Line String Searches}
+  {Suffix arrays: A new method for on-line string searches}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Proceedings of the First Annual {{ACM}}-{{SIAM}}
+  Symposium on {{Discrete}} Algorithms} {Proceedings of the first annual
+  {{ACM}}-{{SIAM}} symposium on {{Discrete}} algorithms}\ (\BPGS\ 319--327).
+\newblock
+\APACaddressPublisher{{San Francisco, California, USA}}{{Society for Industrial
+  and Applied Mathematics}}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Myers%
+}{%
+Myers%
+}{%
+{\protect \APACyear {2005}}%
+}]{%
+myersFragmentAssemblyString2005}
+\APACinsertmetastar {%
+myersFragmentAssemblyString2005}%
+\begin{APACrefauthors}%
+Myers, E\BPBI W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2005}{{\APACmonth{09}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The Fragment Assembly String Graph} {The fragment
+  assembly string graph}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Bioinformatics}{21}{Suppl 2}{ii79-ii85}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/bioinformatics/bti1114} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Needleman%
+\ \BBA {} Wunsch%
+}{%
+Needleman%
+\ \BBA {} Wunsch%
+}{%
+{\protect \APACyear {1970}}%
+}]{%
+needlemanGeneralMethodApplicable1970}
+\APACinsertmetastar {%
+needlemanGeneralMethodApplicable1970}%
+\begin{APACrefauthors}%
+Needleman, S\BPBI B.%
+\BCBT {}\ \BBA {} Wunsch, C\BPBI D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1970}{{\APACmonth{03}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A General Method Applicable to the Search for
+  Similarities in the Amino Acid Sequence of Two Proteins} {A general method
+  applicable to the search for similarities in the amino acid sequence of two
+  proteins}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Molecular Biology}{48}{3}{443--453}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/0022-2836(70)90057-4} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+North%
+\ \BBA {} Woodhull%
+}{%
+North%
+\ \BBA {} Woodhull%
+}{%
+{\protect \APACyear {2002}}%
+}]{%
+northOnlineHierarchicalGraph2002}
+\APACinsertmetastar {%
+northOnlineHierarchicalGraph2002}%
+\begin{APACrefauthors}%
+North, S\BPBI C.%
+\BCBT {}\ \BBA {} Woodhull, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2002}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Online {{Hierarchical Graph Drawing}}} {Online
+  {{Hierarchical Graph Drawing}}}.{\BBCQ}
+\newblock
+\BIn{} P.~Mutzel, M.~J{\"u}nger\BCBL {}\ \BBA {} S.~Leipert\ (\BEDS),
+  \APACrefbtitle {Graph {{Drawing}}} {Graph {{Drawing}}}\ (\BPGS\ 232--246).
+\newblock
+\APACaddressPublisher{{Berlin, Heidelberg}}{{Springer}}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/3-540-45848-4_19} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Novak%
+, Garrison%
+\BCBL {}\ \BBA {} Paten%
+}{%
+Novak%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+novakGraphExtensionPositional2017}
+\APACinsertmetastar {%
+novakGraphExtensionPositional2017}%
+\begin{APACrefauthors}%
+Novak, A\BPBI M.%
+, Garrison, E.%
+\BCBL {}\ \BBA {} Paten, B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{{\APACmonth{07}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A Graph Extension of the Positional
+  {{Burrows}}\textendash{{Wheeler}} Transform and Its Applications} {A graph
+  extension of the positional {{Burrows}}\textendash{{Wheeler}} transform and
+  its applications}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Algorithms for Molecular Biology}{12}{1}{18}.
+\newblock
+\begin{APACrefDOI} \doi{10.1186/s13015-017-0109-9} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Peltola%
+, S{\"o}derlund%
+\BCBL {}\ \BBA {} Ukkonen%
+}{%
+Peltola%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {1984}}%
+}]{%
+peltolaSEQAIDDNASequence1984}
+\APACinsertmetastar {%
+peltolaSEQAIDDNASequence1984}%
+\begin{APACrefauthors}%
+Peltola, H.%
+, S{\"o}derlund, H.%
+\BCBL {}\ \BBA {} Ukkonen, E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1984}{{\APACmonth{01}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {{{SEQAID}}: A {{DNA}} Sequence Assembling Program Based
+  on a Mathematical Model} {{{SEQAID}}: A {{DNA}} sequence assembling program
+  based on a mathematical model}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Nucleic Acids Research}{12}{1Part1}{307--321}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/nar/12.1Part1.307} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Pevzner%
+, Tang%
+\BCBL {}\ \BBA {} Waterman%
+}{%
+Pevzner%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2001}}%
+}]{%
+pevznerEulerianPathApproach2001}
+\APACinsertmetastar {%
+pevznerEulerianPathApproach2001}%
+\begin{APACrefauthors}%
+Pevzner, P\BPBI A.%
+, Tang, H.%
+\BCBL {}\ \BBA {} Waterman, M\BPBI S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2001}{{\APACmonth{08}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {An {{Eulerian}} Path Approach to {{DNA}} Fragment
+  Assembly} {An {{Eulerian}} path approach to {{DNA}} fragment
+  assembly}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Proceedings of the National Academy of
+  Sciences}{98}{17}{9748--9753}.
+\newblock
+\begin{APACrefDOI} \doi{10.1073/pnas.171285098} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Putze%
+, Sanders%
+\BCBL {}\ \BBA {} Singler%
+}{%
+Putze%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2010}}%
+}]{%
+putzeCacheHashSpaceefficient2010}
+\APACinsertmetastar {%
+putzeCacheHashSpaceefficient2010}%
+\begin{APACrefauthors}%
+Putze, F.%
+, Sanders, P.%
+\BCBL {}\ \BBA {} Singler, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2010}{{\APACmonth{01}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Cache-, Hash-, and Space-Efficient Bloom Filters}
+  {Cache-, hash-, and space-efficient bloom filters}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Experimental
+  Algorithmics}{14}{}{4:4.4--4:4.18}.
+\newblock
+\begin{APACrefDOI} \doi{10.1145/1498698.1594230} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Rautiainen%
+, M{\"a}kinen%
+\BCBL {}\ \BBA {} Marschall%
+}{%
+Rautiainen%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+rautiainenBitparallelSequencetographAlignment2019}
+\APACinsertmetastar {%
+rautiainenBitparallelSequencetographAlignment2019}%
+\begin{APACrefauthors}%
+Rautiainen, M.%
+, M{\"a}kinen, V.%
+\BCBL {}\ \BBA {} Marschall, T.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{{\APACmonth{10}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Bit-Parallel Sequence-to-Graph Alignment} {Bit-parallel
+  sequence-to-graph alignment}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Bioinformatics}{35}{19}{3599--3607}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/bioinformatics/btz162} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Roberts%
+, Hayes%
+, Hunt%
+, Mount%
+\BCBL {}\ \BBA {} Yorke%
+}{%
+Roberts%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2004}}%
+}]{%
+robertsReducingStorageRequirements2004}
+\APACinsertmetastar {%
+robertsReducingStorageRequirements2004}%
+\begin{APACrefauthors}%
+Roberts, M.%
+, Hayes, W.%
+, Hunt, B\BPBI R.%
+, Mount, S\BPBI M.%
+\BCBL {}\ \BBA {} Yorke, J\BPBI A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2004}{{\APACmonth{12}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Reducing Storage Requirements for Biological Sequence
+  Comparison} {Reducing storage requirements for biological sequence
+  comparison}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Bioinformatics}{20}{18}{3363--3369}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/bioinformatics/bth408} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Sellers%
+}{%
+Sellers%
+}{%
+{\protect \APACyear {1980}}%
+}]{%
+sellersTheoryComputationEvolutionary1980}
+\APACinsertmetastar {%
+sellersTheoryComputationEvolutionary1980}%
+\begin{APACrefauthors}%
+Sellers, P\BPBI H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1980}{{\APACmonth{12}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The Theory and Computation of Evolutionary Distances:
+  {{Pattern}} Recognition} {The theory and computation of evolutionary
+  distances: {{Pattern}} recognition}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Algorithms}{1}{4}{359--373}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/0196-6774(80)90016-4} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Sir{\'e}n%
+, Garrison%
+, Novak%
+, Paten%
+\BCBL {}\ \BBA {} Durbin%
+}{%
+Sir{\'e}n%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2020}}%
+}]{%
+sirenHaplotypeawareGraphIndexes2020}
+\APACinsertmetastar {%
+sirenHaplotypeawareGraphIndexes2020}%
+\begin{APACrefauthors}%
+Sir{\'e}n, J.%
+, Garrison, E.%
+, Novak, A\BPBI M.%
+, Paten, B.%
+\BCBL {}\ \BBA {} Durbin, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{{\APACmonth{01}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Haplotype-Aware Graph Indexes} {Haplotype-aware graph
+  indexes}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Bioinformatics}{36}{2}{400--407}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/bioinformatics/btz575} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Smith%
+\ \BBA {} Waterman%
+}{%
+Smith%
+\ \BBA {} Waterman%
+}{%
+{\protect \APACyear {1981}}%
+}]{%
+smithIdentificationCommonMolecular1981}
+\APACinsertmetastar {%
+smithIdentificationCommonMolecular1981}%
+\begin{APACrefauthors}%
+Smith, T\BPBI F.%
+\BCBT {}\ \BBA {} Waterman, M\BPBI S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1981}{{\APACmonth{03}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Identification of Common Molecular Subsequences}
+  {Identification of common molecular subsequences}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Molecular Biology}{147}{1}{195--197}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/0022-2836(81)90087-5} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Wang%
+, Wang%
+, Li%
+\BCBL {}\ \BBA {} Li%
+}{%
+Wang%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+wangBAUMImprovingGenome2018}
+\APACinsertmetastar {%
+wangBAUMImprovingGenome2018}%
+\begin{APACrefauthors}%
+Wang, A.%
+, Wang, Z.%
+, Li, Z.%
+\BCBL {}\ \BBA {} Li, L\BPBI M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{{\APACmonth{06}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {{{BAUM}}: Improving Genome Assembly by Adaptive Unique
+  Mapping and Local Overlap-Layout-Consensus Approach} {{{BAUM}}: Improving
+  genome assembly by adaptive unique mapping and local overlap-layout-consensus
+  approach}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Bioinformatics}{34}{12}{2019--2028}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/bioinformatics/bty020} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Wick%
+, Schultz%
+, Zobel%
+\BCBL {}\ \BBA {} Holt%
+}{%
+Wick%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+wickBandageInteractiveVisualization2015}
+\APACinsertmetastar {%
+wickBandageInteractiveVisualization2015}%
+\begin{APACrefauthors}%
+Wick, R\BPBI R.%
+, Schultz, M\BPBI B.%
+, Zobel, J.%
+\BCBL {}\ \BBA {} Holt, K\BPBI E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{{\APACmonth{10}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Bandage: Interactive Visualization of de Novo Genome
+  Assemblies} {Bandage: Interactive visualization of de novo genome
+  assemblies}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Bioinformatics}{31}{20}{3350--3352}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/bioinformatics/btv383} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Yokoyama%
+, Sakamoto%
+, Seki%
+, Suzuki%
+\BCBL {}\ \BBA {} Kasahara%
+}{%
+Yokoyama%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+yokoyamaMoMIGModularMultiscale2019}
+\APACinsertmetastar {%
+yokoyamaMoMIGModularMultiscale2019}%
+\begin{APACrefauthors}%
+Yokoyama, T\BPBI T.%
+, Sakamoto, Y.%
+, Seki, M.%
+, Suzuki, Y.%
+\BCBL {}\ \BBA {} Kasahara, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{{\APACmonth{11}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {{{MoMI}}-{{G}}: Modular Multi-Scale Integrated Genome
+  Graph Browser} {{{MoMI}}-{{G}}: Modular multi-scale integrated genome graph
+  browser}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{BMC Bioinformatics}{20}{1}{548}.
+\newblock
+\begin{APACrefDOI} \doi{10.1186/s12859-019-3145-2} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}

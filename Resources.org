@@ -36,4 +36,6 @@
 *** [[https://github.com/kourgeorge/arxiv-style/][kourgeorge/arxiv-style]]
 ** Emacs
 *** Org mode using [[https://github.com/jkitchin/org-ref][org ref]]
+*** [[https://www.youtube.com/watch?v=2t925KRBbFc][Introduction to org-ref]]
 *** [[https://jonathanabennett.github.io/blog/2019/05/29/writing-academic-papers-with-org-mode/][Jonathan Bennett's Blog Writing Academic Papers with Org-mode]]
+*** [[https://nasseralkmim.github.io/notes/2017/02/23/how-i-manage-academic-sources-in-emacs-ivy-bibtex+zotero/][Nasser Alkmim: How I manage academic sources in emacs: ivy-bibtex+zotero]]
