@@ -1,4 +1,4 @@
-% Created 2020-06-04 Thu 21:26
+% Created 2020-06-04 Thu 21:37
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -14,15 +14,12 @@
 \usepackage{amssymb}
 \usepackage{capt-of}
 \usepackage{hyperref}
-\usepackage{todonotes}
-\usepackage{apacite}
-\usepackage{float}
-\author{Njagi Mwaniki and you if you wanna ;)}
+\author{Njagi Mwaniki}
 \date{\today}
-\title{A Review of Genome Graph Tools}
+\title{boys!}
 \hypersetup{
- pdfauthor={Njagi Mwaniki and you if you wanna ;)},
- pdftitle={A Review of Genome Graph Tools},
+ pdfauthor={Njagi Mwaniki},
+ pdftitle={boys!},
  pdfkeywords={},
  pdfsubject={},
  pdfcreator={Emacs 26.3 (Org mode 9.2.4)}, 
@@ -30,17 +27,11 @@
 \begin{document}
 
 \maketitle
-\newcommand{\bigO}{\mathcal{O}}
-
-\begin{abstract}
-To be written.
-\end{abstract}
-\newpage
 \tableofcontents
-\listoffigures
-\newpage
+
+
 \section{Introduction}
-\label{sec:orgfc4429c}
+\label{sec:org5691c01}
 
 There are four major overlapping steps that need to be carried out after DNA 
 sequencing to get actionable results. 1) fragment assembly which involves 
@@ -50,7 +41,7 @@ relatedness of sequences; and 3) Visualization to see these changes.\cite{flicek
 \todo{expand intro}
 
 \section{Fragment Assembly}
-\label{sec:org838275c}
+\label{sec:org33aabd8}
 The fragment assembly problem, reconstructing long contigs from reads
 \cite{chikhiCompactingBruijnGraphs2016}, started with Sanger sequencing.
 Like solving a puzzle of sequences the assembly problem can be framed as finding
@@ -59,7 +50,7 @@ either a Eulerian, connect the nodes, or a Hamiltonian, connect the edges,
 approach.
 
 \subsection{Overlap Graph}
-\label{sec:orgb4f1fd4}
+\label{sec:orgf18109d}
 The first solution was SEQAID, short for \textbf{seq}uencing \textbf{aid},
 \cite{peltolaSEQAIDDNASequence1984} which used the  Overlap Layout Consensus (OLC)
 framework, an intuitionistic approach to the assembly problem that works in  
@@ -74,7 +65,7 @@ It used … to infer the consensus.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{./figures/OLC framework.png}
+\includegraphics[width=0.7\textwidth]{figures/OLC framework.png}
 \caption{OLC...}
 \end{figure}
 
@@ -85,7 +76,7 @@ the cost per sequenced nucleotide \cite{liComparisonTwoMajor2012} leading to an
 explosion in the number of reads produced and thus making OLC unfeasible. 
 
 \subsection{de Bruijn Graph}
-\label{sec:org2326135}
+\label{sec:org5eb2447}
 OLC based methods were progressively replaced by de Bruijn Graph (DBG)
 \cite{iduryNewAlgorithmDNA1995} based methods whose first tool was EULER
 \cite{pevznerEulerianPathApproach2001}.
@@ -115,7 +106,7 @@ The unitig approach involves finding the maximal interval subgraphs in the
 graph of all read overlaps.
 
 \subsection{String Graph}
-\label{sec:orgd992e34}
+\label{sec:org048d3af}
 The string graph \cite{myersFragmentAssemblyString2005} is a way to infer the 
 genome from the read data without a need for k-mers as is with the de Bruijn 
 graph.  It treats the genome as a sequence of repeats and then encodes each 
@@ -129,7 +120,7 @@ An Eulerian tour recreates the genome.
 \end{figure}\label{string graph}
 
 \section{Alignment and mapping}
-\label{sec:org7f3796f}
+\label{sec:orgc1e37e7}
 Alignment involves computing the amount of similarity between two strings also 
 known as the edit distance problem.
 The solution to the edit distance problem by
@@ -161,7 +152,7 @@ number of  vertices |V| and edges |E| <citation needed>.  In some way you can
 think of it as mapping to multiple linear sequences that may or may not loop.
 
 \section{Indexing}
-\label{sec:orgb97abf1}
+\label{sec:orgd35fe0e}
 Indexing is a solution to the problem of search given limited computing
 resources. An index is useful to speed up alignment and make it pragmatic within
 the given time and memory requirements. 
@@ -184,7 +175,7 @@ genome graph.
 
 Below are some of the approaches taken to solve the problem of indexing
 \subsection{Burrows-Wheeler Transform}
-\label{sec:org5e8f284}
+\label{sec:org290e9b3}
 The Burrows-Wheeler Transform (BWT) was introduced by
 \cite{burrowsBlocksortingLosslessData1994} for string data 
 compression and to this day forms the basis of the bzip compression algorithm.
@@ -193,7 +184,7 @@ It works as a preliminary step in the building of indices and also the
 compression of \todo{expound}
 
 \subsection{Suffix Array}
-\label{sec:org132c193}
+\label{sec:org680cdb8}
 Suffix arrays, introduced by \cite{manberSuffixArraysNew1990}, are arrays of the
 positions of all the sorted suffixes of a string.
 A suffix array is a simple, space efficient
@@ -213,7 +204,7 @@ Tools using the suffix array include Bowtie
 and SOAP2 \cite{liSOAP2ImprovedUltrafast2009}.
 
 \subsection{FM Index}
-\label{sec:org1642cb9}
+\label{sec:org9271c21}
 Short for Full-text index in Minute space; the FM-index created
 by \cite{ferraginaOpportunisticDataStructures2000} is a full text substring index
 based on the BWT. It allows compression of the input text while permitting fast
@@ -222,7 +213,7 @@ of a pattern within the compressed text, as well as locate the position of each
 occurrence.
 
 \subsection{Positional Burrows-Wheeler Transform}
-\label{sec:org1ad13fe}
+\label{sec:org16924d8}
 Introduced by \cite{durbinEfficientHaplotypeMatching2014} Positional Burrows 
 Wheeler Transform is an algorithm with complexity \(\bigO(NM)\) where M sequences
 and N bi-allelic sites.
@@ -234,7 +225,7 @@ their prefixes allowing similar sequences to cluster together.
 <Add PBWT table and graphic>
 
 \subsection{GBWT/gPBWT}
-\label{sec:orgd561c0b}
+\label{sec:orgf963c69}
 First described \cite{novakGraphExtensionPositional2017} but used in a tool
 \cite{sirenHaplotypeawareGraphIndexes2020} it’s a compressible representation of 
 a set of haplotypes held in the graph. This allows for efficient match queries 
@@ -245,7 +236,7 @@ GBWT lets us have an efficient way of counting the number of haplotypes
 containing a given sequence.
 
 \subsection{Bloom filters}
-\label{sec:org45ec357}
+\label{sec:org2954c9d}
 The bloom filter is a probabilistic data structure that can give false positive
 but never a false negative.  It works by hashing data and stores the hash in an
 array\ldots{}
@@ -256,7 +247,7 @@ data localization \todo{expound} which led to the use of Blocked Bloom Filters (
 Bifrost \cite{holleyBifrostHighlyParallel2019}.
 
 \subsection{Minimizers}
-\label{sec:org58ad01f}
+\label{sec:org585d3f8}
 The work of a minimizer is to reduce the search space. It does this by generating
 kmers from a read and sorting them alphabetically. The k-mer at the top is the
 minimizer for that read\ldots{} then binning the result. When a query is made it’s
@@ -266,7 +257,7 @@ We can get a minimizer by BBF blocked bloom filter Minimizers
 \cite{grabowskiDiskbasedCompressionData2015,robertsReducingStorageRequirements2004}
 
 \subsection{Hash tables}
-\label{sec:org400a385}
+\label{sec:org863dd00}
 Hash tables involve breaking down the reads into k-mers and storing the kmers
 into hash tables that point to the original data. When queries are made they’re 
 similarly broken down into k-mers of the expected size<citation needed>.
@@ -278,7 +269,7 @@ Many times tools take a hybrid approach; incorporating different aspects of
 different indexing schemes such as in Minimap
 \cite{liDesignConstructionReference2020}. \todo{ensure this citation checks out}
 \section{Genome Graph Tools}
-\label{sec:orgfc2affc}
+\label{sec:org15a7c23}
 The Berkeley Open Assembler \cite{myersFragmentAssemblyString2005} borrows 
 from the unitig algorithm and uses the string graph, a way to infer the genome
 from the read data without a need for k-mers.
@@ -457,16 +448,13 @@ necessary Myer’s bit-vector algorithm studies the semi-global sequence-to-grap
 alignment problem.
 It seeks to find a path in a directed, node-labelled graph that has the
 minimum edit distance to the query sequence. Myers’ bit-vector alignment 
-algorithm \cite{myersFastBitvectorAlgorithm1999} to graphs, which proceeds along 
-the same lines as the Shift-And algorithm, but requires some further algorithmic 
-insights to handle nodes with an in-degree greater than one.
-Bitvector algo complexity grows approximately linearly with the number of
-vertices in the graph.
-The bitvector it uses is the size of the pattern we are searching for.
-Semi-global alignment is solved through generalizing DP edit distance problem
-for graphs.
-Semi-global alignment is used to align a shorter seq against a longer one,
-reference.
+algorithm (Myers, 1999) to graphs, which proceeds along the same lines as the
+Shift-And algorithm, but requires some further algorithmic insights to handle 
+nodes with an in-degree greater than one. Bitvector algo complexity grows 
+approximately linearly with the number of vertices in the graph. The bitvector 
+it uses is the size of the pattern we are searching for. Semi-global alignment 
+is solved through generalizing DP edit distance problem for graphs. Semi-global 
+alignment is used to align a shorter seq against a longer one, reference.
 Shift-And algorithms (Baeza-Yates and Gonnet, 1992; Domolki, 1964, 1968) 
 performs exact string matching to graphs. 
 Their aim is to find a path in a directed, node-labeled graph that has a minimum
@@ -496,7 +484,7 @@ individual haplotypes from a mixed sample at the strain level and to provide
 abundance estimates for the strains. It does this by\ldots{}
 
 \section{Interfaces and APIs}
-\label{sec:org8a89157}
+\label{sec:orga3ad94c}
 The field of genome graphs is growing quickly as evidenced by the ever-growing
 number of tools creating the need for a common way for these tools interact with
 the data they operate on.
@@ -530,7 +518,7 @@ PackedGraph (low memory) and HashGraph (high-performance hash tables).
 vg is now using libhandlegraph through libbdsg (libhandlegraph paper).
 
 \section{Plaintext graphical representations}
-\label{sec:orgb01d18b}
+\label{sec:org41b6456}
 In the early 2000s assembly software was dominated by a few end to end assembly
 software such as SPAdes, ALLPATHS, ABySS, and SOAPdenovo
 \url{https://pmelsted.wordpress.com/2014/07/17/dear-assemblers-we-need-to-talk-together/}.
@@ -552,8 +540,7 @@ follow this edge or the reverse complement of this edge
 (indicated by a preceding\textasciitilde{}), and Properties is a list of optional properties 
 associated with this edge. To facilitate
 inversions, the format allows for adjacencies between forward and reverse
-complement. Reverse complements are indicated by a prime symbol \('\)
-.
+complement. Reverse complements are indicated by a prime symbol 30\textprime.
 
 
 \begin{verbatim}
@@ -597,13 +584,13 @@ It’s an extension of PAF \cite{liMinimapMiniasmFast2016}.
 It is tab delimited like GFA. \todo{describe the grammar}
 
 \section{Genome graphs as databases (logic programming)}
-\label{sec:org7793e16}
+\label{sec:org434c086}
 We can also treat the variation graph as a graph database. For this, SpOdgi 
 \todo{citation needed} transforms any odgi genome variation graph file into a
 SPARQL capable database.
 
 \section{Visualization}
-\label{sec:orgb5c4b19}
+\label{sec:orgfe007e5}
 Visualization tools are a core tenet of bioinformatics and science in general.
 They help us understand our assemblies and communicate the results with others. 
 Different tools exist depending on the level of resolution needed and 
@@ -623,9 +610,7 @@ The major issue is the runtime scalability; force-directed layout has quadratic
 or even cubic costs with respect to graph size \todo{cite pantograph docs}.
 The Open Graph Drawing Framework library (\url{http://www.ogdf.net/}) is used to
 perform the graph layout using the fast multipole multilevel layout algorithm, 
-which scales well for very large graphs
-\cite{hachulLargeGraphLayoutAlgorithms2007}.
-
+which scales well for very large graphs (Hachul and Ju ̈ nger, 2007).
 It reads a graph in a variety of formats: LastGraph (Velvet), FASTG (SPAdes), 
 Trinity.fasta, ASQG and GFA and allows the export of a visualization graph
 either entirely or a section of it (\url{https://rrwick.github.io/Bandage/}).
@@ -656,8 +641,4 @@ It renders the genome graph in a matrix. It reads a variation graph in JSON from
 odgi bin.
 
 \todo{Add image of our Household 20 dataset in pantograph}
-
-
-\bibliographystyle{apacite}
-\bibliography{library}
 \end{document}

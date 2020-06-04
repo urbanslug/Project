@@ -1,67 +1,23 @@
-% Created 2020-06-04 Thu 21:26
-% Intended LaTeX compiler: pdflatex
-\documentclass[11pt]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{graphicx}
-\usepackage{grffile}
-\usepackage{longtable}
-\usepackage{wrapfig}
-\usepackage{rotating}
-\usepackage[normalem]{ulem}
-\usepackage{amsmath}
-\usepackage{textcomp}
-\usepackage{amssymb}
-\usepackage{capt-of}
-\usepackage{hyperref}
-\usepackage{todonotes}
-\usepackage{apacite}
-\usepackage{float}
-\author{Njagi Mwaniki and you if you wanna ;)}
-\date{\today}
-\title{A Review of Genome Graph Tools}
-\hypersetup{
- pdfauthor={Njagi Mwaniki and you if you wanna ;)},
- pdftitle={A Review of Genome Graph Tools},
- pdfkeywords={},
- pdfsubject={},
- pdfcreator={Emacs 26.3 (Org mode 9.2.4)}, 
- pdflang={English}}
-\begin{document}
-
-\maketitle
-\newcommand{\bigO}{\mathcal{O}}
-
-\begin{abstract}
-To be written.
-\end{abstract}
-\newpage
-\tableofcontents
-\listoffigures
-\newpage
-\section{Introduction}
-\label{sec:orgfc4429c}
+* Introduction
 
 There are four major overlapping steps that need to be carried out after DNA 
 sequencing to get actionable results. 1) fragment assembly which involves 
 recreating the original genetic sequence; 2) alignment, mapping, indexing and 
 querying which are part of the assembly stage but can be done later to query the
-relatedness of sequences; and 3) Visualization to see these changes.\cite{flicekSenseSequenceReads2009}
+relatedness of sequences; and 3) Visualization to see these changes.cite:flicekSenseSequenceReads2009
 \todo{expand intro}
 
-\section{Fragment Assembly}
-\label{sec:org838275c}
+* Fragment Assembly
 The fragment assembly problem, reconstructing long contigs from reads
-\cite{chikhiCompactingBruijnGraphs2016}, started with Sanger sequencing.
+cite:chikhiCompactingBruijnGraphs2016, started with Sanger sequencing.
 Like solving a puzzle of sequences the assembly problem can be framed as finding
 a set of common super-strings from a set of substrings to which tools take 
 either a Eulerian, connect the nodes, or a Hamiltonian, connect the edges, 
 approach.
 
-\subsection{Overlap Graph}
-\label{sec:orgb4f1fd4}
+** Overlap Graph
 The first solution was SEQAID, short for \textbf{seq}uencing \textbf{aid},
-\cite{peltolaSEQAIDDNASequence1984} which used the  Overlap Layout Consensus (OLC)
+cite:peltolaSEQAIDDNASequence1984 which used the  Overlap Layout Consensus (OLC)
 framework, an intuitionistic approach to the assembly problem that works in  
 3 main steps: 1) Overlap: find all overlaps among the reads, 2) Layout: assemble
 a graph of all the reads based on their overlaps, and 3) Consensus: infer the
@@ -74,27 +30,26 @@ It used … to infer the consensus.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{./figures/OLC framework.png}
+\includegraphics[width=0.7\textwidth]{figures/OLC framework.png}
 \caption{OLC...}
 \end{figure}
 
 With the advent of Second Generation Sequencing (SGS) technologies 
 Roche/454 (www.454.com), Illumina/solexa (www.illumina.com),
 and AB/Solid (www.appliedbiosystems.com) there was a significant reduction in 
-the cost per sequenced nucleotide \cite{liComparisonTwoMajor2012} leading to an 
+the cost per sequenced nucleotide cite:liComparisonTwoMajor2012 leading to an 
 explosion in the number of reads produced and thus making OLC unfeasible. 
 
-\subsection{de Bruijn Graph}
-\label{sec:org2326135}
+** de Bruijn Graph
 OLC based methods were progressively replaced by de Bruijn Graph (DBG)
-\cite{iduryNewAlgorithmDNA1995} based methods whose first tool was EULER
-\cite{pevznerEulerianPathApproach2001}.
+cite:iduryNewAlgorithmDNA1995 based methods whose first tool was EULER
+cite:pevznerEulerianPathApproach2001.
 
 The DBG transforms the assembly problem into a computationally simpler problem.
 While the OLC, through the reads graph, takes an non polynomial time Hamiltonian 
 approach; the DBG, using the k-mer graph, goes about it using a much easier to
 solve Eulerian approach which works in polynomial time.
-\cite{liComparisonTwoMajor2012,pevznerEulerianPathApproach2001} 
+cite:liComparisonTwoMajor2012,pevznerEulerianPathApproach2001 
 
 The DBG is an anti-intuitionistic solution whose assembly quality improves with 
 an increase in the read length <citation needed>. It works through 1) chop the reads into
@@ -114,9 +69,8 @@ are still used to correct long reads.
 The unitig approach involves finding the maximal interval subgraphs in the
 graph of all read overlaps.
 
-\subsection{String Graph}
-\label{sec:orgd992e34}
-The string graph \cite{myersFragmentAssemblyString2005} is a way to infer the 
+** String Graph
+The string graph cite:myersFragmentAssemblyString2005 is a way to infer the 
 genome from the read data without a need for k-mers as is with the de Bruijn 
 graph.  It treats the genome as a sequence of repeats and then encodes each 
 repeat as a node. Each unique (contiguous) sequence is a node. 
@@ -128,22 +82,21 @@ An Eulerian tour recreates the genome.
 \caption{String Graph...}
 \end{figure}\label{string graph}
 
-\section{Alignment and mapping}
-\label{sec:org7f3796f}
+* Alignment and mapping
 Alignment involves computing the amount of similarity between two strings also 
 known as the edit distance problem.
 The solution to the edit distance problem by
-\cite{levenshteinBinaryCodesCapable1966a} paved the way for solving the alignment
+cite:levenshteinBinaryCodesCapable1966a paved the way for solving the alignment
 problem.
 
 The first solution was global alignment
-\cite{needlemanGeneralMethodApplicable1970} in which a sequence query is aligned
+cite:needlemanGeneralMethodApplicable1970 in which a sequence query is aligned
 to the other (reference) in its entirety. It took a dynamic programming approach
-which worked in square time (had a complexity of \(\bigO(n^2)\); it was followed
-by semi-global alignment \cite{sellersTheoryComputationEvolutionary1980}
+which worked in square time (had a complexity of $\bigO(n^2)$; it was followed
+by semi-global alignment cite:sellersTheoryComputationEvolutionary1980
 where one sequence (query) is entirely
 aligned to a substring of the other (reference); then local alignment
-\cite{smithIdentificationCommonMolecular1981}, where the alignment can be between 
+cite:smithIdentificationCommonMolecular1981, where the alignment can be between 
 any substrings of the two sequences.
 
 In practice when given a set of reads, a complement of each read is generated to 
@@ -154,22 +107,21 @@ edit distance.
 
 With graphs, reads are mapped to paths in the graph instead of linear sequences.
 Alignment problems grow with the input size
-\cite{durbinEfficientHaplotypeMatching2014} making it hard to align sequences to
+cite:durbinEfficientHaplotypeMatching2014 making it hard to align sequences to
 graphs  because of the increased amount of data involved
 The complexity of an alignment problem is a function of the
 number of  vertices |V| and edges |E| <citation needed>.  In some way you can
 think of it as mapping to multiple linear sequences that may or may not loop.
 
-\section{Indexing}
-\label{sec:orgb97abf1}
+* Indexing
 Indexing is a solution to the problem of search given limited computing
 resources. An index is useful to speed up alignment and make it pragmatic within
 the given time and memory requirements. 
 It involves reducing the search space so as to reduce the time taken and memory
 consumed when performing a search.
 In linear references commonly used indexing approaches are the FM index 
-todo\{list tools\} whose complexity is \(\bigO(NM)\) where there are N variable
-sites and M sequences \cite{durbinEfficientHaplotypeMatching2014}.
+todo{list tools} whose complexity is $\bigO(NM)$ where there are N variable
+sites and M sequences cite:durbinEfficientHaplotypeMatching2014.
 As in alignment, the problem grows even larger with the proliferation of paths 
 in graphs. For graphs, indices like the FM-index backed by the BWT fail to hold
 <citation needed> and there’s the need for improvements such as that seen in
@@ -183,48 +135,44 @@ are suited for larger datasets that we want to go back to such as a reference
 genome graph.
 
 Below are some of the approaches taken to solve the problem of indexing
-\subsection{Burrows-Wheeler Transform}
-\label{sec:org5e8f284}
+** Burrows-Wheeler Transform 
 The Burrows-Wheeler Transform (BWT) was introduced by
-\cite{burrowsBlocksortingLosslessData1994} for string data 
+cite:burrowsBlocksortingLosslessData1994 for string data 
 compression and to this day forms the basis of the bzip compression algorithm.
 
 It works as a preliminary step in the building of indices and also the 
 compression of \todo{expound}
 
-\subsection{Suffix Array}
-\label{sec:org132c193}
-Suffix arrays, introduced by \cite{manberSuffixArraysNew1990}, are arrays of the
+** Suffix Array
+Suffix arrays, introduced by cite:manberSuffixArraysNew1990, are arrays of the
 positions of all the sorted suffixes of a string.
 A suffix array is a simple, space efficient
 (stores n integers where n is the length of the string) alternative to the
-suffix tree <citation needed> whose space requirements are\ldots{}
+suffix tree <citation needed> whose space requirements are...
 based on BWT have been used for fast search algorithms
 
-Improvement to the suffix array: \cite{liMinimapMiniasmFast2016}
-gave the first in-place \(\bigO(n)\) time suffix array construction algorithm that
+Improvement to the suffix array: cite:liMinimapMiniasmFast2016
+gave the first in-place $\bigO(n)$ time suffix array construction algorithm that
 is optimal both in time and space, where in-place means that the algorithm only
-needs \(\bigO(1)\) additional space beyond the input string and the output suffix
+needs $\bigO(1)$ additional space beyond the input string and the output suffix
 array.
 
 Tools using the suffix array include Bowtie
-\cite{langmeadUltrafastMemoryefficientAlignment2009}, BWA
-\cite{liFastAccurateShort2009}, 
-and SOAP2 \cite{liSOAP2ImprovedUltrafast2009}.
+cite:langmeadUltrafastMemoryefficientAlignment2009, BWA
+cite:liFastAccurateShort2009, 
+and SOAP2 cite:liSOAP2ImprovedUltrafast2009.
 
-\subsection{FM Index}
-\label{sec:org1642cb9}
+** FM Index
 Short for Full-text index in Minute space; the FM-index created
-by \cite{ferraginaOpportunisticDataStructures2000} is a full text substring index
+by cite:ferraginaOpportunisticDataStructures2000 is a full text substring index
 based on the BWT. It allows compression of the input text while permitting fast
 substring queries. It can be used to efficiently find the number of occurrences
 of a pattern within the compressed text, as well as locate the position of each
 occurrence.
 
-\subsection{Positional Burrows-Wheeler Transform}
-\label{sec:org1ad13fe}
-Introduced by \cite{durbinEfficientHaplotypeMatching2014} Positional Burrows 
-Wheeler Transform is an algorithm with complexity \(\bigO(NM)\) where M sequences
+** Positional Burrows-Wheeler Transform 
+Introduced by cite:durbinEfficientHaplotypeMatching2014 Positional Burrows 
+Wheeler Transform is an algorithm with complexity $\bigO(NM)$ where M sequences
 and N bi-allelic sites.
 It derives a representation of the data based on a positional prefix array; an
 array that holds positions of a given array/set of haplotypes in a larger 
@@ -233,10 +181,9 @@ their prefixes allowing similar sequences to cluster together.
 
 <Add PBWT table and graphic>
 
-\subsection{GBWT/gPBWT}
-\label{sec:orgd561c0b}
-First described \cite{novakGraphExtensionPositional2017} but used in a tool
-\cite{sirenHaplotypeawareGraphIndexes2020} it’s a compressible representation of 
+** GBWT/gPBWT
+First described cite:novakGraphExtensionPositional2017 but used in a tool
+cite:sirenHaplotypeawareGraphIndexes2020 it’s a compressible representation of 
 a set of haplotypes held in the graph. This allows for efficient match queries 
 in sections of the haplotypes (local alignment). Because of the previously
 mentioned nature of the positional suffix array to bring together (fairly) 
@@ -244,29 +191,26 @@ similar haplotypes.
 GBWT lets us have an efficient way of counting the number of haplotypes 
 containing a given sequence.
 
-\subsection{Bloom filters}
-\label{sec:org45ec357}
+** Bloom filters
 The bloom filter is a probabilistic data structure that can give false positive
 but never a false negative.  It works by hashing data and stores the hash in an
-array\ldots{}
+array...
 It is suited for the fragment assembly using DBGs because of its constant time
-access \cite{chikhiSpaceefficientExactBruijn2013}. It however suffers from poor
+access cite:chikhiSpaceefficientExactBruijn2013. It however suffers from poor
 data localization \todo{expound} which led to the use of Blocked Bloom Filters (BBF) 
-\cite{putzeCacheHashSpaceefficient2010} used in
-Bifrost \cite{holleyBifrostHighlyParallel2019}.
+cite:putzeCacheHashSpaceefficient2010 used in
+Bifrost cite:holleyBifrostHighlyParallel2019.
 
-\subsection{Minimizers}
-\label{sec:org58ad01f}
+** Minimizers
 The work of a minimizer is to reduce the search space. It does this by generating
 kmers from a read and sorting them alphabetically. The k-mer at the top is the
-minimizer for that read\ldots{} then binning the result. When a query is made it’s
+minimizer for that read... then binning the result. When a query is made it’s
 prefix is checked against the bin and the rest of the data ignored
 <is this even accurate?>
 We can get a minimizer by BBF blocked bloom filter Minimizers
-\cite{grabowskiDiskbasedCompressionData2015,robertsReducingStorageRequirements2004}
+cite:grabowskiDiskbasedCompressionData2015,robertsReducingStorageRequirements2004
 
-\subsection{Hash tables}
-\label{sec:org400a385}
+** Hash tables
 Hash tables involve breaking down the reads into k-mers and storing the kmers
 into hash tables that point to the original data. When queries are made they’re 
 similarly broken down into k-mers of the expected size<citation needed>.
@@ -276,10 +220,9 @@ greater memory, particularly in cases where the suffix representation can be
 compressed as it can be here (Durbin 2014).
 Many times tools take a hybrid approach; incorporating different aspects of
 different indexing schemes such as in Minimap
-\cite{liDesignConstructionReference2020}. \todo{ensure this citation checks out}
-\section{Genome Graph Tools}
-\label{sec:orgfc2affc}
-The Berkeley Open Assembler \cite{myersFragmentAssemblyString2005} borrows 
+cite:liDesignConstructionReference2020. \todo{ensure this citation checks out}
+* Genome Graph Tools
+The Berkeley Open Assembler cite:myersFragmentAssemblyString2005 borrows 
 from the unitig algorithm and uses the string graph, a way to infer the genome
 from the read data without a need for k-mers.
 It treats the genome as a sequence of repeats and then encodes each repeat as 
@@ -288,7 +231,7 @@ the genome.
 
 Though the original DBG approach does much better than OLC it still has a high 
 memory footprint <citation needed> therefore minia
-\cite{chikhiSpaceefficientExactBruijn2013} proposed the encoding of a 
+cite:chikhiSpaceefficientExactBruijn2013 proposed the encoding of a 
 de Bruijn Graph as a bloom filter (BF). It is obtained by inserting all the
 nodes of a de Bruijn graph (i.e all k-mers) in a bloom filter instead of storing 
 the graph in a “traditional” set series of nodes and edges stored in a more
@@ -301,7 +244,7 @@ Drawbacks of using the bloom filter include 1) The Bloom filter introduces false
 nodes and false branching, 2) The global structure of the graph is approximately
 preserved up to a certain false positive rate.
 
-Bcalm2 \cite{chikhiCompactingBruijnGraphs2016} tried to improve the BF backed dBG 
+Bcalm2 cite:chikhiCompactingBruijnGraphs2016 tried to improve the BF backed dBG 
 by use of a compacted DBG (cdBG) which allowed the problem to be doable on a PC.
 
 \todo{<add compaction diagram>}
@@ -315,34 +258,30 @@ in-degree 1 and all but the last vertex having out-degree 1) are compacted into
 a single vertex 3) graph cleaning: artifacts due to sequencing errors and
 polymorphism are removed from the graph.
 
-\cite{liMinimapMiniasmFast2016} introduced two tools minimap, a raw read 
-overlapper, and miniasm \cite{liMinimapMiniasmFast2016}, an assembler. 
+cite:liMinimapMiniasmFast2016 introduced two tools minimap, a raw read 
+overlapper, and miniasm cite:liMinimapMiniasmFast2016, an assembler. 
 Minimap uses minimizer sketches, stores k-mers in a hash table, uses sorting 
 extensively.
 
 SPAdes also a toolkit does…
 
-\newpage
+#+LATEX: \newpage
 Variation graphs are genome graphs that embed the paths in the graph 
 (citation needed).
 These paths can be used to represent haplotypes. vg, HashGraph, odgi and
 PackedGraph are dynamic (allow for updates to the graph while xg isn’t).
 
-\definecolor{mypink}{RGB}{225, 0, 128}
-\definecolor{mygreen}{RGB}{106, 168, 79}
-\definecolor{myblue}{RGB}{111, 168, 220}
-\definecolor{myred}{RGB}{225, 0, 0}
-\definecolor{mypurple}{RGB}{153, 0, 255}
+#+LATEX: \definecolor{mypink}{RGB}{225, 0, 128}
+#+LATEX: \definecolor{mygreen}{RGB}{106, 168, 79}
+#+LATEX: \definecolor{myblue}{RGB}{111, 168, 220}
+#+LATEX: \definecolor{myred}{RGB}{225, 0, 0}
+#+LATEX: \definecolor{mypurple}{RGB}{153, 0, 255}
 
-\begin{center}
-\begin{tabular}{llllllll}
-\color{mypink}Individual 1 & \color{mypink} A & \color{mypink} C & \color{mypink} T & \color{mypink} G & \color{mypink} A & \color{mypink} A & \color{mypink} T\\
-\color{myblue}Individual 2 & \color{myblue} A & \color{myblue} C & \color{myblue} T & \color{myblue} T & \color{myblue} - & \color{myblue} - & \color{myblue} T\\
-\color{mygreen}Individual 3 & \color{mygreen} A & \color{mygreen} C & \color{mygreen} T & \color{mygreen} T & \color{mygreen} A & \color{mygreen} A & \color{mygreen} T\\
-\hline
-\color{red}Consensus & \color{red} A & \color{red} C & \color{red} T & \color{red} T & \color{red} A & \color{myred} A & \color{red} T\\
-\end{tabular}
-\end{center}
+| \color{mypink}Individual 1  | \color{mypink} A  | \color{mypink} C  | \color{mypink} T  | \color{mypink} G  | \color{mypink} A  | \color{mypink} A  | \color{mypink} T  |
+| \color{myblue}Individual 2  | \color{myblue} A  | \color{myblue} C  | \color{myblue} T  | \color{myblue} T  | \color{myblue} -  | \color{myblue} -  | \color{myblue} T  |
+| \color{mygreen}Individual 3 | \color{mygreen} A | \color{mygreen} C | \color{mygreen} T | \color{mygreen} T | \color{mygreen} A | \color{mygreen} A | \color{mygreen} T |
+|-----------------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------|
+| \color{red}Consensus        | \color{red} A     | \color{red} C     | \color{red} T     | \color{red} T     | \color{red} A     | \color{myred} A   | \color{red} T     |
 
 \begin{figure}[H]
 \centering
@@ -350,19 +289,15 @@ PackedGraph are dynamic (allow for updates to the graph while xg isn’t).
 \caption{no structural variation}\label{no struct}
 \end{figure}
 
-\newpage
+#+LATEX: \newpage
 In case of addition of individual 4 containing an inversion at node 2,3 and 4
 
-\begin{center}
-\begin{tabular}{llllllll}
-\color{mypink}Individual 1 & \color{mypink} A & \color{mypink} C & \color{mypink} T & \color{mypink} G & \color{mypink} A & \color{mypink} A & \color{mypink} T\\
-\color{myblue}Individual 2 & \color{myblue} A & \color{myblue} C & \color{myblue} T & \color{myblue} T & \color{myblue} - & \color{myblue} - & \color{myblue} T\\
-\color{mygreen}Individual 3 & \color{mygreen} A & \color{mygreen} C & \color{mygreen} T & \color{mygreen} T & \color{mygreen} A & \color{mygreen} A & \color{mygreen} T\\
-\color{mypurple}Individual 4 & \color{mypurple} A & \color{mypurple} C & \color{mypurple} A & \color{mypurple} A & \color{mypurple} T & \color{mypurple} T & \color{mypurple} T\\
-\hline
-\color{red}Consensus & \color{red} A & \color{red} C & \color{red} T & \color{red} T & \color{red} A & \color{myred} A & \color{red} T\\
-\end{tabular}
-\end{center}
+| \color{mypink}Individual 1   | \color{mypink} A   | \color{mypink} C   | \color{mypink} T   | \color{mypink} G   | \color{mypink} A   | \color{mypink} A   | \color{mypink} T   |
+| \color{myblue}Individual 2   | \color{myblue} A   | \color{myblue} C   | \color{myblue} T   | \color{myblue} T   | \color{myblue} -   | \color{myblue} -   | \color{myblue} T   |
+| \color{mygreen}Individual 3  | \color{mygreen} A  | \color{mygreen} C  | \color{mygreen} T  | \color{mygreen} T  | \color{mygreen} A  | \color{mygreen} A  | \color{mygreen} T  |
+| \color{mypurple}Individual 4 | \color{mypurple} A | \color{mypurple} C | \color{mypurple} A | \color{mypurple} A | \color{mypurple} T | \color{mypurple} T | \color{mypurple} T |
+|------------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------|
+| \color{red}Consensus         | \color{red} A      | \color{red} C      | \color{red} T      | \color{red} T      | \color{red} A      | \color{myred} A    | \color{red} T      |
 
 
 \begin{figure}[H]
@@ -371,7 +306,7 @@ In case of addition of individual 4 containing an inversion at node 2,3 and 4
 \caption{contains struct variation}\label{contains struct}
 \end{figure}
 
-vg \cite{garrisonVariationGraphToolkit2018} is an end to end pangenome graph
+vg cite:garrisonVariationGraphToolkit2018 is an end to end pangenome graph
 solution for de novo and incremental graph building but has large memory
 requirements when it comes to indexing.
 It originally used the protobuf library as the graph implementation but was
@@ -383,17 +318,17 @@ A hash table maps between nodes and paths and queries (of what) involve hash
 table lookups.
 Suffered from a problem of data duplication (citation needed).
 It deals with cycles in the graph by unrolling the graph
-\cite{liDesignConstructionReference2020}.
+cite:liDesignConstructionReference2020.
 
-xg \cite{garrisonGraphicalPangenomics2019} is a memory-efficient succinct
+xg cite:garrisonGraphicalPangenomics2019 is a memory-efficient succinct
 representation of the graph (compared to vg). 
 It has fast queries thanks to a static index of the paths that is backed by
 positional indices, GBWT.
 
-Bluntification \cite{gargGraphbasedApproachDiploid2018} removing all overlaps 
+Bluntification cite:gargGraphbasedApproachDiploid2018 removing all overlaps 
 between nodes (is this not compaction?).
 
-Seqwish (\url{https://github.com/ekg/seqwish}) transforms a set of 
+Seqwish (https://github.com/ekg/seqwish) transforms a set of 
 sequences and alignments (in GFA) into its equivalent variation graph.
 The large memory requirements of vg are solved through the use of gBWT backed
 by a Generalized Compressed Suffix Array.
@@ -418,7 +353,7 @@ a node in a sorted graph. PackedGraph (libhandlegraph paper) is designed to have
 a low memory footprint. 
 It does this by encoding the graph mainly using linked lists.
 
-BAUM (By Adaptive Unique Mapping) \cite{wangBAUMImprovingGenome2018} improved on
+BAUM (By Adaptive Unique Mapping) cite:wangBAUMImprovingGenome2018 improved on
 the OLC framework to improve genome assembly based on Second Generation Sequencing
 paired-end/mate-pair libraries.
 BAUM has two modules: 1) construction of the genome unique regions that are taken
@@ -427,25 +362,25 @@ contigs are extended and merged, aiming to reconstruct the repetitive regions
 along the iterations.
 In this scheme, the repetitive regions are separated by the unique regions.
 
-Bifrost \cite{holleyBifrostHighlyParallel2019} improved on the compacted de Bruijn
+Bifrost cite:holleyBifrostHighlyParallel2019 improved on the compacted de Bruijn
 Graph by adding colours to the nodes to keep track of the source of each vertex 
 and takes advantage of concurrency (parallell).
 A disadvantage of colors is that their size can grow beyond that of the
 nodes/actual graph. It stores these colours in a different on a different
-.bfg\textsubscript{colors} file.
+.bfg_colors file.
 K-mers contained in the unitigs are mapped to their colors representing the
 input sources (color is represented by an integer from 1 to |C| where C is the
 number of colors. Colors are stored in a separate array of color containers,
 each color container is indexed by MPHF (Minimal Perfect Hash Function) library
-BBHash \cite{limassetFastScalableMinimal2017}.
+BBHash cite:limassetFastScalableMinimal2017.
 Bloom filters have have poor data localization because one element is scattered
 all over which leads to CPU cache misses when inserting and querying are
 addressed here  (Putze et al., n.d.) for this they used (BBF) blocked bloom filter 
-Minimizers \cite{robertsReducingStorageRequirements2004,grabowskiDiskbasedCompressionData2015}.
+Minimizers cite:robertsReducingStorageRequirements2004,grabowskiDiskbasedCompressionData2015.
 BBF works by building an approximation of the dBG using BBFs to filter our
 sequencing errors.  BBF containing k-mers is used to build the cdBG.
 
-GraphAlighner \cite{rautiainenBitparallelSequencetographAlignment2019} is a tool 
+GraphAlighner cite:rautiainenBitparallelSequencetographAlignment2019 is a tool 
 for aligning long error prone reads to genome graphs through base alignment.
 It uses (generalizes two linear sequence-to-sequence algorithms to graphs) two 
 strategies: 1) the Shift-And algorithm for exact matching (exact match of a
@@ -457,20 +392,17 @@ necessary Myer’s bit-vector algorithm studies the semi-global sequence-to-grap
 alignment problem.
 It seeks to find a path in a directed, node-labelled graph that has the
 minimum edit distance to the query sequence. Myers’ bit-vector alignment 
-algorithm \cite{myersFastBitvectorAlgorithm1999} to graphs, which proceeds along 
-the same lines as the Shift-And algorithm, but requires some further algorithmic 
-insights to handle nodes with an in-degree greater than one.
-Bitvector algo complexity grows approximately linearly with the number of
-vertices in the graph.
-The bitvector it uses is the size of the pattern we are searching for.
-Semi-global alignment is solved through generalizing DP edit distance problem
-for graphs.
-Semi-global alignment is used to align a shorter seq against a longer one,
-reference.
+algorithm (Myers, 1999) to graphs, which proceeds along the same lines as the
+Shift-And algorithm, but requires some further algorithmic insights to handle 
+nodes with an in-degree greater than one. Bitvector algo complexity grows 
+approximately linearly with the number of vertices in the graph. The bitvector 
+it uses is the size of the pattern we are searching for. Semi-global alignment 
+is solved through generalizing DP edit distance problem for graphs. Semi-global 
+alignment is used to align a shorter seq against a longer one, reference.
 Shift-And algorithms (Baeza-Yates and Gonnet, 1992; Domolki, 1964, 1968) 
 performs exact string matching to graphs. 
 Their aim is to find a path in a directed, node-labeled graph that has a minimum
-edit distance \cite{levenshteinBinaryCodesCapable1966a} to the query sequence. 
+edit distance cite:levenshteinBinaryCodesCapable1966a to the query sequence. 
 Shift-And algo finds exact matches between a pattern string and a text string by
 simulating a nondeterministic finite automaton (NFA) that matches the pattern 
 and then feeding the text to it.
@@ -479,7 +411,7 @@ Somewhat analogous to exact matching using a window of the size of the pattern.
 It can handle DAGs and  graphs that may contain cycles. For DAGs, process the 
 nodes in topological order (topological sort). For cyclic graphs no sorting.
 
-Minigraph \cite{liDesignConstructionReference2020} is a sequence to graph mapper
+Minigraph cite:liDesignConstructionReference2020 is a sequence to graph mapper
 that incrementally constructs a pangenome graph.
 A graph-based data model and associated formats to represent multiple genomes 
 while preserving the coordinate of the linear reference genome. 
@@ -491,12 +423,11 @@ usually by collapsing identical or similar sequences between genomes onto a
 single representative sequence. The results in a pangenome graph.
 
 
-vg-flow \cite{baaijensStrainawareAssemblyGenomes2020} attempts to reconstruct all 
+vg-flow cite:baaijensStrainawareAssemblyGenomes2020 attempts to reconstruct all 
 individual haplotypes from a mixed sample at the strain level and to provide
-abundance estimates for the strains. It does this by\ldots{}
+abundance estimates for the strains. It does this by...
 
-\section{Interfaces and APIs}
-\label{sec:org8a89157}
+* Interfaces and APIs
 The field of genome graphs is growing quickly as evidenced by the ever-growing
 number of tools creating the need for a common way for these tools interact with
 the data they operate on.
@@ -529,13 +460,12 @@ graphs for graph-based pangenomics applications. Tools built on top of this are
 PackedGraph (low memory) and HashGraph (high-performance hash tables).
 vg is now using libhandlegraph through libbdsg (libhandlegraph paper).
 
-\section{Plaintext graphical representations}
-\label{sec:orgb01d18b}
+* Plaintext graphical representations
 In the early 2000s assembly software was dominated by a few end to end assembly
 software such as SPAdes, ALLPATHS, ABySS, and SOAPdenovo
-\url{https://pmelsted.wordpress.com/2014/07/17/dear-assemblers-we-need-to-talk-together/}.
+https://pmelsted.wordpress.com/2014/07/17/dear-assemblers-we-need-to-talk-together/.
 These end to end tools made it hard to tweak parts of the assembly process which
-led to calls (such as \href{https://github.com/pjotrp/bioinformatics\#the-small-tools-manifesto-for-bioinformatics}{THE SMALL TOOLS MANIFESTO FOR BIOINFORMATICS}) for small
+led to calls (such as [[https://github.com/pjotrp/bioinformatics#the-small-tools-manifesto-for-bioinformatics][THE SMALL TOOLS MANIFESTO FOR BIOINFORMATICS]]) for small
 tools that perform bits of the assembly while using plaintext files as APIs.
 
 An early attempt was FASTG,  an extension to FASTA, which is based on a directed
@@ -546,27 +476,26 @@ between sequences as vertices.
 
 Like FASTA, each record contains a header line which follows the pattern
 a greater than sign, the edge, the neighbors of the edge and the edge properties.
-\(>Edge:Neighbours:Properties;\) where: Edge is the name given to this 
+$>Edge:Neighbours:Properties;$ where: Edge is the name given to this 
 edge/sequence, Neighbors is a list of edges or their reverse complements that
 follow this edge or the reverse complement of this edge
-(indicated by a preceding\textasciitilde{}), and Properties is a list of optional properties 
+(indicated by a preceding~), and Properties is a list of optional properties 
 associated with this edge. To facilitate
 inversions, the format allows for adjacencies between forward and reverse
-complement. Reverse complements are indicated by a prime symbol \('\)
-.
+complement. Reverse complements are indicated by a prime symbol 30\textprime.
 
 
-\begin{verbatim}
+#+BEGIN_SRC
 >x:y;
 ACGTGAGAT
-\end{verbatim}
+#+END_SRC
 An example of a FASTG fragment where x represents
 a DNA sequence and an edge in the graph. The edge is in turn followed by edge y. 
 There exists an adjacency from edge x to edge y.
 
-GFA \cite{liMinimapMiniasmFast2016} comes in two versions:
-GFA1 (\url{https://gfa-spec.github.io/GFA-spec/GFA1.html}) and
-GFA2 (\url{https://gfa-spec.github.io/GFA-spec/GFA2.html}) with GFA2 being a superset
+GFA cite:liMinimapMiniasmFast2016 comes in two versions:
+GFA1 (https://gfa-spec.github.io/GFA-spec/GFA1.html) and
+GFA2 (https://gfa-spec.github.io/GFA-spec/GFA2.html) with GFA2 being a superset
 of GFA1. 
 Unlike FASTG, GFA is a total deviation from the FASTA format aimed specifically 
 at plaintext representation of genome graphs and able to represent a graph at 
@@ -581,7 +510,7 @@ It can encode extra detail through fragments which are used to specify a
 collection of external sequences or edges which may contain a Dazzler-trace or
 a CIGAR string to describe the alignment of the edge.
 
-rGFA \cite{liDesignConstructionReference2020} is GFA extended for reference 
+rGFA cite:liDesignConstructionReference2020 is GFA extended for reference 
 (pan)genomes. It is an extension
 to GFA with 3 additional tags that indicate the origin of the segment to
 provide a unique stable coordinate system as an extension to the linear 
@@ -591,28 +520,26 @@ graph by design. rGFA disallows overlaps between edges and forbids multiple
 edges (more than one edge between the same pair of vertices).
 rGFA cannot encode a collapsed graph.
 To make use of the reference pangenome graphs 
-GAF \cite{liDesignConstructionReference2020} is a text format 
+GAF cite:liDesignConstructionReference2020 is a text format 
 for sequence to graph alignment.
-It’s an extension of PAF \cite{liMinimapMiniasmFast2016}. 
+It’s an extension of PAF cite:liMinimapMiniasmFast2016. 
 It is tab delimited like GFA. \todo{describe the grammar}
 
-\section{Genome graphs as databases (logic programming)}
-\label{sec:org7793e16}
+* Genome graphs as databases (logic programming)
 We can also treat the variation graph as a graph database. For this, SpOdgi 
 \todo{citation needed} transforms any odgi genome variation graph file into a
 SPARQL capable database.
 
-\section{Visualization}
-\label{sec:orgb5c4b19}
+* Visualization
 Visualization tools are a core tenet of bioinformatics and science in general.
 They help us understand our assemblies and communicate the results with others. 
 Different tools exist depending on the level of resolution needed and 
 the size of the graph. 
 
-GraphViz \cite{northOnlineHierarchicalGraph2002,ellsonGraphvizDynagraphStatic2004}
+GraphViz cite:northOnlineHierarchicalGraph2002,ellsonGraphvizDynagraphStatic2004
 is a collection of different graph visualization tools \todo{expound}
 
-Bandage \cite{wickBandageInteractiveVisualization2015}, originally developed for 
+Bandage cite:wickBandageInteractiveVisualization2015, originally developed for 
 assembly graph visualization, is a standalone application written for
 visualizing assembly graphs.
 It allows the visualization of several contigs which they themselves may have
@@ -621,16 +548,14 @@ It uses a force-directed layout via, strength is aesthetic appeal and clearly
 communicates components but annotation and navigation aren’t possible.
 The major issue is the runtime scalability; force-directed layout has quadratic 
 or even cubic costs with respect to graph size \todo{cite pantograph docs}.
-The Open Graph Drawing Framework library (\url{http://www.ogdf.net/}) is used to
+The Open Graph Drawing Framework library (http://www.ogdf.net/) is used to
 perform the graph layout using the fast multipole multilevel layout algorithm, 
-which scales well for very large graphs
-\cite{hachulLargeGraphLayoutAlgorithms2007}.
-
+which scales well for very large graphs (Hachul and Ju ̈ nger, 2007).
 It reads a graph in a variety of formats: LastGraph (Velvet), FASTG (SPAdes), 
 Trinity.fasta, ASQG and GFA and allows the export of a visualization graph
-either entirely or a section of it (\url{https://rrwick.github.io/Bandage/}).
+either entirely or a section of it (https://rrwick.github.io/Bandage/).
 
-MoMI-G \cite{yokoyamaMoMIGModularMultiscale2019}
+MoMI-G cite:yokoyamaMoMIGModularMultiscale2019
 (MOdular Multi-scale Integrated Genome graph browser) 
 is a web based genome browser built for the visualization of structural 
 variants (SVs) in a variation graph and has a chromosome centric view making
@@ -640,12 +565,12 @@ makes requests to a backend server that one can set up locally using docker.
 It takes as input: a succinct representation of a variation graph in XG format,
 read alignment (optional), and annotations (optional).
 
-Sequence tube maps \cite{beyerSequenceTubeMaps2019} is a javascript module that
+Sequence tube maps cite:beyerSequenceTubeMaps2019 is a javascript module that
 can be accessed within MoMi-G for the visualization of variation graphs or one
 can  build their own custom API to generate the data whose aim is to represent
 both structural variation and sequence alignments.
 Tube maps were initially built to represent public transportation networks,
-London’s iconic Tube Map, \cite{cartwrightamBeckRepresentationLondon2012} which 
+London’s iconic Tube Map, cite:cartwrightamBeckRepresentationLondon2012 which 
 themselves were inspired by circuit diagrams.
 
 For visualizing large graphs which contain paths, assembly graphs which are de 
@@ -656,8 +581,3 @@ It renders the genome graph in a matrix. It reads a variation graph in JSON from
 odgi bin.
 
 \todo{Add image of our Household 20 dataset in pantograph}
-
-
-\bibliographystyle{apacite}
-\bibliography{library}
-\end{document}

@@ -1,0 +1,41 @@
+#+TITLE: EXPLORING VIRUS SEQUENCE DIVERSITY USING VARIATION GRAPHS
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: toc:nil
+#+LATEX_HEADER: \usepackage{todonotes}
+#+LATEX_HEADER: \usepackage{apacite}
+#+LATEX_HEADER: \usepackage{float}
+
+#+LATEX: \newcommand{\bigO}{\mathcal{O}}
+
+#+LaTeX: \newpage
+
+#+INCLUDE: "pre.org"
+
+#+LaTeX: \newpage
+#+INCLUDE: "abstract.org"
+
+#+LaTeX: \newpage
+#+LaTeX: \tableofcontents
+
+
+#+LaTeX: \newpage
+#+LaTeX: \listoffigures
+
+#+LaTeX: \newpage
+* Introduction
+#+INCLUDE: "introduction.org"
+* Literature Review
+#+INCLUDE: "literature.org"
+** A Review of Genome Graph Tools
+#+INCLUDE: "review.org"
+* Materials and Methods
+#+INCLUDE: "methods.org"
+* Results---Graphical Sequence Comparison
+#+INCLUDE: "results.org"
+* Conclusion
+#+INCLUDE: "conclusion.org"
+
+
+bibliographystyle:apacite
+bibliography:library.bib
+

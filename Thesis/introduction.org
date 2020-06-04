@@ -1,0 +1,52 @@
+* Background Information
+
+RSV was first isolated in Chimpanzees in 1956 and named Chimpanzee Coryza Agent
+ (Morris et al., 1956). A year later, in 1957, it was isolated in children from
+ whom it had not been possible to isolate and renamed Respiratory Syncytial
+Virus (Beem et al., 1960; Chanock et al., 1957; Zlateva et al., 2005).
+
+During the first year of life, RSV is the most frequent cause of acute lower
+ respiratory tract infection bringing infants between one and six months of age
+ into the hospital with pneumonia, bronchitis
+ (Borchers et al., 2013; Stott & Taylor, 1985; Zlateva et al., 2004), 
+and otitis (Klein et al., 1982) and significantly increases the prevalence of
+ asthma amongst children who are hospitalized with RSV in infancy or early
+ childhood (Borchers et al., 2013). Moreover, there is a marked correlation
+ between the incidence of RSV in the community and the occurrence of sudden
+infant deaths in children above 3 months of age (Chanock et al., 1957).
+A simple upper respiratory illness in high-risk immunocompromised adults is no
+ longer viewed as trivial (Whimbey & Ghosh, 2000). People with cardiopulmonary
+ diseases and immunocompromised persons with bone marrow transplant patients
+prior to marrow engraftment are at highest risk for pneumonia and death
+ (Morris et al., 1956). For cancer patients, the risks and benefits of
+ administering intensive chemotherapy in the setting of a seemingly benign upper
+ respiratory illness are now weighed heavily (Klein et al., 1982).
+
+In animals, the virus is recognized as an important cause of Bovine Respiratory
+ Disease (BRD) in Europe and the United States (Whimbey & Ghosh, 2000).
+
+In terms of its epidemiology, it produces an annual epidemic of predominantly 
+upper respiratory tract infections in children and healthy adults
+ (Chanock et al., 1957) with re-infections occurring throughout life even in the
+ presence of pre-existing antibodies (Sullender et al., 1991).
+* Problem Statement
+Conventional methods of describing diversity involve comparing each sample
+against a given reference genome instead of comparing every sample against every
+ other sample (Paten, Novak, Eizenga, et al., 2017). This comparison is
+non-transitive meaning that the way a sample varies from the reference does not
+expressly tell us how that sample varies from a separate sample. 
+* Justification
+A reference genome graph is a robust data structure for representing genome
+ variation unlike the current approach where we compare a sample against a
+ linear reference genome. Given that consensus sequences are a mosaic of
+ haplotypes, we would like to make use of genome graph to disentangle the
+ sequence diversity present in RSV sequences, and potentially other respiratory
+ viruses. 
+* Objectives
+** Main Objective
+To construct an RSV variation graph from samples collected from a single
+ household in the course of an RSV household outbreak.
+** Specific Objectives
+1. To perform a review of existing genome graph tools used in constructing pangenome graphs. 
+2. To construct a variation graph from a set of samples collected from a single
+    household during the course of an RSV epidemic.

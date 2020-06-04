@@ -1,7 +1,12 @@
-all: paper
+all: review.pdf
 
-paper: review.tex
-	pdflatex --jobname="review" -shell-escape review.tex
+review.pdf: review.tex review.bbl figures/*
+	pdflatex -interaction nonstopmode review
+	pdflatex -interaction nonstopmode review
+
+review.bbl: library.bib
+	pdflatex -interaction nonstopmode review
+	bibtex review </dev/null
 
 clean:
-	rm -f *.aux *.toc *.pdf *.log *.bbl *.out *.tex*
+	rm -f *.aux *.toc *.pdf *.log *.bbl *.out *.lof *.lot *.blg

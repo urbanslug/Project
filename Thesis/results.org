@@ -1,0 +1,49 @@
+* Introduction
+All vs all genome comparison enabled by genome graphs.
+Contemporary genomic methods compare each sample based on how it compares against a reference.
+A pangenomic method compares each sample against every other sample through the use of a reference pangenome graph. 
+
+#+CAPTION: This comparison using Venn diagrams and three samples A, B, and C.
+#+ATTR_LATEX: :width 0.7\textwidth :float multicolumn
+#+NAME: fig:all-vs-all-venn
+file:figures/All-versus-All-Comparison.png
+file:figures/All-versus-All-Comparison.png
+
+
+#+CAPTION: from...
+#+ATTR_LATEX: :width 0.7\textwidth :float multicolumn
+#+NAME: fig:all-vs-all-venn
+file:figures/ekg-all-vs-all.png
+
+* Simulated Reads—SARS-CoV 2
+** Scatter Plot
+
+Figure x:
+** Heatmap
+
+Figure x:
+** PCA
+
+Figure x:
+** Generate a dendrogram through neighbor-joining
+
+Figure x:
+
+* Actual Reads—RSV
+** Household 5 Background
+In a community, each member of the household was sampled …
+
+Figure x:
+The previous analysis yielded a phylogenetic tree as shown below (it’s unable to differentiate closely related samples
+Figure x:
+
+** Heatmap
+The number of node ids that a sample maps to at a given point. These are aggregated by the median.
+
+Figure x:
+
+** PCA
+Figure x:
+
+** Dendrograms
+Figure x:

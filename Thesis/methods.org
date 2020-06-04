@@ -1,0 +1,301 @@
+* Simulated Reads—SARS-CoV-2 
+** Fetch the reference
+Fetch latest, as of Jan 17 2020, COVID-19 reference.
+efetch -db=nuccore -format=fasta -id=NC_045512.2 > ~/projects/Masters/verify/data/refs/COVID_19.fa
+** Simulate reads
+Simulate 3 sets of reads. 2 that aren’t distantly related to the reference and 1 that is.
+To do this we shall vary the mutation rate -r, default 0.0010, but keep the mutation frequency -F at a default, 0.5000. We want 1000 read pairs
+Suggestions concerning the relationship between mutant frequency and mutation rate at the hprt locus in human peripheral T-lymphocytes
+For 2 of them we shall use the same mutation rate but for one increase it.
+Set ref as a var
+export REF=~/projects/Masters/verify/data/refs/COVID_19.fa
+
+Simulate the reads
+dwgsim -N 1000 $REF covid_19_sim_1
+dwgsim -N 1000 $REF covid_19_sim_2
+
+Increase the mutation rate from the default 0.0010 to 0.0100
+
+dwgsim -N 1000 -r 0.0100 $REF covid_19_sim_3
+
+
+** Construct the assembly graph
+Assemble a coloured de Bruijn graph using Bifrost
+What’s a colored graph? The colored de Bruijn graph is a variant of the de Bruijn graph which keeps track of the source of each vertex in the graph (Iqbal et al., 2012)
+Prepare a sequences.txt file
+~/projects/Masters/verify/data/reads/simulated/COVID_19/1/covid_19_sim_1_interleaved.fastq
+~/projects/Masters/verify/data/reads/simulated/COVID_19/2/covid_19_sim_2_interleaved.fastq
+~/projects/Masters/verify/data/reads/simulated/COVID_19/3/covid_19_sim_3_interleaved.fastq
+Build the graph using bifrost
+Bifrost build \
+  -c \
+  -k 31 \
+  -s sequences.txt \
+  -o SARS-CoV-2
+
+When we view the DBG in bandage it looks like so:
+
+Figure x:
+** Bluntify/correct overlaps with gimbricate
+“bluntify” the GFA graph produced by a DBG assembler using gimbricate and seqwish, Bluntify means reducing overlaps on edges into nodes and edges in the graph itself.
+We want to come from the DBG to a VG
+gimbricate -d  \
+  -g SARS-CoV-2.gfa \
+  -p SARS-CoV-2.paf \
+  -f SARS-CoV-2.fasta \
+  > SARS-CoV-2.gimbry.gfa
+
+** Induce a variation graph
+Induce a variation graph using seqwish
+seqwish \
+  -s SARS-CoV-2.fasta \
+  -p SARS-CoV-2.paf \
+  -g SARS-CoV-2.seqwish.gfa
+
+** Prepare the graph for use with VG
+The GCSA2 indexer requires nodes to be no longer than 1024 bp, therefore, we have to use odgi chop to “chop”/reduce the sizes of these nodes.
+*** Build
+First build the graph with odgi build. Pass the -s flag to both build and sort the graph
+odgi build \
+  -s \
+  -g SARS-CoV-2.seqwish.gfa \
+  -o SARS-CoV-2-odgi-graph.vg
+
+*** Chop
+odgi chop \
+  -i SARS-CoV-2-odgi-graph.vg \
+  -c 1024 \
+  -o SARS-CoV-2-odgi-chopped.vg
+
+*** Sort
+Topologically order the graph
+odgi sort \
+ -i SARS-CoV-2-odgi-chopped.vg \
+ -o SARS-CoV-2-odgi-sorted.vg
+
+*** odgi view
+Projection of graphs into gfa
+odgi view \
+ -i SARS-CoV-2-odgi-sorted.vg \
+ -g \
+ > SARS-CoV-2-odgi.gfa
+
+
+** Mapping
+Now that we have prepared the graph for vg using odgi it’s time to use vg
+*** vg view
+Usage: vg view [options] [ <graph.vg> | <graph.json> | <aln.gam> | <read1.fq> [<read2.fq>] ]
+options:
+    -g, --gfa                  output GFA format (default)
+    -F, --gfa-in               input GFA format, reducing overlaps if they occur
+    -v, --vg                   output VG format
+
+vg view -Fv SARS-CoV-2-odgi.gfa > SARS-CoV-2-vg.vg
+*** vg index
+Index the graph to allow for mapping
+Creates an index on the specified graph or graphs. All graphs indexed must
+already be in a joint ID space.
+xg options:
+    -x, --xg-name FILE     use this file to store a succinct, queryable version of the graph(s), or read for GCSA indexing
+gcsa options:
+    -g, --gcsa-out FILE    output a GCSA2 index to the given file
+    -k, --kmer-size N      index kmers of size N in the graph (default 16)
+
+vg index -x SARS-CoV-2.xg -g SARS-CoV-2.gcsa SARS-CoV-2-vg.vg
+
+Building the index is not so instantaneous.
+*** vg map
+Generate a ~gam~ file
+Map our reads to the graph for each set of reads that we have from 1 to 3 So for this let’s write a bash script
+for i in {1..3}
+do 
+ vg map \
+    -f ~/projects/Masters/verify/data/reads/simulated/COVID_19/${i}/covid_19_sim_${i}_interleaved.fastq \
+    -x SARS-CoV-2.xg \
+    -g SARS-CoV-2.gcsa \
+    > SARS-CoV-2-${i}.gam
+done
+** Calculate coverage across the graph for each biosample
+Use vg pack to get a coverage vector for each biosample
+-d, --as-table         write table on stdout representing packs
+
+for i in {1..3}
+do 
+ vg pack \
+   -x SARS-CoV-2.xg \
+   -g SARS-CoV-2-${i}.gam \
+   -d \
+   > SARS-CoV-2-${i}.pack.table
+done
+
+View the tables as a pandas dataframe
+
+
+* Actual Reads—RSV
+** Preprocessing
+*** Quality control
+cat all the files in ~/miniconda3/share/trimmomatic-0.39-1/adapters/ into one file. In my case adapters.fa.
+Remove reads beyond QC of 35 and trim the adapters
+ trimmomatic PE \
+  data/H_528_16_04/H_528_16_04_1.fastq.gz data/H_528_16_04/H_528_16_04_2.fastq.gz \
+  trimmed_forward_paired.fq.gz trimmed_forward_unpaired.fq.gz trimmed_reverse_paired.fq.gz trimmed_reverse_unpaired.fq.gz \
+  ILLUMINACLIP:adapters/adapters.fa:2:35:10:2:keepBothReads \
+  SLIDINGWINDOW:4:35 \
+
+I then compiled the interleaved reads filepaths to a txt file:
+
+find $(pwd)/data -d -name '*interleave*fq' > sequences.txt
+
+Two datasets were causing seqwish to crash so I removed them from sequences.txt
+data/H_536_09_04/H_536_09_04_interleaved.fq:1271846:AGAACTCAGTGTAGGTAGAATGGTTGGCTGATCAATATCTCTAATGATTTTGGTCTGTGAATCAACTGTCATAAGAGAATTCTATCAAAGTTGAATTCCGAATCCTTGGGTCAATGACTGGGTGCACCCATTCTTCTAATGTGCTCTGTC
+data/H_506_13_04/H_506_13_04_interleaved.fq:3831798:AGAACTCAGTGTAGGTAGAATGGTTGGCTGAGTAGGTAGATGGAGGCAGGTGCATGTGTGATGGGAAGTGTGGTGACGGGTTGTGTGGGCACACGGGATGAGGCGCAGATGGCTGGGGGTTTGGGAGGGGAATGGGTGGGAGAAGGAGGC
+
+** Construct the assembly graph  using minia
+minia uses bcalm2 internally. The unitig graph that it produces is the bcalm2 construction. Minia is then applying a bunch of assembly heuristics to reduce the complexity of the graph and try to get out longer contigs. I find it's better to use than the raw DBG.
+
+Given the nature of our dataset: 
+51 samples
+Each fastq is about 400-500M in size
+In order to get a graph that we expect (similar strcutre and approximate size to the expected genome) we have to set a high minimum abundance.
+Using a k-mer size of 31 and a minimum abundance of 2000 the assembly graph is 237K (about 20x the genome size).  When we use a min abundance of 1000 we get a GFA of 157K (10x the genome size) but we “lose one of the variable regions".
+minia -in ../sequence_paths.txt \
+  -kmer-size 31 \
+  -abundance-min 1000 \
+  -nb-cores 8
+
+Figure x: a minimum abundance of 1000
+
+Figure x: a minimum abundance of 2000
+** Bluntify the graph using stark
+Going with the 1000 min abundance graph. We chose to bluntify it using stark (https://github.com/hnikaein/stark) 
+stark -i input_file_name \
+  -o stark_bluntify.gfa \
+  -s cpu-consuming
+
+Yields a  206K GFA that when visualized looks like so
+
+Figure x: bluntified graph 
+
+
+** Prepare the graph for mapping with vg
+Odgi is...
+I combine a series of commands into this bash script
+#!/usr/bin/env bash
+
+# premap.sh
+
+InputGFA=$1
+BuildVG="build-odgi.vg"
+ChoppedVG="chopped-odgi.vg"
+SortedVG="sorted-odgi.vg"
+ViewGFA="view-odgi.gfa"
+
+echo "Using $InputGFA"
+
+odgi build \
+     -s \
+     -g ${InputGFA} \
+     -o ${BuildVG}
+
+echo "Chopping to size 1024"
+
+odgi chop \
+     -i build-odgi.vg \
+     -c 1024 \
+     -o ${ChoppedVG}
+
+echo "Sorting"
+
+odgi sort \
+     -i chopped-odgi.vg \
+     -o ${SortedVG}
+
+echo "Generating GFA $ViewGFA"
+
+odgi view \
+     -i sorted-odgi.vg \
+     -g \
+     > ${ViewGFA}
+
+
+Run with
+./pre-map.sh stark_bluntify.gfa
+Visualize the graph to see
+
+
+** Mapping with vg
+*** Convert GFA to vg compatible variation graph
+Get a vg compatible variation graph out of the gfa
+vg view -Fv view-odgi.gfa > graph.vg
+3.2.5.2 Index
+In this case I don’t want to prune because our graph (graph.vg)  is small (62k) and I don’t want to lose complex regions (e.g. regions with many variants close to each other)
+https://github.com/vgteam/vg/wiki/Index-Construction#without-haplotypes
+https://github.com/vgteam/vg/wiki/Index-Construction#without-a-reference-or-haplotypes
+I don’t want to prune and will therefore build the index like so
+vg index -x graph.xg -g graph.gcsa graph.vg
+
+We get a 61K graph.xg and a 258K graph.gcsa.
+*** Mapping
+We want to map each sample against the graph. For this we use we want to loop through each of our interleaves sequences and put the outpur gam files in a directory we specify. We use the bash script below.
+
+#!/usr/bin/env bash
+
+Graphname="graph"
+# Using a gams dir to put the gam files
+GAMDir="gams"
+
+# For each file in the sequence list, call vg to map it to the graph
+while read Filepath;
+do
+    # paramter expansion http://mywiki.wooledge.org/BashFAQ/073
+    Filename=${Filepath##*/}
+    FileStub=${Filename%_*}
+
+    echo "Mapping $FileStub"
+    vg map \
+       -f ${Filepath} \
+       -x ${Graphname}.xg \
+       -g ${Graphname}.gcsa \
+       > ${GAMDir}/${FileStub}.gam
+
+Run with
+./map.sh < ../sequence_paths.txt
+
+Verify a GAM converting the converting to GAMP and viewing in JSON the
+https://github.com/vgteam/vg/wiki/Visualization#viewing-alignments
+https://github.com/vgteam/vg/wiki/Multipath-alignments-and-vg-mpmap
+
+vg view -a -k gams/H_513_02_04.gam > Images/H_513_02_04.gamp
+
+vg view -K -j Images/H_513_02_04.gamp > Images/H_513_02_04_GAMP.json
+
+cat Images/H_513_02_04_GAMP.json | jq | less
+
+** Calculate coverage across the graph for each biosample
+We want all our coverage vectors in a coverage dir.
+mkdir coverage/
+
+Use this this coverage.bash to generate a coverage vector as a table
+#!/usr/bin/env bash
+
+# Loop through each gam file
+Graphname="graph"
+CoverageDir="coverage"
+
+while read Filepath;
+do
+    # parameter expansion http://mywiki.wooledge.org/BashFAQ/073
+    FileStub=${Filepath%.*}
+
+    vg pack \
+       -d \
+       -x ${Graphname}.xg \
+       -g ${Filepath} \
+       > ${CoverageDir}/${FileStub}.pack.table
+done
+Run with
+find $(pwd)/gams -d -name '*.gam' > gams.txt
+./map.sh < gams.txt
+# or
+./coverage.sh < find $(pwd)/gams -d -name '*.gam'
+
