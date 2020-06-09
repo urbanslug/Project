@@ -4,7 +4,7 @@ review.pdf: main.tex review.bbl figures/*
 	pdflatex  --jobname="review" -interaction nonstopmode main
 	pdflatex  --jobname="review" -interaction nonstopmode main
 
-review.bbl: library.bib
+review.bbl: ../library.bib
 	pdflatex --jobname="review" -interaction nonstopmode main
 	bibtex review </dev/null
 

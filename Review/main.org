@@ -18,4 +18,4 @@
 #+INCLUDE: "review.org"
 
 bibliographystyle:apacite
-bibliography:library.bib
+bibliography:../library.bib
