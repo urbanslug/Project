@@ -7,15 +7,18 @@
 
 #+LATEX: \newcommand{\bigO}{\mathcal{O}}
 
-#+LaTeX: \newpage
+#+LATEX: \newpage
 #+INCLUDE: "abstract.org"
 
 #+LaTeX: \newpage
 #+LaTeX: \tableofcontents
 #+LaTeX: \listoffigures
 
-#+LaTeX: \newpage
+#+LATEX: \newpage
 #+INCLUDE: "review.org"
+
+#+LATEX: \newpage
+#+INCLUDE: "conclusion.org"
 
 bibliographystyle:apacite
 bibliography:../library.bib

@@ -1,0 +1,3 @@
+* Conclusion
+Most of these tools were written with the human genome in mind and are therefore 
+not limited to small genomes or that other tools are not useful when it comes to virus genomes.
