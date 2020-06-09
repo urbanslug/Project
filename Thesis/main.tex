@@ -1,6 +1,6 @@
-% Created 2020-06-05 Fri 12:49
+% Created 2020-06-09 Tue 14:56
 % Intended LaTeX compiler: pdflatex
-\documentclass[a4paper]{article}
+\documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
@@ -33,7 +33,6 @@
 \newcommand{\bigO}{\mathcal{O}}
 
 \newpage
-\fontmatter
 \newpage
 \begin{abstract}
 There are several methods that are used to evaluate and describe sequence
@@ -65,11 +64,11 @@ the utility of this pangenome in informing potential transmission events.
 \listoffigures
 
 \newpage
-\mainmatter
+
 \section{Introduction}
-\label{sec:orgf369d82}
+\label{sec:org1b33860}
 \subsection{Background Information}
-\label{sec:org164c9d9}
+\label{sec:orge9e5602}
 
 RSV was first isolated in Chimpanzees in 1956 and named Chimpanzee Coryza Agent
 \cite{morrisRecoveryCytopathogenicAgent1956}. 
@@ -103,14 +102,14 @@ upper respiratory tract infections in children and healthy adults
 \cite{chanockRecoveryInfantsRespiratory1957} with re-infections occurring throughout
 life even in the presence of pre-existing antibodies \cite{sullenderGeneticDiversityAttachment1991}.
 \subsection{Problem Statement}
-\label{sec:org9862021}
+\label{sec:orgef4ff34}
 Conventional methods of describing diversity involve comparing each sample
 against a given reference genome instead of comparing every sample against every
 other sample \cite{patenGenomeGraphsEvolution2017}. This comparison is
 non-transitive meaning that the way a sample varies from the reference does not
 expressly tell us how that sample varies from a separate sample. 
 \subsection{Justification}
-\label{sec:org5235d58}
+\label{sec:org10ba112}
 A reference genome graph is a robust data structure for representing genome
 variation unlike the current approach where we compare a sample against a
 linear reference genome. Given that consensus sequences are a mosaic of
@@ -118,22 +117,22 @@ haplotypes, we would like to make use of genome graph to disentangle the
 sequence diversity present in RSV sequences, and potentially other respiratory
 viruses. 
 \subsection{Objectives}
-\label{sec:org08de66f}
+\label{sec:org2c53262}
 \subsubsection{Main Objective}
-\label{sec:org743c2c4}
+\label{sec:org9fbcfdd}
 To construct an RSV variation graph from samples collected from a single
 household in the course of an RSV household outbreak.
 \subsubsection{Specific Objectives}
-\label{sec:org689d49e}
+\label{sec:org6d36545}
 \begin{enumerate}
 \item To perform a review of existing genome graph tools used in constructing pangenome graphs.
 \item To construct a variation graph from a set of samples collected from a single
 household during the course of an RSV epidemic.
 \end{enumerate}
 \section{Literature Review}
-\label{sec:orgb9b6314}
+\label{sec:orgd8e822d}
 \subsection{RNA Viruses}
-\label{sec:orge225b8c}
+\label{sec:orgcbb4dab}
 RNA viral populations don’t exist as a collection of organisms with a single
 genome but rather as a quasispecies
 (also called a mutant spectrum or a mutant cloud) where most of the biologically
@@ -150,7 +149,7 @@ optimized by natural selection is that in some cases it leads to local
 extinction \cite{duffyWhyAreRNA2018}.
 
 \subsubsection{Respiratory Syncytial Virus (RSV)}
-\label{sec:orgfc50f9f}
+\label{sec:orgb7d6ca2}
 RSV is the major cause of acute lower respiratory tract infections associated 
 with pneumonia, bronchitis (Borchers et al., 2013; Zlateva et al., 2004) and
 otitis \cite{kleinRoleRespiratorySyncytial1982} more frequently than any other agent and
@@ -179,7 +178,7 @@ cattle in North America \cite{griffinEconomicImpactAssociated1997}.
 
 \begin{enumerate}
 \item History
-\label{sec:org558aee6}
+\label{sec:org93afd92}
 The virus was first isolated in 1956 from Chimpanzees and named Chimpanzee
 Coryza Agent \cite{morrisRecoveryCytopathogenicAgent1956} after which it was
 isolated in children from whom it had not been possible to isolate and renamed 
@@ -188,7 +187,7 @@ subfamily Pneumovirinae, genus Pneumovirus
 \cite{chanockRecoveryInfantsRespiratory1957,beemAssociationChimpanzeeCoryza1960,zlatevaGeneticVariabilityMolecular2005}.
 
 \item Epidemiology
-\label{sec:orga98472a}
+\label{sec:org153ea0e}
 In older children and healthy adults, RSV presents in highly seasonal annual
 epidemics (Aamir et al., 2013; Al-Toum et al., 2006) of mild reinfections
 predominantly in the upper respiratory tract (Chanock et al., 1957) even in the
@@ -219,18 +218,18 @@ milder illnesses
 \cite{glezenRiskRespiratorySyncytial1981,caneMolecularEpidemiologyRespiratory2001}.
 
 \item The Genetic Makeup of RSV
-\label{sec:org534bebd}
+\label{sec:org5ee698f}
 \begin{figure*}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/RSV-genes.png}
-\caption{\label{fig:org3df2d4f}
+\caption{\label{fig:orgbe0d8ef}
 A schematic of RSV antisense RNA strand showing its 10 genes. The rectangles represent genes with the different shades of the same colour used to show similarity. The grey connectors are the intergenic regions. The numbers below are the estimated gene lengths. Adapted from (Nam \& Ison, 2019)}
 \end{figure*}
 
 \begin{figure*}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/RSV-cross-section.png}
-\caption{\label{fig:orga3b1d50}
+\caption{\label{fig:orgda899db}
 A schematic of the RSV capsid showing the lipid bilayer and most importantly the surface the F and G glycoproteins. From (Nam \& Ison, 2019).}
 \end{figure*}
 
@@ -256,7 +255,7 @@ envelope and the two non-structural proteins, NS1 and NS2  have recently been
 shown to antagonise the interferon-induced antiviral response
 \cite{fearnsRoleM21Transcription1999,schlenderBovineRespiratorySyncytial2000}.
 \item Groups of RSV
-\label{sec:org48b371c}
+\label{sec:org91b4240}
 RSV was initially divided into two antigenic groups A and B in 1966 by its 
 reaction with panels of monoclonal antibodies particularly those directed
 against its P, F and G proteins \cite{coatesAntigenicAnalysisRespiratory1966}. 
@@ -298,7 +297,7 @@ B: GB1–GB4, SAB1-SAB3, and BA1–BA10
 \cite{peretCirculationPatternsGenetically1998,peretCirculationPatternsGroup2000,venterGeneticDiversityMolecular2001,trentoMajorChangesProtein2003,shobugawaEmergingGenotypesHuman2009,eshaghiGeneticVariabilityHuman2012,aamirMolecularCharacterizationCirculating2013}.
 \end{enumerate}
 \subsection{Graphs in Bioinformatics}
-\label{sec:orgc9ea152}
+\label{sec:org7a7bdac}
 Contemporary methods of representing a reference genome as a linear sequence of 
 characters to represent bases \cite{diltheyImprovedGenomeInference2015} introduce a
 mapping bias towards alleles in the reference known as reference bias compared
@@ -311,7 +310,7 @@ varying degrees of accuracy, but it is naturally represented as a graph in
 which the sequences themselves are implicitly encoded as walks in the graph
 \cite{patenGenomeGraphsEvolution2017}.
 \subsection{Graph Theory}
-\label{sec:org70e9994}
+\label{sec:orgc7678ff}
 A graph is an object, or collection, of two sets, a vertex set and edge set.
 The vertex set is a finite non-empty set, to mean a graph must have at least one
 vertex.
@@ -328,7 +327,7 @@ G \{\{a c\} \{b d\}\}
 \begin{figure*}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/Graph-classifications-Undirected.png}
-\caption{\label{fig:org772d116}
+\caption{\label{fig:org300a483}
 G is an undirected graph of four nodes a,b,c and d.}
 \end{figure*}
 
@@ -337,13 +336,13 @@ H \{\{a c\} \{c d\}\}
 \begin{figure*}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/Graph-classifications-Digraph.png}
-\caption{\label{fig:orge230a56}
+\caption{\label{fig:org91caf0b}
 H is an undirected graph of notes a, b and c. Two vertices which are incident with a common edge are adjacent, as are two edges which are incident with a common vertex, and two distinct adjacent vertices are neighbours \cite{bondyGraphTheory2011}.}
 \end{figure*}
 
 
 \subsubsection{Graph classifications}
-\label{sec:orgba75ed0}
+\label{sec:org75e4adf}
 Graphs can be broken down into many classifications but in this case, we want to
 focus on simple versus multigraphs and directed versus undirected.
 A simple graph can only have one edge connecting two adjacent vertices while a
@@ -354,7 +353,7 @@ Simple Graph
 \begin{figure*}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/Graph-classifications-Simple-Graph.png}
-\caption{\label{fig:org105338b}
+\caption{\label{fig:org955aa89}
 A simple graph showing only a single edge connecting any two nodes}
 \end{figure*}
 
@@ -363,7 +362,7 @@ Multigraph
 \begin{figure*}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/Graph-classifications-Multigraph.png}
-\caption{\label{fig:org4ab80cd}
+\caption{\label{fig:org1acba7c}
 A multigraph where more than one edge can connect any two nodes.}
 \end{figure*}
 
@@ -399,12 +398,12 @@ automorphism of a graph is an isomorphism of the graph to itself as shown below.
 \begin{figure*}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/Isomorphism.png}
-\caption{\label{fig:orgaa7f827}
+\caption{\label{fig:org7ddc222}
 The two nodes are different visualizations of the same graph and therefore an isomorphism.}
 \end{figure*}
 
 \subsubsection{Walks and paths}
-\label{sec:orgf86c5fd}
+\label{sec:org052584b}
 A path is a simple graph whose vertices can be arranged in a linear sequence in
 such a way that two vertices are adjacent if they are consecutive in the 
 sequence, and are nonadjacent otherwise \cite{bondyGraphTheory2011}.
@@ -426,7 +425,7 @@ vertex exactly twice and all the other vertices in the graph exactly once
 \cite{trudeauIntroductionGraphTheory1993}.
 
 \subsection{Genome Graphs}
-\label{sec:org338970a}
+\label{sec:org601c120}
 A genome graph is a generic term that refers to the representation of a sequence
 or sequences or genetic material using graph-based methods implicitly or
 explicitly. Genome graphs are expected to lead to improvements in mapping reads,
@@ -444,7 +443,7 @@ intersection points between connected subsequences
 \cite{patenGenomeGraphsEvolution2017}.
 
 \subsubsection{De Bruijn Graph}
-\label{sec:org57e080d}
+\label{sec:orgf1a8dc1}
 These are graphs used in the assembly of reads named after Dutch mathematician
 Nicolaas de Bruijn who became interested in the superstring problem: find a 
 shortest circular superstring that contains all possible substrings of length k
@@ -452,14 +451,14 @@ shortest circular superstring that contains all possible substrings of length k
 k-mers \cite{compeauHowApplyBruijn2011}.
 
 \subsubsection{Sequence graph}
-\label{sec:orgcd29143}
+\label{sec:org7d24485}
 A sequence graph is a bidirected graph in which each node is labelled with a
 nucleotide string a “sequence graph” \cite{patenGenomeGraphsEvolution2017}.
 In this bidirected graph, the features of an edge indicate to which side of a 
 node (sequence), 5’ or 3’, each end of the edge connects" \cite{novakGenomeGraphs2017}.
 
 \subsubsection{Variation Graph}
-\label{sec:orga8fde21}
+\label{sec:org16473dd}
 A variation graph is a graph where a complete walk along the graph represents a
 haplotype \cite{patenGenomeGraphsEvolution2017}.
 
@@ -475,7 +474,7 @@ are expressible in the bidirected representation
 \cite{patenGenomeGraphsEvolution2017}.
 
 \subsubsection{Population Reference Graphs (PRGs)}
-\label{sec:org4cb5156}
+\label{sec:org3932ec7}
 Population reference graphs are graphs that represent a population-wide genome
 combining multiple reference sequences and catalogues of variation
 \cite{diltheyImprovedGenomeInference2015}. 
@@ -483,10 +482,10 @@ This concept may also be extended to represent, in our case, a virus mutant
 cloud.
 
 \subsubsection{Problems arising from graph-based reference models}
-\label{sec:org1ad7f64}
+\label{sec:orgdef2aad}
 \begin{enumerate}
 \item Calling alleles at sites
-\label{sec:orgbcce624}
+\label{sec:org7079ffa}
 This involves declaring an allele at a given position, this position could span
 several nodes or edges in an undefined manner. 
 
@@ -500,13 +499,13 @@ Superbubbles and ultrabubbles are directed acyclic subgraphs that connect to the
 rest of the graph through one source node and one sink node
 \cite{patenSuperbubblesUltrabubblesCacti2017}.
 \item Non-trivial indexing and reference mapping
-\label{sec:org379c815}
+\label{sec:org279491f}
 We now need to use methods that are aware of alternative alleles to map reads to
 a graph reference \cite{patenGenomeGraphsEvolution2017}. 
 The indexing could be done through gbwt \cite{sirenHaplotypeawareGraphIndexes2018}
 could be achieved via partial order alignment gssw \cite{zhaoSSWLibrarySIMD2013}.
 \item Coordinate system
-\label{sec:orge963ce5}
+\label{sec:org2ffd487}
 A reference genome coordinate system is a system that uses coordinates to
 uniquely determine the positions of bases in the reference genome 
 \cite{randCoordinatesIntervalsGraphbased2017}.
@@ -526,14 +525,14 @@ horizontal spatiality of bases that can appear together within a single molecule
 \cite{randCoordinatesIntervalsGraphbased2017}.
 \end{enumerate}
 \subsubsection{Mapping reads to a reference genome graph}
-\label{sec:org29aff49}
+\label{sec:org5c9abba}
 Given that a genetic sequence is read in small pieces for short reads and much
 longer pieces for long reads, we need to find where in the genome a read comes
 from. Read mapping is the process of finding the position where the read came
 from in a reference sequence or graph \cite{novakGenomeGraphs2017}.
 \begin{enumerate}
 \item Reference bias or reference allele bias
-\label{sec:org089a98f}
+\label{sec:orgdd6f6f6}
 Reference allele bias is the tendency to under-report data whose underlying DNA
 does not match a reference allele \cite{patenGenomeGraphsEvolution2017}.
 Masking known SNP positions in the genome sequence can eliminate the reference
@@ -542,7 +541,7 @@ bias but do not lead to more reliable results overall
 \end{enumerate}
 
 \subsubsection{Variation Graphs in Virus Haplotype Detection and Quantification}
-\label{sec:orge3fd1b4}
+\label{sec:org5001a26}
 Compared to eukaryotes, viruses have relatively short genomes and high mutation 
 rates \cite{duffyWhyAreRNA2018} and RNA viruses exist as a quasi-species 
 \cite{domingoViralQuasispeciesEvolution2012}. This gives rise to the need to
@@ -565,9 +564,9 @@ collection of strain-specific contigs assembled from the data and produces
 full-length haplotypes and corresponding abundance estimates 
 \cite{baaijensStrainawareAssemblyGenomes2020}.
 \subsection{A Review of Genome Graph Tools}
-\label{sec:orgc433791}
+\label{sec:org81d10bd}
 \subsubsection{Introduction}
-\label{sec:orgdddc68a}
+\label{sec:orgb537c57}
 
 There are four major overlapping steps that need to be carried out after DNA 
 sequencing to get actionable results. 1) fragment assembly which involves 
@@ -577,7 +576,7 @@ relatedness of sequences; and 3) Visualization to see these changes.\cite{flicek
 \todo{expand intro}
 
 \subsubsection{Fragment Assembly}
-\label{sec:orgca0d9fe}
+\label{sec:org750d50f}
 The fragment assembly problem, reconstructing long contigs from reads
 \cite{chikhiCompactingBruijnGraphs2016}, started with Sanger sequencing.
 Like solving a puzzle of sequences the assembly problem can be framed as finding
@@ -587,7 +586,7 @@ approach.
 
 \begin{enumerate}
 \item Overlap Graph
-\label{sec:orgab6bfb3}
+\label{sec:orgf1cf600}
 The first solution was SEQAID, short for \textbf{seq}uencing \textbf{aid},
 \cite{peltolaSEQAIDDNASequence1984} which used the  Overlap Layout Consensus (OLC)
 framework, an intuitionistic approach to the assembly problem that works in  
@@ -595,25 +594,25 @@ framework, an intuitionistic approach to the assembly problem that works in
 a graph of all the reads based on their overlaps, and 3) Consensus: infer the
 consensus sequence.
 
-What it does is find the overlaps between the given set of reads and then lays 
+It finds the overlaps between the given set of reads and then lays 
 them out to form a DAG. The graph, however, has multiple paths that are the 
 genome or superstring in question. Which is where the consensus comes in. 
 It used … to infer the consensus.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{figures/OLC framework.png}
+\includegraphics[width=0.7\textwidth]{./figures/OLC framework.png}
 \caption{OLC...}
 \end{figure}
 
-With the advent of Second Generation Sequencing (SGS) technologies 
+With the advent of Second-Generation Sequencing (SGS) technologies: 
 Roche/454 (www.454.com), Illumina/solexa (www.illumina.com),
 and AB/Solid (www.appliedbiosystems.com) there was a significant reduction in 
 the cost per sequenced nucleotide \cite{liComparisonTwoMajor2012} leading to an 
 explosion in the number of reads produced and thus making OLC unfeasible. 
 
 \item de Bruijn Graph
-\label{sec:orgf168518}
+\label{sec:org9f3ff6b}
 OLC based methods were progressively replaced by de Bruijn Graph (DBG)
 \cite{iduryNewAlgorithmDNA1995} based methods whose first tool was EULER
 \cite{pevznerEulerianPathApproach2001}.
@@ -643,7 +642,7 @@ The unitig approach involves finding the maximal interval subgraphs in the
 graph of all read overlaps.
 
 \item String Graph
-\label{sec:org2d6093b}
+\label{sec:orgc0ebad0}
 The string graph \cite{myersFragmentAssemblyString2005} is a way to infer the 
 genome from the read data without a need for k-mers as is with the de Bruijn 
 graph.  It treats the genome as a sequence of repeats and then encodes each 
@@ -658,7 +657,7 @@ An Eulerian tour recreates the genome.
 \end{enumerate}
 
 \subsubsection{Alignment and mapping}
-\label{sec:orge859240}
+\label{sec:org8dd7e02}
 Alignment involves computing the amount of similarity between two strings also 
 known as the edit distance problem.
 The solution to the edit distance problem by
@@ -690,7 +689,7 @@ number of  vertices |V| and edges |E| <citation needed>.  In some way you can
 think of it as mapping to multiple linear sequences that may or may not loop.
 
 \subsubsection{Indexing}
-\label{sec:org20c9668}
+\label{sec:org43281ec}
 Indexing is a solution to the problem of search given limited computing
 resources. An index is useful to speed up alignment and make it pragmatic within
 the given time and memory requirements. 
@@ -714,7 +713,7 @@ genome graph.
 Below are some of the approaches taken to solve the problem of indexing
 \begin{enumerate}
 \item Burrows-Wheeler Transform
-\label{sec:org4aeba07}
+\label{sec:org7846cec}
 The Burrows-Wheeler Transform (BWT) was introduced by
 \cite{burrowsBlocksortingLosslessData1994} for string data 
 compression and to this day forms the basis of the bzip compression algorithm.
@@ -723,7 +722,7 @@ It works as a preliminary step in the building of indices and also the
 compression of \todo{expound}
 
 \item Suffix Array
-\label{sec:org43799ef}
+\label{sec:orgd337695}
 Suffix arrays, introduced by \cite{manberSuffixArraysNew1990}, are arrays of the
 positions of all the sorted suffixes of a string.
 A suffix array is a simple, space efficient
@@ -743,7 +742,7 @@ Tools using the suffix array include Bowtie
 and SOAP2 \cite{liSOAP2ImprovedUltrafast2009}.
 
 \item FM Index
-\label{sec:org8d61b42}
+\label{sec:org9b4491f}
 Short for Full-text index in Minute space; the FM-index created
 by \cite{ferraginaOpportunisticDataStructures2000} is a full text substring index
 based on the BWT. It allows compression of the input text while permitting fast
@@ -752,7 +751,7 @@ of a pattern within the compressed text, as well as locate the position of each
 occurrence.
 
 \item Positional Burrows-Wheeler Transform
-\label{sec:orgd1892b7}
+\label{sec:org20bb36b}
 Introduced by \cite{durbinEfficientHaplotypeMatching2014} Positional Burrows 
 Wheeler Transform is an algorithm with complexity \(\bigO(NM)\) where M sequences
 and N bi-allelic sites.
@@ -764,7 +763,7 @@ their prefixes allowing similar sequences to cluster together.
 <Add PBWT table and graphic>
 
 \item GBWT/gPBWT
-\label{sec:orged0db74}
+\label{sec:orgb670665}
 First described \cite{novakGraphExtensionPositional2017} but used in a tool
 \cite{sirenHaplotypeawareGraphIndexes2020} it’s a compressible representation of 
 a set of haplotypes held in the graph. This allows for efficient match queries 
@@ -775,7 +774,7 @@ GBWT lets us have an efficient way of counting the number of haplotypes
 containing a given sequence.
 
 \item Bloom filters
-\label{sec:org368c001}
+\label{sec:org27536e4}
 The bloom filter is a probabilistic data structure that can give false positive
 but never a false negative.  It works by hashing data and stores the hash in an
 array\ldots{}
@@ -786,17 +785,17 @@ data localization \todo{expound} which led to the use of Blocked Bloom Filters (
 Bifrost \cite{holleyBifrostHighlyParallel2019}.
 
 \item Minimizers
-\label{sec:org030e65c}
+\label{sec:org5e3c77a}
 The work of a minimizer is to reduce the search space. It does this by generating
 kmers from a read and sorting them alphabetically. The k-mer at the top is the
 minimizer for that read\ldots{} then binning the result. When a query is made it’s
 prefix is checked against the bin and the rest of the data ignored
 <is this even accurate?>
 We can get a minimizer by BBF blocked bloom filter Minimizers
-\cite{grabowskiDiskbasedCompressionData2015,robertsReducingStorageRequirements2004}
+\cite{grabowskiDiskbasedCompressionData2015,robertsReducingStorageRequirements2004}.
 
 \item Hash tables
-\label{sec:org5bed18a}
+\label{sec:org924b39d}
 Hash tables involve breaking down the reads into k-mers and storing the kmers
 into hash tables that point to the original data. When queries are made they’re 
 similarly broken down into k-mers of the expected size<citation needed>.
@@ -809,7 +808,7 @@ different indexing schemes such as in Minimap
 \cite{liDesignConstructionReference2020}. \todo{ensure this citation checks out}
 \end{enumerate}
 \subsubsection{Genome Graph Tools}
-\label{sec:org6240467}
+\label{sec:org97e2f29}
 The Berkeley Open Assembler \cite{myersFragmentAssemblyString2005} borrows 
 from the unitig algorithm and uses the string graph, a way to infer the genome
 from the read data without a need for k-mers.
@@ -988,13 +987,16 @@ necessary Myer’s bit-vector algorithm studies the semi-global sequence-to-grap
 alignment problem.
 It seeks to find a path in a directed, node-labelled graph that has the
 minimum edit distance to the query sequence. Myers’ bit-vector alignment 
-algorithm (Myers, 1999) to graphs, which proceeds along the same lines as the
-Shift-And algorithm, but requires some further algorithmic insights to handle 
-nodes with an in-degree greater than one. Bitvector algo complexity grows 
-approximately linearly with the number of vertices in the graph. The bitvector 
-it uses is the size of the pattern we are searching for. Semi-global alignment 
-is solved through generalizing DP edit distance problem for graphs. Semi-global 
-alignment is used to align a shorter seq against a longer one, reference.
+algorithm \cite{myersFastBitvectorAlgorithm1999} to graphs, which proceeds along 
+the same lines as the Shift-And algorithm, but requires some further algorithmic 
+insights to handle nodes with an in-degree greater than one.
+Bitvector algo complexity grows approximately linearly with the number of
+vertices in the graph.
+The bitvector it uses is the size of the pattern we are searching for.
+Semi-global alignment is solved through generalizing DP edit distance problem
+for graphs.
+Semi-global alignment is used to align a shorter seq against a longer one,
+reference.
 Shift-And algorithms (Baeza-Yates and Gonnet, 1992; Domolki, 1964, 1968) 
 performs exact string matching to graphs. 
 Their aim is to find a path in a directed, node-labeled graph that has a minimum
@@ -1024,7 +1026,7 @@ individual haplotypes from a mixed sample at the strain level and to provide
 abundance estimates for the strains. It does this by\ldots{}
 
 \subsubsection{Interfaces and APIs}
-\label{sec:org153922e}
+\label{sec:org9d759a6}
 The field of genome graphs is growing quickly as evidenced by the ever-growing
 number of tools creating the need for a common way for these tools interact with
 the data they operate on.
@@ -1058,7 +1060,7 @@ PackedGraph (low memory) and HashGraph (high-performance hash tables).
 vg is now using libhandlegraph through libbdsg (libhandlegraph paper).
 
 \subsubsection{Plaintext graphical representations}
-\label{sec:org631da7e}
+\label{sec:org2c64088}
 In the early 2000s assembly software was dominated by a few end to end assembly
 software such as SPAdes, ALLPATHS, ABySS, and SOAPdenovo
 \url{https://pmelsted.wordpress.com/2014/07/17/dear-assemblers-we-need-to-talk-together/}.
@@ -1080,7 +1082,8 @@ follow this edge or the reverse complement of this edge
 (indicated by a preceding\textasciitilde{}), and Properties is a list of optional properties 
 associated with this edge. To facilitate
 inversions, the format allows for adjacencies between forward and reverse
-complement. Reverse complements are indicated by a prime symbol 30\textprime.
+complement. Reverse complements are indicated by a prime symbol \('\)
+.
 
 
 \begin{verbatim}
@@ -1124,13 +1127,13 @@ It’s an extension of PAF \cite{liMinimapMiniasmFast2016}.
 It is tab delimited like GFA. \todo{describe the grammar}
 
 \subsubsection{Genome graphs as databases (logic programming)}
-\label{sec:orga7d2009}
+\label{sec:org74b0bd5}
 We can also treat the variation graph as a graph database. For this, SpOdgi 
 \todo{citation needed} transforms any odgi genome variation graph file into a
 SPARQL capable database.
 
 \subsubsection{Visualization}
-\label{sec:org654b03a}
+\label{sec:org9ca2a12}
 Visualization tools are a core tenet of bioinformatics and science in general.
 They help us understand our assemblies and communicate the results with others. 
 Different tools exist depending on the level of resolution needed and 
@@ -1150,7 +1153,9 @@ The major issue is the runtime scalability; force-directed layout has quadratic
 or even cubic costs with respect to graph size \todo{cite pantograph docs}.
 The Open Graph Drawing Framework library (\url{http://www.ogdf.net/}) is used to
 perform the graph layout using the fast multipole multilevel layout algorithm, 
-which scales well for very large graphs (Hachul and Ju ̈ nger, 2007).
+which scales well for very large graphs
+\cite{hachulLargeGraphLayoutAlgorithms2007}.
+
 It reads a graph in a variety of formats: LastGraph (Velvet), FASTG (SPAdes), 
 Trinity.fasta, ASQG and GFA and allows the export of a visualization graph
 either entirely or a section of it (\url{https://rrwick.github.io/Bandage/}).
@@ -1181,517 +1186,6 @@ It renders the genome graph in a matrix. It reads a variation graph in JSON from
 odgi bin.
 
 \todo{Add image of our Household 20 dataset in pantograph}
-\section{Materials and Methods}
-\label{sec:org97d8c45}
-\subsection{Simulated Reads—SARS-CoV-2}
-\label{sec:orga206ae5}
-\subsubsection{Fetch the reference}
-\label{sec:org4bb5c6c}
-Fetch latest, as of Jan 17 2020, COVID-19 reference.
-
-\begin{verbatim}
-efetch -db=nuccore -format=fasta -id=NC_045512.2 > \
- ~/projects/Masters/verify/data/refs/COVID_19.fa
-\end{verbatim}
-
-\subsubsection{Simulate reads}
-\label{sec:org73525bb}
-Simulate 3 sets of reads. 2 that aren’t distantly related to the reference and 1 that is.
-To do this we shall vary the mutation rate -r, default 0.0010, but keep the mutation frequency -F at a default, 0.5000. We want 1000 read pairs
-Suggestions concerning the relationship between mutant frequency and mutation rate at the hprt locus in human peripheral T-lymphocytes
-For 2 of them we shall use the same mutation rate but for one increase it.
-Set ref as a var
-
-
-\begin{verbatim}
-export REF=~/projects/Masters/verify/data/refs/COVID_19.fa
-\end{verbatim}
-
-Simulate the reads
-\begin{verbatim}
-dwgsim -N 1000 $REF covid_19_sim_1
-dwgsim -N 1000 $REF covid_19_sim_2
-\end{verbatim}
-
-Increase the mutation rate from the default 0.0010 to 0.0100
-
-\begin{verbatim}
-dwgsim -N 1000 -r 0.0100 $REF covid_19_sim_3
-\end{verbatim}
-
-\subsubsection{Construct the assembly graph}
-\label{sec:org1660648}
-Assemble a coloured de Bruijn graph using Bifrost
-What’s a colored graph? The colored de Bruijn graph is a variant of the de Bruijn graph which keeps track of the source of each vertex in the graph (Iqbal et al., 2012)
-Prepare a sequences.txt file
-
-\begin{verbatim}
-~/projects/Masters/verify/data/reads/simulated/COVID_19/1/covid_19_sim_1_interleaved.fastq
-~/projects/Masters/verify/data/reads/simulated/COVID_19/2/covid_19_sim_2_interleaved.fastq
-~/projects/Masters/verify/data/reads/simulated/COVID_19/3/covid_19_sim_3_interleaved.fastq
-\end{verbatim}
-
-Build the graph using bifrost
-
-\begin{verbatim}
-Bifrost build \
-  -c \
-  -k 31 \
-  -s sequences.txt \
-  -o SARS-CoV-2
-\end{verbatim}
-
-When we view the DBG in bandage it looks like so:
-
-Figure x:
-\subsubsection{Bluntify/correct overlaps with gimbricate}
-\label{sec:org0e14e05}
-“bluntify” the GFA graph produced by a DBG assembler using gimbricate and seqwish, Bluntify means reducing overlaps on edges into nodes and edges in the graph itself.
-We want to come from the DBG to a VG
-
-\begin{verbatim}
-gimbricate -d  \
-  -g SARS-CoV-2.gfa \
-  -p SARS-CoV-2.paf \
-  -f SARS-CoV-2.fasta \
-  > SARS-CoV-2.gimbry.gfa
-\end{verbatim}
-
-\subsubsection{Induce a variation graph}
-\label{sec:orgcb520ea}
-Induce a variation graph using seqwish
-
-\begin{verbatim}
-seqwish \
-  -s SARS-CoV-2.fasta \
-  -p SARS-CoV-2.paf \
-  -g SARS-CoV-2.seqwish.gfa
-\end{verbatim}
-
-\subsubsection{Prepare the graph for use with VG}
-\label{sec:orgd6b999d}
-The GCSA2 indexer requires nodes to be no longer than 1024 bp, therefore, we have to use odgi chop to “chop”/reduce the sizes of these nodes.
-\begin{enumerate}
-\item Build
-\label{sec:orga81f2d9}
-First build the graph with odgi build. Pass the -s flag to both build and sort the graph
-
-\begin{verbatim}
-odgi build \
-  -s \
-  -g SARS-CoV-2.seqwish.gfa \
-  -o SARS-CoV-2-odgi-graph.vg
-\end{verbatim}
-
-\item Chop
-\label{sec:orgaeb58c3}
-
-\begin{verbatim}
-odgi chop \
-  -i SARS-CoV-2-odgi-graph.vg \
-  -c 1024 \
-  -o SARS-CoV-2-odgi-chopped.vg
-\end{verbatim}
-
-\item Sort
-\label{sec:orga07dbef}
-Topologically order the graph
-
-\begin{verbatim}
-odgi sort \
- -i SARS-CoV-2-odgi-chopped.vg \
- -o SARS-CoV-2-odgi-sorted.vg
-\end{verbatim}
-
-\item odgi view
-\label{sec:org542bfa9}
-Projection of graphs into gfa
-
-\begin{verbatim}
-odgi view \
- -i SARS-CoV-2-odgi-sorted.vg \
- -g \
- > SARS-CoV-2-odgi.gfa
-\end{verbatim}
-\end{enumerate}
-
-\subsubsection{Mapping}
-\label{sec:org1459eec}
-Now that we have prepared the graph for vg using odgi it’s time to use vg
-\begin{enumerate}
-\item vg view
-\label{sec:org8540d7b}
-\begin{verbatim}
-Usage: vg view [options] [ <graph.vg> | <graph.json> | <aln.gam> | <read1.fq> [<read2.fq>] ]
-options:
-    -g, --gfa                  output GFA format (default)
-    -F, --gfa-in               input GFA format, reducing overlaps if they occur
-    -v, --vg                   output VG format
-
-vg view -Fv SARS-CoV-2-odgi.gfa > SARS-CoV-2-vg.vg
-\end{verbatim}
-
-\item vg index
-\label{sec:org21a004c}
-Index the graph to allow for mapping
-Creates an index on the specified graph or graphs. All graphs indexed must
-already be in a joint ID space.
-
-\begin{verbatim}
-xg options:
-    -x, --xg-name FILE     use this file to store a succinct, queryable version of the graph(s), or read for GCSA indexing
-gcsa options:
-    -g, --gcsa-out FILE    output a GCSA2 index to the given file
-    -k, --kmer-size N      index kmers of size N in the graph (default 16)
-
-vg index -x SARS-CoV-2.xg -g SARS-CoV-2.gcsa SARS-CoV-2-vg.vg
-\end{verbatim}
-
-Building the index is not so instantaneous.
-\item vg map
-\label{sec:org6085ede}
-Generate a \texttt{gam} file
-Map our reads to the graph for each set of reads that we have from 1 to 3 So for this let’s write a bash script
-
-\begin{verbatim}
-for i in {1..3}
-do 
- vg map \
-    -f ~/projects/Masters/verify/data/reads/simulated/COVID_19/${i}/covid_19_sim_${i}_interleaved.fastq \
-    -x SARS-CoV-2.xg \
-    -g SARS-CoV-2.gcsa \
-    > SARS-CoV-2-${i}.gam
-done
-\end{verbatim}
-\end{enumerate}
-
-\subsubsection{Calculate coverage across the graph for each biosample}
-\label{sec:orgc57b2a0}
-Use vg pack to get a coverage vector for each biosample
--d, --as-table         write table on stdout representing packs
-
-\begin{verbatim}
-for i in {1..3}
-do 
- vg pack \
-   -x SARS-CoV-2.xg \
-   -g SARS-CoV-2-${i}.gam \
-   -d \
-   > SARS-CoV-2-${i}.pack.table
-done
-\end{verbatim}
-
-View the tables as a pandas dataframe
-
-
-\subsection{Actual Reads—RSV}
-\label{sec:orgcd32994}
-\subsubsection{Preprocessing}
-\label{sec:orgc09113d}
-\begin{enumerate}
-\item Quality control
-\label{sec:org6e4cb29}
-cat all the files in \(~/miniconda3/share/trimmomatic-0.39-1/adapters/\) into one 
-file. In my case adapters.fa.
-
-Remove reads beyond QC of 35 and trim the adapters
-\begin{verbatim}
-trimmomatic PE \
- data/H_528_16_04/H_528_16_04_1.fastq.gz data/H_528_16_04/H_528_16_04_2.fastq.gz \
- trimmed_forward_paired.fq.gz trimmed_forward_unpaired.fq.gz trimmed_reverse_paired.fq.gz trimmed_reverse_unpaired.fq.gz \
- ILLUMINACLIP:adapters/adapters.fa:2:35:10:2:keepBothReads \
- SLIDINGWINDOW:4:35 \
-\end{verbatim}
-
-I then compiled the interleaved reads filepaths to a txt file:
-
-\begin{verbatim}
-find $(pwd)/data -d -name '*interleave*fq' > sequences.txt
-\end{verbatim}
-Two datasets were causing seqwish to crash so I removed them from sequences.txt
-
-\begin{verbatim}
-data/H_536_09_04/H_536_09_04_interleaved.fq:1271846:AGAACTCAGTGTAGGTAGAATGGTTGGCTGATCAATATCTCTAATGATTTTGGTCTGTGAATCAACTGTCATAAGAGAATTCTATCAAAGTTGAATTCCGAATCCTTGGGTCAATGACTGGGTGCACCCATTCTTCTAATGTGCTCTGTC
-data/H_506_13_04/H_506_13_04_interleaved.fq:3831798:AGAACTCAGTGTAGGTAGAATGGTTGGCTGAGTAGGTAGATGGAGGCAGGTGCATGTGTGATGGGAAGTGTGGTGACGGGTTGTGTGGGCACACGGGATGAGGCGCAGATGGCTGGGGGTTTGGGAGGGGAATGGGTGGGAGAAGGAGGC
-\end{verbatim}
-\end{enumerate}
-
-
-\subsubsection{Construct the assembly graph  using minia}
-\label{sec:org5a210a7}
-minia uses bcalm2 internally. The unitig graph that it produces is the bcalm2
-construction.
-Minia is then applying a bunch of assembly heuristics to reduce the complexity
- of the graph and try to get out longer contigs. I find it's better to use than 
-the raw DBG.
-
-Given the nature of our dataset: 
-51 samples
-Each fastq is about 400-500M in size
-In order to get a graph that we expect (similar strcutre and approximate size to
-the expected genome) we have to set a high minimum abundance.
-Using a k-mer size of 31 and a minimum abundance of 2000 the assembly graph is
-237K (about 20x the genome size).  When we use a min abundance of 1000 we get a
-GFA of 157K (10x the genome size) but we “lose one of the variable regions".
-
-\begin{verbatim}
-minia -in ../sequence_paths.txt \
-  -kmer-size 31 \
-  -abundance-min 1000 \
-  -nb-cores 8
-\end{verbatim}
-
-Figure x: a minimum abundance of 1000
-
-Figure x: a minimum abundance of 2000
-\subsubsection{Bluntify the graph using stark}
-\label{sec:orga202aae}
-Going with the 1000 min abundance graph. We chose to bluntify it using stark
-(\url{https://github.com/hnikaein/stark}) 
-
-\begin{verbatim}
-stark -i input_file_name \
-  -o stark_bluntify.gfa \
-  -s cpu-consuming
-\end{verbatim}
-
-Yields a  206K GFA that when visualized looks like so
-
-Figure x: bluntified graph 
-
-
-\subsubsection{Prepare the graph for mapping with vg}
-\label{sec:orgba25f1d}
-Odgi is\ldots{}
-I combine a series of commands into this bash script
-
-\begin{verbatim}
-#!/usr/bin/env bash
-
-# premap.sh
-
-InputGFA=$1
-BuildVG="build-odgi.vg"
-ChoppedVG="chopped-odgi.vg"
-SortedVG="sorted-odgi.vg"
-ViewGFA="view-odgi.gfa"
-
-echo "Using $InputGFA"
-
-odgi build \
-     -s \
-     -g ${InputGFA} \
-     -o ${BuildVG}
-
-echo "Chopping to size 1024"
-
-odgi chop \
-     -i build-odgi.vg \
-     -c 1024 \
-     -o ${ChoppedVG}
-
-echo "Sorting"
-
-odgi sort \
-     -i chopped-odgi.vg \
-     -o ${SortedVG}
-
-echo "Generating GFA $ViewGFA"
-
-odgi view \
-     -i sorted-odgi.vg \
-     -g \
-     > ${ViewGFA}
-\end{verbatim}
-
-Run with
-
-\begin{verbatim}
-./pre-map.sh stark_bluntify.gfa
-\end{verbatim}
-
-Visualize the graph to see
-
-
-\subsubsection{Mapping with vg}
-\label{sec:org1984be4}
-\begin{enumerate}
-\item Convert GFA to vg compatible variation graph
-\label{sec:orgcc91f43}
-Get a vg compatible variation graph out of the gfa
-
-\begin{verbatim}
-vg view -Fv view-odgi.gfa > graph.vg
-\end{verbatim}
-
-\item Index
-\label{sec:org6454df1}
-In this case I don’t want to prune because our graph (graph.vg)  is small (62k) 
-and I don’t want to lose complex regions 
-(e.g. regions with many variants close to each other)
-
-\url{https://github.com/vgteam/vg/wiki/Index-Construction\#without-haplotypes}
-
-\url{https://github.com/vgteam/vg/wiki/Index-Construction\#without-a-reference-or-haplotypes}
-
-I don’t want to prune and will therefore build the index like so
-
-\begin{verbatim}
-vg index -x graph.xg -g graph.gcsa graph.vg
-\end{verbatim}
-
-We get a 61K graph.xg and a 258K graph.gcsa.
-\item Mapping
-\label{sec:orgcb5d5ac}
-We want to map each sample against the graph.
-For this we use we want to loop through each of our interleaves sequences
-and put the outpur gam files in a directory we specify.
-We use the bash script below.
-
-\begin{verbatim}
-#!/usr/bin/env bash
-
-Graphname="graph"
-# Using a gams dir to put the gam files
-GAMDir="gams"
-
-# For each file in the sequence list, call vg to map it to the graph
-while read Filepath;
-
-
-do
-    # paramter expansion http://mywiki.wooledge.org/BashFAQ/073
-    Filename=${Filepath##*/}
-    FileStub=${Filename%_*}
-
-    echo "Mapping $FileStub"
-    vg map \
-       -f ${Filepath} \
-       -x ${Graphname}.xg \
-       -g ${Graphname}.gcsa \
-       > ${GAMDir}/${FileStub}.gam
-\end{verbatim}
-
-Run with
-
-\begin{verbatim}
-./map.sh < ../sequence_paths.txt
-\end{verbatim}
-
-Verify a GAM converting the converting to GAMP and viewing in JSON the
-\url{https://github.com/vgteam/vg/wiki/Visualization\#viewing-alignments}
-\url{https://github.com/vgteam/vg/wiki/Multipath-alignments-and-vg-mpmap}
-
-\begin{verbatim}
-vg view -a -k gams/H_513_02_04.gam > Images/H_513_02_04.gamp
-
-vg view -K -j Images/H_513_02_04.gamp > Images/H_513_02_04_GAMP.json
-
-cat Images/H_513_02_04_GAMP.json | jq | less
-\end{verbatim}
-\end{enumerate}
-\subsubsection{Calculate coverage across the graph for each biosample}
-\label{sec:org2ba108c}
-We want all our coverage vectors in a coverage dir.
-mkdir coverage/
-
-Use this this coverage.bash to generate a coverage vector as a table
-
-\begin{verbatim}
-#!/usr/bin/env bash
-
-# Loop through each gam file
-Graphname="graph"
-CoverageDir="coverage"
-
-while read Filepath;
-do
-    # parameter expansion http://mywiki.wooledge.org/BashFAQ/073
-    FileStub=${Filepath%.*}
-
-    vg pack \
-       -d \
-       -x ${Graphname}.xg \
-       -g ${Filepath} \
-       > ${CoverageDir}/${FileStub}.pack.table
-done
-\end{verbatim}
-
-Run with
-
-\begin{verbatim}
-find $(pwd)/gams -d -name '*.gam' > gams.txt
-./map.sh < gams.txt
-# or
-./coverage.sh < find $(pwd)/gams -d -name '*.gam'
-\end{verbatim}
-\section{Results---Graphical Sequence Comparison}
-\label{sec:orgcf092de}
-\subsection{Introduction}
-\label{sec:org1aa067b}
-All vs all genome comparison enabled by genome graphs.
-Contemporary genomic methods compare each sample based on how it compares against a reference.
-A pangenomic method compares each sample against every other sample through the use of a reference pangenome graph. 
-
-\begin{figure*}
-\centering
-\includegraphics[width=0.7\textwidth]{figures/All-versus-All-Comparison.png}
-\caption{\label{fig:orgc92a02e}
-This comparison using Venn diagrams and three samples A, B, and C.}
-\end{figure*}
-
-
-\begin{figure*}
-\centering
-\includegraphics[width=0.7\textwidth]{figures/ekg-all-vs-all.png}
-\caption{\label{fig:org5e6a3bf}
-from\ldots{}}
-\end{figure*}
-
-\subsection{Simulated Reads—SARS-CoV 2}
-\label{sec:org8e1baec}
-\subsubsection{Scatter Plot}
-\label{sec:org9ec087e}
-
-Figure x:
-\subsubsection{Heatmap}
-\label{sec:org70e4e77}
-
-Figure x:
-\subsubsection{PCA}
-\label{sec:org5989601}
-
-Figure x:
-\subsubsection{Generate a dendrogram through neighbor-joining}
-\label{sec:org07768c9}
-
-Figure x:
-
-\subsection{Actual Reads—RSV}
-\label{sec:org5551cbb}
-\subsubsection{Household 5 Background}
-\label{sec:orgad91592}
-In a community, each member of the household was sampled …
-
-Figure x:
-The previous analysis yielded a phylogenetic tree as shown below (it’s unable to differentiate closely related samples
-Figure x:
-
-\subsubsection{Heatmap}
-\label{sec:org3aaeb74}
-The number of node ids that a sample maps to at a given point. These are aggregated by the median.
-
-Figure x:
-
-\subsubsection{PCA}
-\label{sec:org9ff1d05}
-Figure x:
-
-\subsubsection{Dendrograms}
-\label{sec:org19122a7}
-Figure x:
-\section{Conclusion}
-\label{sec:orgab1015a}
 
 \newpage
 \bibliographystyle{apacite}

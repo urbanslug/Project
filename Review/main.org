@@ -1,0 +1,21 @@
+#+TITLE: A Review of Genome Graph Tools
+#+AUTHOR: Njagi Mwaniki and you if you wanna ;)
+#+OPTIONS: toc:nil
+#+LATEX_HEADER_EXTRA: \usepackage{todonotes}
+#+LATEX_HEADER_EXTRA: \usepackage{apacite}
+#+LATEX_HEADER_EXTRA: \usepackage{float}
+
+#+LATEX: \newcommand{\bigO}{\mathcal{O}}
+
+#+LaTeX: \newpage
+#+INCLUDE: "abstract.org"
+
+#+LaTeX: \newpage
+#+LaTeX: \tableofcontents
+#+LaTeX: \listoffigures
+
+#+LaTeX: \newpage
+#+INCLUDE: "review.org"
+
+bibliographystyle:apacite
+bibliography:library.bib

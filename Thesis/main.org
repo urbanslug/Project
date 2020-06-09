@@ -1,11 +1,9 @@
 #+TITLE: EXPLORING VIRUS SEQUENCE DIVERSITY USING VARIATION GRAPHS
 #+AUTHOR: Njagi Mwaniki
 #+OPTIONS: toc:nil
-
-#+LATEX_CLASS: scrartcl
-#+LATEX_HEADER: \usepackage{todonotes}
-#+LATEX_HEADER: \usepackage{apacite}
-#+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER_EXTRA: \usepackage{todonotes}
+#+LATEX_HEADER_EXTRA: \usepackage{apacite}
+#+LATEX_HEADER_EXTRA: \usepackage{float}
 
 #+BEGIN_COMMENT
 http://mirror.ufs.ac.za/ctan/macros/latex/contrib/hyperref/doc/manual.html#x1-90003.5
@@ -17,11 +15,7 @@ http://mirror.ufs.ac.za/ctan/macros/latex/contrib/hyperref/doc/manual.html#x1-90
 #+LATEX: \newcommand{\bigO}{\mathcal{O}}
 
 #+LaTeX: \newpage
-#+LaTeX: \fontmatter
 #+EXCLUDE: "pre.org"
-
-#+LATEX_CLASS: article
-#+LATEX_CLASS_OPTIONS: [a4paper]
 
 #+LaTeX: \newpage
 #+INCLUDE: "abstract.org"
@@ -32,13 +26,14 @@ http://mirror.ufs.ac.za/ctan/macros/latex/contrib/hyperref/doc/manual.html#x1-90
 #+LaTeX: \listoffigures
 
 #+LaTeX: \newpage
-#+LaTeX: \mainmatter
+
 * Introduction
 #+INCLUDE: "introduction.org"
 * Literature Review
 #+INCLUDE: "literature.org"
 ** A Review of Genome Graph Tools
-#+INCLUDE: "review.org"
+#+INCLUDE: "../Review/review.org"
+
 * Materials and Methods
 #+INCLUDE: "methods.org"
 * Results---Graphical Sequence Comparison

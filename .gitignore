@@ -6,10 +6,14 @@
 *.toc
 *.blg
 *.xml
+*.bbl
 
 .RData*
 
 .ipynb_checkpoints
 
-thesis/*.pdf
-review-paper/*.pdf
+Thesis/*.pdf
+Review/*.pdf
+
+Thesis/*.tex
+Review/*.tex
