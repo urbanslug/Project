@@ -1,31 +1,63 @@
+
 #+TITLE: EXPLORING VIRUS SEQUENCE DIVERSITY USING VARIATION GRAPHS
 #+AUTHOR: Njagi Mwaniki
-#+OPTIONS: toc:nil
+#+OPTIONS: toc:nil H:4 num:4
+
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [10pt, a4paper]
+
+
+#+BEGIN_COMMENT
+Page numbering from https://stackoverflow.com/a/35456439/1553834
+#+END_COMMENT
+
+#+LATEX_HEADER: \usepackage{titlesec}
+#+LATEX_HEADER: \setcounter{secnumdepth}{4}
+#+LATEX_HEADER: \titleformat{\paragraph}
+#+LATEX_HEADER: {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+#+LATEX_HEADER: \titlespacing*{\paragraph}
+#+LATEX_HEADER: {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
 #+LATEX_HEADER_EXTRA: \usepackage{todonotes}
 #+LATEX_HEADER_EXTRA: \usepackage{apacite}
 #+LATEX_HEADER_EXTRA: \usepackage{float}
 
+#+LATEX_HEADER: \usepackage[dvipsnames]{xcolor}
+
 #+BEGIN_COMMENT
-http://mirror.ufs.ac.za/ctan/macros/latex/contrib/hyperref/doc/manual.html#x1-90003.5
-#+LATEX_HEADER: \usepackage{hyperref}
-#+LATEX_HEADER: \hypersetup{ colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=black}
+https://tex.stackexchange.com/q/238430
+https://www.tug.org/applications/hyperref/manual.html#x1-40003
+#+END_COMMENT
+#+LATEX_HEADER_EXTRA: \hypersetup{colorlinks = true, linktocpage=true, filecolor = RoyalBlue, citecolor = RoyalBlue, linkcolor = RoyalBlue, urlcolor = RoyalBlue, unicode}
+
+#+BEGIN_COMMENT
+URL font https://tex.stackexchange.com/a/53963
 #+END_COMMENT
 
+#+LATEX: \urlstyle{same}
 
 #+LATEX: \newcommand{\bigO}{\mathcal{O}}
 
-#+LaTeX: \newpage
-#+EXCLUDE: "pre.org"
+#+INCLUDE: "title.org"
 
-#+LaTeX: \newpage
+#+LATEX: \pagenumbering{roman}
+
+#+LATEX: \setcounter{secnumdepth}{0}
+#+LATEX: \newpage
+#+INCLUDE: "pre.org"
+
+#+LATEX: \newpage
 #+INCLUDE: "abstract.org"
+#+LATEX: \setcounter{secnumdepth}{4}
 
-#+LaTeX: \newpage
-#+LaTeX: \tableofcontents
+#+LATEX: \newpage
+#+LATEX: \tableofcontents
 
-#+LaTeX: \listoffigures
+#+LATEX: \newpage
+#+LATEX: \listoffigures
 
-#+LaTeX: \newpage
+#+LATEX: \newpage
+#+LATEX: \pagenumbering{arabic}
 
 * Introduction
 #+INCLUDE: "introduction.org"
@@ -41,6 +73,6 @@ http://mirror.ufs.ac.za/ctan/macros/latex/contrib/hyperref/doc/manual.html#x1-90
 * Conclusion
 #+INCLUDE: "conclusion.org"
 
-#+LaTeX: \newpage
+#+LATEX: \newpage
 bibliographystyle:apacite
 bibliography:../library.bib

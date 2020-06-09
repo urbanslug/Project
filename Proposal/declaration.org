@@ -1,6 +1,6 @@
 * Declaration
-  
-This thesis is my original work and has not been presented for a degree in any other university or any other award.
+This proposal is my original work and has not been presented for a degree in 
+any other university or any other award.
 
 #+LaTeX: \vspace{10mm}
 
@@ -28,11 +28,3 @@ Date …………………………    Signature …………………….……
 Prof James Nokes
 
 Date …………………………    Signature …………………….…………
-
-* Dedication
-  
-I dedicate this project to ... for the strength and inspiration throughout the period and
-to...
-
-* Acknowledgement 
-I would like to express my deepest appreciation to....

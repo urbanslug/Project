@@ -36,8 +36,8 @@ It used … to infer the consensus.
 \end{figure}
 
 With the advent of Second-Generation Sequencing (SGS) technologies:
-Roche/454 (www.454.com), Illumina/solexa (www.illumina.com),
-and AB/Solid (www.appliedbiosystems.com) there was a significant reduction in
+Roche/454 ([[http://www.454.com]]), Illumina/solexa ([[https://www.illumina.com]]),
+and AB/Solid ([[https://www.thermofisher.com]]) there was a significant reduction in
 the cost per sequenced nucleotide cite:liComparisonTwoMajor2012 leading to an
 explosion in the number of reads produced and thus making OLC unfeasible.
 

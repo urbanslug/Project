@@ -1,0 +1,16 @@
+#+begin_src emacs-lisp :exports results :results none :eval export
+  (make-variable-buffer-local 'org-latex-title-command)
+  (setq org-latex-title-command (concat
+     "\\begin{titlepage}\n"
+     "\\centering\n"
+     "{\\LARGE %t \\par }\n"
+     "\\vspace {8cm}\n"
+     "{\\small %a \\par}\n"
+     "\\vspace {8cm} \n"
+     "{\\small A thesis submitted in partial fulfilment of the\
+               requirements for the award of a Master of Science Degree in\
+               Bioinformatics of Pwani University. \\par}\n"
+     "\\vspace {1mm} \n"
+     "{\\small \\today. \\par}\n"
+     "\\end{titlepage}\n"))
+#+end_src

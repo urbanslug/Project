@@ -11,21 +11,22 @@ http://mirror.ufs.ac.za/ctan/macros/latex/contrib/hyperref/doc/manual.html#x1-90
 #+LATEX_HEADER: \hypersetup{ colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=black}
 #+END_COMMENT
 
-
 #+LATEX: \newcommand{\bigO}{\mathcal{O}}
 
-#+LaTeX: \newpage
-#+EXCLUDE: "pre.org"
+#+INCLUDE: "title.org"
 
-#+LaTeX: \newpage
+#+LATEX: \newpage
+#+INCLUDE: "declaration.org"
+
+#+LATEX: \newpage
 #+INCLUDE: "abstract.org"
 
-#+LaTeX: \newpage
-#+LaTeX: \tableofcontents
+#+LATEX: \newpage
+#+LATEX: \tableofcontents
 
-#+LaTeX: \listoffigures
+#+LATEX: \listoffigures
 
-#+LaTeX: \newpage
+#+LATEX: \newpage
 
 * Introduction
 #+INCLUDE: "introduction.org"

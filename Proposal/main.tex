@@ -1,4 +1,4 @@
-% Created 2020-06-09 Tue 18:02
+% Created 2020-06-09 Tue 18:41
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -29,10 +29,51 @@
  pdflang={English}}
 \begin{document}
 
-\maketitle
+\begin{titlepage}
+\centering
+{\LARGE EXPLORING VIRUS SEQUENCE DIVERSITY USING VARIATION GRAPHS \par }
+\vspace {8cm}
+{\small Njagi Mwaniki \par}
+\vspace {8cm} 
+{\small A research proposal submitted in partial fulfilment of the             requirements for the award of a Master of Science Degree in             Bioinformatics of Pwani University. \par}
+\vspace {1mm} 
+{\small \today. \par}
+\end{titlepage}
 \newcommand{\bigO}{\mathcal{O}}
 
 \newpage
+\section{Declaration}
+\label{sec:org067fdf2}
+This proposal is my original work and has not been presented for a degree in 
+any other university or any other award.
+
+\vspace{10mm}
+
+Moses Njagi Mwaniki
+
+Date …………………………    Signature …………………….…………
+
+\vspace{20mm}
+I confirm that the work reported in this thesis was carried out by the candidate under my supervision.
+
+\vspace{10mm}
+
+Dr George Githinji
+
+Date …………………………    Signature …………………….…………
+
+\vspace{10mm}
+
+Dr Pjotr Prins
+
+Date …………………………    Signature …………………….…………
+
+\vspace{10mm}
+
+Prof James Nokes
+
+Date …………………………    Signature …………………….…………
+
 \newpage
 \begin{abstract}
 There are several methods that are used to evaluate and describe sequence
@@ -66,9 +107,9 @@ the utility of this pangenome in informing potential transmission events.
 \newpage
 
 \section{Introduction}
-\label{sec:org7ce4d6e}
+\label{sec:org215df04}
 \subsection{Background Information}
-\label{sec:orgcfe0f28}
+\label{sec:org93b854e}
 
 RSV was first isolated in Chimpanzees in 1956 and named Chimpanzee Coryza Agent
 \cite{morrisRecoveryCytopathogenicAgent1956}. 
@@ -102,14 +143,14 @@ upper respiratory tract infections in children and healthy adults
 \cite{chanockRecoveryInfantsRespiratory1957} with re-infections occurring throughout
 life even in the presence of pre-existing antibodies \cite{sullenderGeneticDiversityAttachment1991}.
 \subsection{Problem Statement}
-\label{sec:orgfa2799b}
+\label{sec:org680bf79}
 Conventional methods of describing diversity involve comparing each sample
 against a given reference genome instead of comparing every sample against every
 other sample \cite{patenGenomeGraphsEvolution2017}. This comparison is
 non-transitive meaning that the way a sample varies from the reference does not
 expressly tell us how that sample varies from a separate sample. 
 \subsection{Justification}
-\label{sec:orgff0e942}
+\label{sec:org7454f62}
 A reference genome graph is a robust data structure for representing genome
 variation unlike the current approach where we compare a sample against a
 linear reference genome. Given that consensus sequences are a mosaic of
@@ -117,22 +158,22 @@ haplotypes, we would like to make use of genome graph to disentangle the
 sequence diversity present in RSV sequences, and potentially other respiratory
 viruses. 
 \subsection{Objectives}
-\label{sec:org74c5af7}
+\label{sec:org15c340f}
 \subsubsection{Main Objective}
-\label{sec:org9a95690}
+\label{sec:org41c3aab}
 To construct an RSV variation graph from samples collected from a single
 household in the course of an RSV household outbreak.
 \subsubsection{Specific Objectives}
-\label{sec:org0cd4cf8}
+\label{sec:orgb5c7cf0}
 \begin{enumerate}
 \item To perform a review of existing genome graph tools used in constructing pangenome graphs.
 \item To construct a variation graph from a set of samples collected from a single
 household during the course of an RSV epidemic.
 \end{enumerate}
 \section{Literature Review}
-\label{sec:org4639c1a}
+\label{sec:orgd1c3d9e}
 \subsection{RNA Viruses}
-\label{sec:org9366700}
+\label{sec:org07b641a}
 RNA viral populations don’t exist as a collection of organisms with a single
 genome but rather as a quasispecies
 (also called a mutant spectrum or a mutant cloud) where most of the biologically
@@ -149,7 +190,7 @@ optimized by natural selection is that in some cases it leads to local
 extinction \cite{duffyWhyAreRNA2018}.
 
 \subsubsection{Respiratory Syncytial Virus (RSV)}
-\label{sec:org849898c}
+\label{sec:org48189cc}
 RSV is the major cause of acute lower respiratory tract infections associated 
 with pneumonia, bronchitis (Borchers et al., 2013; Zlateva et al., 2004) and
 otitis \cite{kleinRoleRespiratorySyncytial1982} more frequently than any other agent and
@@ -178,7 +219,7 @@ cattle in North America \cite{griffinEconomicImpactAssociated1997}.
 
 \begin{enumerate}
 \item History
-\label{sec:org27eb353}
+\label{sec:orgf18ae29}
 The virus was first isolated in 1956 from Chimpanzees and named Chimpanzee
 Coryza Agent \cite{morrisRecoveryCytopathogenicAgent1956} after which it was
 isolated in children from whom it had not been possible to isolate and renamed 
@@ -187,7 +228,7 @@ subfamily Pneumovirinae, genus Pneumovirus
 \cite{chanockRecoveryInfantsRespiratory1957,beemAssociationChimpanzeeCoryza1960,zlatevaGeneticVariabilityMolecular2005}.
 
 \item Epidemiology
-\label{sec:org2da77bd}
+\label{sec:org1230ff4}
 In older children and healthy adults, RSV presents in highly seasonal annual
 epidemics (Aamir et al., 2013; Al-Toum et al., 2006) of mild reinfections
 predominantly in the upper respiratory tract (Chanock et al., 1957) even in the
@@ -218,18 +259,18 @@ milder illnesses
 \cite{glezenRiskRespiratorySyncytial1981,caneMolecularEpidemiologyRespiratory2001}.
 
 \item The Genetic Makeup of RSV
-\label{sec:org28dabba}
+\label{sec:org38b209a}
 \begin{figure*}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/RSV-genes.png}
-\caption{\label{fig:orga0d92dd}
+\caption{\label{fig:org4b19c24}
 A schematic of RSV antisense RNA strand showing its 10 genes. The rectangles represent genes with the different shades of the same colour used to show similarity. The grey connectors are the intergenic regions. The numbers below are the estimated gene lengths. Adapted from (Nam \& Ison, 2019)}
 \end{figure*}
 
 \begin{figure*}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/RSV-cross-section.png}
-\caption{\label{fig:org975705b}
+\caption{\label{fig:org3342134}
 A schematic of the RSV capsid showing the lipid bilayer and most importantly the surface the F and G glycoproteins. From (Nam \& Ison, 2019).}
 \end{figure*}
 
@@ -255,7 +296,7 @@ envelope and the two non-structural proteins, NS1 and NS2  have recently been
 shown to antagonise the interferon-induced antiviral response
 \cite{fearnsRoleM21Transcription1999,schlenderBovineRespiratorySyncytial2000}.
 \item Groups of RSV
-\label{sec:orgb300201}
+\label{sec:orgda96a96}
 RSV was initially divided into two antigenic groups A and B in 1966 by its 
 reaction with panels of monoclonal antibodies particularly those directed
 against its P, F and G proteins \cite{coatesAntigenicAnalysisRespiratory1966}. 
@@ -297,7 +338,7 @@ B: GB1–GB4, SAB1-SAB3, and BA1–BA10
 \cite{peretCirculationPatternsGenetically1998,peretCirculationPatternsGroup2000,venterGeneticDiversityMolecular2001,trentoMajorChangesProtein2003,shobugawaEmergingGenotypesHuman2009,eshaghiGeneticVariabilityHuman2012,aamirMolecularCharacterizationCirculating2013}.
 \end{enumerate}
 \subsection{Graphs in Bioinformatics}
-\label{sec:org9992b25}
+\label{sec:org8c0bfea}
 Contemporary methods of representing a reference genome as a linear sequence of 
 characters to represent bases \cite{diltheyImprovedGenomeInference2015} introduce a
 mapping bias towards alleles in the reference known as reference bias compared
@@ -310,7 +351,7 @@ varying degrees of accuracy, but it is naturally represented as a graph in
 which the sequences themselves are implicitly encoded as walks in the graph
 \cite{patenGenomeGraphsEvolution2017}.
 \subsection{Graph Theory}
-\label{sec:org9297d55}
+\label{sec:orgf5823a9}
 A graph is an object, or collection, of two sets, a vertex set and edge set.
 The vertex set is a finite non-empty set, to mean a graph must have at least one
 vertex.
@@ -327,7 +368,7 @@ G \{\{a c\} \{b d\}\}
 \begin{figure*}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/Graph-classifications-Undirected.png}
-\caption{\label{fig:orgdcde2aa}
+\caption{\label{fig:org1f8bd80}
 G is an undirected graph of four nodes a,b,c and d.}
 \end{figure*}
 
@@ -336,13 +377,13 @@ H \{\{a c\} \{c d\}\}
 \begin{figure*}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/Graph-classifications-Digraph.png}
-\caption{\label{fig:orgd6d683f}
+\caption{\label{fig:org444662e}
 H is an undirected graph of notes a, b and c. Two vertices which are incident with a common edge are adjacent, as are two edges which are incident with a common vertex, and two distinct adjacent vertices are neighbours \cite{bondyGraphTheory2011}.}
 \end{figure*}
 
 
 \subsubsection{Graph classifications}
-\label{sec:org0dfe18f}
+\label{sec:org2003e82}
 Graphs can be broken down into many classifications but in this case, we want to
 focus on simple versus multigraphs and directed versus undirected.
 A simple graph can only have one edge connecting two adjacent vertices while a
@@ -353,7 +394,7 @@ Simple Graph
 \begin{figure*}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/Graph-classifications-Simple-Graph.png}
-\caption{\label{fig:org174b3b1}
+\caption{\label{fig:orgb5cf81d}
 A simple graph showing only a single edge connecting any two nodes}
 \end{figure*}
 
@@ -362,7 +403,7 @@ Multigraph
 \begin{figure*}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/Graph-classifications-Multigraph.png}
-\caption{\label{fig:orgfa62571}
+\caption{\label{fig:org4721363}
 A multigraph where more than one edge can connect any two nodes.}
 \end{figure*}
 
@@ -398,12 +439,12 @@ automorphism of a graph is an isomorphism of the graph to itself as shown below.
 \begin{figure*}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/Isomorphism.png}
-\caption{\label{fig:org5cc6bb2}
+\caption{\label{fig:org4244c99}
 The two nodes are different visualizations of the same graph and therefore an isomorphism.}
 \end{figure*}
 
 \subsubsection{Walks and paths}
-\label{sec:orgb2a23e4}
+\label{sec:org84bb607}
 A path is a simple graph whose vertices can be arranged in a linear sequence in
 such a way that two vertices are adjacent if they are consecutive in the 
 sequence, and are nonadjacent otherwise \cite{bondyGraphTheory2011}.
@@ -425,7 +466,7 @@ vertex exactly twice and all the other vertices in the graph exactly once
 \cite{trudeauIntroductionGraphTheory1993}.
 
 \subsection{Genome Graphs}
-\label{sec:org324307f}
+\label{sec:org6988a2c}
 A genome graph is a generic term that refers to the representation of a sequence
 or sequences or genetic material using graph-based methods implicitly or
 explicitly. Genome graphs are expected to lead to improvements in mapping reads,
@@ -443,7 +484,7 @@ intersection points between connected subsequences
 \cite{patenGenomeGraphsEvolution2017}.
 
 \subsubsection{De Bruijn Graph}
-\label{sec:org990e996}
+\label{sec:orgc498e38}
 These are graphs used in the assembly of reads named after Dutch mathematician
 Nicolaas de Bruijn who became interested in the superstring problem: find a 
 shortest circular superstring that contains all possible substrings of length k
@@ -451,14 +492,14 @@ shortest circular superstring that contains all possible substrings of length k
 k-mers \cite{compeauHowApplyBruijn2011}.
 
 \subsubsection{Sequence graph}
-\label{sec:orgc235864}
+\label{sec:org58ce5d2}
 A sequence graph is a bidirected graph in which each node is labelled with a
 nucleotide string a “sequence graph” \cite{patenGenomeGraphsEvolution2017}.
 In this bidirected graph, the features of an edge indicate to which side of a 
 node (sequence), 5’ or 3’, each end of the edge connects" \cite{novakGenomeGraphs2017}.
 
 \subsubsection{Variation Graph}
-\label{sec:org7aebfbd}
+\label{sec:orgbb20d0a}
 A variation graph is a graph where a complete walk along the graph represents a
 haplotype \cite{patenGenomeGraphsEvolution2017}.
 
@@ -474,7 +515,7 @@ are expressible in the bidirected representation
 \cite{patenGenomeGraphsEvolution2017}.
 
 \subsubsection{Population Reference Graphs (PRGs)}
-\label{sec:orge8b2180}
+\label{sec:org07ef7b6}
 Population reference graphs are graphs that represent a population-wide genome
 combining multiple reference sequences and catalogues of variation
 \cite{diltheyImprovedGenomeInference2015}. 
@@ -482,10 +523,10 @@ This concept may also be extended to represent, in our case, a virus mutant
 cloud.
 
 \subsubsection{Problems arising from graph-based reference models}
-\label{sec:orgde3fd5d}
+\label{sec:org09999ec}
 \begin{enumerate}
 \item Calling alleles at sites
-\label{sec:org36f78c4}
+\label{sec:orga40fcc5}
 This involves declaring an allele at a given position, this position could span
 several nodes or edges in an undefined manner. 
 
@@ -499,13 +540,13 @@ Superbubbles and ultrabubbles are directed acyclic subgraphs that connect to the
 rest of the graph through one source node and one sink node
 \cite{patenSuperbubblesUltrabubblesCacti2017}.
 \item Non-trivial indexing and reference mapping
-\label{sec:org4fe5db1}
+\label{sec:orgc075635}
 We now need to use methods that are aware of alternative alleles to map reads to
 a graph reference \cite{patenGenomeGraphsEvolution2017}. 
 The indexing could be done through gbwt \cite{sirenHaplotypeawareGraphIndexes2018}
 could be achieved via partial order alignment gssw \cite{zhaoSSWLibrarySIMD2013}.
 \item Coordinate system
-\label{sec:org75cf7af}
+\label{sec:orgb4a61d7}
 A reference genome coordinate system is a system that uses coordinates to
 uniquely determine the positions of bases in the reference genome 
 \cite{randCoordinatesIntervalsGraphbased2017}.
@@ -525,14 +566,14 @@ horizontal spatiality of bases that can appear together within a single molecule
 \cite{randCoordinatesIntervalsGraphbased2017}.
 \end{enumerate}
 \subsubsection{Mapping reads to a reference genome graph}
-\label{sec:org27d2c27}
+\label{sec:orgff43159}
 Given that a genetic sequence is read in small pieces for short reads and much
 longer pieces for long reads, we need to find where in the genome a read comes
 from. Read mapping is the process of finding the position where the read came
 from in a reference sequence or graph \cite{novakGenomeGraphs2017}.
 \begin{enumerate}
 \item Reference bias or reference allele bias
-\label{sec:orge02b3d2}
+\label{sec:org104e686}
 Reference allele bias is the tendency to under-report data whose underlying DNA
 does not match a reference allele \cite{patenGenomeGraphsEvolution2017}.
 Masking known SNP positions in the genome sequence can eliminate the reference
@@ -541,7 +582,7 @@ bias but do not lead to more reliable results overall
 \end{enumerate}
 
 \subsubsection{Variation Graphs in Virus Haplotype Detection and Quantification}
-\label{sec:orgea7237f}
+\label{sec:orgc3b6e57}
 Compared to eukaryotes, viruses have relatively short genomes and high mutation 
 rates \cite{duffyWhyAreRNA2018} and RNA viruses exist as a quasi-species 
 \cite{domingoViralQuasispeciesEvolution2012}. This gives rise to the need to

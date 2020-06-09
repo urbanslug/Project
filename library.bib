@@ -160,7 +160,7 @@ IMPORTANCE The new RSV genomic sequences and the novel sequencing method reporte
   issn = {1367-4803},
   doi = {10.1093/bioinformatics/bty292},
   abstract = {AbstractMotivation.  Indexing reference sequences for search\textemdash both individual genomes and collections of genomes\textemdash is an important building block for many sequence},
-  file = {/Users/urbanslug/Zotero/storage/N99WA3R6/Almodaresi et al. - 2018 - A space and time-efficient index for the compacted.pdf;/Users/urbanslug/Zotero/storage/U655P9R7/Almodaresi et al. - 2018 - A space and time-efficient index for the compacted.pdf;/Users/urbanslug/Zotero/storage/XYEBALEH/Almodaresi et al. - 2018 - A space and time-efficient index for the compacted.pdf;/Users/urbanslug/Zotero/storage/5VE5AQ2H/5045749.html;/Users/urbanslug/Zotero/storage/MVTDRLIZ/5045749.html;/Users/urbanslug/Zotero/storage/T89BP588/5045749.html},
+  file = {/Users/urbanslug/Zotero/storage/U655P9R7/Almodaresi et al. - 2018 - A space and time-efficient index for the compacted.pdf;/Users/urbanslug/Zotero/storage/5VE5AQ2H/5045749.html;/Users/urbanslug/Zotero/storage/T89BP588/5045749.html},
   journal = {Bioinformatics},
   language = {en},
   number = {13}
@@ -450,7 +450,7 @@ IMPORTANCE The new RSV genomic sequences and the novel sequencing method reporte
   issn = {1748-7188},
   doi = {10.1186/s13015-019-0148-5},
   abstract = {High-throughput sequencing technologies have led to explosive growth of genomic databases; one of which will soon reach hundreds of terabytes. For many applications we want to build and store indexes of these databases but constructing such indexes is a challenge. Fortunately, many of these genomic databases are highly-repetitive\textemdash a characteristic that can be exploited to ease the computation of the Burrows-Wheeler Transform (BWT), which underlies many popular indexes. In this paper, we introduce a preprocessing algorithm, referred to as prefix-free parsing, that takes a text T as input, and in one-pass generates a dictionary D and a parse P of T with the property that the BWT of T can be constructed from D and P using workspace proportional to their total size and O(|T|)-time. Our experiments show that D and P are significantly smaller than T in practice, and thus, can fit in a reasonable internal memory even when T is very large. In particular, we show that with prefix-free parsing we can build an 131-MB run-length compressed FM-index (restricted to support only counting and not locating) for 1000 copies of human chromosome 19 in 2 h using 21~ GB of memory, suggesting that we can build a 6.73~GB index for 1000 complete human-genome haplotypes in approximately 102 h using about 1~TB of memory.},
-  file = {/Users/urbanslug/Zotero/storage/2ZCW6W2A/Boucher et al. - 2019 - Prefix-free parsing for building big BWTs.pdf;/Users/urbanslug/Zotero/storage/3ZT8B64B/Boucher et al. - 2019 - Prefix-free parsing for building big BWTs.pdf;/Users/urbanslug/Zotero/storage/MEQUQBTG/Boucher et al. - 2019 - Prefix-free parsing for building big BWTs.pdf;/Users/urbanslug/Zotero/storage/GFRFUH4Q/s13015-019-0148-5.html;/Users/urbanslug/Zotero/storage/LKCF3FL2/s13015-019-0148-5.html;/Users/urbanslug/Zotero/storage/QK7GA7CI/s13015-019-0148-5.html},
+  file = {/Users/urbanslug/Zotero/storage/MEQUQBTG/Boucher et al. - 2019 - Prefix-free parsing for building big BWTs.pdf;/Users/urbanslug/Zotero/storage/LKCF3FL2/s13015-019-0148-5.html},
   journal = {Algorithms for Molecular Biology},
   number = {1}
 }
@@ -851,7 +851,7 @@ IMPORTANCE The new RSV genomic sequences and the novel sequencing method reporte
   issn = {1367-4803, 1460-2059},
   doi = {10.1093/bioinformatics/btu014},
   abstract = {Motivation: Over the last few years, methods based on suffix arrays using the Burrows\textendash Wheeler Transform have been widely used for DNA sequence read matching and assembly. These provide very fast search algorithms, linear in the search pattern size, on a highly compressible representation of the dataset being searched. Meanwhile, algorithmic development for genotype data has concentrated on statistical methods for phasing and imputation, based on probabilistic matching to hidden Markov model representations of the reference data, which while powerful are much less computationally efficient. Here a theory of haplotype matching using suffix array ideas is developed, which should scale too much larger datasets than those currently handled by genotype algorithms.},
-  file = {/Users/urbanslug/Zotero/storage/GXEK2MHU/Durbin - 2014 - Efficient haplotype matching and storage using the.pdf;/Users/urbanslug/Zotero/storage/IULSKSPS/Durbin - 2014 - Efficient haplotype matching and storage using the.pdf;/Users/urbanslug/Zotero/storage/MZAJGCJ3/Durbin - 2014 - Efficient haplotype matching and storage using the.pdf;/Users/urbanslug/Zotero/storage/J36KNMQ2/236397.html},
+  file = {/Users/urbanslug/Zotero/storage/IULSKSPS/Durbin - 2014 - Efficient haplotype matching and storage using the.pdf;/Users/urbanslug/Zotero/storage/J36KNMQ2/236397.html},
   journal = {Bioinformatics},
   language = {en},
   number = {9}
@@ -1076,7 +1076,7 @@ IMPORTANCE The new RSV genomic sequences and the novel sequencing method reporte
   doi = {10.17863/CAM.41621},
   abstract = {Completely sequencing genomes is expensive, and to save costs we often analyze new genomic data in the context of a reference genome. This approach distorts our image of the inferred genome, an effect which we describe as reference bias. To mitigate reference bias, I repurpose graphical models previously used in genome assembly and alignment to serve as a reference system in resequencing. To do so I formalize the concept of a variation graph to link genomes to a graphical model of their mutual alignment that is capable of representing any kind of genomic variation, both small and large. As this model combines both sequence and variation information in one structure it serves as a natural basis for resequencing. By indexing the topology, sequence space, and haplotype space of these graphs and developing generalizations of sequence alignment suitable to them, I am able to use them as reference systems in the analysis of a wide array of genomic systems, from large vertebrate genomes to microbial pangenomes. To demonstrate the utility of this approach, I use my implementation to solve resequencing and alignment problems in the context of Homo sapiens and Saccharomyces cerevisiae. I use graph visualization techniques to explore variation graphs built from a variety of sources, including diverged human haplotypes, a gut microbiome, and a freshwater viral metagenome. I find that variation aware read alignment can eliminate reference bias at known variants, and this is of particular importance in the analysis of ancient DNA, where existing approaches result in significant bias towards the reference genome and concomitant distortion of population genetics results. I validate that the variation graph model can be applied to align RNA sequencing data to a splicing graph. Finally, I show that a classical pangenomic inference problem in microbiology can be solved using a resequencing approach based on variation graphs.},
   copyright = {Attribution 4.0 International (CC BY 4.0)},
-  file = {/Users/urbanslug/Zotero/storage/C3UDT2K5/Garrison - 2019 - Graphical pangenomics.pdf;/Users/urbanslug/Zotero/storage/P6YZF43L/Garrison - 2019 - Graphical pangenomics.pdf;/Users/urbanslug/Zotero/storage/ZHD5EMZU/Garrison - 2019 - Graphical pangenomics.pdf;/Users/urbanslug/Zotero/storage/8PMR4CDZ/294516.html;/Users/urbanslug/Zotero/storage/T5SRVAXM/294516.html;/Users/urbanslug/Zotero/storage/VNK6ZWTQ/294516.html},
+  file = {/Users/urbanslug/Zotero/storage/P6YZF43L/Garrison - 2019 - Graphical pangenomics.pdf;/Users/urbanslug/Zotero/storage/8PMR4CDZ/294516.html;/Users/urbanslug/Zotero/storage/T5SRVAXM/294516.html},
   keywords = {thesis},
   language = {en},
   school = {University of Cambridge},
@@ -1467,7 +1467,7 @@ IMPORTANCE The new RSV genomic sequences and the novel sequencing method reporte
   doi = {10.1038/s41587-019-0201-4},
   abstract = {A graph-based genome indexing scheme enables variant-aware alignment of sequences with very low memory requirements.},
   copyright = {2019 The Author(s), under exclusive licence to Springer Nature America, Inc.},
-  file = {/Users/urbanslug/Zotero/storage/59G2KTWD/Kim et al. - 2019 - Graph-based genome alignment and genotyping with H.pdf;/Users/urbanslug/Zotero/storage/WPGVB8HJ/Kim et al. - 2019 - Graph-based genome alignment and genotyping with H.pdf;/Users/urbanslug/Zotero/storage/38AA4XZD/s41587-019-0201-4.html;/Users/urbanslug/Zotero/storage/F3GG2IBS/s41587-019-0201-4.html;/Users/urbanslug/Zotero/storage/IWGV6IKM/s41587-019-0201-4.html;/Users/urbanslug/Zotero/storage/XNNE9QG3/s41587-019-0201-4.html},
+  file = {/Users/urbanslug/Zotero/storage/WPGVB8HJ/Kim et al. - 2019 - Graph-based genome alignment and genotyping with H.pdf;/Users/urbanslug/Zotero/storage/XNNE9QG3/s41587-019-0201-4.html},
   journal = {Nature Biotechnology},
   language = {en},
   number = {8}
@@ -2899,7 +2899,7 @@ Conclusion: GLUE can be used to rapidly develop virus sequence data resources wi
   archivePrefix = {arXiv},
   eprint = {1805.03834},
   eprinttype = {arxiv},
-  file = {/Users/urbanslug/Zotero/storage/FL6ZNQ2V/Sirén et al. - 2018 - Haplotype-aware graph indexes.pdf;/Users/urbanslug/Zotero/storage/V8A7NZP9/Sirén et al. - 2018 - Haplotype-aware graph indexes.pdf},
+  file = {/Users/urbanslug/Zotero/storage/FL6ZNQ2V/Sirén et al. - 2018 - Haplotype-aware graph indexes.pdf},
   journal = {arXiv:1805.03834 [cs]},
   keywords = {Computer Science - Data Structures and Algorithms},
   language = {en},
@@ -2933,7 +2933,7 @@ Conclusion: GLUE can be used to rapidly develop virus sequence data resources wi
   pages = {13--27},
   publisher = {{Society for Industrial and Applied Mathematics}},
   doi = {10.1137/1.9781611974768.2},
-  file = {/Users/urbanslug/Zotero/storage/XKB2XWPW/Sirén - 2017 - Indexing Variation Graphs.pdf;/Users/urbanslug/Zotero/storage/ZAFH47H5/Sirén - 2017 - Indexing Variation Graphs.pdf},
+  file = {/Users/urbanslug/Zotero/storage/XKB2XWPW/Sirén - 2017 - Indexing Variation Graphs.pdf},
   isbn = {978-1-61197-476-8},
   language = {en}
 }
@@ -3172,7 +3172,7 @@ Conclusion: GLUE can be used to rapidly develop virus sequence data resources wi
   year = {2019},
   pages = {17},
   abstract = {Genome variation graphs are natural candidates to represent a pangenome collection. In such graphs, common subsequences are encoded as vertices and the genomic variations are captured by introducing additional labeled vertices and directed edges. Unlike a linear reference, a reference graph allows a rich representation of the genomic diversities and avoids reference bias. We address the fundamental problem of mapping reads to genome variation graphs. We give a novel mapping algorithm V-MAP for efficient identification of small subgraph of the genome graph for optimal gapped alignment of the read. V-MAP creates space efficient index using locality sensitive minimizer signatures computed using a novel graph winnowing and graph embedding onto metric space for fast and accurate mapping. Experiments involving graph constructed from the 1000 Genomes data and using both real and simulated reads show that V-MAP is fast, memory efficient and can map short reads, as well as PacBio/Nanopore long reads with high accuracy. V-MAP performance was significantly better than the state-of-the-art, especially for long reads.},
-  file = {/Users/urbanslug/Zotero/storage/ZF4VNX25/Vaddadi et al. - 2019 - Read Mapping on Genome Variation Graphs.pdf;/Users/urbanslug/Zotero/storage/ZRAP4A4M/Vaddadi et al. - 2019 - Read Mapping on Genome Variation Graphs.pdf},
+  file = {/Users/urbanslug/Zotero/storage/ZF4VNX25/Vaddadi et al. - 2019 - Read Mapping on Genome Variation Graphs.pdf},
   language = {en}
 }
 

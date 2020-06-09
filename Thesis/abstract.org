@@ -1,4 +1,6 @@
-\begin{abstract}
+#+LATEX: \pagewidth
+* Abstract
+#+BEGIN_ABSTRACT
 There are several methods that are used to evaluate and describe sequence
 diversity, and these include Shannon's entropy, the number of polymorphic loci
 per kilobase (one thousand bases), and the nucleotide diversity statistic Pi
@@ -20,4 +22,4 @@ household RSV outbreak.
 We aim to create a pipeline for constructing a variation graph for describing
 virus diversity during the household outbreak. We will use this data to assess
 the utility of this pangenome in informing potential transmission events.
-\end{abstract}
+#+END_ABSTRACT
