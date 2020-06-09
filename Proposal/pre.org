@@ -1,0 +1,38 @@
+* Declaration
+  
+This thesis is my original work and has not been presented for a degree in any other university or any other award.
+
+#+LaTeX: \vspace{10mm}
+
+Moses Njagi Mwaniki
+
+Date …………………………    Signature …………………….…………
+
+#+LaTeX: \vspace{20mm}
+I confirm that the work reported in this thesis was carried out by the candidate under my supervision.
+
+#+LaTeX: \vspace{10mm}
+
+Dr George Githinji
+
+Date …………………………    Signature …………………….…………
+
+#+LaTeX: \vspace{10mm}
+
+Dr Pjotr Prins
+
+Date …………………………    Signature …………………….…………
+
+#+LaTeX: \vspace{10mm}
+
+Prof James Nokes
+
+Date …………………………    Signature …………………….…………
+
+* Dedication
+  
+I dedicate this project to ... for the strength and inspiration throughout the period and
+to...
+
+* Acknowledgement 
+I would like to express my deepest appreciation to....

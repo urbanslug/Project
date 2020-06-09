@@ -1,0 +1,37 @@
+#+TITLE: EXPLORING VIRUS SEQUENCE DIVERSITY USING VARIATION GRAPHS
+#+AUTHOR: Njagi Mwaniki
+#+OPTIONS: toc:nil
+#+LATEX_HEADER_EXTRA: \usepackage{todonotes}
+#+LATEX_HEADER_EXTRA: \usepackage{apacite}
+#+LATEX_HEADER_EXTRA: \usepackage{float}
+
+#+BEGIN_COMMENT
+http://mirror.ufs.ac.za/ctan/macros/latex/contrib/hyperref/doc/manual.html#x1-90003.5
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \hypersetup{ colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=black}
+#+END_COMMENT
+
+
+#+LATEX: \newcommand{\bigO}{\mathcal{O}}
+
+#+LaTeX: \newpage
+#+EXCLUDE: "pre.org"
+
+#+LaTeX: \newpage
+#+INCLUDE: "abstract.org"
+
+#+LaTeX: \newpage
+#+LaTeX: \tableofcontents
+
+#+LaTeX: \listoffigures
+
+#+LaTeX: \newpage
+
+* Introduction
+#+INCLUDE: "introduction.org"
+* Literature Review
+#+INCLUDE: "literature.org"
+
+#+LaTeX: \newpage
+bibliographystyle:apacite
+bibliography:../library.bib
