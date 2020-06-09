@@ -9,7 +9,37 @@
 #+LATEX: \newcommand{\bigO}{\mathcal{O}}
 
 \begin{abstract}
-To be written.
+Evolution for the most part is dependent on changes in the genome of an organism. 
+It is impossible to separate variation from genomes, in fact, change is so inherent
+ in DNA that it happens in everyday cell division (somatic cells). 
+This means that not only is the DNA of each species different from the other but
+ that of each individual is different.
+Despite this, through the use of a linear reference genome, most methods, up until 
+recently treated DNA within a species as if it were static across time or
+ updating at regular intervals, homogenous between individuals
+ (the same across a species), and not polymorphic. This has led to among other
+ problems the reference bias problem<citation needed (cn)> as well as the
+ reference genome not being a functional genome<cn> meaning that if we could
+ somehow get the reference even without its gaps into a cell that
+ the cell would actually survive and replicate.
+The current model works because genomes within a species don’t
+ vary by much (one change per thousand nucleotides?) but as
+ (individualized) medicine, vaccine research looking into pathogen mutation
+ and other fields that require finer-grained results from genetics
+ it begins to show its flaws.
+To study DNA in a way that factors in changes that occur across time and
+ between individuals we need a structure that exposes the changes(variation)
+ while collapsing the redundancies.
+ On top of this, it has to support all the operations possible with linear
+ methods such as a coordinate system, assembly, querying, and visualization
+ in a space-efficient and time-efficient manner. A natural alternative is a
+ graphical reference pangenome model<citation needed>. 
+These are expressive (represent variation of different kinds; repeats, loops,
+ polymorphism etc) methods to represent genomes as a series of nodes and edges.
+ However, their adoption isn’t as widespread because of a number of factors such
+ as the computational requirements, novelty of long read sequencing which allows
+ for the detection of structural variation as well as the novelty of the approach
+ which means there aren’t as many tools available.
 \end{abstract}
 #+LaTeX: \newpage
 #+LaTeX: \tableofcontents
@@ -40,7 +70,7 @@ framework, an intuitionistic approach to the assembly problem that works in
 a graph of all the reads based on their overlaps, and 3) Consensus: infer the
 consensus sequence.
 
-What it does is find the overlaps between the given set of reads and then lays 
+It finds the overlaps between the given set of reads and then lays 
 them out to form a DAG. The graph, however, has multiple paths that are the 
 genome or superstring in question. Which is where the consensus comes in. 
 It used … to infer the consensus.
@@ -51,7 +81,7 @@ It used … to infer the consensus.
 \caption{OLC...}
 \end{figure}
 
-With the advent of Second Generation Sequencing (SGS) technologies 
+With the advent of Second-Generation Sequencing (SGS) technologies: 
 Roche/454 (www.454.com), Illumina/solexa (www.illumina.com),
 and AB/Solid (www.appliedbiosystems.com) there was a significant reduction in 
 the cost per sequenced nucleotide cite:liComparisonTwoMajor2012 leading to an 
@@ -225,7 +255,7 @@ minimizer for that read... then binning the result. When a query is made it’s
 prefix is checked against the bin and the rest of the data ignored
 <is this even accurate?>
 We can get a minimizer by BBF blocked bloom filter Minimizers
-cite:grabowskiDiskbasedCompressionData2015,robertsReducingStorageRequirements2004
+cite:grabowskiDiskbasedCompressionData2015,robertsReducingStorageRequirements2004.
 
 ** Hash tables
 Hash tables involve breaking down the reads into k-mers and storing the kmers

@@ -3,5 +3,13 @@
 *.lot
 *.lof
 *.out
+*.toc
+*.blg
 *.xml
+
 .RData*
+
+.ipynb_checkpoints
+
+thesis/*.pdf
+review-paper/*.pdf

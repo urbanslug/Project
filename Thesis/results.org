@@ -7,7 +7,6 @@ A pangenomic method compares each sample against every other sample through the 
 #+ATTR_LATEX: :width 0.7\textwidth :float multicolumn
 #+NAME: fig:all-vs-all-venn
 file:figures/All-versus-All-Comparison.png
-file:figures/All-versus-All-Comparison.png
 
 
 #+CAPTION: from...

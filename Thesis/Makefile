@@ -9,4 +9,4 @@ main.bbl: library.bib
 	bibtex main </dev/null
 
 clean:
-	rm -f *.aux *.toc *.pdf *.log *.bbl *.out *.lof *.lot *.blg
+	rm -f *.aux *.toc *.pdf *.log *.bbl *.out *.lof *.lot *.blg *.tex

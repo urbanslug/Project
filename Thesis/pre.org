@@ -29,13 +29,10 @@ Prof James Nokes
 
 Date …………………………    Signature …………………….…………
 
-#+LaTeX: \newpage
 * Dedication
   
 I dedicate this project to ... for the strength and inspiration throughout the period and
 to...
 
-#+LaTeX: \newpage
 * Acknowledgement 
-  
 I would like to express my deepest appreciation to....

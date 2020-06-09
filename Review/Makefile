@@ -9,4 +9,4 @@ review.bbl: library.bib
 	bibtex review </dev/null
 
 clean:
-	rm -f *.aux *.toc *.pdf *.log *.bbl *.out *.lof *.lot *.blg
+	rm -f *.aux *.toc *.pdf *.log *.bbl *.out *.lof *.lot *.blg *.tex
