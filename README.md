@@ -1,10 +1,7 @@
-# Genome Graph Notes
+# Exploring Virus Sequence Diversity Using Variation Graphs
 
-Notes on my understanding of genome graphs, how to use genome graph tools etc.
+Almost everything on my understanding of genome graphs.
 
-A logical place to start would be [the overall project][1].
+Some documents are in my [thesis google drive folder][1].
 
-A summary of this is in my [thesis google drive folder][2]
-
-[1]: ./Projects/Overall/README.org
-[2]: https://drive.google.com/open?id=1S9L92GFhkFgXlaQvuwcBN41SfTfFM9yN
+[1]: https://drive.google.com/open?id=1S9L92GFhkFgXlaQvuwcBN41SfTfFM9yN
