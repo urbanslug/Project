@@ -1,45 +1,55 @@
-
-#+TITLE: EXPLORING VIRUS SEQUENCE DIVERSITY USING VARIATION GRAPHS
+#+TITLE: EXPLORING VIRUS SEQUENCE DIVERSITY USING GENOME GRAPHS
 #+AUTHOR: Njagi Mwaniki
-#+OPTIONS: toc:nil H:4 num:4
+#+OPTIONS: toc:nil H:5 num:5
 
 #+LATEX_CLASS: article
 #+LATEX_CLASS_OPTIONS: [10pt, a4paper]
 
-
 #+BEGIN_COMMENT
-Page numbering from https://stackoverflow.com/a/35456439/1553834
+https://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection
 #+END_COMMENT
+#+LATEX_HEADER_EXTRA: \usepackage{titlesec}
+#+LATEX_HEADER_EXTRA: \setcounter{secnumdepth}{4}
+#+LATEX_HEADER_EXTRA: \titleformat{\paragraph}
+#+LATEX_HEADER_EXTRA: {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+#+LATEX_HEADER_EXTRA: \titlespacing*{\paragraph}
+#+LATEX_HEADER_EXTRA: {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
-#+LATEX_HEADER: \usepackage{titlesec}
-#+LATEX_HEADER: \setcounter{secnumdepth}{4}
-#+LATEX_HEADER: \titleformat{\paragraph}
-#+LATEX_HEADER: {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
-#+LATEX_HEADER: \titlespacing*{\paragraph}
-#+LATEX_HEADER: {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-
+#+LATEX_HEADER_EXTRA: \usepackage[dvipsnames]{xcolor}
 #+LATEX_HEADER_EXTRA: \usepackage{todonotes}
 #+LATEX_HEADER_EXTRA: \usepackage{apacite}
-#+LATEX_HEADER_EXTRA: \usepackage{float}
 
-#+LATEX_HEADER: \usepackage[dvipsnames]{xcolor}
+#+BEGIN_COMMENT
+Go with lscape and not pdflscape for printing
+https://texblog.org/2007/11/10/landscape-in-latex/
+To include entire PDF page use pdfpages
+https://tex.stackexchange.com/a/310218
+#+END_COMMENT
+#+LATEX_HEADER_EXTRA: \usepackage{lscape}
+#+LATEX_HEADER_EXTRA: \usepackage[toc,page]{appendix}
+
+#+BEGIN_COMMENT
+Paragraph spacing
+#+END_COMMENT
+#+LATEX_HEADER_EXTRA: \setlength{\parskip}{0.5em}
 
 #+BEGIN_COMMENT
 https://tex.stackexchange.com/q/238430
 https://www.tug.org/applications/hyperref/manual.html#x1-40003
 #+END_COMMENT
 #+LATEX_HEADER_EXTRA: \hypersetup{colorlinks = true, linktocpage=true, filecolor = RoyalBlue, citecolor = RoyalBlue, linkcolor = RoyalBlue, urlcolor = RoyalBlue, unicode}
-
 #+BEGIN_COMMENT
 URL font https://tex.stackexchange.com/a/53963
 #+END_COMMENT
 
 #+LATEX: \urlstyle{same}
-
 #+LATEX: \newcommand{\bigO}{\mathcal{O}}
 
 #+INCLUDE: "title.org"
 
+#+BEGIN_COMMENT
+Page numbering from https://stackoverflow.com/a/35456439/1553834
+#+END_COMMENT
 #+LATEX: \pagenumbering{roman}
 
 #+LATEX: \setcounter{secnumdepth}{0}
@@ -51,7 +61,9 @@ URL font https://tex.stackexchange.com/a/53963
 #+LATEX: \setcounter{secnumdepth}{4}
 
 #+LATEX: \newpage
-#+LATEX: \tableofcontents
+
+
+#+TOC: headlines 5
 
 #+LATEX: \newpage
 #+LATEX: \listoffigures
@@ -61,18 +73,29 @@ URL font https://tex.stackexchange.com/a/53963
 
 * Introduction
 #+INCLUDE: "introduction.org"
+#+LATEX: \newpage
 * Literature Review
 #+INCLUDE: "literature.org"
 ** A Review of Genome Graph Tools
 #+INCLUDE: "../Review/review.org"
 
+#+LATEX: \newpage
 * Materials and Methods
 #+INCLUDE: "methods.org"
-* Results---Graphical Sequence Comparison
+
+#+LATEX: \clearpage
+* Results
 #+INCLUDE: "results.org"
+#+LATEX: \newpage
+* Discussion
+#+INCLUDE: "discussion.org"
+
+#+LATEX: \newpage
 * Conclusion
 #+INCLUDE: "conclusion.org"
 
 #+LATEX: \newpage
 bibliographystyle:apacite
 bibliography:../library.bib
+
+#+INCLUDE: "appendix.org"

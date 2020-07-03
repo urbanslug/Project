@@ -1,0 +1,9 @@
+We provide a simple yet intuitionistic approach of comparing samples which
+ facilitates an all versus comparison of samples without going through the 
+reference as is the norm. This method involves using the depth of coverage under 
+each node to  generate cladogram through neighbour joining. 
+It provided a parsimonious tree that  correctly differentiated simulated
+ SARS-CoV-2 reads and split a household RSV dataset to have two different
+ introductions.
+
+Future work will involve verifying that these trees are in fact differentiating these samples correctly and how it compares to contemporary methods of phylogenetics.

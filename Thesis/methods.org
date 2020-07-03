@@ -1,407 +1,267 @@
-* Simulated Reads—SARS-CoV-2 
-** Fetch the reference
-Fetch latest, as of Jan 17 2020, COVID-19 reference.
+* RSV
+The experiment began with fifty three whole genome sequenced RSV positive
+samples from a twenty five member household codenamed household five.
+The household was part of a household follow up study in the Kilifi Health and 
+Demographic Surveillance System.
+The study ran over a six month period collecting nasopharyngeal swabs twice each
+week cite:munywokiInfluenceAgeSeverity2015,agotiTransmissionPatternsEvolution2017,githinjiAssessingUtilityMinority2018.
 
-#+BEGIN_SRC bash
-efetch -db=nuccore -format=fasta -id=NC_045512.2 > \
- ~/projects/Masters/verify/data/refs/COVID_19.fa
-#+END_SRC 
+Figure [[fig:rsv_temporal_distribution]] from
+cite:githinjiAssessingUtilityMinority2018 shows the temporal infection patterns
+of nineteen of the twenty five members of household twenty.
 
-** Simulate reads
-Simulate 3 sets of reads. 2 that aren’t distantly related to the reference and 1 that is.
-To do this we shall vary the mutation rate -r, default 0.0010, but keep the mutation frequency -F at a default, 0.5000. We want 1000 read pairs
-Suggestions concerning the relationship between mutant frequency and mutation rate at the hprt locus in human peripheral T-lymphocytes
-For 2 of them we shall use the same mutation rate but for one increase it.
-Set ref as a var
+#+CAPTION[Temporal Distribution of RSV Sample Collection]: The y-axis shows anonymized individuals represented by integers and unique colors and on the x-axis is the dates on which they were sampled.
+#+ATTR_LATEX: :placement [h] :width 0.75\textwidth :float multicolumn
+#+NAME: fig:rsv_temporal_distribution
+file:../Figures/RSV/Githinji_HH_5_temporal_distribution.png
 
+** Preprocess and Quality Control
+We started by remove reads with a phred score below 35 and trim the adapters as
+shown in [[Appendix 15]] and compiled a list of the file paths of the resulting 
+dataset in a text file  [[Appendix 16]].
+Sequences in two datasets (H_536_09_04 and H_506_13_04), specifically those 
+stated [[Appendix 17]], caused seqwish to crash and were therefore removed from the 
+experiment.
 
-#+BEGIN_SRC bash
-export REF=~/projects/Masters/verify/data/refs/COVID_19.fa
-#+END_SRC
+** Construct the Assembly Graph
+We used minia cite:chikhiSpaceefficientExactBruijn2013 to construct two assembly
+graphs specifying a k-mer length of 31.
+We needed these high minimum abundance values to reduce noise given the nature 
+of the dataset. We had 51 samples of approximately 400-500MB each for a genome 
+that is approximately 15kb in length to mean a lot of the data was noise.
+We varied the minimum abundance values between 1000 and 2000 as shown in
+[[Appendix 18]]. 
 
-Simulate the reads
-#+BEGIN_SRC bash
-dwgsim -N 1000 $REF covid_19_sim_1
-dwgsim -N 1000 $REF covid_19_sim_2
-#+END_SRC
+A minimum abundance of 2000 resulted in a GFA of 237 kilobytes
+(about 20x the genome size) and a minimum abundance of 1000 resulted GFA of 
+157 kilobytes (10x the genome size). 
+Increasing the minimum abundance from 1000 to 2000 reduced the size of the 
+resulting graph but visually seems to have lost some of the variable regions as 
+seen in Figure [[fig:rsv_assembly]].
 
-Increase the mutation rate from the default 0.0010 to 0.0100
+The result of this noise reduction was a graph of a size not greatly exceeding
+that of the RSV genome. 
 
-#+BEGIN_SRC bash
-dwgsim -N 1000 -r 0.0100 $REF covid_19_sim_3
-#+END_SRC
+#+CAPTION[RSV Assembly Graph]: An assembly graph of the household 20 samples built using minia and a minimum abundance of 1000 left and 2000 to the right.
+#+ATTR_LATEX: :placement [h] :scale 1.0 :float multicolumn
+#+NAME: fig:rsv_assembly
+file:../Figures/RSV/Assembly_Combined.png
 
-** Construct the assembly graph
-Assemble a coloured de Bruijn graph using Bifrost
-What’s a colored graph? The colored de Bruijn graph is a variant of the de Bruijn graph which keeps track of the source of each vertex in the graph (Iqbal et al., 2012)
-Prepare a sequences.txt file
+** Bluntify the Assembly Graph
+We went with the 1000 minimum abundance graph for its increased variability but 
+still manageable size then used stark (https://github.com/hnikaein/stark) to 
+bluntify, reduce the overlaps on edges, cite:gargGraphbasedApproachDiploid2018 the graph as shown in
+[[Appendix 19]].
 
-#+BEGIN_SRC bash
-~/projects/Masters/verify/data/reads/simulated/COVID_19/1/covid_19_sim_1_interleaved.fastq
-~/projects/Masters/verify/data/reads/simulated/COVID_19/2/covid_19_sim_2_interleaved.fastq
-~/projects/Masters/verify/data/reads/simulated/COVID_19/3/covid_19_sim_3_interleaved.fastq
-#+END_SRC
+This yielded a 206 kilobyte GFA that when visualized is seen in Figure
+[[fig:rsv_bluntified_assembly_graph]].
 
-Build the graph using bifrost
-
-#+BEGIN_SRC bash
-Bifrost build \
-  -c \
-  -k 31 \
-  -s sequences.txt \
-  -o SARS-CoV-2
-#+END_SRC
-
-When we view the DBG in bandage it looks like so:
-
-Figure x:
-** Bluntify/correct overlaps with gimbricate
-“bluntify” the GFA graph produced by a DBG assembler using gimbricate and seqwish, Bluntify means reducing overlaps on edges into nodes and edges in the graph itself.
-We want to come from the DBG to a VG
-
-#+BEGIN_SRC bash
-gimbricate -d  \
-  -g SARS-CoV-2.gfa \
-  -p SARS-CoV-2.paf \
-  -f SARS-CoV-2.fasta \
-  > SARS-CoV-2.gimbry.gfa
-#+END_SRC
-
-** Induce a variation graph
-Induce a variation graph using seqwish
-
-#+BEGIN_SRC bash
-seqwish \
-  -s SARS-CoV-2.fasta \
-  -p SARS-CoV-2.paf \
-  -g SARS-CoV-2.seqwish.gfa
-#+END_SRC
-
-** Prepare the graph for use with VG
-The GCSA2 indexer requires nodes to be no longer than 1024 bp, therefore, we have to use odgi chop to “chop”/reduce the sizes of these nodes.
-*** Build
-First build the graph with odgi build. Pass the -s flag to both build and sort the graph
-
-#+BEGIN_SRC bash
-odgi build \
-  -s \
-  -g SARS-CoV-2.seqwish.gfa \
-  -o SARS-CoV-2-odgi-graph.vg
-#+END_SRC
-
-*** Chop
-
-#+BEGIN_SRC bash
-odgi chop \
-  -i SARS-CoV-2-odgi-graph.vg \
-  -c 1024 \
-  -o SARS-CoV-2-odgi-chopped.vg
-#+END_SRC
-
-*** Sort
-Topologically order the graph
-
-#+BEGIN_SRC bash
-odgi sort \
- -i SARS-CoV-2-odgi-chopped.vg \
- -o SARS-CoV-2-odgi-sorted.vg
-#+END_SRC
-
-*** odgi view
-Projection of graphs into gfa
-
-#+BEGIN_SRC bash
-odgi view \
- -i SARS-CoV-2-odgi-sorted.vg \
- -g \
- > SARS-CoV-2-odgi.gfa
-#+END_SRC
+** Prepare the graph for mapping with VG
+We used the bash script in [[Appendix 20]] to chop and sort the graph for 
+use with vg cite:garrisonVariationGraphToolkit2018 which led to the variation graph in Figure [[fig:rsv_variation_graph]].
 
 ** Mapping
-Now that we have prepared the graph for vg using odgi it’s time to use vg
-*** vg view
-#+BEGIN_SRC bash
-Usage: vg view [options] [ <graph.vg> | <graph.json> | <aln.gam> | <read1.fq> [<read2.fq>] ]
-options:
-    -g, --gfa                  output GFA format (default)
-    -F, --gfa-in               input GFA format, reducing overlaps if they occur
-    -v, --vg                   output VG format
-
-vg view -Fv SARS-CoV-2-odgi.gfa > SARS-CoV-2-vg.vg
-#+END_SRC
-
-*** vg index
-Index the graph to allow for mapping
-Creates an index on the specified graph or graphs. All graphs indexed must
-already be in a joint ID space.
-
-#+BEGIN_SRC bash
-xg options:
-    -x, --xg-name FILE     use this file to store a succinct, queryable version of the graph(s), or read for GCSA indexing
-gcsa options:
-    -g, --gcsa-out FILE    output a GCSA2 index to the given file
-    -k, --kmer-size N      index kmers of size N in the graph (default 16)
-
-vg index -x SARS-CoV-2.xg -g SARS-CoV-2.gcsa SARS-CoV-2-vg.vg
-#+END_SRC
-
-Building the index is not so instantaneous.
-*** vg map
-Generate a ~gam~ file
-Map our reads to the graph for each set of reads that we have from 1 to 3 So for this let’s write a bash script
-
-#+BEGIN_SRC bash
-for i in {1..3}
-do 
- vg map \
-    -f ~/projects/Masters/verify/data/reads/simulated/COVID_19/${i}/covid_19_sim_${i}_interleaved.fastq \
-    -x SARS-CoV-2.xg \
-    -g SARS-CoV-2.gcsa \
-    > SARS-CoV-2-${i}.gam
-done
-#+END_SRC
-
-** Calculate coverage across the graph for each biosample
-Use vg pack to get a coverage vector for each biosample
--d, --as-table         write table on stdout representing packs
-
-#+BEGIN_SRC bash
-for i in {1..3}
-do 
- vg pack \
-   -x SARS-CoV-2.xg \
-   -g SARS-CoV-2-${i}.gam \
-   -d \
-   > SARS-CoV-2-${i}.pack.table
-done
-#+END_SRC
-
-View the tables as a pandas dataframe
-
-
-* Actual Reads—RSV
-** Preprocessing
-*** Quality control
-cat all the files in $~/miniconda3/share/trimmomatic-0.39-1/adapters/$ into one 
-file. In my case adapters.fa.
-
-Remove reads beyond QC of 35 and trim the adapters
-#+BEGIN_SRC bash
- trimmomatic PE \
-  data/H_528_16_04/H_528_16_04_1.fastq.gz data/H_528_16_04/H_528_16_04_2.fastq.gz \
-  trimmed_forward_paired.fq.gz trimmed_forward_unpaired.fq.gz trimmed_reverse_paired.fq.gz trimmed_reverse_unpaired.fq.gz \
-  ILLUMINACLIP:adapters/adapters.fa:2:35:10:2:keepBothReads \
-  SLIDINGWINDOW:4:35 \
-#+END_SRC
-
-I then compiled the interleaved reads filepaths to a txt file:
-
-#+BEGIN_SRC bash
-find $(pwd)/data -d -name '*interleave*fq' > sequences.txt
-#+END_SRC
-Two datasets were causing seqwish to crash so I removed them from sequences.txt
-
-#+BEGIN_SRC bash
-data/H_536_09_04/H_536_09_04_interleaved.fq:1271846:AGAACTCAGTGTAGGTAGAATGGTTGGCTGATCAATATCTCTAATGATTTTGGTCTGTGAATCAACTGTCATAAGAGAATTCTATCAAAGTTGAATTCCGAATCCTTGGGTCAATGACTGGGTGCACCCATTCTTCTAATGTGCTCTGTC
-data/H_506_13_04/H_506_13_04_interleaved.fq:3831798:AGAACTCAGTGTAGGTAGAATGGTTGGCTGAGTAGGTAGATGGAGGCAGGTGCATGTGTGATGGGAAGTGTGGTGACGGGTTGTGTGGGCACACGGGATGAGGCGCAGATGGCTGGGGGTTTGGGAGGGGAATGGGTGGGAGAAGGAGGC
-#+END_SRC
-
-
-** Construct the assembly graph  using minia
-minia uses bcalm2 internally. The unitig graph that it produces is the bcalm2
-construction.
-Minia is then applying a bunch of assembly heuristics to reduce the complexity
- of the graph and try to get out longer contigs. I find it's better to use than 
-the raw DBG.
-
-Given the nature of our dataset: 
-51 samples
-Each fastq is about 400-500M in size
-In order to get a graph that we expect (similar strcutre and approximate size to
-the expected genome) we have to set a high minimum abundance.
-Using a k-mer size of 31 and a minimum abundance of 2000 the assembly graph is
-237K (about 20x the genome size).  When we use a min abundance of 1000 we get a
-GFA of 157K (10x the genome size) but we “lose one of the variable regions".
-
-#+BEGIN_SRC bash
-minia -in ../sequence_paths.txt \
-  -kmer-size 31 \
-  -abundance-min 1000 \
-  -nb-cores 8
-#+END_SRC
-
-Figure x: a minimum abundance of 1000
-
-Figure x: a minimum abundance of 2000
-** Bluntify the graph using stark
-Going with the 1000 min abundance graph. We chose to bluntify it using stark
-(https://github.com/hnikaein/stark) 
-
-#+BEGIN_SRC bash
-stark -i input_file_name \
-  -o stark_bluntify.gfa \
-  -s cpu-consuming
-#+END_SRC
-
-Yields a  206K GFA that when visualized looks like so
-
-Figure x: bluntified graph 
-
-
-** Prepare the graph for mapping with vg
-Odgi is...
-I combine a series of commands into this bash script
-
-#+BEGIN_SRC bash
-#!/usr/bin/env bash
-
-# premap.sh
-
-InputGFA=$1
-BuildVG="build-odgi.vg"
-ChoppedVG="chopped-odgi.vg"
-SortedVG="sorted-odgi.vg"
-ViewGFA="view-odgi.gfa"
-
-echo "Using $InputGFA"
-
-odgi build \
-     -s \
-     -g ${InputGFA} \
-     -o ${BuildVG}
-
-echo "Chopping to size 1024"
-
-odgi chop \
-     -i build-odgi.vg \
-     -c 1024 \
-     -o ${ChoppedVG}
-
-echo "Sorting"
-
-odgi sort \
-     -i chopped-odgi.vg \
-     -o ${SortedVG}
-
-echo "Generating GFA $ViewGFA"
-
-odgi view \
-     -i sorted-odgi.vg \
-     -g \
-     > ${ViewGFA}
-#+END_SRC
-
-Run with
-
-#+BEGIN_SRC bash
-./pre-map.sh stark_bluntify.gfa
-#+END_SRC
-
-Visualize the graph to see
-
-
-** Mapping with vg
 *** Convert GFA to vg compatible variation graph
-Get a vg compatible variation graph out of the gfa
-
-#+BEGIN_SRC bash
-vg view -Fv view-odgi.gfa > graph.vg
-#+END_SRC
+Using the instructions in [[Appendix 21]], we induced a vg 
+cite:garrisonVariationGraphToolkit2018 compatible variation graph in GFA.
 
 *** Index
-In this case I don’t want to prune because our graph (graph.vg)  is small (62k) 
-and I don’t want to lose complex regions 
-(e.g. regions with many variants close to each other)
+There was no need to prune the graph because it was small (62k graph.vg) and we 
+wanted to avoid losing complex regions, for example regions with many variants
+close to each other.
+We therefore, only built an index as done in [[Appendix 22]] and got a 61 kb 
+graph (graph.xg) and a 258 kb index (graph.gcsa).
 
-https://github.com/vgteam/vg/wiki/Index-Construction#without-haplotypes
-
-https://github.com/vgteam/vg/wiki/Index-Construction#without-a-reference-or-haplotypes
-
-I don’t want to prune and will therefore build the index like so
-
-#+BEGIN_SRC bash
-vg index -x graph.xg -g graph.gcsa graph.vg
-#+END_SRC
-
-We get a 61K graph.xg and a 258K graph.gcsa.
 *** Mapping
-We want to map each sample against the graph.
-For this we use we want to loop through each of our interleaves sequences
-and put the outpur gam files in a directory we specify.
-We use the bash script below.
+To map each sample against the graph, we looped through each of our interleaved 
+sequences and stored the output gam files in a directory of our specification
+using the script in [[Appendix 23]].
 
-#+BEGIN_SRC bash
-#!/usr/bin/env bash
+We verified that the alignments make sense by converting the GAM to GAMP and
+viewing the JSON. The code for this is in [[Appendix 24]] and was subjective and a 
+matter of judgment.
 
-Graphname="graph"
-# Using a gams dir to put the gam files
-GAMDir="gams"
+** Calculate Coverage Across the Graph for Each Sample
+We used the script in [[Appendix 25]] to generate a coverage vector 196, 488 nodes
+long in tsv (tab separated values) format.
 
-# For each file in the sequence list, call vg to map it to the graph
-while read Filepath;
+** Normalization
+The coverage data had a lot of outliers, as shown in Figure fig:structure_of_data, and
+therefore needed normalization to avoid the outliers skewing it.
+
+#+CAPTION[RSV Structure of the Data]: Bar graphs of mean, median, maximum and standard deviation of coverage values per sample
+#+ATTR_LATEX: :placement [h] :scale 1.0 :float multicolumn
+#+NAME: fig:structure_of_data
+file:../Figures/RSV/structure_of_coverage_data.png
 
 
-do
-    # paramter expansion http://mywiki.wooledge.org/BashFAQ/073
-    Filename=${Filepath##*/}
-    FileStub=${Filename%_*}
+We normalized the coverage by setting any coverage value above zero as one and 
+left the zero values as zero. This meant that in this analysis, any form of
+coverage no matter how deep was valued equally which yielded the heatmap in
+[[fig:rsv_heatmap]].
 
-    echo "Mapping $FileStub"
-    vg map \
-       -f ${Filepath} \
-       -x ${Graphname}.xg \
-       -g ${Graphname}.gcsa \
-       > ${GAMDir}/${FileStub}.gam
-#+END_SRC
+#+CAPTION[RSV heatmap]: A heatmap of the binary normalized coverage vectors of the forty nine RSV samples. On the x axis is the node identifier and the y axis are the individual samples. The light regions indicate coverage while the dark regions indicate no coverage.
+#+ATTR_LATEX: :placement [h!] :width 0.7\textwidth :float multicolumn
+#+NAME: fig:rsv_heatmap
+file:../Figures/RSV/Heatmap.png
 
-Run with
+#+LATEX: \newpage
+** Principal Component Analysis
+To make it possible to compare the high dimensional data, we applied Principal 
+Component Analysis (PCA) which was able to differentiate each of the samples.
+Figure [[fig:rsv_pca]] is a scatter plot of our PCA, specifically the first and 
+second principal components for RSV reads.
 
-#+BEGIN_SRC bash
-./map.sh < ../sequence_paths.txt
-#+END_SRC
+#+CAPTION[RSV PCA]: A scatter plot of the first and second principal components of the coverage vectors of the forty nine RSV samples.
+#+ATTR_LATEX: :placement [h] :scale 1.0 :float multicolumn
+#+NAME: fig:rsv_pca
+file:../Figures/RSV/PCA.png
 
-Verify a GAM converting the converting to GAMP and viewing in JSON the
-https://github.com/vgteam/vg/wiki/Visualization#viewing-alignments
-https://github.com/vgteam/vg/wiki/Multipath-alignments-and-vg-mpmap
 
-#+BEGIN_SRC bash
-vg view -a -k gams/H_513_02_04.gam > Images/H_513_02_04.gamp
+#+CAPTION[Bluntified RSV Assembly Graph]: RSV household 20 assembly graph bluntified using stark.
+#+ATTR_LATEX: :placement [h] :width 0.75\textwidth :float multicolumn
+#+NAME: fig:rsv_bluntified_assembly_graph
+file:../Figures/RSV/Assembly_Bluntified.png
 
-vg view -K -j Images/H_513_02_04.gamp > Images/H_513_02_04_GAMP.json
+#+CAPTION[RSV Variation Graph]: The household 20 variation graph after running odgi chop on it.
+#+ATTR_LATEX: :placement [h!] :width 0.75\textwidth :float multicolumn
+#+NAME: fig:rsv_variation_graph
+file:../Figures/RSV/Assembly_Bluntified.png
 
-cat Images/H_513_02_04_GAMP.json | jq | less
-#+END_SRC
-** Calculate coverage across the graph for each biosample
-We want all our coverage vectors in a coverage dir.
-mkdir coverage/
+#+LATEX: \clearpage
+* SARS-CoV-2 
+Needing to verify that the method in [[RSV]] properly clusters samples based on 
+how close they are genetically, and with the COVID-19 pandemic caused by the 
+Severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2), we simulated 
+reads from a SARS-CoV-2 reference genome and to rerun the method.
 
-Use this this coverage.bash to generate a coverage vector as a table
+** Fetch the Reference
+We fetched latest SARS-CoV-2 [[https://www.ncbi.nlm.nih.gov/nuccore/1798174254][reference]] as of Jan 17 2020 using the command in
+[[Appendix 1]].
 
-#+BEGIN_SRC bash
-#!/usr/bin/env bash
+** Simulate Reads
+Using the reference from our previous step ([[Fetch the Reference]]), we simulated 
+three sets of 1000 reads using dwgsim (https://github.com/nh13/dwgsim).
 
-# Loop through each gam file
-Graphname="graph"
-CoverageDir="coverage"
+Two of the three were closely related to the reference and each other and
+one was distantly related to both the other two and the reference.
+We achieved this by varying the mutation rate -r, default 0.0010, while keeping
+the mutation frequency -F at the default of 0.5000 (Green et al., 1995).
 
-while read Filepath;
-do
-    # parameter expansion http://mywiki.wooledge.org/BashFAQ/073
-    FileStub=${Filepath%.*}
+To vary the mutation rates; we used the default mutation rate of 0.0010 for
+two samples which were to be the closely related samples. 
+For the third sample which was to be the distant one we increased the mutation 
+rate by a factor of 10 to 0.0100. 
 
-    vg pack \
-       -d \
-       -x ${Graphname}.xg \
-       -g ${Filepath} \
-       > ${CoverageDir}/${FileStub}.pack.table
-done
-#+END_SRC
+The instructions for this are in in [[Appendix 2]].
 
-Run with
+** Construct the Assembly Graph
+This time we used bifrost cite:holleyBifrostHighlyParallel2019 to assemble a
+colored de Bruijn Graph. 
+We did this by saving the file paths to the simulated sequences in a text file
+(in our case sequences.txt) as shown in [[Appendix 3]] then assembled
+the graph using bifrost  while pointing to the sequences.txt file as done in
+[[Appendix 4]].
 
-#+BEGIN_SRC bash
-find $(pwd)/gams -d -name '*.gam' > gams.txt
-./map.sh < gams.txt
-# or
-./coverage.sh < find $(pwd)/gams -d -name '*.gam'
-#+END_SRC
+Figure [[fig:sars_assembly_graph]] shows the assembly graph as visualized in Bandage.
+
+#+CAPTION[SARS-CoV-2 Assembly Graph]: A de Bruijn Graph assembled using Bifrost and viewed in Bandage
+#+ATTR_LATEX: :placement [h] :width 0.75\textwidth :float multicolumn
+#+NAME: fig:sars_assembly_graph
+file:../Figures/SARS_CoV_2/SARS_Assembly_Graph.png
+
+** Bluntify the Assembly Graph
+We bluntified (reduced overlaps on the edges) the graph 
+cite:gargGraphbasedApproachDiploid2018 from the previous step
+[[Construct the Assembly Graph]] using gimbricate
+(https://github.com/ekg/gimbricate) as shown in [[Appendix 5]].
+
+** Induce a Variation Graph
+We induce a variation graph using seqwish as shown in [[Appendix 6]].
+
+** Prepare the Graph for Use With VG
+The GCSA2 \todo{link to literature review} indexer in vg requires nodes to be at
+most 1024 base pairs long.
+This meant that we had to use odgi chop to “chop”/reduce the sizes of these
+nodes which was a multistep process.
+
+*** Build
+The graph was first "built" using odgi build as done in [[Appendix 7]] 
+(pass the ~-s~ flag to both build and sort the graph).
+
+*** Chop
+The lengths of the sequences in the nodes were reduced using the instructions in
+[[Appendix 8]].
+
+*** Sort
+We topologically ordered the graph as in [[Appendix 9]].
+Topological order/sort gives us an ascending numbering of nodes which is 
+valuable for downstream analysis and serves as a rough coordinate system.
+
+
+*** odgi view
+We projected the graph into GFA as in [[Appendix 10]]. 
+This graph when visualized in bandage looks like the one in
+Figure [[fig:sars_variation_graph]].
+
+#+CAPTION[SARS-CoV-2 Variation Graph]: A variation graph that has the length of its nodes chopped using odgi when visualized in badange.
+#+ATTR_LATEX: :placement [h] :width 0.75\textwidth :float multicolumn
+#+NAME: fig:sars_variation_graph
+file:../Figures/SARS_CoV_2/SARS_Variation_Graph.png
+
+** Mapping
+After using odgi to prepare the graph for use with vg
+([[Prepare the Graph for Use With VG]]), we used vg to map the simulated reads to
+the reference graph.
+
+*** vg view
+We used the instructions in [[Appendix 11]] to generate a vg
+cite:garrisonVariationGraphToolkit2018 compatible variation graph. 
+
+*** vg index
+To allow for fast searching of where reads occur in the graph, we indexed the 
+graph using the code in [[Appendix 12]].
+
+*** vg map
+We mapped the reads from each sample (1, 2 and 3 from [[Simulate Reads]])  to the 
+graph as shown in the script in [[Appendix 13]] which were output as  alignments to 
+the graph in the form of GAM files. 
+
+** Calculate Coverage Across the Graph for Each Sample
+We then used vg pack to get a coverage vector for each sample as done in 
+[[Appendix 14]].
+A coverage vector is based on how the reads are aligned to the reference graph 
+and is quantified as the amount of coverage per node in the graph.
+
+Figure [[fig:sars_coverage_vector]] shows a condensed view of the 106,331 feature
+wide coverage vector for the three samples visualized as a pandas dataframe.
+
+#+CAPTION[SARS-CoV-2 Coverage Vector]: The coverage vector from vg visualized as a pandas dataframe.
+#+ATTR_LATEX: :placement [h] :width 0.75\textwidth :float multicolumn
+#+NAME: fig:sars_coverage_vector
+file:../Figures/SARS_CoV_2/SARS_Coverage_Vector.png
+
+** Normalization
+The SARS-CoV-2 data had low variance between coverage values with a maximum of 
+coverage value 16 (and a minimum of 0) as we can see in the heatmap in
+[[fig:sars_heatmap]] and therefore didn’t need normalization.
+
+#+CAPTION[SARS-CoV-2 heatmap]: A heatmap showing the coverage of each of the samples in one plot. of the coverage of each of the SARS-COV 2 samples. The node identifier of the ordered graph is on the x axis while the number of nodes it mapped to that node identifier is on the y axis.
+#+ATTR_LATEX: :placement [h!] :width 0.75\textwidth :float multicolumn
+#+NAME: fig:sars_heatmap
+file:../Figures/SARS_CoV_2/Heatmap.png
+
+#+LATEX: \newpage
+** Principal Component Analysis
+To make it easier to compare the high dimensional data, we applied principal 
+component analysis which was able to differentiate each of the samples.
+
+#+CAPTION[SARS-CoV-2 PCA]: A scatter plot of the first and second principal components of the coverage vectors of the 3 SARS COV 2 samples.
+#+ATTR_LATEX: :placement [h] :width 0.75\textwidth :float multicolumn 
+#+NAME: fig:sars_pca
+file:../Figures/SARS_CoV_2/PCA.png
+
+Figure [[fig:sars_pca]] is a scatter plot of our PCA, specifically the first and second
+principal components for SARS-CoV-2 reads.
+
+

@@ -1,0 +1,79 @@
+Our study demonstrates that by mapping sequence reads to a reference
+graph we can perform all vs all genome comparison, as illustrated in 
+Figure [[fig:all-vs-all-comparison]].
+This comparison was used to differentiate and cluster samples depending on the
+depth of their coverage in the reference graph.
+
+\todo{Any effects from using different tools for assembly?}
+
+Contemporary methods of reference genome representation use a linear model to
+represent a shared genome. This model is lossy as a result of its linearity
+because it is a consensus of the most frequently occurring sequences amongst 
+the sequences used to build it. This, in turn, causes the model to favour 
+high-frequency variants leading to a tendency to over-report sequences present 
+in the reference and under-report those that are not. This tendency, known as
+reference allele bias (explained in 2.5.3.2), leads to an underestimation of 
+the genetic variation present in a genome. 
+
+Moreover, the reference is not transitive \todo{cite} (A > B and B > C therefore A > C) 
+and therefore not an ideal way to compare samples.
+That is, how a sample A compares to reference and how another sample B compares
+to the reference doesn't mean that we can conclusively compare A against B based
+on how they compare against the reference.
+
+Graph-based models side step the lack of transitivity problem and when used to
+represent the reference genome have been shown to reduce reference allele bias
+consequently facilitating the comparison of genomes at a higher resolution than
+before.
+
+#+CAPTION[All Against All Sample Comparison]: Contemporary genomic methods compare each sample based on how it compares against a reference. A pangenomic method compares each sample against every other sample through the use of a reference pangenome graph. a) Shows this comparison using Venn diagrams and three samples A, B, and C. b) (from…)
+#+NAME: fig:all-vs-all-comparison
+#+ATTR_LATEX: :width 0.75\textwidth
+file:../Figures/combined-all-vs-all.png
+
+The maximum likelihood phylogenetic tree in [[fig:Githinji_HH20_phylogenetic_tree]] 
+from cite:githinjiAssessingUtilityMinority2018 showed that when using a linear 
+reference of closely related samples such as those in a household outbreak it
+was not possible to differentiate the samples with a level of certainty that was
+satisfactory.
+
+#+CAPTION[RSV Maximum Likelihood Phylogenetic Tree]: The maximum likelihood phylogenetic tree of RSV from cite:githinjiAssessingUtilityMinority2018
+#+ATTR_LATEX: :width 0.7\textwidth :float multicolumn
+#+NAME: fig:Githinji_HH20_phylogenetic_tree
+file:../Figures/RSV/Githinji_HH20_ML_phylogenetic_tree.png
+
+When using our method however, the coverage data seems to yield a somewhat 
+linearly changing tree. This linearity is a factor of principal component analysis
+which compares the distance of data from an origin but is also really good for
+phylogenetics when assuming minimum evolution and one or few viral introductions 
+then spread.
+
+The branch lengths vary by a lot (as seen in the trees) but the topology stays 
+the same depending on which of the principal components we used. 
+The difference in branch length based on the first principal component 
+expectedly maximizing the distance between them.
+It seems that the first principal component is the one to use
+when looking for visual cues of sample relatedness because it is the one that
+most differentiates the samples and this is useful in getting a visual cue of
+the relatedness.
+The incorporation of the other four principal components is useful to get a 
+more realistic view of the relatedness because they are also other measures of
+differentiation and can be shown to give a more realistic view of the 
+SARS-CoV-2 simulated reads for which we knew the sample relatedness going in.
+
+** Strengths and limitations
+Genome graphs give insight into the genetic variation that was not as clear 
+with previous tools. With their power we were able to analyze genomes at a
+higher resolution and analyze their coverage. The method is simple and based 
+on a concept that is easy to explain to people with little or no expertise in 
+bioinformatics.
+
+However, we note the method is not entirely conclusive and uses a naive
+approach; it is an intuitionistic approach to compare samples facilitated by 
+genome graphs which provide a higher resolution when looking at pangenomes or in
+our case a virus quasispecies. We note that other machine learning techniques,
+not only principal component analysis, could be used to analyze the coverage
+data and models could be trained on an even larger dataset. It is possible and
+actually favourable, because of the reduced computational cost, to have a world
+where we look up new sample coverage against an already trained model instead 
+of always running principal component analysis. 

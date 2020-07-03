@@ -1,25 +1,28 @@
 #+LATEX: \pagewidth
 * Abstract
 #+BEGIN_ABSTRACT
-There are several methods that are used to evaluate and describe sequence
-diversity, and these include Shannon's entropy, the number of polymorphic loci
-per kilobase (one thousand bases), and the nucleotide diversity statistic Pi
-($\pi$).
-These methods compare nucleotide substitutions, insertions and deletions
-present  in consensus sequences to describe and quantify sequence diversity
-from a given sample.
-However, such approaches are prone to underestimation of the actual
-diversity for example in cases of low abundance haplotypes given that consensus
-sequences are a mosaic of closely related haplotypes.
+Reference genomes represent a consensus assembly of the most frequent reads or
+bases in a sample. Genome graphs use low level data structures to provide 
+access to reads used in the assembly as a network of nodes where a node 
+represents a sequence or kmer. In this work we used genome graphs to explore
+and represent virus sequence diversity.
 
-We propose to use variation graphs, that is, data structures that maintain
-available sequence variation from a sample or a collection of samples, to
-explore the sequence variation of respiratory syncytial virus (RSV), a single
-stranded, negative sense, enveloped RNA virus. This study will utilize sequence
-data from samples collected in a twenty-member household during the course of a
-household RSV outbreak.
+Respiratory Syncytial Virus samples were collected from a twenty-five-member 
+household during a household outbreak and used to assemble a genome graph. 
+Reads from each sample were mapped on to this graph and the number of reads that
+mapped under each was noted. We then applied principal component analysis to 
+reduce the 196,488-dimensional coverage data and the results used to generate 
+distance matrices which were then summarised as a cladogram.
 
-We aim to create a pipeline for constructing a variation graph for describing
-virus diversity during the household outbreak. We will use this data to assess
-the utility of this pangenome in informing potential transmission events.
+We established a method able to differentiate each of the samples by comparing
+the depth of coverage of each sample against that of every other sample.
+The use of different principle components, either the first principal component 
+or the first five principal components, gave different topologies.
+The first five provided a tree that was more parsimonious and closer to the
+maximum likelihood tree generated in previous studies.
+
+Our naïve approach provides an all vs all sample comparison of sample
+relatedness using data provided by a genome graph. It also shows that sequence
+coverage across a genome graph is an alternative approach to provide sequence 
+relatedness.
 #+END_ABSTRACT

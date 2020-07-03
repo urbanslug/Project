@@ -80,13 +80,13 @@ milder illnesses
 cite:glezenRiskRespiratorySyncytial1981,caneMolecularEpidemiologyRespiratory2001.
 
 *** The Genetic Makeup of RSV
-#+CAPTION:A schematic of RSV antisense RNA strand showing its 10 genes. The rectangles represent genes with the different shades of the same colour used to show similarity. The grey connectors are the intergenic regions. The numbers below are the estimated gene lengths. Adapted from (Nam & Ison, 2019)
-#+ATTR_LATEX: :width 0.7\textwidth :float multicolumn
+#+CAPTION[RSV Antisense RNA Strand]:A schematic of RSV antisense RNA strand showing its 10 genes. The rectangles represent genes with the different shades of the same colour used to show similarity. The grey connectors are the intergenic regions. The numbers below are the estimated gene lengths. Adapted from cite:namRespiratorySyncytialVirus2019.
+#+ATTR_LATEX:  :placement [h!] :width 0.75\textwidth :float multicolumn
 #+NAME: fig:RSV-genes
 file:figures/RSV-genes.png
 
-#+CAPTION:A schematic of the RSV capsid showing the lipid bilayer and most importantly the surface the F and G glycoproteins. From (Nam & Ison, 2019).
-#+ATTR_LATEX: :width 0.7\textwidth :float multicolumn
+#+CAPTION[RSV Capsid]:A schematic of the RSV capsid showing the lipid bilayer and most importantly the surface the F and G glycoproteins. From cite:namRespiratorySyncytialVirus2019.
+#+ATTR_LATEX: :placement [h!] :width 0.75\textwidth :float multicolumn
 #+NAME: fig:RSV-cross-section
 file:figures/RSV-cross-section.png
 
@@ -151,6 +151,9 @@ Groups A and B are subdivided further into subgroups, as of 2012 there were 11
 subgroups of RSV A: ON1, GA1–GA7, SAA1, NA1, and NA2 and 17 subgroups of RSV
 B: GB1–GB4, SAB1-SAB3, and BA1–BA10
 cite:peretCirculationPatternsGenetically1998,peretCirculationPatternsGroup2000,venterGeneticDiversityMolecular2001,trentoMajorChangesProtein2003,shobugawaEmergingGenotypesHuman2009,eshaghiGeneticVariabilityHuman2012,aamirMolecularCharacterizationCirculating2013.
+
+#+LATEX: \newpage
+
 * Graphs in Bioinformatics
 Contemporary methods of representing a reference genome as a linear sequence of 
 characters to represent bases cite:diltheyImprovedGenomeInference2015 introduce a
@@ -163,6 +166,8 @@ is inherent in the genome. Other models can approach this structure with
 varying degrees of accuracy, but it is naturally represented as a graph in
 which the sequences themselves are implicitly encoded as walks in the graph
 cite:patenGenomeGraphsEvolution2017.
+#+LATEX: \newpage
+
 * Graph Theory
 A graph is an object, or collection, of two sets, a vertex set and edge set.
 The vertex set is a finite non-empty set, to mean a graph must have at least one
@@ -175,20 +180,15 @@ V(G) of vertices and a set E(G), disjoint from V (G), of edges, together with
 an incidence function that associates with each edge of G an unordered pair of
 (not necessarily distinct) vertices of G cite:bondyGraphTheory2011.
 
-Graphs can be represented diagrammatically as shown below.
+Graphs can be represented diagrammatically as shown in Figure [[fig:generic-graph-example]].
+
 G {{a c} {b d}}
-#+CAPTION: G is an undirected graph of four nodes a,b,c and d.
-#+ATTR_LATEX: :width 0.7\textwidth :float multicolumn
-#+NAME: fig:simple-graph
-file:figures/Graph-classifications-Undirected.png
-
-
 H {{a c} {c d}}
-#+CAPTION: H is an undirected graph of notes a, b and c. Two vertices which are incident with a common edge are adjacent, as are two edges which are incident with a common vertex, and two distinct adjacent vertices are neighbours cite:bondyGraphTheory2011.
+#+CAPTION[Generic Graph Example]: 
 #+ATTR_LATEX: :width 0.7\textwidth :float multicolumn
-#+NAME: fig:simple-graph
+#+NAME: fig:generic-graph-example
 file:figures/Graph-classifications-Digraph.png
-
+file:figures/Graph-classifications-Undirected.png
 
 ** Graph classifications
 Graphs can be broken down into many classifications but in this case, we want to
@@ -198,14 +198,14 @@ multigraph is a graph in which two adjacent vertices are connected by more than
 one edge.
 
 Simple Graph
-#+CAPTION: A simple graph showing only a single edge connecting any two nodes
+#+CAPTION[Simple Graph]: A simple graph showing only a single edge connecting any two nodes
 #+ATTR_LATEX: :width 0.7\textwidth :float multicolumn
 #+NAME: fig:simple-graph
 file:figures/Graph-classifications-Simple-Graph.png
 
 
 Multigraph
-#+CAPTION: A multigraph where more than one edge can connect any two nodes.
+#+CAPTION [Multigraph]: A multigraph where more than one edge can connect any two nodes.
 #+ATTR_LATEX: :width 0.7\textwidth :float multicolumn
 #+NAME: fig:multigraph
 file:figures/Graph-classifications-Multigraph.png
@@ -235,13 +235,13 @@ number of tail ends of the edges adjacent to a vertex cite:bondyGraphTheory2011.
 A vertex is even if its degree is an even number and odd otherwise
 cite:trudeauIntroductionGraphTheory1993.
 
-An isomorphism is a relationship between two graphs such that the two graphs
+An isomorphism, in [[fig:isomorphism]], is a relationship between two graphs such that the two graphs
 can be represented by identical diagrams cite:bondyGraphTheory2011 whereas an 
 automorphism of a graph is an isomorphism of the graph to itself as shown below.
 
-#+CAPTION: The two nodes are different visualizations of the same graph and therefore an isomorphism.
+#+CAPTION[Isomorphism]: The two nodes are different visualizations of the same graph and therefore an isomorphism.
 #+ATTR_LATEX: :width 0.7\textwidth :float multicolumn
-#+NAME: fig:multigraph
+#+NAME: fig:isomorphism
 file:figures/Isomorphism.png
 
 ** Walks and paths
@@ -264,6 +264,8 @@ closed, an open hamilton walk is a walk that uses every vertex in the graph
 exactly once. A closed hamilton walk is a closed walk that uses the initial
 vertex exactly twice and all the other vertices in the graph exactly once
 cite:trudeauIntroductionGraphTheory1993.
+
+#+LATEX: \newpage
 
 * Genome Graphs
 A genome graph is a generic term that refers to the representation of a sequence
