@@ -1,9 +1,9 @@
 * RSV
-We started the experiment with with fifty three whole genome sequenced RSV 
-positive samples from a twenty five member household code-named household five.
-This household was part of a household follow up study in the Kilifi Health and 
-Demographic Surveillance System which ran over a six month
-period collecting nasopharyngeal swabs twice each week. 
+We started the experiment with fifty three whole genome sequenced RSV 
+positive samples from a twenty five member household code-named household twenty
+which was part of a household follow up study in the Kilifi Health and 
+Demographic Surveillance System and ran over a six month
+period collecting nasopharyngeal swabs twice each week
 cite:munywokiInfluenceAgeSeverity2015,agotiTransmissionPatternsEvolution2017,githinjiAssessingUtilityMinority2018.
 
 Figure [[fig:rsv_temporal_distribution]] from
@@ -16,29 +16,30 @@ of nineteen of the twenty five members of household twenty.
 file:../Figures/RSV/Githinji_HH_5_temporal_distribution.png
 
 ** Preprocess and Quality Control
-We started by removing reads with a phred score below 35 and trimming adapters
-as shown in [[Appendix 15]] then compiled a list of the file paths of the resulting 
-dataset in a text file [[Appendix 16]].
+We started by removing reads with a phred score below 35 and trimming sequencing
+adapters as shown in [[Quality Control and Adapter Trimming]] then compiled a list 
+of the file paths into a text file as shown in [[Concatenate Reads into Text File]].
 
 Sequences in two datasets (~H_536_09_04~ and ~H_506_13_04~), specifically those 
-stated [[Appendix 17]], caused seqwish to crash and were therefore removed from the 
-experiment.\todo{phrase this better}
+stated [[Problematic RSV Sequences]], caused seqwish
+(https://github.com/ekg/seqwish) to crash and were therefore removed from the 
+experiment leaving us with 51 samples.
 
 ** Construct the Assembly Graph
 We used minia cite:chikhiSpaceefficientExactBruijn2013 to construct two assembly
-graphs with a k-mer length of 31.
-Given the nature of the dataset, 51 samples of approximately 400-500MB each for 
-a genome that is approximately 15kb in length, we figured that the data was 
-noisy and that we had to set a high minimum abundance. 
-We wanted a graph of a size not greatly exceeding that of the RSV genome.
-For this, we varied the minimum abundance values between 1000 and 2000 as shown 
-in [[Appendix 18]]. 
+graphs with a k-mer length of 31 and varying minimum abundance values.
+Given the nature of the dataset (51 samples of approximately 400-500 megabytes 
+from a genome that is approximately 15 kilobases in length) it was clear 
+that the data was noisy and we had to set a high minimum abundance. 
+We varied the minimum abundance values between 1,000 and 2,000 as shown 
+in [[Minia Fragment Assembly]] to get a graph of size not greatly exceeding that of
+the RSV genome.
 
-A minimum abundance of 1000 resulted in 157 kb (10x the genome size) GFA
-while a minimum abundance of 2000 resulted in a 237 kb GFA
-(about 20x the genome size).
-Increasing the minimum abundance from 1000 to 2000 reduced the size of the 
-resulting graph but on visual inspection visually seemed to have lost some of 
+A minimum abundance of 1,000 resulted in 157 kilobyte
+(approximately 10x the genome size) GFA while a minimum abundance of 2,000 
+resulted in a 237 kilobyte GFA (approximately 20x the genome size).
+Increasing the minimum abundance from 1,000 to 2,000 reduced the size of the 
+resulting graph but on visual inspection seemed to have lost some of 
 the variable regions as seen in Figure [[fig:rsv_assembly]].
 
 #+CAPTION[RSV Assembly Graph]: An assembly graph of the household 20 samples built using minia and a minimum abundance of 1000 left and 2000 to the right.
@@ -47,41 +48,43 @@ the variable regions as seen in Figure [[fig:rsv_assembly]].
 file:../Figures/RSV/Assembly_Combined.png
 
 ** Bluntify the Assembly Graph
-We went with the 1000 minimum abundance graph for its increased variability but 
-still manageable size then used stark (https://github.com/hnikaein/stark) to 
-bluntify, reduce the overlaps on edges, cite:gargGraphbasedApproachDiploid2018 the graph as shown in
-[[Appendix 19]].
-
+Going with the 1,000 minimum abundance graph for its increased variability but 
+still manageable size we used stark (https://github.com/hnikaein/stark) to 
+bluntify, that is reduce the overlaps on edges,
+ cite:gargGraphbasedApproachDiploid2018 of the graph as shown in
+[[Graph Bluntification Using Stark]].
 This yielded a 206 kilobyte GFA that when visualized is seen in Figure
 [[fig:rsv_bluntified_assembly_graph]].
 
 ** Prepare the graph for mapping with VG
-We used the bash script in [[Appendix 20]] to chop and sort the graph for 
-use with vg cite:garrisonVariationGraphToolkit2018 which led to the variation graph in Figure [[fig:rsv_variation_graph]].
+The bash script in [[Odgi Graph Preparation]] was used to chop and sort the graph
+for use with vg cite:garrisonVariationGraphToolkit2018 which led to the 
+variation graph in Figure [[fig:rsv_variation_graph]].
 
 ** Mapping
 *** Convert GFA to vg compatible variation graph
-Using the instructions in [[Appendix 21]], we induced a vg 
-cite:garrisonVariationGraphToolkit2018 compatible variation graph in GFA.
+Using the instructions in [[RSV VG View]], we induced a vg 
+cite:garrisonVariationGraphToolkit2018 compatible variation graph and output it 
+GFA.
 
 *** Index
-There was no need to prune the graph because it was small (62k graph.vg) and we 
-wanted to avoid losing complex regions, for example regions with many variants
-close to each other.
-We, therefore, only built an index as done in [[Appendix 22]] and got a 61 kb 
-graph (graph.xg) and a 258 kb index (graph.gcsa).
+There was no need to prune the graph because it was small 
+(a 62 kilobyte graph.vg) and we wanted to avoid losing complex regions such as 
+those with many variants close to each other.
+We, therefore, only built an index as in [[RSV VG Index]] and got a 61
+kilobyte graph (graph.xg) and a 258 kilobyte index (graph.gcsa).
 
 *** Mapping
-To map each sample against the graph, we looped through each of our interleaved 
-sequences and stored the output gam files in a directory of our specification
-using the script in [[Appendix 23]].
+To map each sample against the graph, we used [[RSV VG Map Script]] to loop through 
+each of our interleaved sequences and stored the output GAM files in a 
+directory of our specification.
 
-We verified that the alignments made sense by converting the GAM to GAMP and
-viewing the JSON. The code for this is in [[Appendix 24]] and was subjective and a 
-matter of judgment.
+We then verified that the alignments made sense
+(a task that is both subjective and a matter of judgment) by converting the GAM 
+to GAMP using the instructions in  [[Generate GAM]] and viewing the JSON.
 
 ** Calculate Coverage Across the Graph for Each Sample
-We used the script in [[Appendix 25]] to generate a coverage vector 196, 488 nodes
+We used the script in [[VG Pack Script]] to generate a coverage vector 196,488 nodes
 long in tsv (tab separated values) format.
 
 ** Normalization
@@ -98,7 +101,7 @@ file:../Figures/RSV/structure_of_coverage_data.png
 We normalized the coverage by setting any coverage value above zero as one and 
 left the zero values as zero. This meant that in this analysis, any form of
 coverage no matter how deep was valued equally which yielded the heatmap in
-[[fig:rsv_heatmap]].
+Figure [[fig:rsv_heatmap]].
 
 #+CAPTION[RSV heatmap]: A heatmap of the binary normalized coverage vectors of the forty nine RSV samples. On the x axis is the node identifier and the y axis are the individual samples. The light regions indicate coverage while the dark regions indicate no coverage.
 #+ATTR_LATEX: :placement [h!] :width 0.7\textwidth :float multicolumn
@@ -109,8 +112,8 @@ file:../Figures/RSV/Heatmap.png
 ** Principal Component Analysis
 To make it possible to compare the high dimensional data, we applied Principal 
 Component Analysis (PCA) which was able to differentiate each of the samples.
-Figure [[fig:rsv_pca]] is a scatter plot of our PCA, specifically the first and 
-second principal components for RSV reads.
+Figure [[fig:rsv_pca]] is a scatter plot of the first and second principal 
+components for RSV reads.
 
 #+CAPTION[RSV PCA]: A scatter plot of the first and second principal components of the coverage vectors of the forty nine RSV samples.
 #+ATTR_LATEX: :placement [h] :scale 1.0 :float multicolumn
@@ -131,40 +134,38 @@ file:../Figures/RSV/Assembly_Bluntified.png
 #+LATEX: \clearpage
 * SARS-CoV-2 
 Needing to verify that the method in [[RSV]] properly clusters samples based on 
-how close they are genetically we reran the method on reads with simulated reads
+how close they are genetically we reran the experiment with simulated reads
 which have pre-determined and therefore known properties.
 The COVID-19 pandemic caused by the Severe Acute Respiratory Syndrome
 Coronavirus 2 (SARS-CoV-2) provided a unique opportunity for this. 
 
 ** Fetch the Reference
-We fetched latest SARS-CoV-2 [[https://www.ncbi.nlm.nih.gov/nuccore/1798174254][reference]] as of Jan 17 2020 using the instructions
-in [[Appendix 1]].
+We the fetched latest SARS-CoV-2 [[https://www.ncbi.nlm.nih.gov/nuccore/1798174254][reference]] as of Jan 17 2020 using the instructions
+in [[Efetch]].
 
 ** Simulate Reads
 Using the reference from our previous step ([[Fetch the Reference]]), we simulated 
-three sets of 1000 reads using dwgsim (https://github.com/nh13/dwgsim).
+three sets of 1,000 reads using dwgsim (https://github.com/nh13/dwgsim).
 
-Two of the three were closely related to the reference and each other and
-one was distantly related to both the other two and the reference.
-We achieved this by varying the mutation rate -r, default 0.0010, while keeping
-the mutation frequency -F at the default of 0.5000
+The first two of the three reads were closely related to the reference and each
+other while the third was distantly related from the first two and the
+reference.
+We achieved this by varying the mutation rate -r (default value 0.0010) while 
+keeping the mutation frequency -F (default value 0.5000) constant
 cite:greenSuggestionsConcerningRelationship1995.
 
 To vary the mutation rates; we used the default mutation rate of 0.0010 for
-two samples which were to be the closely related samples. 
+first two samples which were to be the closely related samples. 
 For the third sample which was to be the distant one we increased the mutation 
 rate by a factor of 10 to 0.0100. 
-
-The instructions for this are in in [[Appendix 2]].
+The instructions for this are in [[dwgsim Read Simulation]].
 
 ** Construct the Assembly Graph
 This time we used bifrost cite:holleyBifrostHighlyParallel2019 to assemble a
 colored de Bruijn Graph. 
 We did this by saving the file paths to the simulated sequences in a text file
-(in our case sequences.txt) as shown in [[Appendix 3]] then assembled
-the graph using bifrost  while pointing to the sequences.txt file as done in
-[[Appendix 4]].
-
+(in our case sequences.txt) then assembled the graph by passing the 
+sequences.txt file to bifrost as done in [[Bifrost Fragment Assembly]].
 Figure [[fig:sars_assembly_graph]] shows the assembly graph as visualized in Bandage.
 
 #+CAPTION[SARS-CoV-2 Assembly Graph]: A de Bruijn Graph assembled using Bifrost and viewed in Bandage
@@ -173,35 +174,34 @@ Figure [[fig:sars_assembly_graph]] shows the assembly graph as visualized in Ban
 file:../Figures/SARS_CoV_2/SARS_Assembly_Graph.png
 
 ** Bluntify the Assembly Graph
-We bluntified (reduced overlaps on the edges) the graph 
-cite:gargGraphbasedApproachDiploid2018 from the previous step
-[[Construct the Assembly Graph]] using gimbricate
-(https://github.com/ekg/gimbricate) as shown in [[Appendix 5]].
+We then bluntified the assembly graph 
+using gimbricate (https://github.com/ekg/gimbricate) as shown in
+[[Gimbricate Graph Bluntification]].
 
 ** Induce a Variation Graph
-We induce a variation graph using seqwish as shown in [[Appendix 6]].
+We induced a variation graph using seqwish as shown in [[Seqwish Graph Induction]].
 
 ** Prepare the Graph for Use With VG
 The GCSA2 \todo{link to literature review} indexer in vg requires nodes to be at
-most 1024 base pairs long.
-This meant that we had to use odgi chop to “chop”/reduce the sizes of these
-nodes which was a multistep process.
+most 1,024 base pairs long.
+This meant that we had to reduce the lengths of the sequences in the graph nodes
+which was a multistep process.
 
 *** Build
-Build the graph using odgi build as done in [[Appendix 7]]
+Build the graph using ~odgi build~ as done in [[Odgi Build]]
 (pass the ~-s~ flag to both build and sort the graph).
 
 *** Chop
 The lengths of the sequences in the nodes were reduced using the instructions in
-[[Appendix 8]].
+[[Odgi Chop]].
 
 *** Sort
-We topologically ordered the graph as in [[Appendix 9]].
-Topological order/sort gives us an ascending numbering of nodes which is 
+Topological order (also known as topological sort) gives us an ascending numbering of nodes which is 
 valuable for downstream analysis and serves as a rough coordinate system.
+We therefore topologically ordered the graph as in [[Odgi Sort]].
 
 *** odgi view
-We projected the graph into GFA as in [[Appendix 10]] which when visualized in
+We projected the graph into GFA as in [[Odgi View]] which when visualized in
 bandage looks like the one in Figure [[fig:sars_variation_graph]].
 
 #+CAPTION[SARS-CoV-2 Variation Graph]: A variation graph that has the length of its nodes chopped using odgi when visualized in badange.
@@ -212,26 +212,26 @@ file:../Figures/SARS_CoV_2/SARS_Variation_Graph.png
 ** Mapping
 After using odgi to prepare the graph for use with vg
 ([[Prepare the Graph for Use With VG]]), we used vg to map the simulated reads from
-each sample to the reference graph.
+each sample to the reference graph which was also a multistep process.
 
 *** vg view
-We used the instructions in [[Appendix 11]] to generate a vg
+We used the instructions in [[SARS-CoV-2 VG View]] to generate a vg
 cite:garrisonVariationGraphToolkit2018 compatible variation graph. 
 
 *** vg index
 To allow for fast searching of where reads occur in the graph, we indexed the 
-graph using the code in [[Appendix 12]].
+graph using the code in [[SARS-CoV-2 VG Index]].
 
 *** vg map
-We mapped the reads from each sample (1, 2 and 3 from [[Simulate Reads]])  to the 
-graph as shown in the script in [[Appendix 13]] which were output as  alignments to 
-the graph in the form of GAM files. 
+We mapped the reads from each sample (1, 2 and 3 from [[Simulate Reads]]) to the 
+graph which were output as alignments to the graph in the form of GAM files. 
 
 ** Calculate Coverage Across the Graph for Each Sample
 We then used vg pack to get a coverage vector for each sample as done in 
-[[Appendix 14]].
-A coverage vector is based on how the reads are aligned to the reference graph 
-and is quantified as the amount of coverage per node in the graph.
+[[SARS-CoV-2 VG Pack Script]].
+
+A coverage vector is a table of detailing how deeply reads are align to a 
+graph and therefore is quantified as the amount of coverage per node in the graph.
 
 Figure [[fig:sars_coverage_vector]] shows a condensed view of the 106,331 feature
 wide coverage vector for the three samples visualized as a pandas dataframe.

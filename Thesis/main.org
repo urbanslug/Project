@@ -54,6 +54,7 @@ Page numbering from https://stackoverflow.com/a/35456439/1553834
 
 #+LATEX: \setcounter{secnumdepth}{0}
 #+LATEX: \newpage
+
 #+INCLUDE: "pre.org"
 
 #+LATEX: \newpage
