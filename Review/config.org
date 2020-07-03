@@ -1,0 +1,29 @@
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [a4paper]
+
+#+BEGIN_COMMENT
+https://en.wikibooks.org/wiki/LaTeX/Page_Layout#Margins
+#+LATEX_CLASS_OPTIONS: [8pt]
+#+LATEX_HEADER_EXTRA: \usepackage[margin=1in]{geometry}
+#+LATEX: \begin{multicols}{2}
+#+LATEX: \end{multicols}
+#+END_COMMENT
+
+#+LATEX_HEADER_EXTRA: \usepackage[dvipsnames]{xcolor}
+#+LATEX_HEADER_EXTRA: \usepackage{titlesec}
+#+LATEX_HEADER_EXTRA: \usepackage{todonotes}
+#+LATEX_HEADER_EXTRA: \usepackage{apacite}
+#+LATEX_HEADER_EXTRA: \usepackage{float}
+#+LATEX_HEADER_EXTRA: \usepackage{multicol}
+
+#+BEGIN_COMMENT
+https://tex.stackexchange.com/q/238430
+https://www.tug.org/applications/hyperref/manual.html#x1-40003
+#+END_COMMENT
+#+LATEX_HEADER_EXTRA: \hypersetup{colorlinks = true, linktocpage=true, filecolor = RoyalBlue, citecolor = RoyalBlue, linkcolor = RoyalBlue, urlcolor = RoyalBlue, unicode}
+#+BEGIN_COMMENT
+URL font https://tex.stackexchange.com/a/53963
+#+END_COMMENT
+
+#+LATEX: \urlstyle{same}
+#+LATEX: \newcommand{\bigO}{\mathcal{O}}

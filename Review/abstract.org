@@ -1,33 +1,25 @@
 \begin{abstract}
 Evolution for the most part is dependent on changes in the genome of an organism. 
-It is impossible to separate variation from genomes, in fact, change is so inherent
- in DNA that it happens in everyday cell division (somatic cells). 
+It is impossible to separate variation from genomes, in fact, change is so 
+inherent in DNA that it happens in everyday cell division (somatic cells). 
 This means that not only is the DNA of each species different from the other but
- that of each individual is different.
-Despite this, through the use of a linear reference genome, most methods, up until 
-recently treated DNA within a species as if it were static across time or
- updating at regular intervals, homogenous between individuals
- (the same across a species), and not polymorphic. This has led to among other
- problems the reference bias problem<citation needed (cn)> as well as the
- reference genome not being a functional genome<cn> meaning that if we could
- somehow get the reference even without its gaps into a cell that
- the cell would actually survive and replicate.
+that of each individual is different.
+Despite this, through the use of a linear reference genome, most methods, up
+until recently treated DNA within a species as if it were static across time or
+updating at regular intervals, homogenous between individuals
+(the same across a species), and not polymorphic. This has led to the reference 
+bias problem; a tendency of the reference to over-report sequences present in 
+it and under-report those that are not.
 The current model works because genomes within a species don’t
- vary by much (one change per thousand nucleotides?) but as
- (individualized) medicine, vaccine research looking into pathogen mutation
- and other fields that require finer-grained results from genetics
- it begins to show its flaws.
-To study DNA in a way that factors in changes that occur across time and
- between individuals we need a structure that exposes the changes(variation)
- while collapsing the redundancies.
- On top of this, it has to support all the operations possible with linear
- methods such as a coordinate system, assembly, querying, and visualization
- in a space-efficient and time-efficient manner. A natural alternative is a
- graphical reference pangenome model<citation needed>. 
-These are expressive (represent variation of different kinds; repeats, loops,
- polymorphism etc) methods to represent genomes as a series of nodes and edges.
- However, their adoption isn’t as widespread because of a number of factors such
- as the computational requirements, novelty of long read sequencing which allows
- for the detection of structural variation as well as the novelty of the approach
- which means there aren’t as many tools available.
+vary by much (one change per thousand nucleotides?) but as
+(individualized) medicine, vaccine research looking into pathogen mutation
+and other fields that require finer-grained results from genetics
+it begins to show its flaws.
+
+Genome graphs have been shown to reduce reference bias by 
+representing less frequently occurring sequences as alternative nodes or edges.
+
+We reviewed genome graphs chronologically from some of their earilest uses up 
+to their most recent advancements and also how they are used at various stages
+of analyses from fragment assembly all the way to visualization.
 \end{abstract}

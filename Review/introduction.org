@@ -1,0 +1,9 @@
+* Introduction
+
+There are four major overlapping steps that need to be carried out after DNA
+sequencing to get actionable results. 1) fragment assembly which involves
+recreating the original genetic sequence; 2) alignment, mapping, indexing and
+querying which are part of the assembly stage but can be done later to query the
+relatedness of sequences; and 3) Visualization to see these changes
+cite:flicekSenseSequenceReads2009.
+\todo{expand intro}

@@ -1,13 +1,3 @@
-* Introduction
-
-There are four major overlapping steps that need to be carried out after DNA
-sequencing to get actionable results. 1) fragment assembly which involves
-recreating the original genetic sequence; 2) alignment, mapping, indexing and
-querying which are part of the assembly stage but can be done later to query the
-relatedness of sequences; and 3) Visualization to see these changes
-cite:flicekSenseSequenceReads2009.
-\todo{expand intro}
-
 * Fragment Assembly
 The fragment assembly problem, reconstructing long contigs from reads
 cite:chikhiCompactingBruijnGraphs2016, started with Sanger sequencing.
@@ -29,14 +19,13 @@ them out to form a DAG. The graph, however, has multiple paths that are the
 genome or superstring in question. Which is where the consensus comes in.
 It used … to infer the consensus.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{./figures/OLC framework.png}
-\caption{OLC...}
-\end{figure}
+#+CAPTION[Overlap Graph]: OLC...
+#+ATTR_LATEX: :placement [h] :width 0.7\textwidth :float multicolumn
+#+NAME: fig:olc
+file:../Figures/OLC_Framework.png
 
 With the advent of Second-Generation Sequencing (SGS) technologies:
-Roche/454 ([[http://www.454.com]]), Illumina/solexa ([[https://www.illumina.com]]),
+Roche/454 ([[http://www. 454.com]]), Illumina/solexa ([[https://www.illumina.com]]),
 and AB/Solid ([[https://www.thermofisher.com]]) there was a significant reduction in
 the cost per sequenced nucleotide cite:liComparisonTwoMajor2012 leading to an
 explosion in the number of reads produced and thus making OLC unfeasible.
@@ -58,11 +47,10 @@ much smaller k-mers, 2) Use all the k-mers to assemble a dBG, 3) Infer the
 genome sequence on the dBG. These tools made it possible to work with the
 increasing number of reads produced.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{figures/de Bruijn Graph.png}
-\caption{DBG...}
-\end{figure}
+#+CAPTION[de Bruijn Graph]: DBG ...
+#+ATTR_LATEX: :placement [h] :width 0.7\textwidth :float multicolumn
+#+NAME: fig:dbg
+[[../Figures/de Bruijn Graph.png]]
 
 Lately, Single Molecule Sequencing (long read sequencing)  methods have
 reintroduced OLC for the assembly of long erroneous reads but DBG based methods
@@ -77,11 +65,10 @@ graph.  It treats the genome as a sequence of repeats and then encodes each
 repeat as a node. Each unique (contiguous) sequence is a node.
 An Eulerian tour recreates the genome.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{figures/String Graph.png}
-\caption{String Graph...}
-\end{figure}\label{string graph}
+#+CAPTION[String Graph]: String Graph ...
+#+ATTR_LATEX: :placement [h] :width 0.7\textwidth :float multicolumn
+#+NAME: fig:dbg
+[[../Figures/String Graph.png]]
 
 * Alignment and mapping
 Alignment involves computing the amount of similarity between two strings also
@@ -116,44 +103,74 @@ think of it as mapping to multiple linear sequences that may or may not loop.
 
 * Indexing
 Indexing is a solution to the problem of search given limited computing
-resources. An index is useful to speed up alignment and make it pragmatic within
-the given time and memory requirements.
-It involves reducing the search space so as to reduce the time taken and memory
-consumed when performing a search.
-In linear references commonly used indexing approaches are the FM index
-\todo{list tools} whose complexity is $\bigO(NM)$ where there are N variable
-sites and M sequences cite:durbinEfficientHaplotypeMatching2014.
-As in alignment, the problem grows even larger with the proliferation of paths
-in graphs. For graphs, indices like the FM-index backed by the BWT fail to hold
-<citation needed> and there’s the need for improvements such as that seen in
-gBWT used in seqwish allowing it to be orders of magnitude faster than VG.
+resources. In bioinformatics we may want to find (also called mapping) where, 
+if at all, a sequence occurs in a reference genome or graph.
 
-An index can either be static or dynamic. A static index is serialized and saved
-to disk while a dynamic index is created at runtime and held in memory. Dynamic
-indices are good with small datasets that change rapidly such as in the
+An index makes mapping and alignment feasible within given time and memory
+requirements by reducing the search space therefore reducing the time taken and
+memory consumed when performing a search. \todo{cite this}
+
+** Search and index classifications
+Indexes can be classified based on how they are stored or how they are built.
+
+*** Static vs dynamic indexes
+A static index is serialized and saved to disk while a dynamic index is created
+at runtime and held in memory. 
+
+Dynamic indices are good with small datasets that change rapidly such as in the
 construction of a DBG making it suitable for fragment assembly. Static indices
 are suited for larger datasets that we want to go back to such as a reference
-genome graph.
+genome graph.\todo{cite}
 
-Below are some of the approaches taken to solve the problem of indexing
-** Burrows-Wheeler Transform
-The Burrows-Wheeler Transform (BWT) was introduced by
-cite:burrowsBlocksortingLosslessData1994 for string data
-compression and to this day forms the basis of the bzip compression algorithm.
+*** On-line vs off-line search algorithms
+When searching through reference genomes the reference changes at a much lower
+rate than the queries and we also want to optimize the computational cost of
+searching through our text. 
+Whether one chooses to optimize or not is dependent on the problem but in the
+case of alignment and mapping it is clear that optimization is the better
+option.
+Algorithms that perform this optimization are said to be offline while those
+that don't optimize are said to be on-line while algorithms that don't are
+off-line cite:borodinOnlineComputationCompetitive1998.
 
-It works as a preliminary step in the building of indices and also the
-compression of \todo{expound}
+** Optimization methods
+There are many different ways of optimizing the search space for indexing.
+In this case I only cover the ones relevant to the [[Index implementations][index implementations]]
+covered.
 
-** Suffix Array
+*** Burrows-Wheeler Transform
+Introduced by cite:burrowsBlocksortingLosslessData1994, the Burrows-Wheeler
+Transform (BWT) is a reversible permutation of a string built by
+lexicographically ordering all the permutations of a string then extracting its
+last column. A faster way to generate a BWT is through a [[Suffix Array][Suffix Array]].
+
+As shown in figure \ref{fig:run length encoding}, the BWT of a string or in this
+case a nucleotide sequence
+has a property that like characters cluster together in runs which allows for
+compression.
+In fact, the BWT was originally built for text compression and to this day
+forms the basis of the bzip2 ([[https://sourceware.org/bzip2/]]) compression algorithm.
+
+#+CAPTION[Run Length Encoding Using a Burrows Wheeler Transform]: The BWT of a string showing like characters clustering together in runs and being compressed through run length encoding.
+#+ATTR_LATEX: :placement [h] :width 0.7\textwidth :float multicolumn
+#+NAME: fig:dbg
+[[../Figures/Run Length Encoding.png]]
+
+
+
+The BWT on it's own isn't an index but it is a step in creation of compressible
+indexes whose compressibility doesn't hinder performance such as the suffix
+array or the FM index.
+
+*** Suffix Array
 Suffix arrays, introduced by cite:manberSuffixArraysNew1990, are arrays of the
 positions of all the sorted suffixes of a string.
 A suffix array is a simple, space efficient
 (stores n integers where n is the length of the string) alternative to the
-suffix tree <citation needed> whose space requirements are...
-based on BWT have been used for fast search algorithms
+suffix tree.
 
-Improvement to the suffix array: cite:liMinimapMiniasmFast2016
-gave the first in-place $\bigO(n)$ time suffix array construction algorithm that
+An improvement to the suffix array by cite:liMinimapMiniasmFast2016 provided
+the first in-place $\bigO(n)$ time suffix array construction algorithm that
 is optimal both in time and space, where in-place means that the algorithm only
 needs $\bigO(1)$ additional space beyond the input string and the output suffix
 array.
@@ -163,15 +180,16 @@ cite:langmeadUltrafastMemoryefficientAlignment2009, BWA
 cite:liFastAccurateShort2009,
 and SOAP2 cite:liSOAP2ImprovedUltrafast2009.
 
-** FM Index
-Short for Full-text index in Minute space; the FM-index created
-by cite:ferraginaOpportunisticDataStructures2000 is a full text substring index
+** Index implementations
+*** FM Index
+Short for Full-text index in Minute space, the FM index
+cite:ferraginaOpportunisticDataStructures2000 is a full text substring index
 based on the BWT. It allows compression of the input text while permitting fast
 substring queries. It can be used to efficiently find the number of occurrences
 of a pattern within the compressed text, as well as locate the position of each
 occurrence.
 
-** Positional Burrows-Wheeler Transform
+*** Positional Burrows-Wheeler Transform
 Introduced by cite:durbinEfficientHaplotypeMatching2014 Positional Burrows
 Wheeler Transform is an algorithm with complexity $\bigO(NM)$ where M sequences
 and N bi-allelic sites.
@@ -182,7 +200,7 @@ their prefixes allowing similar sequences to cluster together.
 
 <Add PBWT table and graphic>
 
-** GBWT/gPBWT
+*** GBWT/gPBWT
 First described cite:novakGraphExtensionPositional2017 but used in a tool
 cite:sirenHaplotypeawareGraphIndexes2020 it’s a compressible representation of
 a set of haplotypes held in the graph. This allows for efficient match queries
@@ -192,26 +210,26 @@ similar haplotypes.
 GBWT lets us have an efficient way of counting the number of haplotypes
 containing a given sequence.
 
-** Bloom filters
+*** Bloom filters
 The bloom filter is a probabilistic data structure that can give false positive
-but never a false negative.  It works by hashing data and stores the hash in an
-array...
-It is suited for the fragment assembly using DBGs because of its constant time
-access cite:chikhiSpaceefficientExactBruijn2013. It however suffers from poor
-data localization \todo{expound} which led to the use of Blocked Bloom Filters (BBF)
-cite:putzeCacheHashSpaceefficient2010 used in
+but never a false negative. It works by hashing data and stores the hash in an
+array.
+Bloom filters can be used as the underlying implementation of a de Bruijn Graph 
+because of its constant time access cite:chikhiSpaceefficientExactBruijn2013. 
+It however suffers from poor data localization \todo{expound} which led to the
+use of Blocked Bloom Filters (BBF) cite:putzeCacheHashSpaceefficient2010 used in
 Bifrost cite:holleyBifrostHighlyParallel2019.
 
-** Minimizers
-The work of a minimizer is to reduce the search space. It does this by generating
-kmers from a read and sorting them alphabetically. The k-mer at the top is the
-minimizer for that read... then binning the result. When a query is made it’s
-prefix is checked against the bin and the rest of the data ignored
-<is this even accurate?>
+*** Minimizers
+Minimizers reduce the search space by generating k-mers from a read and sorting
+them alphabetically. The k-mer at the top is the minimizer for that read... 
+then binning the result.
+When a query is made it’s prefix is checked against the bin and the rest of the
+data ignored <is this even accurate?>
 We can get a minimizer by BBF blocked bloom filter Minimizers
 cite:grabowskiDiskbasedCompressionData2015,robertsReducingStorageRequirements2004.
-
-** Hash tables
+\todo{improve this section}
+*** Hash tables
 Hash tables involve breaking down the reads into k-mers and storing the kmers
 into hash tables that point to the original data. When queries are made they’re
 similarly broken down into k-mers of the expected size<citation needed>.
@@ -222,11 +240,37 @@ compressed as it can be here (Durbin 2014).
 Many times tools take a hybrid approach; incorporating different aspects of
 different indexing schemes such as in Minimap
 cite:liDesignConstructionReference2020. \todo{ensure this citation checks out}
+
+** Indexes on linear references
+In linear references commonly used indexing approaches are the FM index
+\todo{list tools} whose complexity is $\bigO(NM)$ where there are N variable
+sites and M sequences cite:durbinEfficientHaplotypeMatching2014.
+As in alignment, the problem grows even larger with the proliferation of paths
+in graphs. For graphs, indices like the FM-index backed by the BWT fail to hold
+<citation needed> and there’s the need for improvements such as that seen in
+gBWT used in seqwish allowing it to be orders of magnitude faster than VG.
+
+** Indexes on graphs
+Graph indexing started with GenomeMapper,
+cite:schneebergerSimultaneousAlignmentShort2009, which demonstrated that
+mapping short reads to a graph allowed access to polymorphisms that were
+otherwise inaccessible through linear references.
+It used a hash-based static index that was persisted to disk implemented as a 
+mapping of k-mers to their positions in the graph. For performance, it converted
+the k-mers unambiguously into integers by applying a 2-bit representation of
+each nucleotide, and to avoid loading duplicate k-mers into memory it used
+memory mapping to allow different processors access to the same piece of data.
+GCSA, short for Generalized Compressed Suffix Array,
+cite:sirenIndexingGraphsPath2014 is a generalization of the Burrows Wheeler
+Transform based FM index to graphs. 
+Later, the variation graph toolkit used GCSA2
+cite:sirenIndexingVariationGraphs2017 whose index was based on de Bruijn graphs.
+
 * Genome Graph Tools
 There are a lot of tools that apply the previously mentioned principles but
 because the number tools is large and constantly growing I cover the subset that
 I found useful for my applications with viruses.
-
+** Fragment Assembly
 cite:myersFragmentAssemblyString2005 introduced the Berkeley Open Assembler
 which borrowed from the unitig algorithm and used the [[String Graph][string graph]],
 a fragment assembly method that infers the genome from the read data without a
@@ -254,7 +298,7 @@ preserved up to a certain false positive rate.
 Bcalm2 cite:chikhiCompactingBruijnGraphs2016 tried to improve the BF backed dBG
 by use of a compacted DBG (cdBG) which allowed the problem to be doable on a PC.
 
-\todo{<add compaction diagram>}
+\todo{add compaction diagram}
 
 The use of the de Bruijn graph in fragment assembly consists of a multi-step
 pipeline.
@@ -270,9 +314,85 @@ overlapper, and miniasm cite:liMinimapMiniasmFast2016, an assembler.
 Minimap uses minimizer sketches, stores k-mers in a hash table, uses sorting
 extensively.
 
+BAUM (By Adaptive Unique Mapping) cite:wangBAUMImprovingGenome2018 improved on
+the OLC framework to improve genome assembly based on Second Generation Sequencing
+paired-end/mate-pair libraries.
+BAUM has two modules: 1) construction of the genome unique regions that are taken
+as the initial contigs iterative assembly, in which scaffolds are built, and 2)
+contigs are extended and merged, aiming to reconstruct the repetitive regions
+along the iterations.
+In this scheme, the repetitive regions are separated by the unique regions.
+
+Bifrost cite:holleyBifrostHighlyParallel2019 improved on the compacted de Bruijn
+Graph by adding colours to the nodes to keep track of the source of each vertex
+and takes advantage of concurrency (parallell).
+A disadvantage of colors is that their size can grow beyond that of the
+nodes/actual graph. It stores these colours in a different on a different
+.bfg_colors file.
+K-mers contained in the unitigs are mapped to their colors representing the
+input sources (color is represented by an integer from 1 to |C| where C is the
+number of colors. Colors are stored in a separate array of color containers,
+each color container is indexed by MPHF (Minimal Perfect Hash Function) library
+BBHash cite:limassetFastScalableMinimal2017.
+Bloom filters have have poor data localization because one element is scattered
+all over which leads to CPU cache misses when inserting and querying are
+addressed here  (Putze et al., n.d.) for this they used (BBF) blocked bloom filter
+Minimizers cite:robertsReducingStorageRequirements2004,grabowskiDiskbasedCompressionData2015.
+BBF works by building an approximation of the dBG using BBFs to filter our
+sequencing errors.  BBF containing k-mers is used to build the cdBG.
+
+** Mapping and Alignment
+GraphAlighner cite:rautiainenBitparallelSequencetographAlignment2019 is a tool
+for aligning long error prone reads to genome graphs through base alignment.
+It uses (generalizes two linear sequence-to-sequence algorithms to graphs) two
+strategies: 1) the Shift-And algorithm for exact matching (exact match of a
+substring to a string) and 2) Myer’s bit-vector algorithm for semi-global
+alignment. It Aligns sequences to graphs while exploiting bit parallelism.
+Makes use of Nondeterministic Finite Automaton (NFA).
+Store an NFA state bitvector for each node and update until no more change is
+necessary Myer’s bit-vector algorithm studies the semi-global sequence-to-graph
+alignment problem.
+It seeks to find a path in a directed, node-labelled graph that has the
+minimum edit distance to the query sequence. Myers’ bit-vector alignment
+algorithm cite:myersFastBitvectorAlgorithm1999 to graphs, which proceeds along
+the same lines as the Shift-And algorithm, but requires some further algorithmic
+insights to handle nodes with an in-degree greater than one.
+Bitvector algo complexity grows approximately linearly with the number of
+vertices in the graph.
+The bitvector it uses is the size of the pattern we are searching for.
+Semi-global alignment is solved through generalizing DP edit distance problem
+for graphs.
+Semi-global alignment is used to align a shorter seq against a longer one,
+reference.
+Shift-And algorithms (Baeza-Yates and Gonnet, 1992; Domolki, 1964, 1968)
+performs exact string matching to graphs.
+Their aim is to find a path in a directed, node-labeled graph that has a minimum
+edit distance cite:levenshteinBinaryCodesCapable1966a to the query sequence.
+Shift-And algo finds exact matches between a pattern string and a text string by
+simulating a nondeterministic finite automaton (NFA) that matches the pattern
+and then feeding the text to it.
+Keep shifting the bit-vector by one and bitwise AND-ing the state.
+Somewhat analogous to exact matching using a window of the size of the pattern.
+It can handle DAGs and  graphs that may contain cycles. For DAGs, process the
+nodes in topological order (topological sort). For cyclic graphs no sorting.
+
+Minigraph cite:liDesignConstructionReference2020 is a sequence to graph mapper
+that incrementally constructs a pangenome graph.
+A graph-based data model and associated formats to represent multiple genomes
+while preserving the coordinate of the linear reference genome.
+A straightforward way to represent a pangenome store unaligned genomes in a
+full-text index that compresses redundancies in sequences identical between
+individuals
+cite:makinenStorageRetrievalHighly2010,liuDeBWTParallelConstruction2016,boucherPrefixfreeParsingBuilding2019.
+The other class of methods encodes multiple genomes into a sequence graph,
+usually by collapsing identical or similar sequences between genomes onto a
+single representative sequence. The results in a pangenome graph.
+
+** End to End tools
+
 SPAdes also a toolkit does…
 
-#+LATEX: \newpage
+** Graphical Analysis
 Variation graphs are genome graphs that embed the paths in the graph
 (citation needed).
 These paths can be used to represent haplotypes. vg, HashGraph, odgi and
@@ -290,13 +410,13 @@ PackedGraph are dynamic (allow for updates to the graph while xg isn’t).
 |-----------------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------|
 | \color{red}Consensus        | \color{red} A     | \color{red} C     | \color{red} T     | \color{red} T     | \color{red} A     | \color{myred} A   | \color{red} T     |
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{figures/Variation Graph-Page-1.png}
-\caption{A variation graph with the paths outlined at the bottom}\label{no struct}
-\end{figure}
 
-#+LATEX: \newpage
+#+CAPTION[Variation Graph]: A variation graph with the paths outlined at the bottom
+#+ATTR_LATEX: :placement [h!] :width 0.7\textwidth :float multicolumn
+#+NAME: fig:vg
+[[./figures/Variation Graph-Page-1.png]]
+
+
 In case of addition of individual 4 containing an inversion at node 2,3 and 4
 
 | \color{mypink}Individual 1   | \color{mypink} A   | \color{mypink} C   | \color{mypink} T   | \color{mypink} G   | \color{mypink} A   | \color{mypink} A   | \color{mypink} T   |
@@ -307,11 +427,10 @@ In case of addition of individual 4 containing an inversion at node 2,3 and 4
 | \color{red}Consensus         | \color{red} A      | \color{red} C      | \color{red} T      | \color{red} T      | \color{red} A      | \color{myred} A    | \color{red} T      |
 
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{figures/Variation Graph-Page-2.png}
-\caption{A variation graph represeting the paths but containing an inversion in individual 4}\label{contains struct}
-\end{figure}
+#+CAPTION[Variation Graph with Inversion]: A variation graph represeting the paths but containing an inversion in individual 4
+#+ATTR_LATEX:  :placement [h!] :width 0.7\textwidth :float multicolumn
+#+NAME: fig:vg-with-insertion
+[[./figures/Variation Graph-Page-2.png]]
 
 vg cite:garrisonVariationGraphToolkit2018 is an end to end pangenome graph
 solution for de novo and incremental graph building but has large memory
@@ -360,79 +479,6 @@ a node in a sorted graph. PackedGraph (libhandlegraph paper) is designed to have
 a low memory footprint.
 It does this by encoding the graph mainly using linked lists.
 
-BAUM (By Adaptive Unique Mapping) cite:wangBAUMImprovingGenome2018 improved on
-the OLC framework to improve genome assembly based on Second Generation Sequencing
-paired-end/mate-pair libraries.
-BAUM has two modules: 1) construction of the genome unique regions that are taken
-as the initial contigs iterative assembly, in which scaffolds are built, and 2)
-contigs are extended and merged, aiming to reconstruct the repetitive regions
-along the iterations.
-In this scheme, the repetitive regions are separated by the unique regions.
-
-Bifrost cite:holleyBifrostHighlyParallel2019 improved on the compacted de Bruijn
-Graph by adding colours to the nodes to keep track of the source of each vertex
-and takes advantage of concurrency (parallell).
-A disadvantage of colors is that their size can grow beyond that of the
-nodes/actual graph. It stores these colours in a different on a different
-.bfg_colors file.
-K-mers contained in the unitigs are mapped to their colors representing the
-input sources (color is represented by an integer from 1 to |C| where C is the
-number of colors. Colors are stored in a separate array of color containers,
-each color container is indexed by MPHF (Minimal Perfect Hash Function) library
-BBHash cite:limassetFastScalableMinimal2017.
-Bloom filters have have poor data localization because one element is scattered
-all over which leads to CPU cache misses when inserting and querying are
-addressed here  (Putze et al., n.d.) for this they used (BBF) blocked bloom filter
-Minimizers cite:robertsReducingStorageRequirements2004,grabowskiDiskbasedCompressionData2015.
-BBF works by building an approximation of the dBG using BBFs to filter our
-sequencing errors.  BBF containing k-mers is used to build the cdBG.
-
-GraphAlighner cite:rautiainenBitparallelSequencetographAlignment2019 is a tool
-for aligning long error prone reads to genome graphs through base alignment.
-It uses (generalizes two linear sequence-to-sequence algorithms to graphs) two
-strategies: 1) the Shift-And algorithm for exact matching (exact match of a
-substring to a string) and 2) Myer’s bit-vector algorithm for semi-global
-alignment. It Aligns sequences to graphs while exploiting bit parallelism.
-Makes use of Nondeterministic Finite Automaton (NFA).
-Store an NFA state bitvector for each node and update until no more change is
-necessary Myer’s bit-vector algorithm studies the semi-global sequence-to-graph
-alignment problem.
-It seeks to find a path in a directed, node-labelled graph that has the
-minimum edit distance to the query sequence. Myers’ bit-vector alignment
-algorithm cite:myersFastBitvectorAlgorithm1999 to graphs, which proceeds along
-the same lines as the Shift-And algorithm, but requires some further algorithmic
-insights to handle nodes with an in-degree greater than one.
-Bitvector algo complexity grows approximately linearly with the number of
-vertices in the graph.
-The bitvector it uses is the size of the pattern we are searching for.
-Semi-global alignment is solved through generalizing DP edit distance problem
-for graphs.
-Semi-global alignment is used to align a shorter seq against a longer one,
-reference.
-Shift-And algorithms (Baeza-Yates and Gonnet, 1992; Domolki, 1964, 1968)
-performs exact string matching to graphs.
-Their aim is to find a path in a directed, node-labeled graph that has a minimum
-edit distance cite:levenshteinBinaryCodesCapable1966a to the query sequence.
-Shift-And algo finds exact matches between a pattern string and a text string by
-simulating a nondeterministic finite automaton (NFA) that matches the pattern
-and then feeding the text to it.
-Keep shifting the bit-vector by one and bitwise AND-ing the state.
-Somewhat analogous to exact matching using a window of the size of the pattern.
-It can handle DAGs and  graphs that may contain cycles. For DAGs, process the
-nodes in topological order (topological sort). For cyclic graphs no sorting.
-
-Minigraph cite:liDesignConstructionReference2020 is a sequence to graph mapper
-that incrementally constructs a pangenome graph.
-A graph-based data model and associated formats to represent multiple genomes
-while preserving the coordinate of the linear reference genome.
-A straightforward way to represent a pangenome store unaligned genomes in a
-full-text index that compresses redundancies in sequences identical between
-individuals
-cite:makinenStorageRetrievalHighly2010,liuDeBWTParallelConstruction2016,boucherPrefixfreeParsingBuilding2019.
-The other class of methods encodes multiple genomes into a sequence graph,
-usually by collapsing identical or similar sequences between genomes onto a
-single representative sequence. The results in a pangenome graph.
-
 
 vg-flow cite:baaijensStrainawareAssemblyGenomes2020 attempts to reconstruct all
 individual haplotypes from a mixed sample at the strain level and to provide
@@ -478,7 +524,7 @@ In the early 2000s assembly software was dominated by a few end to end assembly
 software such as SPAdes, ALLPATHS, ABySS, and SOAPdenovo
 https://pmelsted.wordpress.com/2014/07/17/dear-assemblers-we-need-to-talk-together/.
 These end to end tools made it hard to tweak parts of the assembly process which
-led to calls (such as [[https://github.com/pjotrp/bioinformatics#the-small-tools-manifesto-for-bioinformatics][THE SMALL TOOLS MANIFESTO FOR BIOINFORMATICS]]) for small
+led to calls (such as [[https://github.com/pjotrp/bioinformatics][THE SMALL TOOLS MANIFESTO FOR BIOINFORMATICS]]) for small
 tools that perform bits of the assembly while using plaintext files as APIs.
 
 An early attempt was FASTG,  an extension to FASTA, which is based on a directed
