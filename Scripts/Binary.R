@@ -80,6 +80,10 @@ file_list <- list.files(pattern="*.pack.table")
 # Extract each sample name
 sample_names <- lapply(file_list, extract_sample_name)
 
+individuals <- unique (lapply(sample_names, function(name) {
+  unlist(strsplit(name, "_", fixed = TRUE))[[2]]
+}))
+
 # read all the CSV files into a list
 all_columns <- lapply(file_list, read.delim)
 
