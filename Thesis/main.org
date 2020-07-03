@@ -62,7 +62,6 @@ Page numbering from https://stackoverflow.com/a/35456439/1553834
 
 #+LATEX: \newpage
 
-
 #+TOC: headlines 5
 
 #+LATEX: \newpage

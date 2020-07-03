@@ -16,5 +16,9 @@
 Thesis/*.pdf
 Review/*.pdf
 
+*.fdb_latexmk
+*.fls
+
+
 Thesis/*.tex
 Review/*.tex
