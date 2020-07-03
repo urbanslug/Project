@@ -8,6 +8,7 @@ method despite us only showing rooted trees. Moreover, other principal
 components could have been used but we preferred to use the ones that gave a 
 more parsimonious tree.
 
+
 \todo{Any effects from using different tools for assembly and bluntification?}
 
 ** RSV
@@ -34,30 +35,24 @@ other than the sample that allowed for the generation of the dendrogram as shown
 in [[fig:SARS_CoV_2_first_pc]] and [[fig:SARS_CoV_2_all_pcs]].
 
 #+LATEX: \begin{landscape}
+#+CAPTION[RSV PC1 cladogram]: A rooted cladogram of RSV generated through neighbour joining of a distance matrix of the first five principal components from a principal component analysis of each of the sample’s coverage vectors.
+#+ATTR_LATEX: :scale 1.0 :float multicolumn
+#+NAME: fig:hh20_all_pcs
+file:../Figures/RSV/HH20_all_principal_components_nj_tree.png
+
+#+CAPTION[RSV PC1 to PC5 cladogram]: A rooted cladogram of RSV generated through neighbour joining of a distance matrix of the first principal component from a principal component analysis of each of the sample’s coverage vectors.
+#+ATTR_LATEX: :scale 1.0 :float multicolumn
+#+NAME: fig:hh20_first_pc
+file:../Figures/RSV/HH20_first_principal_component_nj_tree.png
+
 #+CAPTION[SARS-CoV-2 PC1 cladogram]: A cladogram generated through neighbour joining  of a distance matrix of the first five  principal components of the coverage vector.
 #+ATTR_LATEX: :scale 1.0 :float multicolumn
 #+NAME: fig:SARS_CoV_2_first_pc
 file:../Figures/SARS_CoV_2/SARS_CoV_2_first_principal_component_nj_tree.png
-#+LATEX: \end{landscape}
 
 #+LATEX: \begin{landscape}
 #+CAPTION[SARS-CoV-2 PC1 to PC5 cladogram]: A cladogram generated through neighbour joining  of a distance matrix of the first principal component of the coverage vector.
 #+ATTR_LATEX: :scale 1.0 :float multicolumn
 #+NAME: fig:SARS_CoV_2_all_pcs
 file:../Figures/SARS_CoV_2/SARS_CoV_2_all_principal_components_nj_tree.png
-#+LATEX: \end{landscape}
-
-
-#+LATEX: \begin{landscape}
-#+CAPTION[RSV PC1 cladogram]: A rooted cladogram of RSV generated through neighbour joining of a distance matrix of the first five principal components from a principal component analysis of each of the sample’s coverage vectors.
-#+ATTR_LATEX: :scale 1.0 :float multicolumn
-#+NAME: fig:hh20_all_pcs
-file:../Figures/RSV/HH20_all_principal_components_nj_tree.png
-#+LATEX: \end{landscape}
-
-#+LATEX: \begin{landscape}
-#+CAPTION[RSV PC1 to PC5 cladogram]: A rooted cladogram of RSV generated through neighbour joining of a distance matrix of the first principal component from a principal component analysis of each of the sample’s coverage vectors.
-#+ATTR_LATEX: :scale 1.0 :float multicolumn
-#+NAME: fig:hh20_first_pc
-file:../Figures/RSV/HH20_first_principal_component_nj_tree.png
 #+LATEX: \end{landscape}
