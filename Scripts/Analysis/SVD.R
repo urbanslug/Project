@@ -88,6 +88,7 @@ coverage.df <- coverage.df.orig[, ggcols]
 metadata.gg <- subset(metadata, samples %in% ggcols)
 
 
+
 # Analysis ----
 coverage.matrix <- as.matrix(coverage.df)
 rows <- dim(coverage.matrix)[1]
@@ -109,7 +110,7 @@ lv.m <- as.dist(lv.df)
 lv.m.new <- dist(lv.m)
 lv.tree.m <- nj(lv.m.new)
 
-write.tree(lv.tree.m, "~/src/Masters/Project/Trees/rsv_tree.nwk")
+write.tree(lv.tree.m, "~/src/Masters/Project/Trees/rsv_svd_tree.nwk")
 
 myPalette <-c("#708090", "#0014a8", "#9f00ff", "#177245", "#f984ef", "#ffae42", 
               "#03c03c", "#915f6d", "#f7e98e", "#0070ff", "#663854", "#e8000d",
@@ -129,6 +130,31 @@ ggsave(paste(output_dir, "RSV_SVD_nj_Tree.png", sep=""),
        width=22, 
        dpi=300)
 dev.off()
+
+
+# PCA
+coverage.pca<- rpca(t(coverage.matrix), k=cols)
+coverage.pca.x <- coverage.pca$x
+coverage.pca.dist <- dist(coverage.pca.x)
+coverage.pca.tree <- nj(coverage.pca.dist)
+
+write.tree(coverage.pca.tree, "~/src/Masters/Project/Trees/RSV_PCA_Tree.nwk")
+write.csv(metadata.gg, "~/src/Masters/Project/Data/RSV_Metadata.csv")
+
+p <- ggtree(coverage.pca.tree) %<+% metadata.gg
+p +
+  geom_tiplab(size=4) + 
+  geom_tippoint(size=2, aes(color=individuals)) +
+  labs(title = "RSV PCA Neighbour Joining Tree", color="Individuals") +
+  scale_color_manual(values=myPalette) +
+  theme_tree(legend.position='left')
+
+ggsave(paste(output_dir, "RSV_PCA_nj_Tree_29.png", sep=""),
+       height=10, 
+       width=22, 
+       dpi=300)
+dev.off()
+
 
 # Hierarchical clustering -----
 x <- hclust(lv.m.new)
