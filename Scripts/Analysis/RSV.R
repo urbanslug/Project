@@ -7,6 +7,7 @@ suppressPackageStartupMessages(
     require(FactoMineR)
     require(ggplot2)
     require(ggtree)
+    require(ape)
   })
 
 # Global Vars ----
@@ -150,7 +151,9 @@ m.all_pcs <- as.matrix(dimensions)
 distance.matrix.all_pcs <- dist(m.all_pcs)
 tree.all_pcs <- nj(distance.matrix)
 
-a <- ggtree(new_tree) %<+% l
+write.tree(tree.all_pcs, file="~/Desktop/all_pcs.nwk", tree.names = TRUE)
+
+a <- ggtree(tree.all_pcs) %<+% l
 a + geom_treescale() +
   geom_tiplab(size=4, aes(color=Households)) + 
   geom_tippoint(size=1, aes(color=Households)) +

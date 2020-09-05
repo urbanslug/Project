@@ -3,7 +3,8 @@
 #+OPTIONS: date:nil
 #+OPTIONS: toc:nil
 
-These are scripts used for...
+* Mapping Scripts
+These are scripts used for mapping reads to a graphical reference
 
 mapper.sh
 
@@ -19,3 +20,17 @@ coverage.sh < find $(pwd)/gams -d -name '*.gam'
 
 
 Bash guide http://folk.ntnu.no/geirha/bashguide.pdf
+
+* Data Analysis Scripts
+** ggtree
+
+To install ggtree use instructions from
+https://bioconductor.org/packages/release/bioc/html/ggtree.html
+
+#+BEGIN_SRC sh
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("ggtree")
+#+END_SRC
+

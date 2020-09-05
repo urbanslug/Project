@@ -28,6 +28,15 @@ extract_coverage <- function(d) {
 }
 covs <- lapply(all_columns, extract_coverage)
 
+# Extract each sample name
+extract_sample_name <- function(filename) {
+  j <- strsplit(filename, "[.]")
+  n <- unlist(j)[[1]] 
+  sample_num <- unlist(strsplit(n, "-"))[4]
+  paste("Sample", sample_num, sep=" ")
+}
+sample_names <- lapply(file_list, extract_sample_name)
+
 ## Structure of the data ----
 medians <- as.vector(unlist(lapply(covs, function(x) {median(x[,])})))
 means <- as.vector(unlist(lapply(covs, function(x) {mean(x[,])}))) 
@@ -88,32 +97,28 @@ ggsave("~/src/Masters/Project/Figures/RSV/Std_Coverage_HH20.png",
        dpi=400)
 dev.off()
 
-
-
-
-
 # PCA ----
-# Extract each sample name
-extract_sample_name <- function(filename) {
-  j <- strsplit(filename, "[.]")
-  n <- unlist(j)[[1]] 
-  sample_num <- unlist(strsplit(n, "-"))[4]
-  paste("Sample", sample_num)
-}
-sample_names <- lapply(file_list, extract_sample_name)
-x <- setNames(covs, sample_names)
+x <- setNames(covs, sample_names) # a list
+x.df <- setNames(data.frame(x), sample_names)
 
-sars.pca <- PCA(t(setNames(data.frame(x), sample_names)), graph = FALSE)
+sars.pca <- PCA(t(x.df), graph = FALSE)
+
 ## Extract the dimensions of the PCA
 individuals <- sars.pca$ind
 dimensions.sars <- data.frame(individuals[["coord"]])
 
+# Append the sample names column
+dimensions.sars$Samples <- unlist(sample_names)
+
+ggplot(dimensions.sars, aes(x=Dim.1, y=Dim.2, colour=Samples)) +
+  geom_point()
 
 # Phylogenetics ----
 
 
 ## Prepare metadata ----
-sample_number <- lapply(sample_names, function(n) { unlist(strsplit(n[[1]], "-"))[[1]]})
+sample_number <- lapply(sample_names, 
+                        function(n) { unlist(strsplit(n[[1]], "-"))[[1]]})
 l <- setNames(data.frame(cbind(unlist(sample_names), unlist(sample_number))), 
               c("sample_names", "Samples"))
 
