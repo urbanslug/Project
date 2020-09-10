@@ -15,8 +15,8 @@ suppressPackageStartupMessages(
 
 # Set up ----
 ## Vars
-### SARS-CoV-2
-output_dir <- "~/src/Masters/Project/Figures/SVD/"
+### RSV
+output_dir <- "~/src/Masters/Project/Figures/Analysis/RSV/"
 setwd("~/src/Masters/Project/Data/RSV/")
 
 
@@ -35,7 +35,7 @@ extract_samples <- function(filename) {
 samples <- unlist(lapply(file_list, extract_samples))
 
 extract_individuals <- function(n) { unlist(strsplit(n[[1]], "_"))[[1]] }
-individuals <- unlist(lapply(household_members, extract_individuals))
+individuals <- unlist(lapply(samples, extract_individuals))
 
 metadata <- data.frame(samples, individuals)
 
@@ -67,7 +67,7 @@ coverage.binary <- lapply(coverage.l, binarize_coverage)
 
 # Align with data from Githinji 2018 ----
 coverage.df.orig <- data.frame(coverage.binary)
-colnames(coverage.df.orig) <- household_members
+colnames(coverage.df.orig) <- samples
 
 # These are the individuals from the paper 
 # https://doi.org/10.1101/411512 Githinji 2018
@@ -84,17 +84,12 @@ difference <- c("536_09_04", "507_30_04", "506_13_04")
 ggcols <- setdiff(ggcolsorig, difference)
 
 coverage.df <- coverage.df.orig[, ggcols]
-
 metadata.gg <- subset(metadata, samples %in% ggcols)
-
-
 
 # Analysis ----
 coverage.matrix <- as.matrix(coverage.df)
 rows <- dim(coverage.matrix)[1]
 cols <- dim(coverage.matrix)[2]
-
-
 
 
 # TODO: what is it really doing with these many cols?
@@ -112,9 +107,16 @@ lv.tree.m <- nj(lv.m.new)
 
 write.tree(lv.tree.m, "~/src/Masters/Project/Trees/rsv_svd_tree.nwk")
 
+# From https://www.colorhexa.com/color-names
 myPalette <-c("#708090", "#0014a8", "#9f00ff", "#177245", "#f984ef", "#ffae42", 
               "#03c03c", "#915f6d", "#f7e98e", "#0070ff", "#663854", "#e8000d",
               "#704214", "#00ced1", "#ffa07a", "#b5651d",  "#918151")
+
+# From https://sashamaps.net/docs/resources/20-colors/
+otherPalette <-c('#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', 
+                 '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe', 
+                 '#008080', '#e6beff', '#9a6324', '#ffd8b1', '#000000', 
+                 '#aaffc3', '#808000')
 
 p <- ggtree(lv.tree.m) %<+% metadata.gg
 p +
@@ -138,15 +140,11 @@ coverage.pca.x <- coverage.pca$x
 coverage.pca.dist <- dist(coverage.pca.x)
 coverage.pca.tree <- nj(coverage.pca.dist)
 
-write.tree(coverage.pca.tree, "~/src/Masters/Project/Trees/RSV_PCA_Tree.nwk")
-write.csv(metadata.gg, "~/src/Masters/Project/Data/RSV_Metadata.csv")
-
 p <- ggtree(coverage.pca.tree) %<+% metadata.gg
-p +
-  geom_tiplab(size=4) + 
+p + geom_tiplab(size=4, offset=0) + 
   geom_tippoint(size=2, aes(color=individuals)) +
   labs(title = "RSV PCA Neighbour Joining Tree", color="Individuals") +
-  scale_color_manual(values=myPalette) +
+  scale_color_manual(values=otherPalette) +
   theme_tree(legend.position='left')
 
 ggsave(paste(output_dir, "RSV_PCA_nj_Tree_29.png", sep=""),
@@ -155,10 +153,23 @@ ggsave(paste(output_dir, "RSV_PCA_nj_Tree_29.png", sep=""),
        dpi=300)
 dev.off()
 
+write.tree(coverage.pca.tree, "~/src/Masters/Project/Trees/RSV_PCA_Tree.nwk")
+write.csv(metadata.gg, "~/src/Masters/Project/Data/RSV_Metadata.csv")
 
 # Hierarchical clustering -----
-x <- hclust(lv.m.new)
-plot(x)
+coverage.pca.hclust <- hclust(coverage.pca.dist)
+a <- ggtree(coverage.pca.hclust) %<+% metadata.gg
+a + geom_tiplab(size=4, offset=0) + 
+  geom_tippoint(size=2, aes(color=individuals)) +
+  labs(title = "RSV PCA Hierachical Clustering Tree", color="Individuals") +
+  scale_color_manual(values=otherPalette) +
+  theme_tree(legend.position='left')
+
+ggsave(paste(output_dir, "RSV_PCA_HC_Tree_29.png", sep=""),
+       height=10, 
+       width=22, 
+       dpi=300)
+dev.off()
 
 # Please ignore ----------------------------------------------------------------
 # Vary number of SVD 
@@ -178,3 +189,68 @@ p +
   labs(title = "RSV SVD Neighbour Joining Tree", color="Individuals") +
   scale_color_manual(values=myPalette) +
   theme_tree(legend.position='left')
+
+# Out of place ----
+# Direct ends here ---------
+
+# PCA ----
+coverage.pca<- rpca(t(coverage.matrix), k=cols)
+coverage.pca.x <- coverage.pca$x
+coverage.pca.dist <- dist(coverage.pca.x)
+
+# hclust
+coverage.pca.hclust <- hclust(coverage.pca.dist)
+a <- ggtree(coverage.pca.hclust)  %<+% samples_names.df
+a + geom_tiplab(size=4, offset=0) + 
+  geom_tippoint(size=2, aes(color=label)) +
+  labs(title = "SARS-CoV-2 PCA Hierachical Clustering Tree", color="Samples") +
+  theme_tree(legend.position='left')
+
+ggsave(paste(output_dir, "SARS-CoV-2_PCA_HClust.png", sep=""),
+       height=10, 
+       width=22, 
+       dpi=300)
+dev.off()
+
+
+# Plot NJ
+coverage.pca.tree <- nj(coverage.pca.dist)
+samples <- data.frame(sample_names)
+
+p <- ggtree(coverage.pca.tree)  %<+% samples
+p + geom_tiplab(size=4, offset=0) + 
+  geom_tippoint(size=2, aes(color=label)) +
+  labs(title = "SARS-CoV-2 PCA Neighbour Joining Tree", color="Samples") +
+  theme_tree(legend.position='left')
+
+
+ggsave(paste(output_dir, "SARS-CoV-2_PCA.png", sep=""),
+       height=10, 
+       width=22, 
+       dpi=300)
+dev.off()
+
+# SVD -----
+coverage.rsvd <- rsvd(coverage.matrix, k=cols)
+coverage.rsvd.v <- coverage.rsvd$v
+coverage.rsvd.df <- data.frame(coverage.rsvd.v, row.names = sample_names)
+
+coverage.rsvd.dist <- dist(as.dist(coverage.rsvd$v))
+
+coverage.rsvd.hclust <- hclust(coverage.pca.dist)
+q <- ggtree(coverage.rsvd.hclust)
+q + geom_tiplab(size=4, offset=0) + 
+  geom_tippoint(size=2, aes(color=label)) +
+  labs(title = "SARS-CoV-2 SVD Hierachical Clustering Tree", color="Samples") +
+  theme_tree(legend.position='left')
+
+ggsave(paste(output_dir, "SARS-CoV-2_SVD.png", sep=""),
+       height=10, 
+       width=22, 
+       dpi=300)
+dev.off()
+
+# FactorMineR ----
+cov.fact.pca <- PCA(t(coverage.matrix), graph=FALSE)
+d <- individuals <- cov.fact.pca$ind$dist
+you <- individuals <- cov.fact.pca$svd$U
