@@ -1,11 +1,21 @@
 * Project management
-** TODO Clean up notes
-** TODO Version control the notes
-** TODO Open source this project
+** DONE Clean up notes
+   CLOSED: [2020-09-11 Fri 11:47]
+** DONE Version control the notes
+   CLOSED: [2020-09-11 Fri 11:47]
+** DONE Open source this project
+   CLOSED: [2020-09-11 Fri 11:47]
 * Objectives
 ** Review of genome graph notes
-*** 
+*** Needs improving
+Minimizers are okay but they go into blocked bloom filters without explaining it well
+Suffix Array
+FM Index
+Blocked Bloom Filters
+
 ** Experiments
-*** TODO Repeat but aggregate per node
+*** DONE Repeat but aggregate per node
+    CLOSED: [2020-09-11 Fri 11:47]
 * Paper writing
-** Figure out what to use and how to write the paper
+** DONE Figure out what to use and how to write the paper
+   CLOSED: [2020-09-11 Fri 11:47]

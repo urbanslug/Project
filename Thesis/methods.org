@@ -16,7 +16,7 @@ of nineteen of the twenty five members of household twenty.
 file:../Figures/RSV/Githinji_HH_5_temporal_distribution.png
 
 ** Preprocess and Quality Control
-We started by removing reads with a phred score below 35 and trimming sequencing
+We started by removing reads with a Phred score below 35 and trimming sequencing
 adapters as shown in [[Quality Control and Adapter Trimming]] then compiled a list 
 of the file paths into a text file as shown in [[Concatenate Reads into Text File]].
 
@@ -56,13 +56,13 @@ bluntify, that is reduce the overlaps on edges,
 This yielded a 206 kilobyte GFA that when visualized is seen in Figure
 [[fig:rsv_bluntified_assembly_graph]].
 
-** Prepare the graph for mapping with VG
+** Prepare the Graph for Mapping with VG
 The bash script in [[Odgi Graph Preparation]] was used to chop and sort the graph
 for use with vg cite:garrisonVariationGraphToolkit2018 which led to the 
 variation graph in Figure [[fig:rsv_variation_graph]].
 
 ** Mapping
-*** Convert GFA to vg compatible variation graph
+*** Convert GFA to vg Compatible Variation Graph
 Using the instructions in [[RSV VG View]], we induced a vg 
 cite:garrisonVariationGraphToolkit2018 compatible variation graph and output it 
 GFA.
@@ -93,7 +93,7 @@ The coverage data had a lot of outliers, as shown in Figure
 skewing it.
 
 #+CAPTION[RSV Structure of the Data]: Bar graphs of mean, median, maximum and standard deviation of coverage values per sample
-#+ATTR_LATEX: :placement [h] :scale 1.0 :float multicolumn
+#+ATTR_LATEX: :placement [h] :width 0.75\textwidth :float multicolumn
 #+NAME: fig:structure_of_data
 file:../Figures/RSV/structure_of_coverage_data.png
 
@@ -116,7 +116,7 @@ Figure [[fig:rsv_pca]] is a scatter plot of the first and second principal
 components for RSV reads.
 
 #+CAPTION[RSV PCA]: A scatter plot of the first and second principal components of the coverage vectors of the forty nine RSV samples.
-#+ATTR_LATEX: :placement [h] :scale 1.0 :float multicolumn
+#+ATTR_LATEX: :placement [h] :width 0.75\textwidth :float multicolumn
 #+NAME: fig:rsv_pca
 file:../Figures/RSV/PCA.png
 
@@ -134,13 +134,13 @@ file:../Figures/RSV/Assembly_Bluntified.png
 #+LATEX: \clearpage
 * SARS-CoV-2 
 Needing to verify that the method in [[RSV]] properly clusters samples based on 
-how close they are genetically we reran the experiment with simulated reads
+how close they are genetically we rerun the experiment with simulated reads
 which have pre-determined and therefore known properties.
 The COVID-19 pandemic caused by the Severe Acute Respiratory Syndrome
 Coronavirus 2 (SARS-CoV-2) provided a unique opportunity for this. 
 
 ** Fetch the Reference
-We the fetched latest SARS-CoV-2 [[https://www.ncbi.nlm.nih.gov/nuccore/1798174254][reference]] as of Jan 17 2020 using the instructions
+We fetched the latest SARS-CoV-2 [[https://www.ncbi.nlm.nih.gov/nuccore/1798174254][reference]] as of Jan 17 2020 using the instructions
 in [[Efetch]].
 
 ** Simulate Reads
@@ -155,7 +155,7 @@ keeping the mutation frequency -F (default value 0.5000) constant
 cite:greenSuggestionsConcerningRelationship1995.
 
 To vary the mutation rates; we used the default mutation rate of 0.0010 for
-first two samples which were to be the closely related samples. 
+the first two samples which were to be the closely related samples. 
 For the third sample which was to be the distant one we increased the mutation 
 rate by a factor of 10 to 0.0100. 
 The instructions for this are in [[dwgsim Read Simulation]].
@@ -230,7 +230,7 @@ graph which were output as alignments to the graph in the form of GAM files.
 We then used vg pack to get a coverage vector for each sample as done in 
 [[SARS-CoV-2 VG Pack Script]].
 
-A coverage vector is a table of detailing how deeply reads are align to a 
+A coverage vector is a table of detailing how deeply reads are aligned to a 
 graph and therefore is quantified as the amount of coverage per node in the graph.
 
 Figure [[fig:sars_coverage_vector]] shows a condensed view of the 106,331 feature
