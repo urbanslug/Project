@@ -32,9 +32,42 @@ Date …………………………    Signature …………………….……
 #+LATEX: \newpage
 
 * Dedication
-I dedicate this project to ... for the strength and inspiration throughout the period and
-to...
+To my family, friends, mentors, and all the people whom this work will inform.
 
 #+LATEX: \newpage
 * Acknowledgement
-I would like to express my deepest appreciation to....
+I would like to express my most profound appreciation to my supervisors
+Dr George Githinji and Dr Pjotr Prins and Prof James Nokes, who introduced me to
+the world of bioinformatics and more specifically genome graphs. Had it not been
+for these people, this work would not be in existence.
+
+It would also have been impossible to do without direction and guidance from
+Erik Garrison, who has so eagerly walked me through the maze of graphical
+pangenomics for over a year now. Friends like Christian Fischer, your help has
+not gone unnoticed. The entire pantograph team that I worked with over the
+virtual biohackathon gave me a great view of the world of graph visualisation.
+
+KEMRI-Wellcome Trust and IDeAL for funding and facilitating this research
+project and members of the IDeAL team (Prof Sam Kinyanjui, Dr Dorcas Mbuvi,
+Liz Murabu, Solomon Mutuku, Rita Baya and Florence Kirimi) who patiently
+followed up to know that everything was working great. My mates in the 2019/2020
+IDEAL cohort who were a joy to be around and learn from.
+
+Pwani University has been home for me for the last two years, the people there
+are just the nicest people I have met. Prof Santi de Villiers has been
+instrumental in guiding me through the masters and letting me know about
+opportunities and understand the world of biology.
+Prof. Suhaila Hashim for maintaining a great relationship with her students and
+being so willing to help. My course-mates at Pwani University with whom we have
+taken this bioinformatics journey for the last two years.
+
+#+LATEX: \textcolor{gray}{\emph{
+“This work was supported through the DELTAS Africa Initiative [DEL-15-003].
+The DELTAS Africa Initiative is an independent funding scheme of the
+African Academy of Sciences (AAS)'s Alliance for Accelerating Excellence in
+Science in Africa (AESA) and supported by the New Partnership for Africa's
+Development Planning and Coordinating Agency (NEPAD Agency) with funding from
+the Wellcome Trust [107769/Z/10/Z] and the UK government.
+The views expressed in this publication are those of the author(s) and not
+necessarily those of AAS, NEPAD Agency, Wellcome Trust or the UK government”.
+#+LATEX: }}

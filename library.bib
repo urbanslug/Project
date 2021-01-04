@@ -1233,6 +1233,17 @@
   number = {5}
 }
 
+@article{gaoAbPOASIMDbasedLibrary,
+  title = {{{abPOA}}: An {{SIMD}}-Based {{C}} Library for Fast Partial Order Alignment Using Adaptive Band},
+  shorttitle = {{{abPOA}}},
+  author = {Gao, Yan and Liu, Yongzhuang and Ma, Yanmei and Liu, Bo and Wang, Yadong and Xing, Yi},
+  doi = {10.1093/bioinformatics/btaa963},
+  abstract = {AbstractSummary. Partial order alignment, which aligns a sequence to a directed acyclic graph, is now frequently used as a key component in long-read error corr},
+  file = {/Users/urbanslug/Zotero/storage/DV9M32AW/Gao et al. - abPOA an SIMD-based C library for fast partial or.pdf;/Users/urbanslug/Zotero/storage/5GQ5F7JP/5962085.html;/Users/urbanslug/Zotero/storage/LNDLX9KK/5962085.html},
+  journal = {Bioinformatics},
+  language = {en}
+}
+
 @article{gaoAbPOASIMDbasedLibrary2020,
   title = {{{abPOA}}: An {{SIMD}}-Based {{C}} Library for Fast Partial Order Alignment Using Adaptive Band},
   shorttitle = {{{abPOA}}},
@@ -1666,6 +1677,39 @@
   type = {Preprint}
 }
 
+@inproceedings{ivanovAStarixFastOptimal2020a,
+  title = {{{AStarix}}: {{Fast}} and {{Optimal Sequence}}-to-{{Graph Alignment}}},
+  shorttitle = {{{AStarix}}},
+  booktitle = {Research in {{Computational Molecular Biology}}},
+  author = {Ivanov, Pesho and Bichsel, Benjamin and Mustafa, Harun and Kahles, Andr{\'e} and R{\"a}tsch, Gunnar and Vechev, Martin},
+  editor = {Schwartz, Russell},
+  year = {2020},
+  pages = {104--119},
+  publisher = {{Springer International Publishing}},
+  address = {{Cham}},
+  doi = {10.1007/978-3-030-45257-5_7},
+  abstract = {We present an algorithm for the optimal alignment of sequences to genome graphs. It works by phrasing the edit distance minimization task as finding a shortest path on an implicit alignment graph. To find a shortest path, we instantiate the A{$\star\star\sphat\backslash$}star paradigm with a novel domain-specific heuristic function that accounts for the upcoming subsequence in the query to be aligned, resulting in a provably optimal alignment algorithm called AStarix.Experimental evaluation of AStarix shows that it is 1\textendash 2 orders of magnitude faster than state-of-the-art optimal algorithms on the task of aligning Illumina reads to reference genome graphs. Implementations and evaluations are available at https://github.com/eth-sri/astarix.},
+  file = {/Users/urbanslug/Zotero/storage/D9KZLECF/Ivanov et al. - 2020 - AStarix Fast and Optimal Sequence-to-Graph Alignm.pdf},
+  isbn = {978-3-030-45257-5},
+  keywords = {A⋆⋆^\\star   algorithm,Genome graph,Next-generation sequencing,Optimal alignment,Shortest path},
+  language = {en},
+  series = {Lecture {{Notes}} in {{Computer Science}}}
+}
+
+@article{jainComplexitySequencetoGraphAlignment2020,
+  title = {On the {{Complexity}} of {{Sequence}}-to-{{Graph Alignment}}},
+  author = {Jain, Chirag and Zhang, Haowen and Gao, Yu and Aluru, Srinivas},
+  year = {2020},
+  month = apr,
+  publisher = {{Mary Ann Liebert, Inc., publishers  140 Huguenot Street, 3rd Floor New Rochelle, NY 10801 USA}},
+  doi = {10.1089/cmb.2019.0066},
+  abstract = {Journal of Computational Biology},
+  copyright = {Copyright 2020, Mary Ann Liebert, Inc., publishers},
+  file = {/Users/urbanslug/Zotero/storage/6K6PZHJG/Jain et al. - 2020 - On the Complexity of Sequence-to-Graph Alignment.pdf;/Users/urbanslug/Zotero/storage/UXN5ESQ4/cmb.2019.html},
+  journal = {Journal of Computational Biology},
+  language = {en}
+}
+
 @article{jainHighThroughputANI2018,
   ids = {jainHighThroughputANI2018a,jainHighThroughputANI2018c},
   title = {High Throughput {{ANI}} Analysis of {{90K}} Prokaryotic Genomes Reveals Clear Species Boundaries},
@@ -1990,6 +2034,23 @@
   file = {/Users/urbanslug/Zotero/storage/AM7RWCHB/Langmead et al. - 2009 - Ultrafast and memory-efficient alignment of short .pdf},
   journal = {Genome Biology},
   number = {3}
+}
+
+@article{leeGeneratingConsensusSequences2003,
+  title = {Generating Consensus Sequences from Partial Order Multiple Sequence Alignment Graphs},
+  author = {Lee, Christopher},
+  year = {2003},
+  month = may,
+  volume = {19},
+  pages = {999--1008},
+  publisher = {{Oxford Academic}},
+  issn = {1367-4803},
+  doi = {10.1093/bioinformatics/btg109},
+  abstract = {Abstract. Motivation: Consensus sequence generation is important in many kinds of sequence analysis ranging from sequence assembly to profile-based iterative se},
+  file = {/Users/urbanslug/Zotero/storage/W9AT79FZ/Lee - 2003 - Generating consensus sequences from partial order .pdf;/Users/urbanslug/Zotero/storage/6AUUKU9Y/235258.html;/Users/urbanslug/Zotero/storage/JGAWG93J/235258.html},
+  journal = {Bioinformatics},
+  language = {en},
+  number = {8}
 }
 
 @article{leeMultipleSequenceAlignment2002,
@@ -2405,6 +2466,19 @@
   language = {en}
 }
 
+@article{marco-solaFastGapaffinePairwise2020,
+  title = {Fast Gap-Affine Pairwise Alignment Using the Wavefront Algorithm},
+  author = {{Marco-Sola}, Santiago and Moure, Juan Carlos and Moreto, Miquel and Espinosa, Antonio},
+  year = {2020},
+  month = sep,
+  issn = {1367-4803},
+  doi = {10.1093/bioinformatics/btaa777},
+  abstract = {Pairwise alignment of sequences is a fundamental method in modern molecular biology, implemented within multiple bioinformatics tools and libraries. Current advances in sequencing technologies press for the development of faster pairwise alignment algorithms that can scale with increasing read lengths and production yields.In this article, we present the wavefront alignment algorithm (WFA), an exact gap-affine algorithm that takes advantage of homologous regions between the sequences to accelerate the alignment process. As opposed to traditional dynamic programming algorithms that run in quadratic time, the WFA runs in time O(ns), proportional to the read length n and the alignment score s, using O(s2) memory. Furthermore, our algorithm exhibits simple data dependencies that can be easily vectorized, even by the automatic features of modern compilers, for different architectures, without the need to adapt the code. We evaluate the performance of our algorithm, together with other state-of-the-art implementations. As a result, we demonstrate that the WFA runs 20\textendash 300\texttimes{} faster than other methods aligning short Illumina-like sequences, and 10\textendash 100\texttimes{} faster using long noisy reads like those produced by Oxford Nanopore Technologies.The WFA algorithm is implemented within the wavefront-aligner library, and it is publicly available at https://github.com/smarco/WFA.},
+  file = {/Users/urbanslug/Zotero/storage/I2ZKITDD/Marco-Sola et al. - 2020 - Fast gap-affine pairwise alignment using the wavef.pdf;/Users/urbanslug/Zotero/storage/FL43P8F3/5904262.html},
+  journal = {Bioinformatics},
+  number = {btaa777}
+}
+
 @article{medvedevComputationalMethodsDiscovering2009,
   ids = {medvedevComputationalMethodsDiscovering2009a,medvedevComputationalMethodsDiscovering2009c},
   title = {Computational Methods for Discovering Structural Variation with Next-Generation Sequencing},
@@ -2780,27 +2854,11 @@
   month = nov,
   volume = {49},
   pages = {1341--1349},
-  issn = {1058-4838},
-  doi = {10.1086/606055},
-  abstract = {Abstract.  Background.Although necessary for developing a rationale for vaccination, the burden of severe respiratory syncytial virus (RSV) disease in children},
-  file = {/Users/urbanslug/Zotero/storage/MDVQQUKX/Nokes et al. - 2009 - Incidence and Severity of Respiratory Syncytial Vi.pdf;/Users/urbanslug/Zotero/storage/B2NJT32X/299838.html;/Users/urbanslug/Zotero/storage/LDHMDPBJ/299838.html},
-  journal = {Clinical Infectious Diseases},
-  language = {en},
-  number = {9}
-}
-
-@article{nokesIncidenceSeverityRespiratory2009a,
-  title = {Incidence and {{Severity}} of {{Respiratory Syncytial Virus Pneumonia}} in {{Rural Kenyan Children Identified}} through {{Hospital Surveillance}}},
-  author = {Nokes, D. James and Ngama, Mwanajuma and Bett, Anne and Abwao, John and Munywoki, Patrick and English, Mike and Scott, J. Anthony G. and Cane, Patricia A. and Medley, Graham F.},
-  year = {2009},
-  month = nov,
-  volume = {49},
-  pages = {1341--1349},
   publisher = {{Oxford Academic}},
   issn = {1058-4838},
   doi = {10.1086/606055},
   abstract = {Abstract.  Background.Although necessary for developing a rationale for vaccination, the burden of severe respiratory syncytial virus (RSV) disease in children},
-  file = {/Users/urbanslug/Zotero/storage/8FUZ4DPJ/Nokes et al. - 2009 - Incidence and Severity of Respiratory Syncytial Vi.pdf;/Users/urbanslug/Zotero/storage/9BEMNLJ8/299838.html;/Users/urbanslug/Zotero/storage/BYH7RUKP/299838.html},
+  file = {/Users/urbanslug/Zotero/storage/8FUZ4DPJ/Nokes et al. - 2009 - Incidence and Severity of Respiratory Syncytial Vi.pdf;/Users/urbanslug/Zotero/storage/MDVQQUKX/Nokes et al. - 2009 - Incidence and Severity of Respiratory Syncytial Vi.pdf;/Users/urbanslug/Zotero/storage/9BEMNLJ8/299838.html;/Users/urbanslug/Zotero/storage/B2NJT32X/299838.html;/Users/urbanslug/Zotero/storage/BYH7RUKP/299838.html;/Users/urbanslug/Zotero/storage/LDHMDPBJ/299838.html},
   journal = {Clinical Infectious Diseases},
   language = {en},
   number = {9}
@@ -2823,26 +2881,9 @@
 }
 
 @article{nokesRespiratorySyncytialVirus2004,
+  ids = {nokesRespiratorySyncytialVirus2004a},
   title = {Respiratory Syncytial Virus Epidemiology in a Birth Cohort from {{Kilifi}} District, {{Kenya}}: Infection during the First Year of Life},
   shorttitle = {Respiratory Syncytial Virus Epidemiology in a Birth Cohort from {{Kilifi}} District, {{Kenya}}},
-  author = {Nokes, D. James and Okiro, Emelda A. and Ngama, Mwanajuma and White, Lisa J. and Ochola, Rachel and Scott, Paul D. and Cane, Patricia A. and Medley, Graham F.},
-  year = {2004},
-  month = nov,
-  volume = {190},
-  pages = {1828--1832},
-  issn = {0022-1899},
-  doi = {10.1086/425040},
-  abstract = {We report estimates of incidence of respiratory syncytial virus (RSV) infection during the first year of life for a birth cohort from rural, coastal Kenya. A total of 338 recruits born between 21 January 2002 and 30 May 2002 were monitored for symptoms of respiratory infection by home visits and hospital referrals. Nasal washings were screened by use of immunofluorescence. From 311 child-years of observation (cyo), 133 RSV infections were found, of which 48 were lower respiratory tract infections (LRTIs) and 31 were severe LRTIs, resulting in 4 hospital admissions. There were 121 primary RSV infections (248 cyo), of which 45 were LRTIs and 30 were severe LRTIs, resulting in 4 hospital admissions; there was no association with age. RSV contributed significantly to total LRTI disease in this vaccine-target group.},
-  journal = {The Journal of Infectious Diseases},
-  keywords = {Age Factors,Female,Hospitalization,Humans,Incidence,Infant,Infant; Newborn,Kenya,Male,Microscopy; Fluorescence,Nasal Lavage Fluid,Pneumonia; Viral,Respiratory Syncytial Virus Infections,Respiratory Syncytial Virus; Human,Respiratory Tract Infections,Seasons},
-  language = {eng},
-  number = {10},
-  pmid = {15499540}
-}
-
-@article{nokesRespiratorySyncytialVirus2004a,
-  title = {Respiratory {{Syncytial Virus Epidemiology}} in a {{Birth Cohort}} from {{Kilifi District}}, {{Kenya}}: {{Infection}} during the {{First Year}} of {{Life}}},
-  shorttitle = {Respiratory {{Syncytial Virus Epidemiology}} in a {{Birth Cohort}} from {{Kilifi District}}, {{Kenya}}},
   author = {Nokes, D. James and Okiro, Emelda A. and Ngama, Mwanajuma and White, Lisa J. and Ochola, Rachel and Scott, Paul D. and Cane, Patricia A. and Medley, Graham F.},
   year = {2004},
   month = nov,
@@ -2851,11 +2892,13 @@
   publisher = {{Oxford Academic}},
   issn = {0022-1899},
   doi = {10.1086/425040},
-  abstract = {Abstract.  We report estimates of incidence of respiratory syncytial virus (RSV) infection during the first year of life for a birth cohort from rural, coastal},
+  abstract = {We report estimates of incidence of respiratory syncytial virus (RSV) infection during the first year of life for a birth cohort from rural, coastal Kenya. A total of 338 recruits born between 21 January 2002 and 30 May 2002 were monitored for symptoms of respiratory infection by home visits and hospital referrals. Nasal washings were screened by use of immunofluorescence. From 311 child-years of observation (cyo), 133 RSV infections were found, of which 48 were lower respiratory tract infections (LRTIs) and 31 were severe LRTIs, resulting in 4 hospital admissions. There were 121 primary RSV infections (248 cyo), of which 45 were LRTIs and 30 were severe LRTIs, resulting in 4 hospital admissions; there was no association with age. RSV contributed significantly to total LRTI disease in this vaccine-target group.},
   file = {/Users/urbanslug/Zotero/storage/RAMRU4EG/Nokes et al. - 2004 - Respiratory Syncytial Virus Epidemiology in a Birt.pdf;/Users/urbanslug/Zotero/storage/QTW49CDC/2191713.html},
   journal = {The Journal of Infectious Diseases},
-  language = {en},
-  number = {10}
+  keywords = {Age Factors,Female,Hospitalization,Humans,Incidence,Infant,Infant; Newborn,Kenya,Male,Microscopy; Fluorescence,Nasal Lavage Fluid,Pneumonia; Viral,Respiratory Syncytial Virus Infections,Respiratory Syncytial Virus; Human,Respiratory Tract Infections,Seasons},
+  language = {eng},
+  number = {10},
+  pmid = {15499540}
 }
 
 @article{norrisNanoporeSequencingDetects2016,
@@ -3043,6 +3086,23 @@
   language = {en},
   number = {19},
   pmid = {3532115}
+}
+
+@article{ondovMashFastGenome2016,
+  title = {Mash: Fast Genome and Metagenome Distance Estimation Using {{MinHash}}},
+  shorttitle = {Mash},
+  author = {Ondov, Brian D. and Treangen, Todd J. and Melsted, P{\'a}ll and Mallonee, Adam B. and Bergman, Nicholas H. and Koren, Sergey and Phillippy, Adam M.},
+  year = {2016},
+  month = jun,
+  volume = {17},
+  pages = {132},
+  issn = {1474-760X},
+  doi = {10.1186/s13059-016-0997-x},
+  abstract = {Mash extends the MinHash dimensionality-reduction technique to include a pairwise mutation distance and P value significance test, enabling the efficient clustering and search of massive sequence collections. Mash reduces large sequences and sequence sets to small, representative sketches, from which global mutation distances can be rapidly estimated. We demonstrate several use cases, including the clustering of all 54,118 NCBI RefSeq genomes in 33 CPU h; real-time database search using assembled or unassembled Illumina, Pacific Biosciences, and Oxford Nanopore data; and the scalable clustering of hundreds of metagenomic samples by composition. Mash is freely released under a BSD license (https://github.com/marbl/mash).},
+  file = {/Users/urbanslug/Zotero/storage/GSABIR4Z/Ondov et al. - 2016 - Mash fast genome and metagenome distance estimati.pdf;/Users/urbanslug/Zotero/storage/EB8SHN5Z/s13059-016-0997-x.html;/Users/urbanslug/Zotero/storage/RGBYHK9A/s13059-016-0997-x.html},
+  journal = {Genome Biology},
+  keywords = {Alignment,Comparative genomics,Genomic distance,Metagenomics,Nanopore,Sequencing},
+  number = {1}
 }
 
 @article{organizationRSVVaccineResearch2017,
@@ -3680,6 +3740,7 @@
 }
 
 @article{schulzFastStringCorrection2002,
+  ids = {schulzFastStringCorrection2002a},
   title = {Fast String Correction with {{Levenshtein}} Automata},
   author = {Schulz, Klaus U. and Mihov, Stoyan},
   year = {2002},
@@ -3689,23 +3750,7 @@
   issn = {1433-2833},
   doi = {10.1007/s10032-002-0082-8},
   abstract = {The Levenshtein distance between two words is the minimal number of insertions, deletions or substitutions that are needed to transform one word into the other. Levenshtein automata of degree n for a word W are defined as finite state automata that recognize the set of all words V where the Levenshtein distance between V and W does not exceed n. We show how to compute, for any fixed bound n and any input word W, a deterministic Levenshtein automaton of degree n for W in time linear to the length of W. Given an electronic dictionary that is implemented in the form of a trie or a finite state automaton, the Levenshtein automaton for W can be used to control search in the lexicon in such a way that exactly the lexical words V are generated where the Levenshtein distance between V and W does not exceed the given bound. This leads to a very fast method for correcting corrupted input words of unrestricted text using large electronic dictionaries. We then introduce a second method that avoids the explicit computation of Levenshtein automata and leads to even improved efficiency. Evaluation results are given that also address variants of both methods that are based on modified Levenshtein distances where further primitive edit operations (transpositions, merges and splits) are used.},
-  file = {/Users/urbanslug/Zotero/storage/Z6ZLFIFM/Schulz and Mihov - 2002 - Fast string correction with Levenshtein automata.pdf},
-  journal = {International Journal on Document Analysis and Recognition},
-  language = {en},
-  number = {1}
-}
-
-@article{schulzFastStringCorrection2002a,
-  title = {Fast String Correction with {{Levenshtein}} Automata},
-  author = {Schulz, Klaus U. and Mihov, Stoyan},
-  year = {2002},
-  month = nov,
-  volume = {5},
-  pages = {67--85},
-  issn = {1433-2833},
-  doi = {10.1007/s10032-002-0082-8},
-  abstract = {The Levenshtein distance between two words is the minimal number of insertions, deletions or substitutions that are needed to transform one word into the other. Levenshtein automata of degree n for a word W are defined as finite state automata that recognize the set of all words V where the Levenshtein distance between V and W does not exceed n. We show how to compute, for any fixed bound n and any input word W, a deterministic Levenshtein automaton of degree n for W in time linear to the length of W. Given an electronic dictionary that is implemented in the form of a trie or a finite state automaton, the Levenshtein automaton for W can be used to control search in the lexicon in such a way that exactly the lexical words V are generated where the Levenshtein distance between V and W does not exceed the given bound. This leads to a very fast method for correcting corrupted input words of unrestricted text using large electronic dictionaries. We then introduce a second method that avoids the explicit computation of Levenshtein automata and leads to even improved efficiency. Evaluation results are given that also address variants of both methods that are based on modified Levenshtein distances where further primitive edit operations (transpositions, merges and splits) are used.},
-  file = {/Users/urbanslug/Zotero/storage/S55ZCJKU/Schulz and Mihov - 2002 - Fast string correction with Levenshtein automata.pdf},
+  file = {/Users/urbanslug/Zotero/storage/S55ZCJKU/Schulz and Mihov - 2002 - Fast string correction with Levenshtein automata.pdf;/Users/urbanslug/Zotero/storage/Z6ZLFIFM/Schulz and Mihov - 2002 - Fast string correction with Levenshtein automata.pdf},
   journal = {International Journal on Document Analysis and Recognition},
   language = {en},
   number = {1}

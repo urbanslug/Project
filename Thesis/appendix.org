@@ -1,8 +1,7 @@
 #+LATEX: \begin{appendices}
 ** Code
 
-*** RSV
-**** Quality Control and Adapter Trimming
+*** Quality Control and Adapter Trimming
 #+BEGIN_SRC bash
 # concatenate the contents of all the files
 # in ~/miniconda3/share/trimmomatic-0.39-1/adapters/ into one
@@ -17,18 +16,18 @@ trimmomatic PE \
  SLIDINGWINDOW:4:35
 #+END_SRC
 
-**** Concatenate Reads into Text File
+*** Concatenate Reads into Text File
 #+BEGIN_SRC bash
 find $(pwd)/data -d -name '*interleave*fq' > sequences.txt
 #+END_SRC
 
-**** Problematic RSV Sequences
+*** Problematic RSV Sequences
 #+BEGIN_SRC bash
 data/H_536_09_04/H_536_09_04_interleaved.fq:1271846:AGAACTCAGTGTAGGTAGAATGGTTGGCTGATCAATATCTCTAATGATTTTGGTCTGTGAATCAACTGTCATAAGAGAATTCTATCAAAGTTGAATTCCGAATCCTTGGGTCAATGACTGGGTGCACCCATTCTTCTAATGTGCTCTGTC
 data/H_506_13_04/H_506_13_04_interleaved.fq:3831798:AGAACTCAGTGTAGGTAGAATGGTTGGCTGAGTAGGTAGATGGAGGCAGGTGCATGTGTGATGGGAAGTGTGGTGACGGGTTGTGTGGGCACACGGGATGAGGCGCAGATGGCTGGGGGTTTGGGAGGGGAATGGGTGGGAGAAGGAGGC
 #+END_SRC
 
-**** Minia Fragment Assembly
+*** Minia Fragment Assembly
 #+BEGIN_SRC bash
 minia -in ../sequence_paths.txt \
   -kmer-size 31 \
@@ -36,14 +35,14 @@ minia -in ../sequence_paths.txt \
   -nb-cores 8
 #+END_SRC
 
-**** Graph Bluntification Using Stark
+*** Graph Bluntification Using Stark
 #+BEGIN_SRC bash
 stark -i input_file_name \
   -o stark_bluntify.gfa \
   -s cpu-consuming
 #+END_SRC
 
-**** Odgi Graph Preparation
+*** Odgi Graph Preparation
 #+BEGIN_SRC bash
 #!/usr/bin/env bash
 
@@ -82,17 +81,17 @@ odgi view \
 ./pre-map.sh stark_bluntify.gfa
 #+END_SRC
 
-**** RSV VG View
+*** RSV VG View
 #+BEGIN_SRC bash
 vg view -Fv view-odgi.gfa > graph.vg
 #+END_SRC
 
-**** RSV VG Index
+*** RSV VG Index
 #+BEGIN_SRC bash
 vg index -x graph.xg -g graph.gcsa graph.vg
 #+END_SRC
 
-**** RSV VG Map Script
+*** RSV VG Map Script
 #+BEGIN_SRC bash
 #!/usr/bin/env bash
 
@@ -118,14 +117,14 @@ do
 ./map.sh < ../sequence_paths.txt
 #+END_SRC
 
-**** Generate GAM
+*** Generate GAM
 #+BEGIN_SRC bash
 vg view -a -k gams/H_513_02_04.gam > Images/H_513_02_04.gamp
 vg view -K -j Images/H_513_02_04.gamp > Images/H_513_02_04_GAMP.json
 cat Images/H_513_02_04_GAMP.json | jq | less
 #+END_SRC
 
-**** VG Pack Script
+*** VG Pack Script
 #+BEGIN_SRC bash
 #!/usr/bin/env bash
 
@@ -155,124 +154,3 @@ find $(pwd)/gams -d -name '*.gam' > gams.txt
 
 
 
-*** SARS-COV-2
-**** Efetch
-#+BEGIN_SRC bash
-efetch -db=nuccore -format=fasta -id=NC_045512.2 > \
- ~/projects/Masters/verify/data/refs/COVID_19.fa
-#+END_SRC 
-
-**** dwgsim Read Simulation
-#+BEGIN_SRC bash
-# Set ref as a var
-export REF=~/projects/Masters/verify/data/refs/COVID_19.fa
-dwgsim -N 1000 $REF covid_19_sim_1
-dwgsim -N 1000 $REF covid_19_sim_2
-
-# Increase the mutation rate from the default 0.0010 to 0.0100
-
-dwgsim -N 1000 -r 0.0100 $REF covid_19_sim_3
-#+END_SRC 
-
-**** Bifrost Fragment Assembly
-#+BEGIN_SRC bash
-Bifrost build \
-  -c \
-  -k 31 \
-  -s sequences.txt \
-  -o SARS-CoV-2
-#+END_SRC
-
-**** Gimbricate Graph Bluntification
-#+BEGIN_SRC bash
-gimbricate -d  \
-  -g SARS-CoV-2.gfa \
-  -p SARS-CoV-2.paf \
-  -f SARS-CoV-2.fasta \
-  > SARS-CoV-2.gimbry.gfa
-
-#+END_SRC
-
-**** Seqwish Graph Induction
-#+BEGIN_SRC bash
-seqwish \
-  -s SARS-CoV-2.fasta \
-  -p SARS-CoV-2.paf \
-  -g SARS-CoV-2.seqwish.gfa
-#+END_SRC
-
-**** Odgi Build
-#+BEGIN_SRC bash
-odgi build \
-  -s \
-  -g SARS-CoV-2.seqwish.gfa \
-  -o SARS-CoV-2-odgi-graph.vg
-#+END_SRC
-
-**** Odgi Chop
-#+BEGIN_SRC bash
-odgi chop \
-  -i SARS-CoV-2-odgi-graph.vg \
-  -c 1024 \
-  -o SARS-CoV-2-odgi-chopped.vg
-#+END_SRC
-
-**** Odgi Sort
-#+BEGIN_SRC bash
-odgi sort \
- -i SARS-CoV-2-odgi-chopped.vg \
- -o SARS-CoV-2-odgi-sorted.vg
-#+END_SRC
-
-**** Odgi View
-#+BEGIN_SRC bash
-odgi view \
- -i SARS-CoV-2-odgi-sorted.vg \
- -g \
- > SARS-CoV-2-odgi.gfa
-#+END_SRC
-
-**** SARS-CoV-2 VG View
-#+BEGIN_SRC bash
-# vg view help
-Usage: vg view [options] [ <graph.vg> | <graph.json> | <aln.gam> | <read1.fq> [<read2.fq>] ]
-options:
-    -g, --gfa                  output GFA format (default)
-    -F, --gfa-in               input GFA format, reducing overlaps if they occur
-    -v, --vg                   output VG format
-
-# Run vg view
-vg view -Fv SARS-CoV-2-odgi.gfa > SARS-CoV-2-vg.vg
-
-#+END_SRC
-
-**** SARS-CoV-2 VG Index
-#+BEGIN_SRC bash
-# vg index help
-xg options:
-    -x, --xg-name FILE     use this file to store a succinct, queryable version of the graph(s), or read for GCSA indexing
-gcsa options:
-    -g, --gcsa-out FILE    output a GCSA2 index to the given file
-    -k, --kmer-size N      index kmers of size N in the graph (default 16)
-
-# Run vg index
-vg index -x SARS-CoV-2.xg -g SARS-CoV-2.gcsa SARS-CoV-2-vg.vg
-#+END_SRC
-
-**** SARS-CoV-2 VG Pack Script
-#+BEGIN_SRC bash
-# vg pack help
--d, --as-table         write table on stdout representing packs
-
-# Run vg pack in a loop
-for i in {1..3}
-do 
- vg pack \
-   -x SARS-CoV-2.xg \
-   -g SARS-CoV-2-${i}.gam \
-   -d \
-   > SARS-CoV-2-${i}.pack.table
-done
-#+END_SRC
-
-#+LATEX: \end{appendices}

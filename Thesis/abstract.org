@@ -1,28 +1,29 @@
 #+LATEX: \pagewidth
 * Abstract
 #+BEGIN_ABSTRACT
-Reference genomes represent a consensus assembly of the most frequent reads or
-bases in a sample. Genome graphs use low level data structures to provide 
-access to reads used in the assembly as a network of nodes where a node 
-represents a sequence or kmer. In this work we used genome graphs to explore
-and represent virus sequence diversity.
+Linear reference genomes are a consensus of the most frequent base at a given
+position.
+Graph-based reference genomes represent a genome as a network of alternative
+paths, thereby providing information on variant bases.
+This graph can be node labelled—bases are held in the nodes of the graph while
+the edges represent the connections between the bases, or edge labelled—if the
+edges in the graph represent the bases. A graph-based data structure like this
+is suitable for exploring and describing virus sequence diversity.
+\todo{This last sentence can be better}
 
-Respiratory Syncytial Virus samples were collected from a twenty-five-member 
-household during a household outbreak and used to assemble a genome graph. 
-Reads from each sample were mapped on to this graph and the number of reads that
-mapped under each was noted. We then applied principal component analysis to 
-reduce the 196,488-dimensional coverage data and the results used to generate 
-distance matrices which were then summarised as a cladogram.
+Sequenced respiratory syncytial virus raw reads from a twenty-five-member
+household collected during a household outbreak were used to generate a genome
+graph.
+The sample reads were then aligned to the genome graph.
+The number of reads that mapped under each node was then summarised as a
+multidimensional coverage vector.
+A pairwise Euclidean distance matrix of was computed and a neighbour-joining
+cladogram based on hierarchical clustering generated.
 
-We established a method able to differentiate each of the samples by comparing
-the depth of coverage of each sample against that of every other sample.
-The use of different principle components, either the first principal component 
-or the first five principal components, gave different topologies.
-The first five provided a tree that was more parsimonious and closer to the
-maximum likelihood tree generated in previous studies.
-
-Our naïve approach provides an all vs all sample comparison of sample
-relatedness using data provided by a genome graph. It also shows that sequence
-coverage across a genome graph is an alternative approach to provide sequence 
-relatedness.
+We demonstrate the plausibility of differentiating a large number of closely
+related consensus genomes by comparing the number of respective raw reads that
+align to each node from the larger genome graph.
+Additionally, the sequence coverage across a genome graph provides an
+alternative approach for examining sequence relatedness and identifying
+potential sequencing errors.
 #+END_ABSTRACT

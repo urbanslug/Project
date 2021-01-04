@@ -1,9 +1,33 @@
-We provide a simple yet intuitionistic approach of comparing samples which
- facilitates an all versus comparison of samples without going through the 
-reference as is the norm. This method involves using the depth of coverage under 
-each node to  generate cladogram through neighbour joining. 
-It provided a parsimonious tree that  correctly differentiated simulated
- SARS-CoV-2 reads and split a household RSV dataset to have two different
- introductions.
+This thesis does not expressly state the two-year-old transferred RSV to the
+infant, but it does show that the two-year-olds sample was most related to that
+of the infant.
+Meaning genome graphs provide enough resolution to cluster RSV samples in the
+household in ways that the methods used in previous studies could not. 
 
-Future work will involve verifying that these trees are in fact differentiating these samples correctly and how it compares to contemporary methods of phylogenetics.
+The study presents an intuitionistic and straightforward approach of comparing
+samples.
+This approach facilitates an all versus comparison of samples without going
+through the linear reference as is the norm and possibly avoiding the
+transitivity issue.
+Using the depth of coverage under each node; it is possible to generate
+cladograms through neighbour-joining and hierarchical clustering.
+This method was able to split the household RSV dataset into three different
+clades; a task that proved difficult with methods based on linear references.
+
+To investigate the circulation of subtypes and genotypes of RSV
+(or any other virus) I propose two ways to go about it: one, a reference graph
+for each subtype or genotype or two, a pangenome graph for RSV with the nodes
+containing bases that are specific to given subtypes annotated.
+Determining whether a genotype or subtype is present in a sample would be a
+matter of checking whether the reads that map to a type-specific graph or a
+subgraph of a pangenome graph reach a set threshold.
+
+Future work will involve verifying that these cladograms are differentiating
+these samples correctly and how it compares to contemporary methods of
+phylogenetics.
+It would also be interesting to see what statistical noise reduction or
+dimensionality reduction techniques could do to the coverage vector.
+It is also possible to use techniques other than the euclidean distance to
+analyse the coverage data. Moreover, it would be desirable to have a world in
+which it is possible to look up a new sample's coverage against an already
+trained model.

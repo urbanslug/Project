@@ -1,392 +1,592 @@
 * RNA Viruses
-RNA viral populations don’t exist as a collection of organisms with a single
-genome but rather as a quasispecies
-(also called a mutant spectrum or a mutant cloud) where most of the biologically
-relevant variation observed in vivo is as a result of genetic variation,
-competitive selection and random events acting on multiple replicative units.
-These quasispecies dynamics have been used to explain the failure of
-monotherapy and synthetic antiviral vaccines but have opened new possibilities
-for antiviral interventions cite:domingoViralQuasispeciesEvolution2012.
-These viruses have mutation rates up to a million times higher than their hosts;
+In stark contrast with most organisms which exist distinct individuals with a
+single genome; RNA viral populations exist as a quasispecies (also called a
+mutant spectrum or a mutant cloud) where most of the biologically relevant
+variation observed in vivo is as a result of genetic variation, competitive
+selection and random events acting on multiple replicative units.
+These quasispecies dynamics have been used to explain the failure of monotherapy
+and synthetic antiviral vaccines but have opened new possibilities for antiviral
+interventions cite:domingoViralQuasispeciesEvolution2012.
+
+RNA viruses have mutation rates up to a million times higher than their hosts;
 rates that are so high it is unlikely for a virus to have an identical RNA
-molecule as its immediate progeny cite:domingoViralQuasispeciesEvolution2012. 
-Negative selection controls this mutation rate and proof that it is not 
-optimized by natural selection is that in some cases it leads to local
-extinction cite:duffyWhyAreRNA2018.
+molecule as its immediate progeny cite:domingoViralQuasispeciesEvolution2012.
+Their mutation rate is not optimised by natural selection but instead is
+controlled by negative selection with the proof being that their mutation
+sometimes leads to local extinction cite:duffyWhyAreRNA2018.
 
-** Respiratory Syncytial Virus (RSV)
-RSV is the major cause of acute lower respiratory tract infections associated 
-with pneumonia, bronchitis (Borchers et al., 2013; Zlateva et al., 2004) and
-otitis cite:kleinRoleRespiratorySyncytial1982 more frequently than any other agent and
-particularly in the first year of life cite:stottRespiratorySyncytialVirus1985.
-As if that wasn’t enough, RSV significantly increases the prevalence of asthma
-in children who are hospitalized with it and there is a marked correlation
-between the incidence of RSV in the community and the occurrence of sudden
-infant deaths as well as a third of cot deaths among children over 3 months of
-age cite:chanockRecoveryInfantsRespiratory1957. 
+* Respiratory Syncytial Virus (RSV)
+RSV is the primary cause of acute lower respiratory tract infections associated
+with pneumonia, bronchitis, and otitis
+cite:borchersRespiratorySyncytialVirus2013,kleinRoleRespiratorySyncytial1982,zlatevaMolecularEvolutionCirculation2004
+more frequently than any other agent and particularly in the first year of life
+cite:stottRespiratorySyncytialVirus1985.
+RSV significantly increases the prevalence of asthma in children hospitalised
+with it cite:saglaniViralInfectionsDevelopment2013.
 
-A simple upper respiratory illness in immunocompromised adults or the elderly
-is no longer viewed as trivial
-cite:chanockRecoveryInfantsRespiratory1957,whimbeyRespiratorySyncytialVirus2000.
+A mild upper respiratory illness in immunocompromised adults or the elderly is
+no longer considered trivial cite:whimbeyRespiratorySyncytialVirus2000.
 People with cardiopulmonary diseases and immunocompromised persons with bone
-marrow transplant patients prior to marrow engraftment are at highest risk for
+marrow transplant patients before marrow engraftment are at highest risk for
 pneumonia and death cite:morrisRecoveryCytopathogenicAgent1956.
-For cancer patients, the risks and
-benefits of administering intensive chemotherapy in the setting of a seemingly
-benign upper respiratory illness are now weighed heavily
-cite:kleinRoleRespiratorySyncytial1982.
+For cancer patients, the risks and benefits of administering intensive
+chemotherapy in the setting of a seemingly mild upper respiratory illness are
+now weighed heavily cite:kleinRoleRespiratorySyncytial1982.
 
-In animals, the RSV virus is also recognized as an important cause of Bovine
-Respiratory Disease (BRD) in Europe and the United States
-cite:whimbeyRespiratorySyncytialVirus2000 being the most costly disease of beef
-cattle in North America cite:griffinEconomicImpactAssociated1997.
-
-*** History
+** History
 The virus was first isolated in 1956 from Chimpanzees and named Chimpanzee
-Coryza Agent cite:morrisRecoveryCytopathogenicAgent1956 after which it was
-isolated in children from whom it had not been possible to isolate and renamed 
-RSV in 1957 then classified in order Mononegavirales, family Paramyxoviridae,
-subfamily Pneumovirinae, genus Pneumovirus
+Coryza Agent cite:morrisRecoveryCytopathogenicAgent1956.
+The next year, in 1957, it was isolated in
+children from whom it had not been possible to isolate and renamed RSV and
+classified in order Mononegavirales, family Paramyxoviridae, subfamily
+Pneumovirinae, genus Pneumovirus
 cite:chanockRecoveryInfantsRespiratory1957,beemAssociationChimpanzeeCoryza1960,zlatevaGeneticVariabilityMolecular2005.
 
-*** Epidemiology
-In older children and healthy adults, RSV presents in highly seasonal annual
-epidemics (Aamir et al., 2013; Al-Toum et al., 2006) of mild reinfections
-predominantly in the upper respiratory tract (Chanock et al., 1957) even in the
-presence of pre-existing antibodies (Cane, 2001; Sullender et al., 1991).
+#+LATEX: \newpage
 
-The epidemics have been found to have a significant negative correlation with
-temperature and a significant positive correlation with relative humidity and
-rainfall cite:al-toumEpidemiologyClinicalCharacteristics2006
-and therefore crop up in the coldest months which naturally vary with latitude.
+** Genetic Makeup
+#+CAPTION[RSV Capsid]:(a) A schematic of RSV antisense RNA strand showing its ten genes. The rectangles represent genes with the different shades of the same colour used to show similarity. The grey connectors are the intergenic regions. The numbers below are the estimated gene lengths. (b) A schematic of the RSV capsid showing the lipid bilayer and most importantly, the surface of the F and G glycoproteins. Both images adapted from cite:namRespiratorySyncytialVirus2019.
+#+ATTR_LATEX: :placement [h!] :width 1.0\textwidth :float multicolumn
+#+NAME: fig:RSV-Schematic
+[[../Figures/Schematic of RSV.png]]
 
-In temperate climates, RSV epidemics occur in the winter between December and
-February but peaking in January and February  (Al-Toum et al., 2006) and are a
-major cause of winter mortality associated with 60-80% more deaths than
-influenza cite:nicholsonImpactInfluenzaRespiratory1996.
-
-In tropical climates, epidemics occur during the rainy season
-cite:al-toumEpidemiologyClinicalCharacteristics2006,aamirMolecularCharacterizationCirculating2013 
-but are also associated with religious festivals
-cite:caneMolecularEpidemiologyRespiratory2001.
-
-Serious disease is limited to the primary infection which occurs between six
-weeks and two years of age during the child’s first or second epidemics
-cite:caneMolecularEpidemiologyRespiratory2001 and can occur in the presence of
-maternally derived antibodies.
-However, infants with more severe illnesses were found to have lower levels of
-antibodies in serum collected near the onset of illness than did infants with
-milder illnesses 
-cite:glezenRiskRespiratorySyncytial1981,caneMolecularEpidemiologyRespiratory2001.
-
-*** The Genetic Makeup of RSV
-#+CAPTION[RSV Antisense RNA Strand]:A schematic of RSV antisense RNA strand showing its 10 genes. The rectangles represent genes with the different shades of the same colour used to show similarity. The grey connectors are the intergenic regions. The numbers below are the estimated gene lengths. Adapted from cite:namRespiratorySyncytialVirus2019.
-#+ATTR_LATEX:  :placement [h!] :width 0.75\textwidth :float multicolumn
-#+NAME: fig:RSV-genes
-file:figures/RSV-genes.png
-
-#+CAPTION[RSV Capsid]:A schematic of the RSV capsid showing the lipid bilayer and most importantly the surface the F and G glycoproteins. From cite:namRespiratorySyncytialVirus2019.
-#+ATTR_LATEX: :placement [h!] :width 0.75\textwidth :float multicolumn
-#+NAME: fig:RSV-cross-section
-file:figures/RSV-cross-section.png
-
-RSV, whose genome structure is shown above, is an enveloped virus with a
+RSV, whose genome structure is shown in Figure [[fig:RSV-Schematic]], is an enveloped virus with a
 nonsegmented negative-strand RNA genome of approximately 15,200 nucleotides
-containing 10 genes which code for 11 proteins whose order is 3k NS1, NS2, N,
+containing ten genes which code for 11 proteins whose order is 3k NS1, NS2, N,
 P, M1, SH, G, F, M2 (note that M2 codes for M2.1 and M2.2 proteins), and L with
 attenuation of transcription step-wise with distance from the 3k end
 cite:caneMolecularEpidemiologyRespiratory2001.
 
-As shown in table 1 and figures 1 and 2, RSV has three surface glycoproteins:
-the small hydrophobic (SH) protein which may be non-structural, the fusion (F)
-protein which plays the main role in virus penetration, syncytium formation,
-and possibly can also mediate attachment and the attachment (G) glycoprotein
-which plays the main role in virus attachment. It has four nucleocapsid
-proteins including the nucleoprotein (N), phosphoprotein (P),
-M2-1(also designated 22K and sometimes considered a matrix protein) and
-polymerase (L). 
-The M2 gene contains a second open reading frame encoding a protein (M2-2) which
-regulates transcription (Fearns & Collins, 1999). There is a single matrix 
-protein, M1, which may mediate interactions between the nucleocapsid and
-envelope and the two non-structural proteins, NS1 and NS2  have recently been 
-shown to antagonise the interferon-induced antiviral response
+As shown in Table [[tbl:RSV-genes]] and Figure [[fig:RSV-Schematic]], RSV has three surface glycoproteins: the small
+hydrophobic (SH) protein which may be non-structural, the fusion (F) protein
+which plays the leading role in virus penetration, syncytium formation, and
+possibly can also mediate attachment and the attachment (G) glycoprotein which
+plays the leading role in virus attachment. It has four nucleocapsid proteins
+including the nucleoprotein (N), phosphoprotein (P), M2-1(also designated 22K
+and sometimes considered a matrix protein) and polymerase (L).
+The M2 gene contains a second open reading frame encoding a protein (M2-2)
+which regulates transcription cite:fearnsRoleM21Transcription1999.
+There is a single matrix protein, M1, which may mediate interactions between the
+nucleocapsid and envelope and the two non-structural proteins, NS1 and NS2  have
+recently been shown to antagonise the interferon-induced antiviral response
 cite:fearnsRoleM21Transcription1999,schlenderBovineRespiratorySyncytial2000.
-*** Groups of RSV
-RSV was initially divided into two antigenic groups A and B in 1966 by its 
-reaction with panels of monoclonal antibodies particularly those directed
-against its P, F and G proteins cite:coatesAntigenicAnalysisRespiratory1966. 
-It is worth noting that only antibodies directed against the G and F proteins
-have been shown to be neutralising in vitro or protective in vivo
-cite:caneMolecularEpidemiologyRespiratory2001. 
 
-It was later demonstrated that the two groups are distinct at the genetic level
-cite:johnsonFusionGlycoproteinsHuman1988.
-The F and N proteins are highly conserved
-between the groups showing 91% and 96% amino acid similarity, respectively 
-cite:johnsonFusionGlycoproteinsHuman1988,johnson1BNS21C1989.
+
+
+#+CAPTION[Summary of RSV Genes]: A summary of RSV genes and their function. Listed are the glycoproteins (F, G, SH), membrane proteins (M, M2), nucleoplasmic proteins (N, P, L), non-structural proteins (NS1, NS2); their approximate lengths in base pairs and commentary on them.
+#+LABEL: tbl:RSV-genes
+| Gene                           |    Approximate | Commentary                                       |
+|                                | gene length in |                                                  |
+|                                |     base pairs |                                                  |
+|--------------------------------+----------------+--------------------------------------------------|
+|                                |                |                                                  |
+| \emph{Glycoproteins}           |                |                                                  |
+| F                              |           1903 | Virus penetration, syncytium                     |
+|                                |                | formation & possibly mediate attachment          |
+| G                              |            923 | Mediate virus attachment                         |
+| SH (1A)                        |            410 | Function unknown                                 |
+|                                |                |                                                  |
+| \emph{Membrane proteins}       |                |                                                  |
+| M                              |            958 | Basic; Transcription elongation factor           |
+| M2 (22K)                       |            961 | Basic; Regulation of transcription.              |
+|                                |                | Codes for M2.2 and M2.1                          |
+|                                |                |                                                  |
+| \emph{Nucleocapsid proteins}   |                |                                                  |
+| N                              |           1203 | Major nucleoplasmic protein                      |
+| P                              |            914 | Acidic, phosphorylated                           |
+| L                              |           6587 | Basic, hydrophobic, RNA polymerase               |
+|                                |                |                                                  |
+| \emph{Non-structural proteins} |                |                                                  |
+| NS1 (1C)                       |            532 | Slightly acidic;                                 |
+|                                |                | Antagonise interferon-induced antiviral response |
+| NS2 (1B)                       |            503 | Basic                                            |
+
+
+
+** Genetic Diversity
+RSV was initially divided into two antigenic groups A and B in 1966 by its
+reaction with panels of monoclonal antibodies particularly those directed
+against its P, F and G proteins cite:coatesAntigenicAnalysisRespiratory1966.
+It is worth noting that only antibodies directed against the G and F proteins
+have been shown to be neutralising in vitro or protective in vivo. 
+
+It was later demonstrated that the two groups are distinct at the genetic level.
+The F and N proteins are highly conserved between the groups showing 91% and 96%
+amino acid similarity, respectively
+cite:caneMolecularEpidemiologyRespiratory2001.
 In contrast, the G protein was found to be highly variable where the amino acid
 similarity of this protein between groups A and B was 53%
-cite:johnsonGlycoproteinHumanRespiratory1987,zlatevaMolecularEvolutionCirculation2004.
+cite:zlatevaMolecularEvolutionCirculation2004.
 
-Both groups are known to circulate within an epidemic cite:peretCirculationPatternsGenetically1998
+Both groups are known to circulate within an epidemic
+cite:aamirMolecularCharacterizationCirculating2013
 without any leading to the extinction of the other, although A tends to be more
 dominant in epidemics attributed to the higher variability among the A strains
-cite:peretCirculationPatternsGenetically1998,zlatevaGeneticVariabilityMolecular2005.
+cite:zlatevaMolecularEvolutionCirculation2004,aamirMolecularCharacterizationCirculating2013.
 
-The sequence diversity of the G glycoprotein (the type II glycoprotein of
-289–299 amino acids depending on the virus strain
-cite:caneMolecularEpidemiologyRespiratory2001  coded by the 
-G gene suggests that the two subgroups have evolved separately for a significant
-period of time with proof of RSV A’s most recent common ancestor dating back as
-the early 1940s cite:zlatevaMolecularEvolutionCirculation2004.
+The sequence diversity of the G glycoprotein
+(the type II glycoprotein of 289–299 amino acids depending on the virus strain
+cite:caneMolecularEpidemiologyRespiratory2001
+coded by the G gene suggests that the two subgroups have evolved
+separately for a significant period of time with proof of RSV A’s most recent
+common ancestor dating back as the early 1940s
+cite:zlatevaMolecularEvolutionCirculation2004.
 
-Because the F gene mutates at a much lower rate compared to the G gene it
-becomes an adequate vaccine target which is why we talk of RSV F vaccines 
-cite:andersonStrategicPrioritiesRespiratory2013,giersingReportWorldHealth2016. 
+Because the F gene mutates at a much lower rate compared to the G gene, it
+becomes an adequate vaccine target which is why we talk of RSV F vaccines
+cite:andersonStrategicPrioritiesRespiratory2013a,giersingReportWorldHealth2016.
 This lower rate of mutation also leads to consistent identification by
-antibodies and therefore the major neutralizing antibody response to RSV appears
-to be induced by the F protein cite:olmstedExpressionGlycoproteinRespiratory1986.
+antibodies, and therefore the primary neutralising antibody response to RSV
+appears to be induced by the F protein cite:higginsAdvancesRSVVaccine2016.
 
-Groups A and B are subdivided further into subgroups, as of 2012 there were 11
-subgroups of RSV A: ON1, GA1–GA7, SAA1, NA1, and NA2 and 17 subgroups of RSV
-B: GB1–GB4, SAB1-SAB3, and BA1–BA10
-cite:peretCirculationPatternsGenetically1998,peretCirculationPatternsGroup2000,venterGeneticDiversityMolecular2001,trentoMajorChangesProtein2003,shobugawaEmergingGenotypesHuman2009,eshaghiGeneticVariabilityHuman2012,aamirMolecularCharacterizationCirculating2013.
+Groups A and B are subdivided further into subgroups based on differences in
+their genomes.
+As of 2012, there were 11 subgroups of RSV A: ON1, GA1–GA7, SAA1, NA1, and NA2
+and 17 subgroups of RSV B: GB1–GB4, SAB1-SAB3, and BA1–BA10
+cite:aamirMolecularCharacterizationCirculating2013,eshaghiGeneticVariabilityHuman2012,peretCirculationPatternsGroup2000,trentoMajorChangesProtein2003,venterGeneticDiversityMolecular2001.
+
+Even with the existing classifications of RSV in their respective subgroups,
+clear criteria for classifying RSV into subgroups is yet to be established
+cite:munoz-escalanteRespiratorySyncytialVirus2019.
+Because the G gene shows the highest variability, sufficient for strain
+classification, little attention has been paid to the other viral genes
+cite:munoz-escalanteRespiratorySyncytialVirus2019.
+Classifying disease virulence by genotypes gives conflicting results in that a
+strain which may seem to be virulent at a given time or place may seem to be
+quite the opposite at a different time and place.
+Thus suggesting the variations in other genes may contribute to strain virulence
+and to epidemiological circulation patterns through time
+cite:andersonRSVStrainsDisease2019.
+Genome graphs which can allow for comparing entire genomes would provide a
+better way of identifying how other genes affect virulence and epidemiological
+circulation.
+
+** Epidemiology
+In older children and healthy adults, RSV presents in highly seasonal annual
+epidemics cite:al-toumEpidemiologyClinicalCharacteristics2006,aamirMolecularCharacterizationCirculating2013
+of mild reinfections predominantly in the upper respiratory tract even in the presence
+of pre-existing antibodies
+cite:sullenderGeneticDiversityAttachment1991,caneMolecularEpidemiologyRespiratory2001.
+The epidemics have been found to have a significant negative correlation with
+temperature and a significant positive correlation with relative humidity and
+rainfall cite:al-toumEpidemiologyClinicalCharacteristics2006 and therefore crop
+up in the coldest months which naturally vary with latitude.
+
+Critical illness of RSV is limited to the primary infection which occurs
+between six weeks and two years of age during the child’s first or second
+epidemics cite:caneMolecularEpidemiologyRespiratory2001 and can occur in the
+presence of maternally derived antibodies which are present up to five months of
+age cite:nyiroDefiningVaccinationWindow2017.
+However, infants with more severe illnesses were found to have lower levels of
+antibodies in serum collected near the onset of disease than did infants with
+milder illnesses cite:caneMolecularEpidemiologyRespiratory2001.
+
+In temperate climates, RSV epidemics occur in the winter between December and
+February but peaking in January and February cite:al-toumEpidemiologyClinicalCharacteristics2006
+and are a significant cause of winter mortality associated with 60-80% more
+deaths than influenza cite:nicholsonImpactInfluenzaRespiratory1996.
+In tropical climates, epidemics occur during the rainy season
+cite:al-toumEpidemiologyClinicalCharacteristics2006,aamirMolecularCharacterizationCirculating2013
+but are also associated with religious festivals
+cite:caneMolecularEpidemiologyRespiratory2001.
+
+In Italy, cite:rossiRiskFactorsSevere2007, showed that an infant having siblings was among
+the risk factors that could lead to RSV inducing a Lower Respiratory Tract
+Infection (LRTI) severe enough to lead to hospital admission.
+The study also found that being at least the second child to be a risk factor
+for severe RSV induced LRTI. 
+
+In Kilifi, cite:nokesIncidenceSeverityRespiratory2009,
+found that RSV epidemics do not have a simple annual pattern but rather an
+interepidemic period alternating between 9 and 15 months.
+They do however start from November through February and peak from January
+through May.
+A different study in Kilifi, cite:okiroFactorsAssociatedIncreased2008, found
+that household crowding, which is assumed to increase contact intensity
+resulting in increased duration of exposure led to higher rates of RSV infection
+in infants.
+
+A key target group for an RSV pediatric vaccine is infants under two months of
+age cite:nokesNewStrategiesControl2008; however, vaccine development has been
+unsuccessful for young infants around this age.
+In contrast, this has not been the case for older children. Mathematical models
+cite:whiteTransmissionDynamicsGroups2005,whiteUnderstandingTransmissionDynamics2007
+suggest that vaccination of older infants or siblings
+could be pivotal in avoiding infection for younger children.
+In Kilifi, cite:kinyanjuiVaccineInducedHerd2015,munywokiInfluenceAgeSeverity2015
+found that immunisation of young children between five to ten months is likely
+to be a highly effective method for protection of infants below three months of
+age.
+
+A method of indirect protection of young infants through the immunisation of
+older members of the household, cocooning, is necessary to interrupt chains of
+transmission; therefore, providing indirect protection to infants.
+It is crucial to determine from whom infants acquire their infection from to
+determine who is best to target for immunisation—especially given the budget
+constraints in developing countries.
+
+#+LATEX: \newpage
+
+* The Kilifi Household Study
+The home is where infants spend most of their time, on top of that, households
+are areas of frequent and intense contact—conducive for the spread of
+respiratory viruses, including RSV. In 2010 Muywoki et al. developed a
+prospective study to investigate the introduction and transmission of RSV in
+households using molecular techniques. The primary objective of this study was
+to determine who acquires infection from whom (WAIFW) within households during
+RSV outbreaks cite:munywokiTransmissionRespiratorySyncytial2013.
+This study was carried out in the Matsangoni location, within the Kilifi Health
+and Demographic Surveillance System cite:scottProfileKilifiHealth2012,
+Kilifi District, Kenya during the RSV season between November 2009 and
+June 2010. In addition, the study area has six public primary schools and one
+non-boarding secondary school.
+
+The study involved 493 members of 47 households. Each household had to have an
+infant, a member of the household below one year of age, born after the previous
+RSV epidemic and at least one elder sibling. Nasopharyngeal (NSP) swabs were
+collected every 3-4 days irrespective of symptoms and tested for respiratory
+viruses, including RSV, using a molecular diagnostic assay. Moreover, once a
+week, a specimen of oral fluid from around the gums was collected for RSV
+antibody screening and sensitivity of oral fluid (OF) detection of RSV in
+molecular diagnostics.
+A total of 16, 924 NPS swabs were collected, representing 86% of the planned
+cite:munywokiTransmissionRespiratorySyncytial2013.
+
+A whole-genome sequencing (WGS) assay for RSV was developed with the aim of
+resolving chains of transmission within the household, and to study rates of
+mutation and minor-variant population dynamics within and between infected hosts
+cite:agotiGeneticDiversityRespiratory2014.
+RSV was detected in 40 (85%) households and 179 (36%) of the participants.
+In 28 of the 44 households with complete data, there was transmission of RSV to
+the infants experiencing their first epidemic
+cite:munywokiTransmissionRespiratorySyncytial2013.
+This study thus provided suitable samples to analyse how RSV is transmitted
+within the community, schools and, for our purposes, the home
+cite:agotiTransmissionPatternsEvolution2017,agotiGenomicAnalysisRespiratory2019,githinjiAssessingUtilityMinority2018,kinyanjuiVaccineInducedHerd2015,munywokiInfluenceAgeSeverity2015. 
+
+To focus the study on household transmission, I focused on samples from a single
+household, HH5, which was a large household of twenty-five members with an
+infant and school-going siblings and genetically closely related samples going
+by previous studies
+cite:githinjiAssessingUtilityMinority2018,agotiGenomicAnalysisRespiratory2019.
+
 
 #+LATEX: \newpage
 
 * Graphs in Bioinformatics
-Contemporary methods of representing a reference genome as a linear sequence of 
-characters to represent bases cite:diltheyImprovedGenomeInference2015 introduce a
-mapping bias towards alleles in the reference known as reference bias compared
-to the mapping of alternative alleles
-cite:degnerEffectReadmappingBiases2009,brandtMappingBiasOverestimates2015. 
+Contemporary reference genomes utilise a linear sequence of characters to
+represent the bases that make up the DNA of multiple individuals, shown in
+Figure [[fig:alignment-linear]].
+This linearity introduces a bias in mapping known as reference bias
+cite:degnerEffectReadmappingBiases2009,diltheyImprovedGenomeInference2015.
 
-This naturally leads to a need for a structure that can represent variation that
-is inherent in the genome. Other models can approach this structure with
-varying degrees of accuracy, but it is naturally represented as a graph in
-which the sequences themselves are implicitly encoded as walks in the graph
+Reference bias is a tendency in read mapping to overlook variation and
+overreport sequence that is present in the reference compared to the sequence
+that is not present in the reference.
+This bias is exacerbated in reads which are highly divergent from the reference,
+such as structural variation, or which are completely absent from the reference
+cite:degnerEffectReadmappingBiases2009,schneebergerSimultaneousAlignmentShort2009,liBuildingSequenceMap2010,brandtMappingBiasOverestimates2015,patenGenomeGraphsEvolution2017,garrisonVariationGraphToolkit2018.
+
+#+CAPTION[Read alignment against a linear reference]: A screenshot of reads aligned to a linear reference in igv.
+#+NAME: fig:alignment-linear
+#+ATTR_LATEX: :width 0.75\textwidth
+file:../Figures/Alignment-igv.png
+
+
+The inability of linear references to hold information on genetic variation has
+led to the need for a structure that can represent variation that is inherent in
+the genome.
+Other models, such as the variant-call format to hold variation information, or
+assembly graphs often represented as FASTG or GFA, can approach this structure
+with varying degrees of accuracy but they are decoupled from the reference and
+therefore not incorporated in mapping and consequently the comparison of
+samples. 
+
+Graph structures, on the other hand, are malleable, can be updated, and can
+comfortably represent contradicting information, as alternative nodes, allowing
+them to straightforwardly represent a genome and its inherent variation
+cite:patenGenomeGraphsEvolution2017,liDesignConstructionReference2020.
+Graphical representation of the reference sequence will expectedly lead to
+improvements in mapping reads, variant calling and haplotype determination
 cite:patenGenomeGraphsEvolution2017.
-#+LATEX: \newpage
+This is facilitated by the increased resolution in read mapping provided by
+genome graphs Figure fig:alignment-graphical.
+
+#+CAPTION[Read alignment against a graph-based reference]: A schematic of reads aligned against a graph.
+#+NAME: fig:alignment-graphical
+#+ATTR_LATEX: :width 0.75\textwidth
+file:../Figures/Alignment-graph-schematic.png
+
+
+Reference bias affects how samples are compared against each other in downstream
+analysis leading to the need to draw out a representative structure that
+accounts for variation using which samples can be compared—Figure
+[[fig:alignment-graphical]].
+This representative structure, in our case, is a coverage vector.
+
+#+CAPTION[Graphical all vs all comparison]: Contemporary genomic methods compare each sample based on how it compares against a reference. A pangenomic method compares each sample against every other sample through the use of a reference pangenome graph. a) Shows this comparison using Venn diagrams and three samples A, B, and C. b) from cite:eizengaSuccinctDynamicVariation2020.
+#+NAME: fig:all-vs-all-comparison
+#+ATTR_LATEX: :width 0.75\textwidth
+file:../Figures/combined-all-vs-all.png
+
+
+This study hypothesises that looking into genomic variation in the household
+with the help of genome graphs will take us a step forward in understanding
+household transmission, for which the tools we use today are not giving us
+sufficient resolution.
+The hope is that the previously demonstrated increased resolution by variation
+graphs cite:garrisonVariationGraphToolkit2018 will prove especially useful at
+the level of the household.
+
+
+#+LATEX: \clearpage
 
 * Graph Theory
 A graph is an object, or collection, of two sets, a vertex set and edge set.
-The vertex set is a finite non-empty set, to mean a graph must have at least one
-vertex.
+The vertex set is a finite non-empty set. A graph must therefore have at least
+one vertex.
 The edge set may be empty cite:trudeauIntroductionGraphTheory1993
 and is used to present relationships between the vertices.
 
-More formally, a graph G is an unordered pair (V(G), E(G)) consisting of a set
-V(G) of vertices and a set E(G), disjoint from V (G), of edges, together with
-an incidence function that associates with each edge of G an unordered pair of
-(not necessarily distinct) vertices of G cite:bondyGraphTheory2011.
+Figure [[fig:three-and-four-node-graph]] shows how a graph can be represented
+visually.
 
-Graphs can be represented diagrammatically as shown in Figure [[fig:generic-graph-example]].
 
-G {{a c} {b d}}
-H {{a c} {c d}}
-#+CAPTION[Generic Graph Example]: 
-#+ATTR_LATEX: :width 0.7\textwidth :float multicolumn
-#+NAME: fig:generic-graph-example
-file:figures/Graph-classifications-Digraph.png
-file:figures/Graph-classifications-Undirected.png
+#+CAPTION[A Three Node and A Four Node Graph]:G is an undirected graph with four nodes a,b,c and d. H is an undirected graph with nodes a, b and c.
+#+ATTR_LATEX: :placement [!ht] :width 0.5\textwidth :float multicolumn
+#+NAME: fig:three-and-four-node-graph
+file:../Figures/Three-and-four-node-graph.png
 
-** Graph classifications
-Graphs can be broken down into many classifications but in this case, we want to
-focus on simple versus multigraphs and directed versus undirected.
+** Classifications of Graphs
+Graphs can be broken down into many classifications, but in this case, we want
+to focus on simple versus multigraphs and directed versus undirected.
 A simple graph can only have one edge connecting two adjacent vertices while a
 multigraph is a graph in which two adjacent vertices are connected by more than
 one edge.
 
-Simple Graph
-#+CAPTION[Simple Graph]: A simple graph showing only a single edge connecting any two nodes
-#+ATTR_LATEX: :width 0.7\textwidth :float multicolumn
+#+CAPTION[A simple graph and a multigraph]:(a) A diagram of a simple graph; any two nodes in such a graph are connected by a single edge. (b) A multigraph where more than one edge can connect any two nodes.
+#+ATTR_LATEX: :placement [!ht] :width 0.6\textwidth :float multicolumn
 #+NAME: fig:simple-graph
-file:figures/Graph-classifications-Simple-Graph.png
+file:../Figures/Simple-and-Multigraph.png
 
-
-Multigraph
-#+CAPTION [Multigraph]: A multigraph where more than one edge can connect any two nodes.
-#+ATTR_LATEX: :width 0.7\textwidth :float multicolumn
-#+NAME: fig:multigraph
-file:figures/Graph-classifications-Multigraph.png
-
-
-Figure 3: (a) A simple graph showing only a single edge connecting any two
-nodes. (b) A multigraph where more than one edge can connect any two nodes.
-A directed graph also called a digraph is a graph in which the edges have
+A directed graph (Figure [[fig:directed-graph]]) also called a digraph is a graph in which the edges have
 direction.
 
-Figure 4: A directed graph with the edges indicating direction.
-An undirected graph is one in which the edges do not have direction indicated on
-them.
+#+CAPTION[A Directed Graph]:A directed graph with the edges indicating direction.
+#+ATTR_LATEX: :placement [!ht] :width 0.4\textwidth :float multicolumn
+#+NAME: fig:directed-graph
+file:../Figures/Digraph.png
 
-Figure 5: An undirected graph where the edges have no indication of direction.
+An undirected graph (Figure [[fig:undirected-graph]]) is one in which the edges do
+not have direction indicated on them.
+
+#+CAPTION[An Undirected Graph]:An undirected graph where the edges have no indication of direction.
+#+ATTR_LATEX: :placement [!ht] :width 0.4\textwidth :float multicolumn
+#+NAME: fig:undirected-graph
+file:../Figures/Undirected.png
+
 A bidirected graph is one in which each edge has an independent orientation
 cite:edmondsMatchingWellSolvedClass2003.
-This is important for the representation of strand, that is reading a DNA
-molecule in its forward or reverse complement orientation 
+This is important for the representation of strand,
+that is, reading a DNA molecule in its forward or reverse complement orientation
 cite:patenGenomeGraphsEvolution2017.
 
 The degree of a vertex v in a graph G, is the number of edges of G incident with
-v (going in and out of v), each loop counting as two edges. In directed graphs,
-we have the concept of indegree and outdegree. The indegree refers to the
-numbers of head ends of the edges adjacent to a vertex and the outdegree is the
-number of tail ends of the edges adjacent to a vertex cite:bondyGraphTheory2011.
-A vertex is even if its degree is an even number and odd otherwise
-cite:trudeauIntroductionGraphTheory1993.
+v (going in and out of v), each loop counting as two edges.
+In directed graphs, we have the concept of indegree and outdegree.
+The indegree refers to the numbers of head ends of the edges adjacent to a
+vertex, and the outdegree is the number of tail ends of the edges adjacent to a
+vertex cite:bondyGraphTheory2011. A vertex is even if its degree is an even number
+and odd otherwise cite:trudeauIntroductionGraphTheory1993.
 
-An isomorphism, in [[fig:isomorphism]], is a relationship between two graphs such that the two graphs
-can be represented by identical diagrams cite:bondyGraphTheory2011 whereas an 
-automorphism of a graph is an isomorphism of the graph to itself as shown below.
+An isomorphism (Figure [[fig:isomorphism]]) is a relationship between two graphs such
+that the two graphs can be represented by identical diagrams
+cite:bondyGraphTheory2011
+whereas an automorphism of a graph is an isomorphism of the graph to itself as
+shown below.
 
-#+CAPTION[Isomorphism]: The two nodes are different visualizations of the same graph and therefore an isomorphism.
-#+ATTR_LATEX: :width 0.7\textwidth :float multicolumn
+#+CAPTION[A graph isomorphism]:The two nodes are different visualizations of the same graph and therefore an isomorphism.
+#+ATTR_LATEX: :placement [h] :width 0.6\textwidth :float multicolumn
 #+NAME: fig:isomorphism
-file:figures/Isomorphism.png
+file:../Figures/Isomorphism.png
 
 ** Walks and paths
 A path is a simple graph whose vertices can be arranged in a linear sequence in
-such a way that two vertices are adjacent if they are consecutive in the 
+such a way that two vertices are adjacent if they are consecutive in the
 sequence, and are nonadjacent otherwise cite:bondyGraphTheory2011.
 
-A walk in a graph is a sequence A1 A2 A3 ... An of not necessarily distinct 
-vertices in which A1 is joined by an edge to A2, A2 is joined by an edge to
-A3, ..., and An−1 is joined by an edge to An. The walk A1 A2 A3 ... An is said
-to join A1 and An cite:trudeauIntroductionGraphTheory1993.
+
+A walk in a graph is a sequence  of not necessarily distinct vertices in which
+A1 is joined by an edge to A2, A2 is joined by an edge to A3, ..., and An−1 is
+joined by an edge to An. The walk is said to join A1 and An
+cite:trudeauIntroductionGraphTheory1993.
 
 Therefore, a path is a graph, whereas a walk is a traversal of a graph.
 
 An Euler or Eulerian walk is a walk that uses every edge in the graph exactly
 once.
 
-A Hamiltonian walk is like an eulerian walk but for nodes and can be open or
+A Hamiltonian walk is like an Eulerian walk, but for nodes and can be open or
 closed, an open hamilton walk is a walk that uses every vertex in the graph
-exactly once. A closed hamilton walk is a closed walk that uses the initial
-vertex exactly twice and all the other vertices in the graph exactly once
+exactly once.
+A closed hamilton walk is a closed walk that uses the initial vertex exactly
+twice and all the other vertices in the graph exactly once
 cite:trudeauIntroductionGraphTheory1993.
 
 #+LATEX: \newpage
 
-* Genome Graphs
-A genome graph is a generic term that refers to the representation of a sequence
-or sequences or genetic material using graph-based methods implicitly or
-explicitly. Genome graphs are expected to lead to improvements in mapping reads,
-variant calling and haplotype determination cite:patenGenomeGraphsEvolution2017.
+* Pangenome Graphs
+Pan is a word that implies the combinations of many or all; therefore, a
+pangenome is a genome that is composed of many or all genomes. Going by this, a
+pangenome graph (closely related to a genome graph) is a genome graph capable of
+representing a pangenome.
+RNA viruses, given their quasispecies characteristic and small genome size,
+lend themselves naturally to have their genomes represented as pangenomes.
 
-Genome graphs are generally directed graphs and have different classifications,
-based on where the sequences are held within the graph, either on the edge or in
-the nodes.
-
-These are vertex-labelled directed graphs, graphs whose nodes are labelled such
-that a directed walk can be interpreted as a DNA sequence, defined by the
-sequence of node labels along the walk and edge-labelled directed graphs in
-which case the nodes, rather than the edges, can be viewed as representing the 
-intersection points between connected subsequences
-cite:patenGenomeGraphsEvolution2017.
-
-** De Bruijn Graph
-These are graphs used in the assembly of reads named after Dutch mathematician
-Nicolaas de Bruijn who became interested in the superstring problem: find a 
-shortest circular superstring that contains all possible substrings of length k
-(k-mers) over a given alphabet which he solved using an eulerian walk over the
-k-mers cite:compeauHowApplyBruijn2011.
+Pangenome graphs can be broadly categorised into reference-guided and
+reference-free (de novo) with some tools supporting both. De novo approaches do
+not require any prior information, such as a reference genome or knowledge of
+the quasispecies or pangenome composition. De novo approaches have been shown to
+have advantages over reference-guided reconstruction, since using a reference
+genome can induce significant biases cite:baaijensStrainawareAssemblyGenomes2019.
 
 ** Sequence graph
-A sequence graph is a bidirected graph in which each node is labelled with a
-nucleotide string a “sequence graph” cite:patenGenomeGraphsEvolution2017.
-In this bidirected graph, the features of an edge indicate to which side of a 
-node (sequence), 5’ or 3’, each end of the edge connects" cite:novakGenomeGraphs2017.
+Sequence graphs, though not used in and of themselves, are built upon to
+implement pangenome graphs.
+A sequence graph, Figure 10, is a bidirected graph in which each node is
+labelled with a nucleotide string cite:patenGenomeGraphsEvolution2017.
+In this bidirected graph, the features of an edge indicate to which side of a
+node (sequence), either 5’ or 3’, each end of the edge connects
+cite:novakGenomeGraphs2017.
+
+
+#+CAPTION[Sequence Graph]:A sequence graph where nodes are labelled with nucleotides and the edges encode strandedness of the nucleotide connection, which is forward or reverse. The forward strands are represented by pink edges while reverse strands are represented by dotted purple edges.
+#+ATTR_LATEX: :placement [h] :width 0.75\textwidth :float multicolumn
+#+NAME: fig:isomorphism
+file:../Figures/sequence-graph.png
 
 ** Variation Graph
 A variation graph is a graph where a complete walk along the graph represents a
-haplotype cite:patenGenomeGraphsEvolution2017.
+haplotype cite:patenGenomeGraphsEvolution2017. Variation graphs are genome
+graphs that embed the paths in the graph \todo{Citation Needed}.
+In the case of viruses, these paths can be used to represent unique viral
+genomes in quasispecies, haplotypes. 
 
-Many genome graphs don’t represent the concept of the strand, "reading a DNA
-molecule in its forward and reverse complement orientations". To express
-strandedness, directed graphs can be generalized to bidirected graphs
+Many genome graphs do not represent the concept of the strand—reading a DNA
+molecule in its forward and reverse complement orientations.
+cite:patenGenomeGraphsEvolution2017. To express strandedness, directed graphs
+can be generalised to bidirected graphs
 cite:edmondsMatchingWellSolvedClass2003,medvedevComputationalMethodsDiscovering2009
-in which each edge endpoint has an independent orientation, indicating whether 
+in which each edge endpoint has an independent orientation, indicating whether
 the forward or the reverse complement strand of the attached node is to be
-visited when entering the node through that endpoint of the edge.
-Inversions, reverse tandem duplications, and arbitrarily complex rearrangements
-are expressible in the bidirected representation
-cite:patenGenomeGraphsEvolution2017.
+visited when entering the node through that endpoint of the edge. Inversions,
+reverse tandem duplications, and arbitrarily complex rearrangements are
+expressible in the bidirected representation cite:patenGenomeGraphsEvolution2017.
+
+
+#+LATEX: \definecolor{mypink}{RGB}{225, 0, 128}
+#+LATEX: \definecolor{mygreen}{RGB}{106, 168, 79}
+#+LATEX: \definecolor{myblue}{RGB}{111, 168, 220}
+#+LATEX: \definecolor{myred}{RGB}{225, 0, 0}
+#+LATEX: \definecolor{mypurple}{RGB}{153, 0, 255}
+
+| \color{mypink}Individual 1  | \color{mypink} A  | \color{mypink} C  | \color{mypink} T  | \color{mypink} G  | \color{mypink} A  | \color{mypink} A  | \color{mypink} T  |
+| \color{myblue}Individual 2  | \color{myblue} A  | \color{myblue} C  | \color{myblue} T  | \color{myblue} T  | \color{myblue} -  | \color{myblue} -  | \color{myblue} T  |
+| \color{mygreen}Individual 3 | \color{mygreen} A | \color{mygreen} C | \color{mygreen} T | \color{mygreen} T | \color{mygreen} A | \color{mygreen} A | \color{mygreen} T |
+|-----------------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------|
+| \color{red}Consensus        | \color{red} A     | \color{red} C     | \color{red} T     | \color{red} T     | \color{red} A     | \color{myred} A   | \color{red} T     |
+
+
+#+CAPTION[Variation Graph]: A variation graph with the paths outlined at the bottom
+#+ATTR_LATEX: :placement [h!] :width 0.7\textwidth :float multicolumn
+#+NAME: fig:vg
+file:./figures/Variation-Graph-Page-1.png
+
+
+In case of addition of individual 4 containing an inversion at node 2,3 and 4
+
+
+| \color{mypink}Individual 1   | \color{mypink} A   | \color{mypink} C   | \color{mypink} T   | \color{mypink} G   | \color{mypink} A   | \color{mypink} A   | \color{mypink} T   |
+| \color{myblue}Individual 2   | \color{myblue} A   | \color{myblue} C   | \color{myblue} T   | \color{myblue} T   | \color{myblue} -   | \color{myblue} -   | \color{myblue} T   |
+| \color{mygreen}Individual 3  | \color{mygreen} A  | \color{mygreen} C  | \color{mygreen} T  | \color{mygreen} T  | \color{mygreen} A  | \color{mygreen} A  | \color{mygreen} T  |
+| \color{mypurple}Individual 4 | \color{mypurple} A | \color{mypurple} C | \color{mypurple} A | \color{mypurple} A | \color{mypurple} T | \color{mypurple} T | \color{mypurple} T |
+|------------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------|
+| \color{red}Consensus         | \color{red} A      | \color{red} C      | \color{red} T      | \color{red} T      | \color{red} A      | \color{myred} A    | \color{red} T      |
+
+
+#+CAPTION[Variation Graph with Inversion]: A variation graph represeting the paths but containing an inversion in individual 4
+#+ATTR_LATEX:  :placement [h!] :width 0.7\textwidth :float multicolumn
+#+NAME: fig:vg-with-insertion
+file:./figures/Variation-Graph-Page-2.png
+
+
+Compared to eukaryotes, viruses have relatively short genomes, and high
+mutation rates cite:duffyWhyAreRNA2018 and RNA viruses exist as a quasi-species
+cite:domingoViralQuasispeciesEvolution2012.
+This gives rise to the need to deconvolute the individual haplotypes and
+quantify them, making variation graphs a prime instrument for this.
+VG-flow cite:baaijensStrainawareAssemblyGenomes2019 performs de novo, strain aware metagenomic
+assembly focusing on short-read data.  It takes as input next-generation
+sequencing (NGS) data and a collection of strain-specific contigs assembled from
+the data and produces full-length haplotypes and corresponding abundance
+estimates.
 
 ** Population Reference Graphs (PRGs)
 Population reference graphs are graphs that represent a population-wide genome
 combining multiple reference sequences and catalogues of variation
-cite:diltheyImprovedGenomeInference2015. 
+cite:diltheyImprovedGenomeInference2015,liDesignConstructionReference2020. 
 This concept may also be extended to represent, in our case, a virus mutant
 cloud.
 
-** Problems arising from graph-based reference models
-*** Calling alleles at sites
-This involves declaring an allele at a given position, this position could span
+* Problems arising from graph-based reference models
+** Coordinate system
+A reference genome coordinate system is a system that uniquely determines the
+positions of bases in the reference genome 
+cite:randCoordinatesIntervalsGraphbased2017. 
+This is trivial with linear references where bases are ordered ascendingly from 
+left to right, but with graphs, it is no longer trivial to define a locus on 
+the reference cite:patenGenomeGraphsEvolution2017. 
+
+According to the Computational Pan-Genomics Consortium (2016), there are three
+qualities that a coordinate system should have 
+cite:patenGenomeGraphsEvolution2017,randCoordinatesIntervalsGraphbased2017. 
+A coordinate system should have: i) monotonicity genome graph coordinates of
+successive bases within a genome should be increasing, ii) legibility
+coordinates should be compact and human interpretable, and iii) spatiality
+bases physically close together within a genome should have similar coordinates,
+vertical spatiality of bases that are allelic variants of one another 
+cite:randCoordinatesIntervalsGraphbased2017 horizontal spatiality of bases that can appear together 
+within a single molecule cite:randCoordinatesIntervalsGraphbased2017. 
+
+The vg family of tools solves this through topological sort, which gives an 
+ascending order of the nodes.
+
+** Calling alleles at sites
+Calling an allele is declaring its presence at a given position which could span
 several nodes or edges in an undefined manner. 
-
 A proposed way to describe their positions is via motif
-cite:patenGenomeGraphsEvolution2017, patterns of interconnections occurring
-in complex networks at numbers that are significantly higher than those in
-randomized networks cite:miloNetworkMotifsSimple2002, called a superbubble in directed graph
-or an ultrabubble in bidirected graphs cite:patenSuperbubblesUltrabubblesCacti2017.
-
+cite:patenGenomeGraphsEvolution2017, patterns of interconnections occurring in
+complex networks at numbers that are significantly higher than those in
+randomised networks cite:miloNetworkMotifsSimple2002, called a superbubble in directed graph
+or an ultrabubble in bidirected graphs cite:patenGenomeGraphsEvolution2017.
 Superbubbles and ultrabubbles are directed acyclic subgraphs that connect to the
 rest of the graph through one source node and one sink node
-cite:patenSuperbubblesUltrabubblesCacti2017.
-*** Non-trivial indexing and reference mapping
-We now need to use methods that are aware of alternative alleles to map reads to
-a graph reference cite:patenGenomeGraphsEvolution2017. 
-The indexing could be done through gbwt cite:sirenHaplotypeawareGraphIndexes2018
-could be achieved via partial order alignment gssw cite:zhaoSSWLibrarySIMD2013.
-*** Coordinate system
-A reference genome coordinate system is a system that uses coordinates to
-uniquely determine the positions of bases in the reference genome 
-cite:randCoordinatesIntervalsGraphbased2017.
+cite:patenGenomeGraphsEvolution2017.
 
-An interesting problem introduced by graph-based reference structures is that
-it’s no longer trivial to define a locus on the reference
-cite:patenGenomeGraphsEvolution2017. The Computational Pan-Genomics
-Consortium (2016) however agreed on qualities that a coordinate system should 
-have cite:patenGenomeGraphsEvolution2017,randCoordinatesIntervalsGraphbased2017.
-A coordinate system should have: monotonicity genome graph coordinates of
-successive bases within a genome should be increasing, legibility coordinates 
-should be compact and human interpretable, spatiality bases physically close
-together within a genome should have similar coordinates, vertical spatiality
-of bases that are allelic variants of one another
-cite:randCoordinatesIntervalsGraphbased2017. 
-horizontal spatiality of bases that can appear together within a single molecule
-cite:randCoordinatesIntervalsGraphbased2017.
-** Mapping reads to a reference genome graph
-Given that a genetic sequence is read in small pieces for short reads and much
-longer pieces for long reads, we need to find where in the genome a read comes
-from. Read mapping is the process of finding the position where the read came
-from in a reference sequence or graph cite:novakGenomeGraphs2017.
-*** Reference bias or reference allele bias
-Reference allele bias is the tendency to under-report data whose underlying DNA
-does not match a reference allele cite:patenGenomeGraphsEvolution2017.
-Masking known SNP positions in the genome sequence can eliminate the reference
-bias but do not lead to more reliable results overall
-cite:degnerEffectReadmappingBiases2009.
+#+CAPTION[A bubble in a graph]:A hypothetical genome graph constructed from the genomes of two individuals, one and two, with a bubble forming around the divergence between the two genomes.
+#+ATTR_LATEX: :placement [h] :width 0.75\textwidth :float multicolumn
+#+NAME: fig:bubble
+file:../Figures/bubble.png
 
-** Variation Graphs in Virus Haplotype Detection and Quantification
-Compared to eukaryotes, viruses have relatively short genomes and high mutation 
-rates cite:duffyWhyAreRNA2018 and RNA viruses exist as a quasi-species 
-cite:domingoViralQuasispeciesEvolution2012. This gives rise to the need to
-deconvolute the individual haplotypes and quantify them.
+In this case, we could declare that an allele occurs in the bubble ranging from
+a given start node to a given end node.
 
-There are a number of other tools for the assembly of haplotypes of virus
-quasispecies.
-These can be broadly categorized into reference-guided and reference-free.
-De novo approaches do not require any prior information, such as a reference
-genome or knowledge of the quasispecies composition. De novo approaches have
-been shown to have advantages over reference-guided reconstruction, since using
-a reference genome can induce significant biases
-cite:baaijensStrainawareAssemblyGenomes2020.
-
-There exist methods for de novo, strain aware metagenomic assembly such as 
-VG-flow cite:baaijensStrainawareAssemblyGenomes2020 however which focus only on 
-short-read data.
-VG-flow takes as input a next-generation sequencing (NGS) data set and a 
-collection of strain-specific contigs assembled from the data and produces 
-full-length haplotypes and corresponding abundance estimates 
-cite:baaijensStrainawareAssemblyGenomes2020.
+** Non-trivial indexing and reference mapping
+Genome graphs increase the amount and complexity of the text needed for search
+problems. 
+This means genome graph tools have to employ methods that are aware of 
+alternative alleles as well as the increased number of paths 
+cite:patenGenomeGraphsEvolution2017. 
+The solution to this is contemporary indexing methods have to be generalised to 
+graph structures; generalisations such as the gBWT (Sirén et al., 2018) could
+ be achieved via partial order alignment GSSW cite:zhaoSSWLibrarySIMD2013.

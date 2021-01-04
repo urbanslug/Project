@@ -1,54 +1,107 @@
 * Background Information
 
-RSV was first isolated in Chimpanzees in 1956 and named Chimpanzee Coryza Agent
-cite:morrisRecoveryCytopathogenicAgent1956. 
-A year later, in 1957, it was isolated in children from
-whom it had not been possible to isolate and renamed Respiratory Syncytial
-Virus cite:beemAssociationChimpanzeeCoryza1960,chanockRecoveryInfantsRespiratory1957,zlatevaGeneticVariabilityMolecular2005.
+Respiratory syncytial virus (RSV) was initially identified in Chimpanzees in
+1956 and named Chimpanzee Coryza Agent cite:morrisRecoveryCytopathogenicAgent1956.
+RSV was then isolated from children in 1957, from whom it had not been possible
+to isolate, and renamed Respiratory Syncytial Virus to reflect the syncytia
+which the virus caused to form in the tissue culture
+cite:chanockRecoveryInfantsRespiratory1957,beemAssociationChimpanzeeCoryza1960,falseyRespiratorySyncytialVirus2000.
 
-During the first year of life, RSV is the most frequent cause of acute lower
-respiratory tract infection bringing infants between one and six months of age
-into the hospital with pneumonia, bronchitis
-cite:stottRespiratorySyncytialVirus1985,zlatevaMolecularEvolutionCirculation2004,borchersRespiratorySyncytialVirus2013, 
-and otitis cite:kleinRoleRespiratorySyncytial1982 and significantly increases the prevalence of
-asthma amongst children who are hospitalized with RSV in infancy or early
-childhood cite:borchersRespiratorySyncytialVirus2013. Moreover, there is a marked correlation
-between the incidence of RSV in the community and the occurrence of sudden
-infant deaths in children above 3 months of age cite:chanockRecoveryInfantsRespiratory1957.
-A simple upper respiratory illness in high-risk immunocompromised adults is no
-longer viewed as trivial cite:whimbeyRespiratorySyncytialVirus2000. 
-People with cardiopulmonary diseases and immunocompromised persons with bone
-marrow transplant patients prior to marrow engraftment are at highest risk for
-pneumonia and death cite:morrisRecoveryCytopathogenicAgent1956.
-For cancer patients, the risks and benefits of
-administering intensive chemotherapy in the setting of a seemingly benign upper
-respiratory illness are now weighed heavily cite:kleinRoleRespiratorySyncytial1982.
+RSV produces an annual epidemic of predominantly upper respiratory tract
+infections in children and healthy adults with re-infections occurring throughout
+life even in the presence of pre-existing antibodies
+cite:nyiroDefiningVaccinationWindow2017,munoz-escalanteRespiratorySyncytialVirus2019,namRespiratorySyncytialVirus2019.
 
-In animals, the virus is recognized as an important cause of Bovine Respiratory
-Disease (BRD) in Europe and the United States cite:whimbeyRespiratorySyncytialVirus2000.
+It is the predominant viral cause of children admitted with severe pneumonia
+cite:berkleyViralEtiologySevere2010
+—the leading cause of childhood death in sub-Saharan Africa.
+Further, it is the most frequent cause of acute lower respiratory tract
+infection during the first year of life bringing infants between one and six
+months of age into the hospital with pneumonia, bronchitis, otitis and increases
+the prevalence of asthma amongst children hospitalised with RSV in infancy or
+early childhood
+cite:borchersRespiratorySyncytialVirus2013,zlatevaMolecularEvolutionCirculation2004.
 
-In terms of its epidemiology, it produces an annual epidemic of predominantly 
-upper respiratory tract infections in children and healthy adults
-cite:chanockRecoveryInfantsRespiratory1957 with re-infections occurring throughout
-life even in the presence of pre-existing antibodies cite:sullenderGeneticDiversityAttachment1991.
+cite:nokesIncidenceSeverityRespiratory2009 proposed an effective pediatric
+vaccine as the best way to prevent a sizable proportion of hospital admissions
+attributable to pneumonia.
+Looking into RSV prevention through immunisation
+cite:nyiroDefiningVaccinationWindow2017 used samples from the Kilifi pediatric
+ward of children aged one day to less than twelve years.
+They found that the presence of maternal antibodies in infants is highest at
+birth and declines rapidly over the first six months of life.
+Immunity was lowest between the ages of five to eleven months, meaning the span
+between five and six months is the optimal time to vaccinate the infant.
+However, a successful vaccine for children in this age range is yet to be
+developed.
+
+Among the elderly and high-risk immunocompromised adults, a simple upper
+respiratory illness is no longer considered trivial.
+People with cardiopulmonary diseases, cancer patients undergoing chemotherapy,
+or those undergoing bone-marrow engraftment are at highest risk of pneumonia and
+death.
+For cancer patients, the risks and benefits of administering intensive
+chemotherapy in the setting of a seemingly mild upper respiratory illness are
+now weighed heavily
+cite:falseyRespiratorySyncytialVirus2000,whimbeyRespiratorySyncytialVirus2000.
+
+As of November 2020, linear references are the most popular medium used to
+represent genomes—including the genome of RSV. There are, however, other ways of
+representing a reference genome. Graph-based reference genomes,  unlike linear
+references, represent a genome as a network containing alternative paths, and as
+a consequence, aptly represent variation cite:patenGenomeGraphsEvolution2017.
+
+Using graph-based genomes, we can use alternative nodes to represent alternative
+alleles, mutations and other forms of variation in a genome.
+By leveraging multiple paths, it has been possible to build tools which have
+improved read mapping capability
+cite:garrisonVariationGraphToolkit2018,eizengaSuccinctDynamicVariation2020.
+We then can leverage this improved mapping capability to achieve a higher
+resolution view into a genome and how it is changing. For this study it gives us
+a better understanding of how the RSV genome is changing within or between hosts
+over time.
+
 * Problem Statement
-Conventional methods of describing diversity involve comparing each sample
-against a given reference genome instead of comparing every sample against every
-other sample cite:patenGenomeGraphsEvolution2017. This comparison is
-non-transitive meaning that the way a sample varies from the reference does not
-expressly tell us how that sample varies from a separate sample. 
+As of November 2020, there has not been a successful RSV vaccine for children
+between 0-2 months or even six months of age: the group in which RSV mortality
+is highest cite:nokesNewStrategiesControl2008.
+The lack of a viable preventive measure has led to the suggestion of cocooning,
+an immunisation strategy which involves vaccinating the members of the household
+that are most likely to transmit RSV to the infant
+cite:grizasCocooningConceptProtect2012,urwylerProtectingNewbornsPertussis2014,blainAssessmentCocooningStrategy2016.
+Cocooning thus depends on understanding who acquires the infection from whom
+within the household.
+
+By being a single path through a genome, linear references do not provide
+sufficient resolution to fully reconstruct within-household transmission chains
+cite:agotiGenomicAnalysisRespiratory2019,githinjiAssessingUtilityMinority2018.
+Linear references from closely related samples such as those from the members of
+a single household are too similar there causing phylogenetic methods to fail in
+identifying transmission patterns based on the genomic data because there is not
+sufficient phylogenetic and temporal signal. Besides, changes can arise due to
+homoplasy and therefore are meaningless in inferring transmission.
+According to cite:agotiGenomicAnalysisRespiratory2019, it was not possible to
+determine who infects the infant in the household and come up with an effective
+strategy for cocooning using alignment to linear references.
+
 * Justification
-A reference genome graph is a robust data structure for representing genome
-variation unlike the current approach where we compare a sample against a
-linear reference genome. Given that consensus sequences are a mosaic of
-haplotypes, we would like to make use of genome graph to disentangle the
-sequence diversity present in RSV sequences, and potentially other respiratory
-viruses. 
+A graph-based reference genome represents genomic variation as a network
+structure where nucleotides are represented as nodes.
+Variant nucleotides are represented as alternative nodes in the network.
+Identical nucleotides are collapsed into a single node; implicitly encoding
+genetic variation.
+A linear reference genome, however, collapses these regions of diversity into a
+single site based on the frequency of the bases at that given position.
+We want to make use of genome graphs to understand the sequence diversity
+present in RSV sequences, and potentially other respiratory viruses.
+
+#+LATEX: \newpage
 * Objectives
 ** Main Objective
-To construct an RSV variation graph from samples collected from a single
-household in the course of an RSV household outbreak.
+To construct an RSV variation graph from RSV samples collected from a single
+household in the course of a household RSV outbreak.
+
 ** Specific Objectives
-1. To perform a review of existing genome graph tools used in constructing pangenome graphs. 
-2. To construct a variation graph from a set of samples collected from a single
-   household during the course of an RSV epidemic.
+1. To assemble an RSV reference variation graph.
+2. To use the reference variation graph assembled in the previous step to
+    compare the samples in the household RSV outbreak.

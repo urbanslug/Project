@@ -66,8 +66,13 @@ Page numbering from https://stackoverflow.com/a/35456439/1553834
 
 #+TOC: headlines 5
 
+
+#+LATEX: \newpage
+#+LATEX: \listoftables
+
 #+LATEX: \newpage
 #+LATEX: \listoffigures
+
 
 #+LATEX: \newpage
 #+LATEX: \pagenumbering{arabic}
@@ -77,8 +82,6 @@ Page numbering from https://stackoverflow.com/a/35456439/1553834
 #+LATEX: \newpage
 * Literature Review
 #+INCLUDE: "literature.org"
-** A Review of Genome Graph Tools
-#+INCLUDE: "../Review/review.org"
 
 #+LATEX: \newpage
 * Materials and Methods
