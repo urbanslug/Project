@@ -1,4 +1,4 @@
-# Exploring Virus Sequence Diversity Using Variation Graphs
+# Exploring Virus Sequence Diversity Using Genome Graphs
 
 
 
